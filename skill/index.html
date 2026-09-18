@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Download the milp-structure-research skill and explore its 20-instance historical comparison.">
+  <title>Skill-Based Improvement Experiment | LLM4MIP</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Primary navigation">
+      <a class="brand" href="../">LLM4MIP <small>Evidence before claims</small></a>
+      <div class="nav-links">
+        <a href="../instances/">112 instances</a>
+        <a href="./" aria-current="page">Skill experiment</a>
+        <a href="../solver-replacement/">Replace solvers?</a>
+        <a href="../technical-report.pdf">Report</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Deep dive 02 · skill-based improvement</p>
+        <h1>Structure first, then solve</h1>
+        <p class="dek">The downloadable <span class="mono">milp-structure-research</span> skill turns structural investigation into a gated workflow. Across 20 historical paired cases, the skill-guided arm recorded stronger primal outcomes and exact closures—but did not dominate dual-bound progress.</p>
+        <div class="hero-actions">
+          <a class="button light" href="../downloads/milp-structure-research.tar.gz" download>Download the skill</a>
+          <a class="button ghost" href="#results">Explore the results</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell" tabindex="-1">
+    <div class="content">
+      <section class="section" aria-labelledby="skill-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">The intervention</p>
+            <h2 id="skill-heading">A research discipline, not a solver preset</h2>
+          </div>
+          <p>Nine tracked skill files—including the profiler—plus the MIT license are packaged in one 21 KiB download.</p>
+        </div>
+        <p class="lede">The skill requires a researcher to freeze the claim and baseline, inspect the untouched matrix, recover semantics, classify the bottleneck, propose at least two falsifiable hypotheses, run bounded pilots, separate construction from proof, map back to the original model, and grade the resulting evidence.</p>
+        <div class="workflow" style="margin-top:1.4rem">
+          <article><h3>Profile</h3><p>Read domains, rows, sparsity, scale, symmetry, and possible graph or decomposition structure without optimizing.</p></article>
+          <article><h3>Hypothesize</h3><p>Write competing structural explanations and the smallest experiment that could disprove each one.</p></article>
+          <article><h3>Separate</h3><p>Run primal construction and dual/proof work as distinct pipelines with explicit budgets.</p></article>
+          <article><h3>Audit</h3><p>Lift candidates to the untouched MPS, replay certificates, preserve failures, and state the evidence boundary.</p></article>
+        </div>
+        <div class="callout green">
+          <p><strong>Version used in the experiment:</strong> <span class="mono">SKILL.md</span> SHA-256 <span class="mono">f8a09b104f0af3786b2e702f60dde3de7fd54a1aac581dff9bdd8a3325c84b4f</span>. All 20 skill-arm instances recorded a pre-access skill-read gate.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="design-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Experiment design</p>
+            <h2 id="design-heading">What was compared</h2>
+          </div>
+        </div>
+        <div class="download-grid">
+          <article class="download-card">
+            <h3>Skill-guided arm</h3>
+            <p>Run <span class="mono">controlled_miplib20_20260911_1451</span>: Codex <span class="mono">gpt-5.6-sol</span> at ultra reasoning, Gurobi 13.0.1, eight solver threads per instance, and a 32 GiB soft cap. Two disclosed cases used Windows/Gurobi 13.0.2.</p>
+          </article>
+          <article class="download-card">
+            <h3>Comparison arm</h3>
+            <p>A user-designated historical report on the same 20 minimization instances that did not use this specific skill. It still used computational tools and problem-specific methods; it is not a “solver-only” control.</p>
+          </article>
+        </div>
+        <p>Models and public baselines were frozen on 11 September 2026. The five batches ran at most four instances in parallel, with batch barriers and no transfer of unused time. Batch 1 allowed 40–120 active minutes per instance; batches 2–5 allowed 90–150. The skill run accumulated 1,729.5301 active minutes and 1,010.2245 overlapping solver minutes.</p>
+        <div class="callout">
+          <p><strong>Design limit:</strong> this is a paired historical reconstruction, not a randomized, blinded, equal-resource A/B experiment. Machines, budgets, solver states, starts, baselines, tolerances, stopping decisions, and research order may differ. The page reports association and mechanism—not a net causal effect.</p>
+        </div>
+      </section>
+
+      <section id="results" class="section" aria-labelledby="results-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Observed outcomes</p>
+            <h2 id="results-heading">The result is useful—and mixed</h2>
+          </div>
+          <p>Switch metrics to see which side of the MIP each workflow advanced.</p>
+        </div>
+        <div class="panel">
+          <div class="tabs" aria-label="Comparison metric">
+            <button type="button" data-metric="primal" aria-pressed="true">Selected primal</button>
+            <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
+            <button type="button" data-metric="gap" aria-pressed="false">Common gap</button>
+            <button type="button" data-metric="strict" aria-pressed="false">Strict improvements</button>
+            <button type="button" data-metric="closure" aria-pressed="false">Exact closures</button>
+          </div>
+          <h3 id="metric-title" class="chart-title"></h3>
+          <p id="metric-note" class="chart-note" aria-live="polite"></p>
+          <div id="metric-chart"></div>
+        </div>
+        <div class="callout blue">
+          <p><strong>Interpretation:</strong> the skill-guided arm was strongest at finding selected primal points, producing strict public-baseline improvements, and turning two open gaps into exact certificates. The comparison arm more often preserved a stronger numerical dual bound and smaller common gap. That division argues for a hybrid workflow.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="table-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Instance-level evidence</p>
+            <h2 id="table-heading">Inspect all 20 paired results</h2>
+          </div>
+          <a href="../downloads/skill-comparison.csv">Download CSV</a>
+        </div>
+        <div class="controls">
+          <div class="field"><label for="comparison-search">Search instance, method, or final status</label><input id="comparison-search" type="search" placeholder="Try “exact route” or “neos”" autocomplete="off"></div>
+          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill led on primal</option><option value="skill-dual">Skill led on dual</option><option value="comparison-dual">Comparison led on dual</option><option value="strict">Skill strict improvement</option><option value="exact">Skill exact closure</option><option value="tolerance">Tolerance-indexed skill P</option></select></div>
+        </div>
+        <p id="comparison-count" class="result-count" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table class="results-table">
+            <thead><tr><th>Instance</th><th>Batch</th><th>Primal winner</th><th>Dual winner</th><th>Gap winner</th><th>Skill values</th><th>Comparison values</th><th>Skill method</th></tr></thead>
+            <tbody id="comparison-body"></tbody>
+          </table>
+        </div>
+        <noscript><p class="noscript">The filterable table requires JavaScript. The complete data are available in the downloadable CSV.</p></noscript>
+      </section>
+
+      <section class="section" aria-labelledby="downloads-heading">
+        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Downloads</p><h2 id="downloads-heading">Reuse and audit the experiment</h2></div></div>
+        <div class="download-grid">
+          <article class="download-card"><h3>Skill package</h3><p>Nine tracked files spanning the profiling script, references, and agent metadata, plus the repository license.</p><a class="button small" href="../downloads/milp-structure-research.tar.gz" download>Skill .tar.gz</a></article>
+          <article class="download-card"><h3>Evidence package</h3><p>Full comparison directory, including report, script, source notes, CSV, and machine-readable audit.</p><a class="button small" href="../downloads/skill-experiment-evidence.tar.gz" download>Evidence .tar.gz</a></article>
+          <article class="download-card"><h3>Machine-readable results</h3><p>Unrounded instance-level values and comparison labels.</p><a class="button small" href="../downloads/skill-comparison.csv">CSV</a> <a class="button small" href="../downloads/skill-comparison-audit.json">Audit JSON</a></article>
+          <article class="download-card"><h3>Methods and provenance</h3><p>The narrative report and the exact source/reproduction notes used for this page.</p><a class="button small" href="../downloads/skill-comparison-report.md">Report.md</a> <a class="button small" href="../downloads/skill-comparison-source.md">Source.md</a></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · skill experiment</span><span><a href="../">Overview</a> · <a href="../solver-replacement/">Can LLMs replace solvers?</a></span></div></footer>
+  <script src="../assets/comparison-data.js"></script>
+  <script src="../assets/comparison.js"></script>
+</body>
+</html>

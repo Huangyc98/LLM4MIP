@@ -3,298 +3,135 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How much can LLMs help solve mixed-integer programs? Evidence from an LLM-assisted campaign on 112 open MIPLIB instances, with strict solver and certificate verification.">
-  <meta property="og:type" content="article">
+  <meta name="description" content="Interactive overview of how much LLM-assisted research helped on 112 open MIPLIB instances, with evidence-graded results and downloadable artifacts.">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="How Much Can LLMs Help Solve MIPs?">
-  <meta property="og:description" content="An evidence-graded study of where language models helped, where solvers still led, and what survived independent checking.">
+  <meta property="og:description" content="A concise interactive overview of 112 open MIPLIB instances, 30 supported global conclusions, and a mixed skill-workflow comparison.">
   <title>How Much Can LLMs Help Solve MIPs? | LLM4MIP</title>
-  <style>
-    :root {
-      --cardinal:#8C1515; --cardinal-dark:#5C0D0D; --cardinal-bright:#B1040E;
-      --ink:#2E2D29; --muted:#53565A; --paper:#FFFFFF; --canvas:#8C1515;
-      --surface:#F4F4F4; --soft-red:#F8ECEC; --line:#D4D1D1;
-      --sandstone:#D2C295; --green:#175E54; --blue:#006CB8; --purple:#620059;
-    }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--ink); background:var(--canvas); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.68; }
-    a { color:var(--cardinal); text-decoration-thickness:.08em; text-underline-offset:.15em; }
-    a:hover { color:var(--cardinal-dark); }
-    a:focus-visible { outline:3px solid var(--cardinal); outline-offset:3px; border-radius:2px; }
-    .hero a:focus-visible,.toc a:focus-visible,footer a:focus-visible { outline-color:var(--sandstone); }
-    .skip-link { position:absolute; left:-9999px; top:0; background:#fff; color:#000; padding:.7rem 1rem; z-index:10; }
-    .skip-link:focus { left:1rem; top:1rem; }
-    .hero { color:#fff; background:#8C1515; padding:5.2rem 1.5rem 4rem; position:relative; overflow:hidden; }
-    .hero::before { content:""; position:absolute; width:38rem; height:38rem; right:-13rem; top:-18rem; border-radius:50%; background:rgba(255,255,255,.09); }
-    .hero::after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.12; background-image:linear-gradient(rgba(255,255,255,.7) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.7) 1px,transparent 1px); background-size:42px 42px; mask-image:linear-gradient(120deg,#000,transparent 68%); }
-    .hero-inner { max-width:1080px; margin:0 auto; position:relative; z-index:1; }
-    .kicker { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.76rem; letter-spacing:.15em; text-transform:uppercase; font-weight:700; color:var(--sandstone); margin:0 0 1.2rem; }
-    h1 { max-width:940px; font-family:Arial,Helvetica,sans-serif; font-size:clamp(2.65rem,6vw,5.2rem); line-height:.98; letter-spacing:-.045em; margin:0; }
-    .subtitle { max-width:850px; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.25rem,2.5vw,1.85rem); line-height:1.25; font-weight:600; margin:1.15rem 0 0; color:#fff; }
-    .deck { max-width:850px; font-size:1.08rem; line-height:1.6; margin:1.5rem 0 0; color:#f8eeee; }
-    .meta { margin-top:1.3rem; font-family:Arial,Helvetica,sans-serif; font-size:.88rem; color:#f4dddd; }
-    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; max-width:960px; margin-top:2.4rem; }
-    .metric { padding:1rem 1.1rem; background:rgba(92,13,13,.62); border:1px solid rgba(255,255,255,.28); border-radius:12px; backdrop-filter:blur(8px); }
-    .metric strong { display:block; font-family:Arial,Helvetica,sans-serif; font-size:1.85rem; line-height:1; }
-    .metric span { display:block; margin-top:.35rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.7rem; color:#fff; text-transform:uppercase; letter-spacing:.04em; }
-    .metric small { display:block; margin-top:.3rem; color:#f1d9d9; font-size:.72rem; line-height:1.3; }
-    .pipeline { display:flex; flex-wrap:wrap; align-items:center; gap:.55rem; max-width:960px; margin-top:2rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.78rem; color:#fff; }
-    .pipeline span { padding:.48rem .7rem; border:1px solid rgba(255,255,255,.36); border-radius:999px; background:rgba(92,13,13,.48); }
-    .pipeline b { color:var(--sandstone); font-size:1rem; }
-    .layout { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:250px minmax(0,800px); gap:3.4rem; padding:3.3rem 1.5rem 5rem; align-items:start; }
-    .toc { position:sticky; top:1.4rem; max-height:calc(100vh - 2.8rem); overflow:auto; font-family:Arial,Helvetica,sans-serif; font-size:.82rem; }
-    .toc h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--surface); margin:0 0 .75rem; }
-    .toc ol { list-style:none; margin:0; padding:0; border-left:2px solid rgba(255,255,255,.4); }
-    .toc li { margin:0; }
-    .toc a { display:block; padding:.4rem .55rem .4rem .8rem; color:#fff; text-decoration:none; line-height:1.35; }
-    .toc a:hover { color:#fff; background:rgba(255,255,255,.12); }
-    article { background:var(--paper); padding:0 3.2rem 3.2rem; box-shadow:0 18px 46px rgba(46,14,14,.22); border:1px solid rgba(92,13,13,.2); border-top:8px solid var(--cardinal-dark); }
-    article .lead { font-size:1.3rem; line-height:1.62; color:var(--cardinal-dark); }
-    article h2 { font-family:Arial,Helvetica,sans-serif; font-size:1.78rem; line-height:1.18; letter-spacing:-.02em; margin:3.3rem 0 1rem; scroll-margin-top:1rem; }
-    article h3 { font-family:Arial,Helvetica,sans-serif; font-size:1.18rem; line-height:1.28; margin:2.2rem 0 .65rem; scroll-margin-top:1rem; }
-    .eyebrow { display:block; margin-bottom:.28rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--cardinal); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; }
-    .anchor { margin-left:.4rem; color:var(--cardinal); text-decoration:none; font-size:.75em; opacity:0; }
-    h2:hover .anchor,h3:hover .anchor,.anchor:focus { opacity:1; }
-    p,li { font-size:1.03rem; }
-    code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.88em; color:var(--cardinal-dark); background:var(--soft-red); border-radius:4px; padding:.08em .28em; overflow-wrap:anywhere; }
-    blockquote { margin:1.7rem 0; padding:.25rem 0 .25rem 1.35rem; border-left:4px solid var(--cardinal); color:#4d3333; font-size:1.12rem; font-style:italic; }
-    hr { border:0; border-top:1px solid var(--line); margin:3rem 0; }
-    .answer-grid,.role-grid,.comparison-grid { display:grid; gap:.8rem; margin:1.5rem 0 2rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
-    .answer-card,.role-card,.comparison-card { border:1px solid var(--line); border-radius:10px; padding:1.05rem; background:#fff; }
-    .answer-card { border-top:4px solid var(--cardinal); }
-    .answer-card strong,.comparison-card strong { display:block; font-family:Arial,Helvetica,sans-serif; font-size:1.55rem; line-height:1.1; color:var(--cardinal); }
-    .answer-card span,.comparison-card span { display:block; margin-top:.38rem; font-size:.87rem; line-height:1.4; color:var(--muted); }
-    .role-card { background:var(--surface); }
-    .role-card h3 { margin:0 0 .45rem; color:var(--cardinal-dark); }
-    .role-card p { margin:0; font-size:.91rem; }
-    .comparison-card:nth-child(3) { border-top:4px solid var(--blue); }
-    .comparison-card:nth-child(3) strong { color:#00548f; }
-    .callout { margin:1.6rem 0; padding:1rem 1.15rem; background:var(--soft-red); border-left:5px solid var(--cardinal); }
-    .callout p { margin:.2rem 0; }
-    .case-result { padding:.8rem 1rem; background:var(--surface); border-left:4px solid var(--green); }
-    .case-result strong { color:var(--green); }
-    .data-figure { margin:2.5rem -1.25rem; padding:1.1rem 1.25rem .8rem; background:#fbfbfb; border:1px solid var(--line); }
-    .data-figure svg { display:block; width:100%; height:auto; }
-    .mobile-summary { display:none; }
-    figcaption { font-family:Arial,Helvetica,sans-serif; color:var(--muted); font-size:.82rem; line-height:1.45; margin-top:.6rem; }
-    .svg-heading { font-size:24px; font-weight:700; fill:var(--cardinal-dark); }
-    .svg-value { font-size:30px; font-weight:700; fill:#fff; }
-    .svg-value-small { font-size:20px; font-weight:700; fill:#fff; }
-    .svg-label-light { font-size:21px; font-weight:700; fill:#fff; }
-    .svg-body { font-size:17px; fill:var(--muted); }
-    .svg-body-strong { font-size:18px; font-weight:700; fill:var(--ink); }
-    .svg-note { font-size:14px; font-style:italic; fill:var(--muted); }
-    .svg-box { font-size:15px; font-weight:700; fill:var(--ink); }
-    footer { background:var(--cardinal-dark); color:#f4dddd; padding:2rem 1.5rem; font-family:Arial,Helvetica,sans-serif; font-size:.82rem; }
-    footer div { max-width:1080px; margin:0 auto; }
-    footer a { color:#fff; }
-    @media (max-width:900px) {
-      .layout { grid-template-columns:1fr; padding:1.5rem 0 4rem; }
-      .toc { position:static; max-height:none; overflow:visible; padding:0 1.4rem; }
-      .toc ol { columns:2; }
-      .hero { padding-top:3.8rem; }
-      article { border-left:0; border-right:0; padding:0 1.45rem 2.5rem; }
-      .data-figure { margin:2rem 0; }
-      .metrics { grid-template-columns:repeat(2,1fr); }
-      .workflow-figure svg { display:none; }
-      .workflow-figure .mobile-summary { display:block; }
-    }
-    @media (max-width:680px) { .answer-grid,.role-grid,.comparison-grid { grid-template-columns:1fr; } }
-    @media (max-width:560px) {
-      .toc ol { columns:1; }
-      .metrics { grid-template-columns:1fr 1fr; }
-      .hero { padding-left:1.1rem; padding-right:1.1rem; }
-      article h2 { font-size:1.5rem; }
-      .data-figure:not(.workflow-figure) svg { display:none; }
-      .mobile-summary { display:block; font-family:Arial,Helvetica,sans-serif; font-size:.94rem; line-height:1.55; padding:.8rem; background:var(--surface); border-left:4px solid var(--cardinal); }
-    }
-    @media print {
-      body { background:#fff; }
-      .hero { background:#fff; color:#000; padding:1.5cm 0; }
-      .hero::before,.hero::after { display:none; }
-      .kicker,.meta { color:#555; }
-      .subtitle,.deck { color:#222; }
-      .metrics { display:none; }
-      .pipeline { color:#222; }
-      .pipeline span { background:#fff; border-color:#777; }
-      .pipeline b { color:#222; }
-      .layout { display:block; max-width:none; padding:0; }
-      .toc { position:static; max-height:none; page-break-after:always; }
-      .toc h2 { color:#333; }
-      .toc ol { columns:2; border-color:#999; }
-      .toc a { color:#000; }
-      article { box-shadow:none; border:0; padding:0; }
-      .data-figure { break-inside:avoid; border:1px solid #ccc; }
-      a { color:#000; text-decoration:none; }
-      footer { background:#fff; color:#555; padding:1cm 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
-<body itemscope itemtype="https://schema.org/ScholarlyArticle">
-  <a class="skip-link" href="#article">Skip to article</a>
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="kicker">LLM4MIP · language models for mixed-integer programming</p>
-      <h1 itemprop="headline">How Much Can LLMs Help Solve MIPs?</h1>
-      <p class="subtitle">A research partner for finding structure - not a replacement for solvers or proof</p>
-      <p class="deck" itemprop="description">Across 112 open MIPLIB instances, an LLM-assisted campaign produced verified primal progress, stronger historical lower bounds, and 30 supported global conclusions. The useful question is not whether a model can sound clever, but where its ideas change the mathematical state space and survive independent checking.</p>
-      <div class="metrics" aria-label="Overlapping campaign outcomes">
-        <div class="metric"><strong>112</strong><span>open instances studied</span><small>from a frozen 217-instance snapshot</small></div>
-        <div class="metric"><strong>30</strong><span>global conclusions</span><small>28 optimal, 2 infeasible</small></div>
-        <div class="metric"><strong>25</strong><span>primal advances</span><small>21 better + 4 first finite</small></div>
-        <div class="metric"><strong>41</strong><span>lower-bound advantages</span><small>against a frozen COPT table</small></div>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-current="page">LLM4MIP <small>Evidence before claims</small></a>
+      <div class="nav-links">
+        <a href="instances/">112 instances</a>
+        <a href="skill/">Skill experiment</a>
+        <a href="solver-replacement/">Replace solvers?</a>
+        <a href="technical-report.pdf">Report</a>
       </div>
-      <div class="pipeline" aria-label="Research workflow"><span>read the MPS</span><b>→</b><span>LLM hypothesis</span><b>→</b><span>bounded test</span><b>→</b><span>solver or proof backend</span><b>→</b><span>independent check</span></div>
-      <p class="meta">Evidence through 18 September 2026 UTC · Counts overlap and are descriptive, not a causal success-rate estimate</p>
+    </nav>
+    <div class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">LLM-assisted mixed-integer programming · 18 September 2026</p>
+        <h1>How much can LLMs help solve MIPs?</h1>
+        <p class="dek">Materially—as research partners that recover structure, propose smaller state spaces, and organize proof workflows. But the results still depend on optimization backends and independent checks.</p>
+        <div class="hero-actions">
+          <a class="button light" href="#overview">Explore the overview</a>
+          <a class="button ghost" href="technical-report.pdf">Download the technical report</a>
+        </div>
+      </div>
     </div>
   </header>
-  <main class="layout">
-    <nav class="toc" aria-label="Article contents">
-      <h2>Contents</h2>
-      <ol>
-        <li><a href="#short-answer">The short answer</a></li>
-        <li><a href="#division-of-labor">Where the LLM helps</a></li>
-        <li><a href="#research-loop">One repeatable research loop</a></li>
-        <li><a href="#four-modes">Four MIPs, four forms of help</a></li>
-        <li><a href="#verification">How strong is the evidence?</a></li>
-        <li><a href="#mixed-result">The strongest comparison is mixed</a></li>
-        <li><a href="#failure">Where LLMs did not help</a></li>
-        <li><a href="#bottom-line">The bottom line</a></li>
-        <li><a href="#sources">Evidence and further reading</a></li>
-      </ol>
-    </nav>
-    <article id="article" itemprop="articleBody">
-      <p class="lead">The question is not whether a language model can emit a plausible optimization idea. It is whether that idea can survive contact with a real mixed-integer program.</p>
-      <h2 id="short-answer">The short answer<a class="anchor" href="#short-answer" aria-label="Link to The short answer">#</a></h2>
-      <p>LLMs helped materially as research copilots. They were most useful for recovering semantics from large formulations, proposing alternative state spaces, designing bounded experiments, writing extractors and checkers, and coordinating the path from a conjecture to a certificate. They did not replace branch-and-bound, SAT solving, exact enumeration, or independent verification.</p>
-      <div class="answer-grid" aria-label="Summary of observed help">
-        <div class="answer-card"><strong>30 conclusions</strong><span>The reconciled archive supports 28 optimal values and two infeasibility results among 112 studied instances.</span></div>
-        <div class="answer-card"><strong>25 primal advances</strong><span>Relative to MIPLIB v36: 21 improved incumbents plus four first finite incumbents.</span></div>
-        <div class="answer-card"><strong>41 dual advantages</strong><span>Relative to displayed values in a frozen historical COPT 10-hour table, not a same-hardware race.</span></div>
-      </div>
-      <p>These are overlapping outputs of one nonrandom research campaign. They are not 96 distinct wins, not an estimate of what an LLM would solve on a random MIP, and not proof that the language model alone caused each result. Instance choice and research effort were deliberately uneven.</p>
-      <div class="callout"><p><strong>The honest claim:</strong> LLM assistance expanded the search for useful representations and proof routes. Solvers and deterministic checkers decided what counted.</p></div>
-      <h2 id="division-of-labor">Where the LLM helps<a class="anchor" href="#division-of-labor" aria-label="Link to Where the LLM helps">#</a></h2>
-      <p>The campaign worked because three kinds of machinery played different roles.</p>
-      <div class="role-grid">
-        <section class="role-card"><h3>Language model</h3><p>Reads formulation patterns, connects them to algorithms or theorems, proposes reductions, generates experiments, looks for counterexamples, and helps build proof workflows.</p></section>
-        <section class="role-card"><h3>Optimization backends</h3><p>Search for feasible solutions, numerical bounds, reduced-model optima, and small counterexamples. Their output is evidence only within the scope actually solved.</p></section>
-        <section class="role-card"><h3>Independent checkers</h3><p>Audit the untouched MPS, replay exact dynamic programs or proof traces, test mapping directions, and reject attractive claims that do not survive verification.</p></section>
-      </div>
-      <p>This division matters. A model can suggest a parity argument or a SAT encoding; it cannot make the argument true by confidence. Conversely, a generic solver can deliver a strong numerical bound without revealing the structural idea that makes a portable proof possible.</p>
-      <h2 id="research-loop">One repeatable research loop<a class="anchor" href="#research-loop" aria-label="Link to One repeatable research loop">#</a></h2>
-      <p>The recurring pattern is to make the question smaller before spending more computation:</p>
-      <blockquote><p>understand the original model → propose a falsifiable structural idea → test it on a bounded pilot → build separate primal and dual artifacts → return to the original MPS → assign the evidence grade actually earned</p></blockquote>
-      <figure class="data-figure workflow-figure" aria-labelledby="workflow-caption">
-        <svg viewBox="0 0 1040 430" role="img" aria-labelledby="workflow-title workflow-desc">
-          <title id="workflow-title">The LLM-assisted research loop</title>
-          <desc id="workflow-desc">Seven boxes show a loop from the original MPS through structural hypotheses, bounded tests, solver or proof backends, original-model audit, and evidence grading. Failed tests feed back into the next hypothesis.</desc>
-          <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8C1515"/></marker></defs>
-          <g font-family="Arial, Helvetica, sans-serif">
-            <text x="30" y="40" class="svg-heading">A question-shrinking loop</text>
-            <text x="30" y="69" class="svg-body">The LLM proposes and organizes; computational backends search; checkers decide.</text>
-            <rect x="28" y="105" width="220" height="82" rx="12" fill="#F4F4F4" stroke="#D4D1D1" stroke-width="2"/><text x="138" y="139" text-anchor="middle" class="svg-box">1 · Original MPS</text><text x="138" y="164" text-anchor="middle" class="svg-body">domains, rows, objective</text>
-            <rect x="300" y="105" width="220" height="82" rx="12" fill="#F8ECEC" stroke="#D4D1D1" stroke-width="2"/><text x="410" y="139" text-anchor="middle" class="svg-box">2 · LLM hypothesis</text><text x="410" y="164" text-anchor="middle" class="svg-body">a smaller state space</text>
-            <rect x="572" y="105" width="220" height="82" rx="12" fill="#F8ECEC" stroke="#D4D1D1" stroke-width="2"/><text x="682" y="139" text-anchor="middle" class="svg-box">3 · Bounded test</text><text x="682" y="164" text-anchor="middle" class="svg-body">counterexample or signal</text>
-            <rect x="820" y="229" width="192" height="82" rx="12" fill="#F4F4F4" stroke="#D4D1D1" stroke-width="2"/><text x="916" y="263" text-anchor="middle" class="svg-box">4 · Backend</text><text x="916" y="288" text-anchor="middle" class="svg-body">MIP, DP, SAT, exact</text>
-            <rect x="572" y="335" width="220" height="68" rx="12" fill="#F8ECEC" stroke="#D4D1D1" stroke-width="2"/><text x="682" y="364" text-anchor="middle" class="svg-box">5 · Primal + dual artifacts</text><text x="682" y="387" text-anchor="middle" class="svg-body">kept separate</text>
-            <rect x="300" y="335" width="220" height="68" rx="12" fill="#F8ECEC" stroke="#D4D1D1" stroke-width="2"/><text x="410" y="364" text-anchor="middle" class="svg-box">6 · Original-MPS audit</text><text x="410" y="387" text-anchor="middle" class="svg-body">all rows and mappings</text>
-            <rect x="28" y="335" width="220" height="68" rx="12" fill="#F4F4F4" stroke="#D4D1D1" stroke-width="2"/><text x="138" y="364" text-anchor="middle" class="svg-box">7 · Evidence grade</text><text x="138" y="387" text-anchor="middle" class="svg-body">claim only what survived</text>
-            <line x1="248" y1="146" x2="294" y2="146" stroke="#8C1515" stroke-width="4" marker-end="url(#arrow)"/>
-            <line x1="520" y1="146" x2="566" y2="146" stroke="#8C1515" stroke-width="4" marker-end="url(#arrow)"/>
-            <path d="M792 146 H916 V223" fill="none" stroke="#8C1515" stroke-width="4" marker-end="url(#arrow)"/>
-            <path d="M916 311 V369 H798" fill="none" stroke="#8C1515" stroke-width="4" marker-end="url(#arrow)"/>
-            <line x1="572" y1="369" x2="526" y2="369" stroke="#8C1515" stroke-width="4" marker-end="url(#arrow)"/>
-            <line x1="300" y1="369" x2="254" y2="369" stroke="#8C1515" stroke-width="4" marker-end="url(#arrow)"/>
-            <path d="M410 329 V258 H138 V193" fill="none" stroke="#53565A" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
-            <text x="430" y="250" class="svg-note">failed tests and counterexamples change the next representation</text>
-          </g>
-        </svg>
-        <div class="mobile-summary"><strong>Research loop:</strong> read the original MPS; propose a structural hypothesis; try to falsify it; use a solver, dynamic program, SAT engine, or exact routine; produce separate primal and dual artifacts; audit the original model; and report only the evidence grade that survives. Failures feed the next hypothesis.</div>
-        <figcaption id="workflow-caption"><strong>Figure 1.</strong> A repeatable LLM-assisted workflow. Verification is inside the loop, not a cosmetic final step.</figcaption>
-      </figure>
-      <h2 id="four-modes">Four MIPs, four forms of help<a class="anchor" href="#four-modes" aria-label="Link to Four MIPs, four forms of help">#</a></h2>
-      <h3 id="dfn"><span class="eyebrow">Representation change</span>A network design MIP becomes a tree dynamic program<a class="anchor" href="#dfn" aria-label="Link to dfn case study">#</a></h3>
-      <p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/dfn-bwin-DBE"><code>dfn-bwin-DBE</code></a> is a ten-node fixed-charge multicommodity network design problem. Positive demand for every ordered pair implies that every feasible installed support is connected. Ten or more edges already cost more than the incumbent, so any optimum must be a nine-edge spanning tree.</p>
-      <p>The LLM-assisted move was to stop treating the formulation as a generic flow MIP and organize the remaining search around tree cuts. Removing an edge determines the cross-cut demand and therefore the cheapest admissible capacity. Two exact subset dynamic programs then covered every spanning tree, not merely the trees reached by a heuristic.</p>
-      <p class="case-result"><strong>Verified result:</strong> the exact lower bound and an original-MPS witness meet at 73,623.79. The solver backend executes; the decisive contribution is the new state space and its auditable mapping.</p>
-      <h3 id="fhnw"><span class="eyebrow">Semantic recovery</span>A scheduling formulation reveals an interval order<a class="anchor" href="#fhnw" aria-label="Link to FHNW case study">#</a></h3>
-      <p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binschedule2"><code>fhnw-binschedule2</code></a> contains 497 items, six machines, 114 ordered positions, and thousands of auxiliary variables. Reading the selector windows as intervals exposes a 35-element antichain. Combined with two endpoint machines and parity of their loads, that structure forces a makespan of at least 2,428.</p>
-      <p class="case-result"><strong>Verified result:</strong> the public solution attains 2,428 and passes exact checking of all 6,503 original rows. An earlier, more intuitive energy-cut interpretation was wrong and was withdrawn after counterexamples exposed a missing duration term.</p>
-      <h3 id="bppc"><span class="eyebrow">Certificate construction</span>A packing cutoff becomes a checked SAT refutation<a class="anchor" href="#bppc" aria-label="Link to BPPC case study">#</a></h3>
-      <p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/bppc6-06"><code>bppc6-06</code></a> has a known placement of height 208. Instead of asking a solver for another long optimization run, the workflow isolated the finite question: can height 207 occur? Exact subset weights forced every positive-width profile segment of such a placement into a tight equality, making a strong Boolean encoding possible.</p>
-      <p>The resulting CNF has 414,391 variables and 1,541,322 clauses. CaDiCaL reported unsatisfiable, <code>drat-trim</code> checked the proof, and a separate replay checked 1,001,496 LRAT lemmas through the empty clause.</p>
-      <p class="case-result"><strong>Verified result:</strong> the cutoff refutation plus the height-208 witness establishes the optimum. The full 2.65 GiB proof bundle is external to Git and identified by hashes, so complete third-party replay requires obtaining or regenerating it.</p>
-      <h3 id="allcolor"><span class="eyebrow">Invariant reconstruction</span>An 84,376-variable model closes with parity<a class="anchor" href="#allcolor" aria-label="Link to allcolor case study">#</a></h3>
-      <p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/allcolor58"><code>allcolor58</code></a> has 197,154 constraints, yet its decisive lower bound fits in three sentences. Every legal package has even capacity. Exactly 42 stores have odd total demand. Each such store must incur at least one unit of mismatch cost.</p>
-      <p>The value 42 and a construction seed were already known externally; the project does not claim first discovery. Its contribution was to reconstruct the invariant, turn the seed into a full witness, and run two exact audits of every variable, domain, and original row.</p>
-      <p class="case-result"><strong>Verified result:</strong> lower bound 42 and upper bound 42. Here the LLM-assisted value lies in explanation, reconstruction, and auditability rather than authorship of the underlying value.</p>
-      <h2 id="verification">How strong is the evidence?<a class="anchor" href="#verification" aria-label="Link to How strong is the evidence">#</a></h2>
-      <p>A global conclusion enters the inventory only when its lower and upper sides support the claim on the original formulation. The archive deliberately keeps different evidence classes visible.</p>
-      <figure class="data-figure" aria-labelledby="coverage-caption">
-        <svg viewBox="0 0 1040 470" role="img" aria-labelledby="coverage-title coverage-desc">
-          <title id="coverage-title">Campaign coverage and evidence mix</title>
-          <desc id="coverage-desc">A funnel shows 217 instances in the frozen open snapshot, 112 studied, and 30 supported global conclusions. A stacked bar classifies those conclusions into 18 portable exact, 1 large checked trace, 3 exact exhaustive, 3 theorem transfer, 3 numerical closure, and 2 mixed evidence.</desc>
-          <g font-family="Arial, Helvetica, sans-serif">
-            <text x="35" y="42" class="svg-heading">Coverage</text>
-            <rect x="35" y="70" width="380" height="68" rx="12" fill="#8C1515"/>
-            <text x="64" y="114" class="svg-value">217</text><text x="160" y="113" class="svg-label-light">open snapshot</text>
-            <rect x="70" y="157" width="310" height="68" rx="12" fill="#B1040E"/>
-            <text x="98" y="201" class="svg-value">112</text><text x="194" y="200" class="svg-label-light">studied</text>
-            <rect x="118" y="244" width="215" height="68" rx="12" fill="#175E54"/>
-            <text x="145" y="288" class="svg-value">30</text><text x="221" y="287" class="svg-label-light">global</text>
-            <text x="35" y="352" class="svg-body-strong">28 optimal + 2 infeasible</text>
-            <text x="35" y="386" class="svg-body">82 studied instances remain unresolved</text>
-            <text x="35" y="422" class="svg-note">26.8% is descriptive, not a success-rate estimate</text>
-            <text x="515" y="42" class="svg-heading">Evidence behind 30 conclusions</text>
-            <rect x="515" y="78" width="270" height="58" fill="#8C1515"/>
-            <rect x="785" y="78" width="15" height="58" fill="#006CB8"/>
-            <rect x="800" y="78" width="45" height="58" fill="#175E54"/>
-            <rect x="845" y="78" width="45" height="58" fill="#620059"/>
-            <rect x="890" y="78" width="45" height="58" fill="#B1040E"/>
-            <rect x="935" y="78" width="30" height="58" fill="#53565A"/>
-            <text x="645" y="116" class="svg-value-small">18</text><text x="815" y="116" class="svg-value-small">3</text><text x="860" y="116" class="svg-value-small">3</text><text x="905" y="116" class="svg-value-small">3</text><text x="942" y="116" class="svg-value-small">2</text>
-            <rect x="520" y="169" width="20" height="20" rx="4" fill="#8C1515"/><text x="553" y="186" class="svg-body">18  Portable exact</text>
-            <rect x="520" y="211" width="20" height="20" rx="4" fill="#006CB8"/><text x="553" y="228" class="svg-body">1  Large checked trace by hash</text>
-            <rect x="520" y="253" width="20" height="20" rx="4" fill="#175E54"/><text x="553" y="270" class="svg-body">3  Exact exhaustive</text>
-            <rect x="520" y="295" width="20" height="20" rx="4" fill="#620059"/><text x="553" y="312" class="svg-body">3  Theorem transfer</text>
-            <rect x="520" y="337" width="20" height="20" rx="4" fill="#B1040E"/><text x="553" y="354" class="svg-body">3  Numerical closure</text>
-            <rect x="520" y="379" width="20" height="20" rx="4" fill="#53565A"/><text x="553" y="396" class="svg-body">2  Mixed evidence</text>
-            <text x="515" y="436" class="svg-note">Evidence classes preserve materially different dependencies.</text>
-          </g>
-        </svg>
-        <div class="mobile-summary"><strong>Coverage:</strong> 217 instances in the frozen open snapshot; 112 studied; 30 supported conclusions, comprising 28 optima and two infeasibility results; 82 remain unresolved. Evidence grades are 18 portable exact, one large checked trace by hash, three exact exhaustive, three theorem transfers, three numerical closures, and two mixed conclusions.</div>
-        <figcaption id="coverage-caption"><strong>Figure 2.</strong> Frozen campaign coverage and evidence mix. Two previously listed genus conclusions were removed because their saved objective -23 points fail literal exact-decimal MPS feasibility by 10<sup>-15</sup>, even though the native graph optima and lower bounds remain valid.</figcaption>
-      </figure>
-      <p>Verification is not delegated to another language model. Primal claims are checked against the original MPS; dual claims rely on mathematical arguments, exact computations, checked proof traces, or solver bounds with their numerical status stated. A reduced-model optimum, an infeasible neighborhood, an unchecked <code>UNSAT</code>, or a time limit remains a scoped result.</p>
-      <h2 id="mixed-result">The strongest comparison is mixed<a class="anchor" href="#mixed-result" aria-label="Link to The strongest comparison is mixed">#</a></h2>
-      <p>A separate historical 20-instance study compared a structure-focused workflow with a workflow that did not invoke the same research skill. It is the closest available comparison, and it points in both directions.</p>
-      <div class="comparison-grid" aria-label="Historical 20-instance comparison">
-        <div class="comparison-card"><strong>11 of 20</strong><span>better selected primal values for the structure arm; the remaining nine tied under the study's rule.</span></div>
-        <div class="comparison-card"><strong>2 vs 0</strong><span>exact closures recorded by the structure arm versus the comparison arm.</span></div>
-        <div class="comparison-card"><strong>12 of 20</strong><span>stronger dual bounds for the comparison arm; it also had the smaller common gap on 11.</span></div>
-      </div>
-      <p>Six selected values were tolerance-indexed rather than strict incumbents. Against strict public baselines, the improvement count was four for the structure arm and two for the comparison arm. The runs were not randomized, blinded, or equal-budget: machines, starts, solver states, and stopping decisions differed. This is operational evidence for a hybrid workflow, not a causal effect size.</p>
-      <p>The result is useful precisely because it is not a one-sided victory. LLM-guided structural work showed an advantage in primal construction and exact closure; generic solver effort often kept the better numerical dual bound. A sensible system protects both routes.</p>
-      <h2 id="failure">Where LLMs did not help<a class="anchor" href="#failure" aria-label="Link to Where LLMs did not help">#</a></h2>
-      <p>The archive contains attractive ideas that failed: parsers missed indented RHS records, pseudo-Boolean rows were oriented incorrectly, relaxations were mistaken for liftable equivalences, local infeasibility was overread as global, and incomplete proof logs stopped before a final certificate. The corrected FHNW argument is especially instructive: an LLM-readable semantic story was still mathematically wrong until an original-model counterexample broke it.</p>
-      <p>Eighty-two studied instances remain globally unresolved. Many have useful bounds, verified reductions, local exclusions, or proof kernels, but none of those is a closure. Repeated local repair, longer time limits, and confident explanations do not turn restricted evidence into a global theorem.</p>
-      <p>A failure becomes scientifically useful when it narrows the next experiment. The workflow records the precise target, transformation direction, time limit, terminal state, and check performed. That ledger prevents the model from quietly recycling a disproved mechanism.</p>
-      <h2 id="bottom-line">The bottom line<a class="anchor" href="#bottom-line" aria-label="Link to The bottom line">#</a></h2>
-      <p>The project does not show an LLM replacing a MIP solver. It shows something more practical: language models can help researchers read opaque formulations, discover lower-dimensional combinatorial structure, coordinate experiments, and turn promising ideas into proof obligations.</p>
-      <blockquote><p>The most valuable AI contribution was often not a final number. It was a smaller question whose answer could be independently checked.</p></blockquote>
-      <p>That is how an 84,376-variable distribution model becomes parity, a network design MIP becomes a tree dynamic program, a scheduling formulation becomes an interval order, and a one-unit packing gap becomes a checked SAT refutation. The LLM helps change the representation; solvers and proof systems make the answer reliable.</p>
-      <h2 id="sources">Evidence and further reading<a class="anchor" href="#sources" aria-label="Link to Evidence and further reading">#</a></h2>
-      <ul>
-        <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0">Frozen project repository at commit 89a8abd</a></li>
-        <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/gpt-milp-structure-strategy-2026-09-11.zh.md">Structure-driven MILP research strategy</a></li>
-        <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/dual-bound-audit-2026-09-14">20-instance dual-bound audit</a></li>
-        <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/comparisons/milp-structure-skill-effect-20260913">Historical workflow comparison</a></li>
-        <li><a href="technical-report.pdf">Technical report: evidence, limitations, replay contract, and full conclusion inventory</a></li>
-        <li><a href="https://miplib.zib.de/tag_open.html">MIPLIB open-instance list</a></li>
-      </ul>
-    </article>
+
+  <main id="main" class="page-shell" tabindex="-1">
+    <section class="metric-grid" aria-label="Campaign highlights">
+      <article class="metric"><strong>112</strong><span>open instances studied</span><small>One frozen research campaign; historical calibration excluded.</small></article>
+      <article class="metric"><strong>30</strong><span>global conclusions</span><small>28 optimal values and two infeasibility conclusions.</small></article>
+      <article class="metric"><strong>25</strong><span>primal advances</span><small>21 better incumbents vs MIPLIB v36 plus four first finite points.</small></article>
+      <article class="metric"><strong>41</strong><span>lower-bound advantages</span><small>Against displayed values in a frozen historical COPT table.</small></article>
+    </section>
+
+    <div class="content">
+      <section id="overview" class="section" aria-labelledby="overview-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Interactive summary</p>
+            <h2 id="overview-heading">One campaign, three views</h2>
+          </div>
+          <p>Switch between campaign status, verification form, and the closest paired workflow comparison.</p>
+        </div>
+        <div class="panel">
+          <div class="tabs" aria-label="Overview chart view">
+            <button type="button" data-overview="status" aria-pressed="true">Campaign status</button>
+            <button type="button" data-overview="evidence" aria-pressed="false">Verification form</button>
+            <button type="button" data-overview="skill" aria-pressed="false">Skill comparison</button>
+          </div>
+          <h3 id="overview-title" class="chart-title"></h3>
+          <p id="overview-note" class="chart-note" aria-live="polite"></p>
+          <div id="overview-chart"></div>
+          <table id="overview-data" class="data-list">
+            <thead><tr><th>Measure</th><th>Count</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <noscript><p class="noscript">Enable JavaScript to switch chart views. The headline counts remain available above and on the linked detail pages.</p></noscript>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="explore-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Deep dives</p>
+            <h2 id="explore-heading">Open the evidence</h2>
+          </div>
+          <p>The opening page stays intentionally short. Each linked page exposes its setup, caveats, data, and downloads.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card">
+            <span class="number">01 · Instance archive</span>
+            <h3>What happened on each of the 112 instances?</h3>
+            <p>Search the full campaign, inspect a concise finding summary, and download a reproducible findings bundle for every instance.</p>
+            <a href="instances/">Browse all instances →</a>
+          </article>
+          <article class="page-card">
+            <span class="number">02 · Skill experiment</span>
+            <h3>Did a structure-research skill change outcomes?</h3>
+            <p>Explore the 20-instance historical comparison, inspect exact values, and download the skill and machine-readable evidence.</p>
+            <a href="skill/">Inspect the skill experiment →</a>
+          </article>
+          <article class="page-card">
+            <span class="number">03 · Division of labor</span>
+            <h3>Can LLMs fully replace solvers?</h3>
+            <p>No—not in this campaign. See where LLM-guided work led, where solver bounds led, and why verification remains decisive.</p>
+            <a href="solver-replacement/">Read the evidence-based verdict →</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="read-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Read and reuse</p>
+            <h2 id="read-heading">Report, source, and audit trail</h2>
+          </div>
+        </div>
+        <div class="download-grid">
+          <article class="download-card">
+            <h3>Technical report</h3>
+            <p>The full argument, case studies, evidence taxonomy, and 30-row global-conclusion inventory.</p>
+            <a class="button small" href="technical-report.pdf">PDF</a>
+            <a class="button small" href="technical-report.tex">LaTeX</a>
+          </article>
+          <article class="download-card">
+            <h3>Reconciliation audits</h3>
+            <p>The 30-count snapshot incorporates two 18 September working-tree reviews beyond published commit <span class="mono">89a8abd</span>. They are bundled here for review.</p>
+            <a class="button small" href="downloads/campaign-reconciliation-audits.tar.gz">Download audits</a>
+          </article>
+        </div>
+        <div class="callout">
+          <p><strong>Reading rule:</strong> the counts overlap and describe one deliberately uneven research campaign. They are not 96 distinct wins, a random-sample success rate, or proof that an LLM alone caused an outcome. Two <span class="mono">fastxgemm</span> incumbent improvements use an attributed external construction; this project contributes mapping and strict verification there.</p>
+        </div>
+      </section>
+    </div>
   </main>
-  <footer><div>LLM4MIP · A dated, evidence-graded account of LLM-assisted mixed-integer optimization. Repository conclusions are not official MIPLIB status changes.</div></footer>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>LLM4MIP · Stanford cardinal <span class="mono">#8C1515</span></span>
+      <span><a href="https://github.com/Huangyc98/MIPLIB_openproblem">Research archive</a> · <a href="https://github.com/Huangyc98/LLM4MIP">Website source</a></span>
+    </div>
+  </footer>
+  <script src="assets/home.js"></script>
 </body>
 </html>
