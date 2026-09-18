@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A capability study of LLM-assisted workflows for mixed-integer programming: 112 open problems tested, 32 proved optimal, 25 primal improvements, and 40 dual improvements.">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="How LLMs Help Solve Open MIP Problems">
+  <meta property="og:title" content="How Much Can LLMs Help Solving Real MIPs?">
   <meta property="og:description" content="A capability study of LLM-assisted workflows for mixed-integer programming, with 32 optimality proofs, 25 primal improvements, and 40 dual improvements.">
-  <title>How LLMs Help Solve Open MIP Problems | LLM4MIP</title>
+  <title>How Much Can LLMs Help Solving Real MIPs? | LLM4MIP</title>
   <style>
     :root { --ink:#111827; --muted:#5b6470; --blue:#16243d; --mid:#37c7d8; --soft:#e9f7f8; --paper:#ffffff; --canvas:#eef3f7; --grid:#d9e1e8; --green:#8fd36b; --link:#176b83; --amber:#ffc857; }
     * { box-sizing:border-box; }
@@ -33,6 +33,18 @@
     .pipeline { display:flex; flex-wrap:wrap; align-items:center; gap:.55rem; max-width:900px; margin-top:2rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.78rem; color:#bcecf0; }
     .pipeline span { padding:.48rem .7rem; border:1px solid rgba(141,232,239,.34); border-radius:999px; background:rgba(8,18,34,.5); }
     .pipeline b { color:var(--amber); font-size:1rem; }
+    .simple-home { display:block; }
+    .simple-home h2 { margin-top:0; font-size:2rem; }
+    .simple-home .intro { font-size:1.25rem; line-height:1.55; color:#243b53; }
+    .simple-home .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2rem 0; }
+    .simple-home .step { padding:1.2rem; border:1px solid #d8e3ea; border-radius:14px; background:linear-gradient(145deg,#f8fcfd,#edf7f8); }
+    .simple-home .step b { display:block; color:#176b83; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.5rem; }
+    .simple-home .result { padding:1.2rem 1.4rem; border-left:4px solid var(--amber); background:#fff8e7; border-radius:0 12px 12px 0; }
+    .simple-home .cta { display:inline-block; margin-top:1rem; padding:.75rem 1rem; border-radius:999px; background:#16243d; color:#fff; text-decoration:none; font-weight:700; }
+    .layout { grid-template-columns:1fr; max-width:980px; }
+    .toc { display:none; }
+    article > *:not(.simple-home) { display:none; }
+    @media (max-width:700px) { .simple-home .steps { grid-template-columns:1fr; } }
     .layout { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:250px minmax(0,780px); gap:3.4rem; padding:3.3rem 1.5rem 5rem; align-items:start; }
     .toc { position:sticky; top:1.4rem; font-family:Arial,Helvetica,sans-serif; font-size:.82rem; }
     .toc h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 .75rem; }
@@ -76,9 +88,9 @@
   <header class="hero">
     <div class="hero-inner">
       <p class="kicker">LLM4MIP · language models for mixed-integer programming</p>
-      <h1 itemprop="headline">How LLMs Help Solve Open MIP Problems</h1>
-      <p class="subtitle">From structural insight and algorithm design to verified optimization results</p>
-      <p class="deck" itemprop="description">We study how large language models help researchers solve difficult mixed-integer programs: reading structure, proposing reductions, designing experiments, finding counterexamples, and building proof workflows. Across 112 open problems, this approach proved 32 optimal, improved 25 primal solutions, and strengthened 40 dual bounds under strict verification.</p>
+      <h1 itemprop="headline">How Much Can LLMs Help Solving Real MIPs?</h1>
+      <p class="subtitle">Watching an AI think through hard optimization problems</p>
+      <p class="deck" itemprop="description">A real MIP rarely gives up its answer in one step. We study how an LLM can understand the problem, find a useful idea, test it, learn from failure, and help build a solution that can be checked.</p>
       <div class="metrics" aria-label="Campaign summary">
         <div class="metric"><strong>112</strong><span>open MIP problems tested</span></div>
         <div class="metric"><strong>32</strong><span>problems proved optimal</span></div>
@@ -100,7 +112,14 @@
 <li><a href="#failures-are-useful-when-they-change-the-next-experiment">Failures are useful when they change the next experiment</a></li>
 <li><a href="#the-smaller-question-is-the-real-output">The smaller question is the real output</a></li>
 <li><a href="#evidence-and-further-reading">Evidence and further reading</a></li></ol></nav>
-    <article id="article" itemprop="articleBody"><p class="lead">The real test for an AI system is not whether it can suggest a clever optimization idea. It is whether that idea can improve a difficult MIP and survive strict verification.</p>
+    <article id="article" itemprop="articleBody"><div class="simple-home">
+<h2>The human-like loop behind the results</h2>
+<p class="intro">When a new MIP arrives, the useful question is not “which button should we press?” It is “what is this problem really about?” Our workflows let the model explore that question step by step.</p>
+<div class="steps"><div class="step"><b>01 · Understand</b>Read the formulation and identify what makes the instance difficult.</div><div class="step"><b>02 · Try an idea</b>Find a hidden structure, propose a reduction, or design a targeted experiment.</div><div class="step"><b>03 · Check and learn</b>Test the idea, study counterexamples, and keep only what survives verification.</div></div>
+<div class="result"><strong>What did we learn?</strong><br>Across 112 open MIP problems, we proved 32 optimal, improved 25 primal solutions, and improved 40 dual bounds. Primal solutions were strictly validated by solvers; dual improvements were verified by GPT-6 Astra.</div>
+<a class="cta" href="https://github.com/Huangyc98/MIPLIB_openproblem">Explore the research on GitHub →</a>
+</div>
+<p class="lead">The real test for an AI system is not whether it can suggest a clever optimization idea. It is whether that idea can improve a difficult MIP and survive strict verification.</p>
 <p>We put LLM-assisted workflows to work on 112 open problems. The project reached 32 optimality proofs, improved 25 primal solutions, and strengthened 40 dual bounds—turning model suggestions into results that can be checked and reused.</p>
 <h2 id="verification-is-the-product">Verification is part of the result<a class="anchor" href="#verification-is-the-product" aria-label="Link to Verification is part of the result">#</a></h2>
 <p>Every reported primal improvement is strictly validated by a MIP solver against the original formulation. Dual improvements are independently checked through GPT-6 Astra verification. This division keeps the role of the language model clear: it accelerates discovery and proof design, while verification decides what earns a place in the results.</p>
