@@ -1,4 +1,4 @@
-# LLM4MIP — From Open Problems to Verified Progress
+# LLM4MIP — How LLMs Help Solve Open MIP Problems
 
 ## Research website
 
