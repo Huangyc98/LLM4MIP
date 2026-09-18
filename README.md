@@ -1,4 +1,8 @@
-# How Far Can LLMs Go on Open MIP Problems?
+# LLM4MIP — How Far Can LLMs Go on Open MIP Problems?
+
+## Research website
+
+**[Open the LLM4MIP research website →](https://huangyc98.github.io/LLM4MIP/)**
 
 Research website for the `MIPLIB_openproblem` project.
 
@@ -12,4 +16,6 @@ The site studies how large language models contribute to solving mixed-integer p
 
 ## Publish with GitHub Pages
 
-Create a public GitHub repository, upload these files, then enable **Settings → Pages → Deploy from branch → main → /(root)**.
+GitHub Pages is configured from the `main` branch root. The public site is available at [huangyc98.github.io/LLM4MIP](https://huangyc98.github.io/LLM4MIP/).
+
+Suggested repository topics: `llm`, `mixed-integer-programming`, `mip`, `miplib`, `optimization`, `operations-research`, `ai-for-optimization`.
