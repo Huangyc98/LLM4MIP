@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How far can large language models go on open mixed-integer programs? A verifier-backed capability study across 217 MIPLIB instances.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Far Can LLMs Go on Open MIP Problems?">
+  <meta property="og:description" content="A verifier-backed capability study across 217 MIPLIB open instances, from LLM hypotheses to exact MPS audits.">
+  <title>How Far Can LLMs Go on Open MIP Problems? | MIPLIB Open Problem Research</title>
+  <style>
+    :root { --ink:#111827; --muted:#5b6470; --blue:#16243d; --mid:#37c7d8; --soft:#e9f7f8; --paper:#ffffff; --canvas:#eef3f7; --grid:#d9e1e8; --green:#8fd36b; --link:#176b83; --amber:#ffc857; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--canvas); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.68; }
+    a { color:var(--link); text-decoration-thickness:.08em; text-underline-offset:.15em; }
+    a:hover { color:#133e69; }
+    a:focus-visible { outline:3px solid #f2b84b; outline-offset:3px; border-radius:2px; }
+    .skip-link { position:absolute; left:-9999px; top:0; background:#fff; color:#000; padding:.7rem 1rem; z-index:10; }
+    .skip-link:focus { left:1rem; top:1rem; }
+    .hero { color:#fff; background:radial-gradient(circle at 82% 20%,rgba(55,199,216,.22),transparent 28rem),linear-gradient(132deg,#09111f 0%,#132743 58%,#1a4560 100%); padding:5.2rem 1.5rem 4rem; position:relative; overflow:hidden; }
+    .hero:after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.16; background-image:linear-gradient(rgba(140,220,232,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(140,220,232,.35) 1px,transparent 1px); background-size:42px 42px; mask-image:linear-gradient(120deg,#000,transparent 65%); }
+    .hero-inner { max-width:1080px; margin:0 auto; position:relative; z-index:1; }
+    .kicker { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.76rem; letter-spacing:.15em; text-transform:uppercase; font-weight:700; color:#8de8ef; margin:0 0 1.2rem; }
+    h1 { max-width:900px; font-family:Arial,Helvetica,sans-serif; font-size:clamp(2.65rem,6vw,5.2rem); line-height:.98; letter-spacing:-.045em; margin:0; }
+    .subtitle { max-width:830px; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.25rem,2.5vw,1.85rem); line-height:1.25; font-weight:600; margin:1.15rem 0 0; color:#e8f0f7; }
+    .deck { max-width:820px; font-size:1.08rem; line-height:1.6; margin:1.5rem 0 0; color:#d7e7f0; }
+    .meta { margin-top:1.3rem; font-family:Arial,Helvetica,sans-serif; font-size:.88rem; color:#c7d8e8; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; max-width:900px; margin-top:2.4rem; background:transparent; }
+    .metric { padding:1rem 1.1rem; background:rgba(9,20,37,.62); border:1px solid rgba(141,232,239,.28); border-radius:12px; backdrop-filter:blur(8px); }
+    .metric strong { display:block; font-family:Arial,Helvetica,sans-serif; font-size:1.85rem; line-height:1; }
+    .metric span { display:block; margin-top:.35rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.72rem; color:#b9d7e2; text-transform:uppercase; letter-spacing:.04em; }
+    .pipeline { display:flex; flex-wrap:wrap; align-items:center; gap:.55rem; max-width:900px; margin-top:2rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.78rem; color:#bcecf0; }
+    .pipeline span { padding:.48rem .7rem; border:1px solid rgba(141,232,239,.34); border-radius:999px; background:rgba(8,18,34,.5); }
+    .pipeline b { color:var(--amber); font-size:1rem; }
+    .layout { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:250px minmax(0,780px); gap:3.4rem; padding:3.3rem 1.5rem 5rem; align-items:start; }
+    .toc { position:sticky; top:1.4rem; font-family:Arial,Helvetica,sans-serif; font-size:.82rem; }
+    .toc h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:0 0 .75rem; }
+    .toc ol { list-style:none; margin:0; padding:0; border-left:2px solid var(--grid); }
+    .toc li { margin:0; }
+    .toc a { display:block; padding:.38rem 0 .38rem .8rem; color:#3f4b58; text-decoration:none; line-height:1.35; }
+    .toc a:hover { color:var(--blue); background:#e9eef3; }
+    article { background:var(--paper); padding:0 3.2rem 3rem; box-shadow:0 16px 42px rgba(20,38,58,.09); border:1px solid #e3e7eb; }
+    article > p:first-child { font-size:1.22rem; line-height:1.72; }
+    article .lead { font-size:1.28rem; line-height:1.6; color:#16243d; }
+    article h2 { font-family:Arial,Helvetica,sans-serif; font-size:1.78rem; line-height:1.18; letter-spacing:-.02em; margin:3.3rem 0 1rem; scroll-margin-top:1rem; }
+    article h3 { font-family:Arial,Helvetica,sans-serif; font-size:1.18rem; margin:2rem 0 .65rem; }
+    .anchor { margin-left:.4rem; color:#a9b4bf; text-decoration:none; font-size:.75em; opacity:0; }
+    h2:hover .anchor, h3:hover .anchor, .anchor:focus { opacity:1; }
+    p, li { font-size:1.03rem; }
+    code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.88em; color:#173c61; background:#edf3f8; border-radius:4px; padding:.08em .28em; overflow-wrap:anywhere; }
+    blockquote { margin:1.7rem 0; padding:.25rem 0 .25rem 1.35rem; border-left:4px solid var(--mid); color:#2e4b68; font-size:1.12rem; font-style:italic; }
+    hr { border:0; border-top:1px solid var(--grid); margin:3rem 0; }
+    .data-figure { margin:2.5rem -1.25rem; padding:1.1rem 1.25rem .8rem; background:#fbfcfd; border:1px solid #e1e6eb; }
+    .data-figure svg { display:block; width:100%; height:auto; }
+    .mobile-summary { display:none; }
+    figcaption { font-family:Arial,Helvetica,sans-serif; color:var(--muted); font-size:.82rem; line-height:1.45; margin-top:.6rem; }
+    .svg-heading { font-size:24px; font-weight:700; fill:#1c3657; }
+    .svg-value { font-size:30px; font-weight:700; fill:#fff; }
+    .svg-value-small { font-size:20px; font-weight:700; fill:#fff; }
+    .svg-label-light { font-size:21px; font-weight:700; fill:#fff; }
+    .svg-body { font-size:17px; fill:#5b6470; }
+    .svg-body-strong { font-size:18px; font-weight:700; fill:#111827; }
+    .svg-note { font-size:14px; font-style:italic; fill:#5b6470; }
+    .svg-box { font-size:15px; font-weight:700; fill:#111827; }
+    article h2:last-of-type + ul { font-size:.95rem; }
+    footer { background:#162b43; color:#cbd7e2; padding:2rem 1.5rem; font-family:Arial,Helvetica,sans-serif; font-size:.82rem; }
+    footer div { max-width:1080px; margin:0 auto; }
+    @media (max-width:900px) { .layout{grid-template-columns:1fr;padding:1.5rem 0 4rem}.toc{position:static;padding:0 1.4rem}.toc ol{columns:2}.hero{padding-top:3.8rem}article{border-left:0;border-right:0;padding:0 1.45rem 2.5rem}.data-figure{margin:2rem 0}.metrics{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px) { .toc ol{columns:1}.metrics{grid-template-columns:1fr 1fr}.hero{padding-left:1.1rem;padding-right:1.1rem}article h2{font-size:1.5rem}.data-figure svg{display:none}.mobile-summary{display:block;font-family:Arial,Helvetica,sans-serif;font-size:.94rem;line-height:1.55;padding:.8rem;background:#f2f6f9;border-left:4px solid var(--mid)} }
+    @media print { body{background:#fff}.hero{background:#fff;color:#000;padding:1.5cm 0}.kicker,.meta{color:#555}.subtitle,.deck{color:#222}.metrics{display:none}.layout{display:block;max-width:none;padding:0}.toc{position:static;page-break-after:always}.toc ol{columns:2}.toc a{color:#000}article{box-shadow:none;border:0;padding:0}.data-figure{break-inside:avoid;border:1px solid #ccc}a{color:#000;text-decoration:none}footer{background:#fff;color:#555;padding:1cm 0} }
+  </style>
+</head>
+<body itemscope itemtype="https://schema.org/ScholarlyArticle">
+  <a class="skip-link" href="#article">Skip to article</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="kicker">MIPLIB open problem · LLM capability study</p>
+      <h1 itemprop="headline">How Far Can LLMs Go on Open MIP Problems?</h1>
+      <p class="subtitle">A verifier-backed capability study on a frozen snapshot of MIPLIB open instances</p>
+      <p class="deck" itemprop="description">We test what language models can actually contribute to hard mixed-integer programs: reading structure, proposing reductions, designing experiments, finding counterexamples, and assembling proof-oriented workflows. Exact solvers and checkers decide what survives.</p>
+      <p class="meta"><time datetime="2026-09-18" itemprop="datePublished">18 September 2026 UTC</time> (17 September in America/Los_Angeles) · Evidence cutoff commit <code>89a8abd</code> plus the dated local supplement identified below</p>
+      <div class="metrics" aria-label="Campaign summary">
+        <div class="metric"><strong>217</strong><span>evaluation instances</span></div>
+        <div class="metric"><strong>112</strong><span>LLM-assisted studies</span></div>
+        <div class="metric"><strong>32</strong><span>verified conclusions</span></div>
+        <div class="metric"><strong>80</strong><span>open after evaluation</span></div>
+      </div>
+      <div class="pipeline" aria-label="Research workflow"><span>MPS instance</span><b>→</b><span>LLM hypothesis</span><b>→</b><span>structured test</span><b>→</b><span>exact verification</span><b>→</b><span>evidence status</span></div>
+    </div>
+  </header>
+  <main class="layout">
+    <nav class="toc" aria-label="Article contents"><h2>Contents</h2><ol><li><a href="#a-dated-scoreboard-not-a-universal-success-rate">What does “LLM capability” mean here?</a></li>
+<li><a href="#the-recurring-move-is-a-change-of-state-space">The recurring move is a change of state space</a></li>
+<li><a href="#parity-inside-a-distribution-model">Parity inside a distribution model</a></li>
+<li><a href="#a-network-design-mip-becomes-a-tree-dynamic-program">A network design MIP becomes a tree dynamic program</a></li>
+<li><a href="#a-scheduling-formulation-becomes-an-interval-order">A scheduling formulation becomes an interval order</a></li>
+<li><a href="#a-packing-cutoff-becomes-a-checked-sat-refutation">A packing cutoff becomes a checked SAT refutation</a></li>
+<li><a href="#proof-is-part-of-the-algorithm">Proof is part of the algorithm</a></li>
+<li><a href="#where-gpt-helped-and-where-it-did-not">Where GPT helped and where it did not</a></li>
+<li><a href="#failures-are-useful-when-they-change-the-next-experiment">Failures are useful when they change the next experiment</a></li>
+<li><a href="#the-smaller-question-is-the-real-output">The smaller question is the real output</a></li>
+<li><a href="#evidence-and-further-reading">Evidence and further reading</a></li></ol></nav>
+    <article id="article" itemprop="articleBody"><p class="lead">The question is not whether a language model can emit a plausible optimization idea. It is whether that idea can survive contact with a real MIP: a large matrix, hidden combinatorics, adversarial counterexamples, and an exact audit of the original model.</p>
+<p>That is the capability boundary this project studies. LLMs are used as research partners—to read formulations, suggest smaller state spaces, choose proof strategies, write checkers, and revise claims after failures—while solvers and independent verification determine which outputs count as evidence.</p>
+<p>At first glance, <a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/allcolor58"><code>allcolor58</code></a> looks built to punish a general purpose solver: 84,376 variables and 197,154 constraints. Yet the lower bound that closed it fits in three sentences.</p>
+<p>Every legal package contains an even number of units. Exactly 42 stores demand an odd total. Each of those stores must therefore incur at least one unit of mismatch cost.</p>
+<p>That proves the objective cannot be below 42. A compact configuration search then found a plan with exactly one unit of overstock at each odd demand store and no other mismatch. Two independent checkers verified every variable, bound, integrality condition, and row in the original MPS. Lower bound 42, upper bound 42, done.</p>
+<p>The gap between how a model is written and what it really is is the central story of the <a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0"><code>MIPLIB_openproblem</code></a> project.</p>
+<h2 id="a-dated-scoreboard-not-a-universal-success-rate">What does “LLM capability” mean here?<a class="anchor" href="#a-dated-scoreboard-not-a-universal-success-rate" aria-label="Link to What does LLM capability mean here">#</a></h2>
+<p>The project began with a fixed 4 September 2026 snapshot of 217 instances tagged open by MIPLIB. It studied 112 of them and reports 32 global conclusions: 30 optimal values and two infeasibility results. Eighty studied instances remain globally unresolved.</p>
+<p>Those numbers need three qualifications.</p>
+<p>First, they are repository conclusions, not claims that MIPLIB has already changed its official labels. Several results postdate the frozen public solution file or have not been reviewed upstream.</p>
+<p>Second, 32 out of 112 is not a general success rate. The instances were not sampled randomly, and research time was not allocated uniformly. Promising structures and reusable family patterns received more attention.</p>
+<p>Third, “global conclusion” covers several forms of evidence. The current archive contains self contained exact certificates, exact exhaustive computations, theorem transfers, commercial solver closures, and mixed arguments that combine external benchmark values with computational exclusions. A single solved badge would hide distinctions that matter.</p>
+<p>The same care applies to the progress counters. The repository records 21 improved existing primal values and four first finite incumbents relative to MIPLIB v36. It separately records 41 improved lower bounds relative to a historical COPT 10 hour table. These groups overlap, use different baselines, and are not a same hardware performance comparison.</p>
+
+<figure class="data-figure" aria-labelledby="coverage-caption">
+  <svg viewBox="0 0 1040 470" role="img" aria-labelledby="coverage-title coverage-desc">
+    <title id="coverage-title">Campaign coverage and evidence mix</title>
+    <desc id="coverage-desc">A funnel shows 217 open instances, 112 studied, and 32 global conclusions. A stacked bar classifies 32 conclusions into 18 portable exact, 1 large checked trace, 5 exact exhaustive, 3 theorem transfer, 3 numerical closure, and 2 mixed evidence. The CVRPP portable classification depends on the local 18 September supplement, which is pending integration into the published commit.</desc>
+    <g font-family="Arial, Helvetica, sans-serif">
+      <text x="35" y="42" class="svg-heading">Coverage</text>
+      <rect x="35" y="70" width="380" height="68" rx="12" fill="#1c3657"/>
+      <text x="64" y="114" class="svg-value">217</text><text x="160" y="113" class="svg-label-light">open snapshot</text>
+      <rect x="70" y="157" width="310" height="68" rx="12" fill="#56799e"/>
+      <text x="98" y="201" class="svg-value">112</text><text x="194" y="200" class="svg-label-light">studied</text>
+      <rect x="118" y="244" width="215" height="68" rx="12" fill="#3e7a65"/>
+      <text x="145" y="288" class="svg-value">32</text><text x="221" y="287" class="svg-label-light">global</text>
+      <text x="35" y="352" class="svg-body-strong">30 optimal + 2 infeasible</text>
+      <text x="35" y="386" class="svg-body">80 studied instances remain unresolved</text>
+      <text x="35" y="422" class="svg-note">28.6% is descriptive, not a success-rate estimate</text>
+
+      <text x="515" y="42" class="svg-heading">Evidence behind 32 conclusions</text>
+      <rect x="515" y="78" width="270" height="58" fill="#1c3657"/>
+      <rect x="785" y="78" width="15" height="58" fill="#6c89a6"/>
+      <rect x="800" y="78" width="75" height="58" fill="#3e7a65"/>
+      <rect x="875" y="78" width="45" height="58" fill="#8c6a3b"/>
+      <rect x="920" y="78" width="45" height="58" fill="#9a5b61"/>
+      <rect x="965" y="78" width="30" height="58" fill="#6d6278"/>
+      <text x="645" y="116" class="svg-value-small">18</text>
+      <text x="831" y="116" class="svg-value-small">5</text>
+      <text x="891" y="116" class="svg-value-small">3</text>
+      <text x="936" y="116" class="svg-value-small">3</text>
+      <text x="972" y="116" class="svg-value-small">2</text>
+      <rect x="520" y="169" width="20" height="20" rx="4" fill="#1c3657"/><text x="553" y="186" class="svg-body">18  Portable exact</text><rect x="520" y="211" width="20" height="20" rx="4" fill="#6c89a6"/><text x="553" y="228" class="svg-body">1  Large checked trace by hash</text><rect x="520" y="253" width="20" height="20" rx="4" fill="#3e7a65"/><text x="553" y="270" class="svg-body">5  Exact exhaustive</text><rect x="520" y="295" width="20" height="20" rx="4" fill="#8c6a3b"/><text x="553" y="312" class="svg-body">3  Theorem transfer</text><rect x="520" y="337" width="20" height="20" rx="4" fill="#9a5b61"/><text x="553" y="354" class="svg-body">3  Numerical closure</text><rect x="520" y="379" width="20" height="20" rx="4" fill="#6d6278"/><text x="553" y="396" class="svg-body">2  Mixed evidence</text>
+      <text x="515" y="436" class="svg-note">CVRPP portable status uses a local supplement pending integration.</text>
+    </g>
+  </svg>
+  <div class="mobile-summary"><strong>Coverage:</strong> 217 instances in the frozen open snapshot; 112 studied; 32 repository-supported global conclusions, comprising 30 optima and two infeasibility results; 80 studied instances remain unresolved. Evidence grades are 18 portable exact, one large checked trace by hash, five exact exhaustive, three theorem transfers, three numerical closures, and two mixed conclusions.</div>
+  <figcaption id="coverage-caption"><strong>Figure 1.</strong> Frozen campaign coverage and evidence dependencies. The categories should not be collapsed into one undifferentiated solved count. CVRPP's portable classification relies on the local 18 September supplement, pending integration into the published commit.</figcaption>
+</figure>
+
+<h2 id="the-recurring-move-is-a-change-of-state-space">The recurring move is a change of state space<a class="anchor" href="#the-recurring-move-is-a-change-of-state-space" aria-label="Link to The recurring move is a change of state space">#</a></h2>
+<p>The research loop is simple to state and hard to execute:</p>
+<blockquote>
+<p>original MPS -&gt; structure card -&gt; falsifiable hypotheses -&gt; bounded pilot -&gt; separate primal and dual artifacts -&gt; original MPS audit -&gt; evidence grade</p>
+</blockquote>
+
+<figure class="data-figure" aria-labelledby="workflow-caption">
+  <svg viewBox="0 0 1160 410" role="img" aria-labelledby="workflow-title workflow-desc">
+    <title id="workflow-title">Structure first proof engineering workflow</title>
+    <desc id="workflow-desc">Seven connected stages run from original MPS to evidence grade, with a feedback arrow from counterexamples to the structure card.</desc>
+    <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#56799e"/></marker></defs>
+    <g font-family="Arial, Helvetica, sans-serif">
+      <text x="32" y="42" class="svg-heading">Structure first proof engineering</text>
+      <text x="32" y="73" class="svg-body">Every transformation must preserve the direction needed for the final claim.</text>
+      <rect x="25" y="116" width="132" height="92" rx="12" fill="#f4f5f7" stroke="#d9d9d9" stroke-width="2"/><text x="91" y="154" text-anchor="middle" class="svg-box">Original</text><text x="91" y="181" text-anchor="middle" class="svg-box">MPS</text><rect x="188" y="116" width="132" height="92" rx="12" fill="#eaf1f7" stroke="#d9d9d9" stroke-width="2"/><text x="254" y="154" text-anchor="middle" class="svg-box">Structure</text><text x="254" y="181" text-anchor="middle" class="svg-box">card</text><rect x="351" y="116" width="132" height="92" rx="12" fill="#eaf1f7" stroke="#d9d9d9" stroke-width="2"/><text x="417" y="154" text-anchor="middle" class="svg-box">Falsifiable</text><text x="417" y="181" text-anchor="middle" class="svg-box">hypotheses</text><rect x="514" y="116" width="132" height="92" rx="12" fill="#f4f5f7" stroke="#d9d9d9" stroke-width="2"/><text x="580" y="154" text-anchor="middle" class="svg-box">Bounded</text><text x="580" y="181" text-anchor="middle" class="svg-box">pilots</text><rect x="677" y="116" width="132" height="92" rx="12" fill="#eaf1f7" stroke="#d9d9d9" stroke-width="2"/><text x="743" y="154" text-anchor="middle" class="svg-box">Primal and dual</text><text x="743" y="181" text-anchor="middle" class="svg-box">artifacts</text><rect x="840" y="116" width="132" height="92" rx="12" fill="#eaf1f7" stroke="#d9d9d9" stroke-width="2"/><text x="906" y="154" text-anchor="middle" class="svg-box">Original MPS</text><text x="906" y="181" text-anchor="middle" class="svg-box">audit</text><rect x="1003" y="116" width="132" height="92" rx="12" fill="#f4f5f7" stroke="#d9d9d9" stroke-width="2"/><text x="1069" y="154" text-anchor="middle" class="svg-box">Evidence</text><text x="1069" y="181" text-anchor="middle" class="svg-box">grade</text>
+      <line x1="157" y1="162" x2="184" y2="162" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/><line x1="320" y1="162" x2="347" y2="162" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/><line x1="483" y1="162" x2="510" y2="162" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/><line x1="646" y1="162" x2="673" y2="162" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/><line x1="809" y1="162" x2="836" y2="162" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/><line x1="972" y1="162" x2="999" y2="162" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/>
+      <rect x="345" y="278" width="470" height="70" rx="10" fill="#fff" stroke="#56799e" stroke-width="2"/>
+      <text x="580" y="308" text-anchor="middle" class="svg-body-strong">Counterexamples and failed pilots feed back</text>
+      <text x="580" y="333" text-anchor="middle" class="svg-body">into the structure card</text>
+      <path d="M345 312 C230 310, 245 235, 252 214" fill="none" stroke="#56799e" stroke-width="4" marker-end="url(#arrow)"/>
+    </g>
+  </svg>
+  <div class="mobile-summary"><strong>Workflow:</strong> original MPS → structure card → falsifiable hypotheses → bounded pilots → separate primal and dual artifacts → original-MPS audit → evidence grade. Counterexamples feed back into the structure card.</div>
+  <figcaption id="workflow-caption"><strong>Figure 2.</strong> The workflow separates discovery from proof and makes falsification an explicit research step.</figcaption>
+</figure>
+
+<p>The first step is deliberately unglamorous. Read the untouched matrix. Which variables carry the objective? Which columns repeat? How many rows create global coupling? Are the large blocks real, or are they labels around the same type? Does a numerical gap come from a weak big M formulation, a missing construction, or a genuinely hard combinatorial core?</p>
+<p>Only then does the project choose an algorithm. The same solver and the same language model can end up using parity, matching, dynamic programming, SAT, Lagrangian relaxation, or a symmetry quotient, because the matrix suggests different hidden objects.</p>
+<p>Four cases show what that translation looks like.</p>
+<h2 id="parity-inside-a-distribution-model">Parity inside a distribution model<a class="anchor" href="#parity-inside-a-distribution-model" aria-label="Link to Parity inside a distribution model">#</a></h2>
+<p>In <code>allcolor58</code>, the lower bound is not a stronger linear relaxation. It is an invariant. Even package capacities force even shipment totals, and 42 odd demand totals force at least 42 units of mismatch cost.</p>
+<p>The value 42 and a construction seed were already available through external or literature information. The repository's contribution is the replayable parity certificate, lifted full witness, and exact original-model audit—not a claim of first discovery.</p>
+<p>The proof still needs a construction. The search did not attack all 84,376 variables directly. It worked with fourteen package configurations and store level residuals, then lifted the compact result into a full solution. The original MPS audit is what turns that construction into a strict upper bound.</p>
+<p>This division of labor appears throughout the repository: a human readable invariant proves that no solution can do better, while computation finds and checks the object that attains the bound.</p>
+<h2 id="a-network-design-mip-becomes-a-tree-dynamic-program">A network design MIP becomes a tree dynamic program<a class="anchor" href="#a-network-design-mip-becomes-a-tree-dynamic-program" aria-label="Link to A network design MIP becomes a tree dynamic program">#</a></h2>
+<p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/dfn-bwin-DBE"><code>dfn-bwin-DBE</code></a> is a ten node fixed charge multicommodity network design problem. Positive demand exists for every ordered pair, so every feasible installed support must be connected.</p>
+<p>A connected ten node graph needs at least nine edges. With exactly nine, it is a spanning tree. With ten or more, even the ten cheapest positive opening costs already total 81,222.40, more than the candidate value 73,623.79. That excludes every denser design at once.</p>
+<p>On a tree, removing an edge creates a cut. All demand crossing that cut must use the edge, so the cut determines the required capacity and its cheapest feasible option. Two independent subset dynamic programs then enumerate the tree decompositions and return 7,362,379 cents. The generated tree solution passes an exact original model check.</p>
+<p>The important point is not that a good solution happened to look like a tree. The proof covers every feasible support: dense supports lose by a global cost bound, and all tree supports are optimized exactly.</p>
+<h2 id="a-scheduling-formulation-becomes-an-interval-order">A scheduling formulation becomes an interval order<a class="anchor" href="#a-scheduling-formulation-becomes-an-interval-order" aria-label="Link to A scheduling formulation becomes an interval order">#</a></h2>
+<p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binschedule2"><code>fhnw-binschedule2</code></a> contains 497 items, six machines, 114 ordered positions, and thousands of auxiliary variables. Seventy six items can use only the two endpoint machines.</p>
+<p>The selector windows recover an interval order. Among the endpoint items, 35 intervals all contain the same interior point, so they are pairwise incomparable. A chain can contain at most one of them. Counting how many chains remain after deleting unused positions and activating paid breaks proves that the two endpoint sequences need at least 31 breaks.</p>
+<p>The mandatory item cost is 4,546 and each break costs 10, so the endpoint loads sum to at least 4,856. Those loads are even integers. A makespan below 2,428 would force both loads to be at most 2,426, whose sum is only 4,852. Contradiction. The public schedule reaches 2,428 and passes exact checking of all 6,503 original rows.</p>
+<p>The final four units of proof do not come from a tighter floating point solve. They come from combining an interval obstruction with a parity lattice.</p>
+<h2 id="a-packing-cutoff-becomes-a-checked-sat-refutation">A packing cutoff becomes a checked SAT refutation<a class="anchor" href="#a-packing-cutoff-becomes-a-checked-sat-refutation" aria-label="Link to A packing cutoff becomes a checked SAT refutation">#</a></h2>
+<p><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/bppc6-06"><code>bppc6-06</code></a> asks twenty items to choose positions on a horizon of 300 while minimizing peak load. A placement of height 208 is known, so the remaining question is finite: can height 207 occur?</p>
+<p>An exact subset enumeration finds item weights with a useful property: every subset whose physical height is at most 207 has total weight at most four. The weighted lengths sum to exactly four times the horizon. Therefore every positive length profile segment in a hypothetical height 207 solution must have weight exactly four.</p>
+<p>That equality produces a strong Boolean cutoff model. The resulting CNF has 414,391 variables and 1,541,322 clauses. A SAT solver reports unsatisfiable, but that is not the end of the story. <code>drat-trim</code> checks the proof, and a separate program replays more than one million LRAT lemmas to the final empty clause.</p>
+<p>Two earlier proof files were incomplete and were rejected. The accepted proof is the one whose complete trace and hashes check. The full artifacts total about 2.65 GiB and live outside Git by hash, so the repository is candid about the remaining portability cost.</p>
+<h2 id="proof-is-part-of-the-algorithm">Proof is part of the algorithm<a class="anchor" href="#proof-is-part-of-the-algorithm" aria-label="Link to Proof is part of the algorithm">#</a></h2>
+<p>These examples suggest an evidence ladder:</p>
+<ol>
+<li>a candidate objective;</li>
+<li>a complete original MPS witness;</li>
+<li>an independently checked feasible witness;</li>
+<li>a valid global bound;</li>
+<li>a solver dependent zero gap;</li>
+<li>an exact enumeration or dynamic program;</li>
+<li>a portable certificate or an exact crosswalk to a published theorem.</li>
+</ol>
+<p>The ordering is not perfectly linear. A theorem transfer and a local portable proof have different dependencies. The point is to name those dependencies.</p>
+<p>This discipline prevents several common upgrades of language:</p>
+<ul>
+<li><code>OPTIMAL</code> on a reduced model is not automatically optimality for the original model.</li>
+<li><code>INFEASIBLE</code> inside a fixed neighborhood is not global infeasibility.</li>
+<li>SAT <code>UNSAT</code> without a checked trace is not yet a portable proof.</li>
+<li>A lower looking floating point objective may disappear after exact row and integrality checks.</li>
+<li>A time limit proves only that the allotted run ended.</li>
+</ul>
+<p>The repository&#39;s most instructive correction came from scheduling. An early route treated latest start as if it were a completion deadline. The missing duration term made some energy cuts invalid and created false zero gaps. Original model counterexamples forced those dual claims to be withdrawn. The final five <code>fhnw-schedule-pair</code> proofs use safe release suffix relaxations, complete branch trees, rational leaf duals, and exact original model witnesses instead.</p>
+<p>That is what a healthy computational proof project looks like: the correction changes the claim, not merely the prose.</p>
+<h2 id="where-gpt-helped-and-where-it-did-not">Where GPT helped and where it did not<a class="anchor" href="#where-gpt-helped-and-where-it-did-not" aria-label="Link to Where GPT helped and where it did not">#</a></h2>
+<p>The project does not show GPT replacing a MIP solver. The useful division of labor is narrower.</p>
+<p>The language model helps propose semantic interpretations, connect matrix patterns to algorithm families, design small falsification tests, write extractors, and keep primal and dual routes moving in parallel. General purpose solvers remain valuable as readers, primal oracles, reduced problem optimizers, and numerical lower bound engines. Exact checkers decide which outputs survive.</p>
+<p>A historical twenty instance comparison makes that complementarity visible. Under its absolute <code>1e-7</code> selected-primal rule, the structure arm recorded better values on eleven instances, tied on nine, and recorded two exact closures. Six selected values were tolerance-indexed rather than strict incumbents; against strict public baselines, the counts were four improvements for the structure arm and two for the comparison arm. The comparison arm retained stronger dual bounds on twelve of twenty instances and smaller common gaps on eleven. Its two reported closures, <code>ns1456591</code> and <code>neos-3682128-sandon</code>, remain in the separate comparison archive rather than the canonical 112-instance, 32-conclusion inventory.</p>
+<p>The study was not randomized, blinded, or equal budget, so it does not identify a causal treatment effect. Its practical lesson is still useful: reserve time for structural research and certificate construction, but also protect a generic solver budget for dual progress when the new representation does not close the model.</p>
+<h2 id="failures-are-useful-when-they-change-the-next-experiment">Failures are useful when they change the next experiment<a class="anchor" href="#failures-are-useful-when-they-change-the-next-experiment" aria-label="Link to Failures are useful when they change the next experiment">#</a></h2>
+<p>The archive contains many runs that did not improve an objective: local neighborhoods closed at the incumbent, Lagrangian updates stalled, SAT encodings returned <code>UNKNOWN</code>, or a quotient failed to lift. Those outcomes become research results only when their scope is precise.</p>
+<p>Closing every move within Hamming distance two says the next successful move must be larger or differently structured. A weak Lagrangian bound may still reveal repeated cost columns and suggest an exact symmetry quotient. A failed proof trace says the proof backend or logging path must change; it does not say the target is feasible.</p>
+<p>This is why the project&#39;s ranking of the 80 unresolved instances does not simply sort by displayed percentage gap. It prioritizes cases already reduced to small, auditable decision problems with a concrete certificate route. The leading portfolio in the frozen ranking includes a cut packing target with a sibling LRAT template, two finite genus frontiers, and a narrow objective lattice cutoff.</p>
+<h2 id="the-smaller-question-is-the-real-output">The smaller question is the real output<a class="anchor" href="#the-smaller-question-is-the-real-output" aria-label="Link to The smaller question is the real output">#</a></h2>
+<p>Large mixed integer models are often difficult for two reasons at once: their underlying combinatorics are hard, and their compiled representation hides the useful structure. The second problem can sometimes be removed.</p>
+<p>That is the common thread connecting a parity proof, a tree dynamic program, an interval antichain, and an LRAT refutation. None is a universal MILP technique. Each is the right answer to a smaller question found inside a much larger matrix.</p>
+<p>The most valuable AI contribution in this project was not an answer. It was a smaller question whose answer could be independently checked.</p>
+<hr>
+<h2 id="evidence-and-further-reading">Evidence and further reading<a class="anchor" href="#evidence-and-further-reading" aria-label="Link to Evidence and further reading">#</a></h2>
+<ul>
+<li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/gpt-milp-structure-strategy-2026-09-11.zh.md">Structure driven MILP research strategy</a></li>
+<li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/dual-bound-audit-2026-09-14">Twenty instance dual bound audit</a></li>
+<li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/latex/GPT-MIPLIB-2026-09-16.tex">16 September results presentation</a></li>
+<li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/comparisons/milp-structure-skill-effect-20260913">Historical structure workflow comparison</a></li>
+<li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/unresolved-80-continuation-ranking-2026-09-09.md">Ranking of 80 unresolved studied instances</a></li>
+<li><a href="../first-five-dual-bound-review-2026-09-18/README.md">Local first-five independent review</a> (uncommitted working-tree supplement used for the CVRPP route-count scope audit)</li>
+</ul>
+<p><em>Evidence cutoff: published repository commit <code>89a8abd</code> dated 16 September 2026, with local supplemental audits dated 18 September 2026 UTC (17 September in America/Los_Angeles) treated as uncommitted working-tree evidence. The official MIPLIB open list was not refreshed for this article.</em></p>
+</article>
+  </main>
+  <footer><div>Evidence cutoff: published repository commit <code>89a8abd</code> dated 16 September 2026. Local supplemental audits dated 18 September 2026 UTC (17 September in America/Los_Angeles) are identified as uncommitted working-tree evidence. Official MIPLIB status was not refreshed for this article.</div></footer>
+</body>
+</html>
