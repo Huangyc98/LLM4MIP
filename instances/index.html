@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Searchable findings and downloadable research bundles for 112 studied open MIPLIB instances.">
+  <title>112 Instance Findings | LLM4MIP</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Primary navigation">
+      <a class="brand" href="../">LLM4MIP <small>Evidence before claims</small></a>
+      <div class="nav-links">
+        <a href="./" aria-current="page">112 instances</a>
+        <a href="../skill/">Skill experiment</a>
+        <a href="../solver-replacement/">Replace solvers?</a>
+        <a href="../technical-report.pdf">Report</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Deep dive 01 · complete campaign catalogue</p>
+        <h1>112 instances, one auditable index</h1>
+        <p class="dek">Every studied current-open instance has a concise finding summary and a compressed bundle of the related research materials copied from its archive.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell" tabindex="-1">
+    <div class="content">
+      <section class="section" aria-labelledby="snapshot-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Snapshot</p>
+            <h2 id="snapshot-heading">What the campaign established</h2>
+          </div>
+          <p>Click a segment to filter the catalogue. These categories partition all 112 instances.</p>
+        </div>
+        <div class="status-strip" role="group" aria-label="Filter by campaign status">
+          <button type="button" data-status-filter="concluded" style="width:26.7857%;background:#176b5b" aria-label="Show 30 global conclusions" aria-pressed="false">30 concluded</button>
+          <button type="button" data-status-filter="verified-open" style="width:66.9643%;background:#006cb8" aria-label="Show 75 verified feasible open instances" aria-pressed="false">75 verified/open</button>
+          <button type="button" data-status-filter="pending" style="width:2.6786%;background:#8A4F00" aria-label="Show 3 pending strict verification" aria-pressed="false">3</button>
+          <button type="button" data-status-filter="no-feasible" style="width:3.5714%;background:#8c1515" aria-label="Show 4 instances with no feasible point found" aria-pressed="false">4</button>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="swatch" style="background:#176b5b"></span><span>Global conclusion</span><strong>30</strong></div>
+          <div class="legend-item"><span class="swatch" style="background:#006cb8"></span><span>Verified feasible; open</span><strong>75</strong></div>
+          <div class="legend-item"><span class="swatch" style="background:#8A4F00"></span><span>Pending strict verification</span><strong>3</strong></div>
+          <div class="legend-item"><span class="swatch" style="background:#8c1515"></span><span>No feasible point found</span><strong>4</strong></div>
+        </div>
+        <p class="note">The 30 conclusions comprise 28 supported optima and two supported infeasibility results. “Open” means global optimality remains unresolved; local closures, stronger bounds, or incumbent progress may still be substantial.</p>
+      </section>
+
+      <section class="section" aria-labelledby="setup-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Simplified experiment setup</p>
+            <h2 id="setup-heading">The same four gates for every claim</h2>
+          </div>
+        </div>
+        <div class="workflow">
+          <article><h3>Freeze</h3><p>Record the untouched model, baseline, objective convention, and acceptance tolerance.</p></article>
+          <article><h3>Understand</h3><p>Profile the matrix and formulate at least two falsifiable structural hypotheses.</p></article>
+          <article><h3>Test</h3><p>Run bounded primal, dual, reduction, enumeration, or certificate experiments.</p></article>
+          <article><h3>Verify</h3><p>Map survivors back to the original MPS and report only the evidence grade earned.</p></article>
+        </div>
+        <div class="callout blue">
+          <p><strong>Bundle policy:</strong> each archive retains reports, scripts, artifacts, public solutions, derived proof models, logs, runs, and proof traces present in the instance directory. Only official raw <span class="mono">input/*.mps*</span> files are omitted; their sizes and SHA-256 hashes appear in the package manifest. Externally retained files cannot be embedded, and their source notes remain visible. The source license is included. The historical <span class="mono">rmine14</span> calibration is not one of the 112.</p>
+        </div>
+      </section>
+
+      <section id="catalogue" class="section" aria-labelledby="catalogue-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Finding archive</p>
+            <h2 id="catalogue-heading">Search all instances</h2>
+          </div>
+          <a href="instances.json">Download catalogue JSON</a>
+        </div>
+        <div class="controls">
+          <div class="field">
+            <label for="instance-search">Search instance, result, method, or status</label>
+            <input id="instance-search" type="search" placeholder="Try “parity”, “strict incumbent”, or “fhnw”" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="instance-filter">Campaign status</label>
+            <select id="instance-filter">
+              <option value="all">All 112</option>
+              <option value="concluded">Global conclusion (30)</option>
+              <option value="verified-open">Verified feasible; open (75)</option>
+              <option value="pending">Pending strict verification (3)</option>
+              <option value="no-feasible">No feasible point found (4)</option>
+            </select>
+          </div>
+        </div>
+        <p id="instance-count" class="result-count" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table class="results-table">
+            <thead><tr><th>Instance</th><th>Status</th><th>Best verified result</th><th>Best bound / certificate</th><th>Finding and progress</th><th>Files</th></tr></thead>
+            <tbody id="instance-body"></tbody>
+          </table>
+        </div>
+        <noscript><p class="noscript">The searchable table requires JavaScript. Download <a href="instances.json">the full JSON catalogue</a>, which contains every summary and archive path.</p></noscript>
+      </section>
+
+      <section class="section" aria-labelledby="scope-heading">
+        <h2 id="scope-heading">Evidence boundary</h2>
+        <p>These pages describe the repository snapshot, not the live MIPLIB leaderboard. The source base is commit <span class="mono">89a8abd</span> plus the disclosed 18 September reconciliation reviews. Some exact traces are retained externally by hash, some conclusions depend on published theorems, and five conclusions retain floating-point or commercial-solver dependence. Each summary leads with the reconciled current status even when older logs are preserved in its bundle.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · 112-instance catalogue</span><span><a href="../">Overview</a> · <a href="../technical-report.pdf">Technical report</a></span></div></footer>
+  <script src="data.js"></script>
+  <script src="instances.js"></script>
+</body>
+</html>

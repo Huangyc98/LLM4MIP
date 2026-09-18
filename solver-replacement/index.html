@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evidence-based analysis of whether LLMs can fully replace optimization solvers, using the LLM4MIP campaign and 20-instance workflow comparison.">
+  <title>Can LLMs Fully Replace Solvers? | LLM4MIP</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Primary navigation">
+      <a class="brand" href="../">LLM4MIP <small>Evidence before claims</small></a>
+      <div class="nav-links">
+        <a href="../instances/">112 instances</a>
+        <a href="../skill/">Skill experiment</a>
+        <a href="./" aria-current="page">Replace solvers?</a>
+        <a href="../technical-report.pdf">Report</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Deep dive 03 · division of labor</p>
+        <h1>Can LLMs fully replace solvers?</h1>
+        <p class="dek">Current evidence says no—not in this campaign. It supports a hybrid system in which LLMs broaden the search for structure, computational backends search and bound, and independent checkers decide what survives.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell" tabindex="-1">
+    <div class="content">
+      <section class="section verdict" aria-labelledby="verdict-heading">
+        <div class="verdict-word" aria-hidden="true">No.</div>
+        <div class="verdict-copy">
+          <p class="eyebrow" style="color:#8c1515">Verdict</p>
+          <h2 id="verdict-heading">Not as the experiment actually worked</h2>
+          <p>The LLM did not independently certify feasibility, produce every global bound, or validate its own reductions. MILP solvers, SAT engines, exact dynamic programs, exhaustive searches, rational arithmetic, and deterministic original-model audits supplied the computational and proof backends.</p>
+          <p>This is an empirical boundary, not an impossibility theorem. The campaign shows that replacement did not occur; it cannot establish that future systems will never replace a particular backend.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="roles-heading">
+        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">What “solve” meant</p><h2 id="roles-heading">Three jobs, three forms of evidence</h2></div></div>
+        <div class="division">
+          <article><p class="eyebrow" style="color:#8c1515">LLM</p><h3>Interpret and propose</h3><p>Recover formulation semantics, connect matrix patterns to algorithms, propose reductions and invariants, design falsification tests, and coordinate certificate construction.</p></article>
+          <article><p class="eyebrow" style="color:#8c1515">Backend</p><h3>Search and bound</h3><p>Find feasible points, optimize reduced models, enumerate finite state spaces, refute cutoffs, and produce numerical or exact lower-bound evidence.</p></article>
+          <article><p class="eyebrow" style="color:#8c1515">Checker</p><h3>Accept or reject</h3><p>Replay proof traces, verify rational certificates, audit every original row, test mapping directions, and stop an attractive claim from being promoted too far.</p></article>
+        </div>
+        <div class="callout"><p><strong>Acceptance rule:</strong> no campaign claim is accepted solely because an LLM states it. A useful hypothesis becomes a result only after a backend produces evidence and an appropriate checker validates its scope.</p></div>
+      </section>
+
+      <section class="section" aria-labelledby="mixed-heading">
+        <div class="section-head">
+          <div><p class="eyebrow" style="color:#8c1515">20-instance comparison</p><h2 id="mixed-heading">The closest comparison points both ways</h2></div>
+          <p>Choose a metric. “Skill-guided” means use of one structure-research workflow; it does not mean LLM-only.</p>
+        </div>
+        <div class="panel">
+          <div class="tabs" aria-label="Comparison metric">
+            <button type="button" data-metric="primal" aria-pressed="true">Selected primal</button>
+            <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
+            <button type="button" data-metric="gap" aria-pressed="false">Common gap</button>
+            <button type="button" data-metric="strict" aria-pressed="false">Strict improvements</button>
+            <button type="button" data-metric="closure" aria-pressed="false">Exact closures</button>
+          </div>
+          <h3 id="metric-title" class="chart-title"></h3>
+          <p id="metric-note" class="chart-note" aria-live="polite"></p>
+          <div id="metric-chart"></div>
+        </div>
+        <p>The structure-guided arm recorded better selected primals on 11 of 20 instances, four strict improvements over its frozen public baseline, and two exact closures. The comparison arm retained stronger dual bounds on 12 of 20 and smaller common gaps on 11. Strong primal discovery does not replace global bounding; strong branch-and-bound does not automatically reveal a portable structural proof.</p>
+        <p class="note">Six skill-arm primals were tolerance-indexed. The two comparison-study closures—<span class="mono">ns1456591</span> and <span class="mono">neos-3682128-sandon</span>—belong to a separate archive and are not added to the canonical campaign inventory of 30 conclusions.</p>
+      </section>
+
+      <section class="section" aria-labelledby="verification-heading">
+        <div class="section-head">
+          <div><p class="eyebrow" style="color:#8c1515">Campaign-wide evidence</p><h2 id="verification-heading">Thirty conclusions, six verification forms</h2></div>
+          <p>This chart answers “how was the conclusion checked?”, not “who deserves credit for discovering it?”</p>
+        </div>
+        <div class="panel">
+          <div class="stack" role="img" aria-label="18 portable exact, 1 large checked trace, 3 exact exhaustive, 3 theorem transfer, 3 numerical closure, 2 mixed evidence">
+            <div class="stack-segment" style="width:60%;background:#8c1515">18</div>
+            <div class="stack-segment" style="width:3.333%;background:#b1040e"></div>
+            <div class="stack-segment" style="width:10%;background:#176b5b">3</div>
+            <div class="stack-segment" style="width:10%;background:#620059">3</div>
+            <div class="stack-segment" style="width:10%;background:#006cb8">3</div>
+            <div class="stack-segment" style="width:6.667%;background:#8A4F00">2</div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background:#8c1515"></span><span>Portable exact</span><strong>18</strong></div>
+            <div class="legend-item"><span class="swatch" style="background:#b1040e"></span><span>Large checked trace</span><strong>1</strong></div>
+            <div class="legend-item"><span class="swatch" style="background:#176b5b"></span><span>Exact exhaustive</span><strong>3</strong></div>
+            <div class="legend-item"><span class="swatch" style="background:#620059"></span><span>Theorem transfer</span><strong>3</strong></div>
+            <div class="legend-item"><span class="swatch" style="background:#006cb8"></span><span>Numerical closure</span><strong>3</strong></div>
+            <div class="legend-item"><span class="swatch" style="background:#8A4F00"></span><span>Mixed evidence</span><strong>2</strong></div>
+          </div>
+        </div>
+        <div class="callout green"><p>Eighteen conclusions can be replayed without a commercial MILP solver <em>after the artifact exists</em>. That is evidence for portable verification, not evidence that discovery was LLM-only. Five conclusions explicitly retain floating-point or commercial-solver dependence; one exact proof has a large external trace retained by hash.</p></div>
+      </section>
+
+      <section class="section" aria-labelledby="inspect-heading">
+        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Inspect the paired evidence</p><h2 id="inspect-heading">Where did each workflow lead?</h2></div><a href="../downloads/skill-comparison.csv">Download CSV</a></div>
+        <div class="controls">
+          <div class="field"><label for="comparison-search">Search instance, method, or final status</label><input id="comparison-search" type="search" placeholder="Try “configuration” or “graphdraw”" autocomplete="off"></div>
+          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill led on primal</option><option value="skill-dual">Skill led on dual</option><option value="comparison-dual">Comparison led on dual</option><option value="strict">Skill strict improvement</option><option value="exact">Skill exact closure</option><option value="tolerance">Tolerance-indexed skill P</option></select></div>
+        </div>
+        <p id="comparison-count" class="result-count" aria-live="polite"></p>
+        <div class="table-wrap"><table class="results-table"><thead><tr><th>Instance</th><th>Batch</th><th>Primal winner</th><th>Dual winner</th><th>Gap winner</th><th>Skill values</th><th>Comparison values</th><th>Skill method</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+        <noscript><p class="noscript">The filterable table requires JavaScript. The complete values are available in the downloadable CSV.</p></noscript>
+      </section>
+
+      <section class="section" aria-labelledby="future-heading">
+        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">What would stronger evidence require?</p><h2 id="future-heading">A proper replacement experiment</h2></div></div>
+        <p>A causal test should freeze identical MPS hashes, machines, solver versions, threads, seeds, starts, external information, tolerances, and wall-clock budgets. It should also reserve separate budgets for structural analysis, primal construction, dual search, proof production, and independent verification—then score unsupported claims and verification failures, not only final objective values.</p>
+        <div class="download-grid">
+          <article class="download-card"><h3>Practical recommendation</h3><p>Use the LLM to enlarge the hypothesis space and compress human research overhead. Use the best available computational backend for search and proof. Keep acceptance outside both.</p></article>
+          <article class="download-card"><h3>Read the underlying study</h3><p>The full skill package, comparison archive, CSV, audit JSON, and methods report are available on the experiment page.</p><a class="button small" href="../skill/">Open skill experiment</a></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · solver-replacement analysis</span><span><a href="../">Overview</a> · <a href="../skill/">Skill experiment</a></span></div></footer>
+  <script src="../assets/comparison-data.js"></script>
+  <script src="../assets/comparison.js"></script>
+</body>
+</html>
