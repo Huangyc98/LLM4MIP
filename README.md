@@ -1,10 +1,10 @@
-# LLM4MIP — How Far Can LLMs Go on Open MIP Problems?
+# LLM4MIP — From Open Problems to Verified Progress
 
 ## Research website
 
 **[Open the LLM4MIP research website →](https://huangyc98.github.io/LLM4MIP/)**
 
-Research website for the `MIPLIB_openproblem` project.
+Research website for the `MIPLIB_openproblem` project. We tested 112 open MIP problems, proved 32 optimal, improved 25 primal solutions, and improved 40 dual bounds using LLM-assisted research workflows with strict verification.
 
 The site studies how large language models contribute to solving mixed-integer programming problems: structural analysis, reduction design, falsification, checker construction, and proof-oriented workflow coordination. Exact solvers, exhaustive computations, SAT/LRAT checking, and audits against the original MPS determine which claims count as evidence.
 

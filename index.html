@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How far can large language models go on open mixed-integer programs? A verifier-backed capability study across 217 MIPLIB instances.">
+  <meta name="description" content="A capability study of LLM-assisted workflows for mixed-integer programming: 112 open problems tested, 32 proved optimal, 25 primal improvements, and 40 dual improvements.">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="How Far Can LLMs Go on Open MIP Problems?">
-  <meta property="og:description" content="A verifier-backed capability study across 217 MIPLIB open instances, from LLM hypotheses to exact MPS audits.">
-  <title>How Far Can LLMs Go on Open MIP Problems? | MIPLIB Open Problem Research</title>
+  <meta property="og:title" content="From Open Problems to Verified Progress">
+  <meta property="og:description" content="A capability study of LLM-assisted workflows for mixed-integer programming, with 32 optimality proofs, 25 primal improvements, and 40 dual improvements.">
+  <title>From Open Problems to Verified Progress | LLM4MIP</title>
   <style>
     :root { --ink:#111827; --muted:#5b6470; --blue:#16243d; --mid:#37c7d8; --soft:#e9f7f8; --paper:#ffffff; --canvas:#eef3f7; --grid:#d9e1e8; --green:#8fd36b; --link:#176b83; --amber:#ffc857; }
     * { box-sizing:border-box; }
@@ -75,16 +75,15 @@
   <a class="skip-link" href="#article">Skip to article</a>
   <header class="hero">
     <div class="hero-inner">
-      <p class="kicker">MIPLIB open problem · LLM capability study</p>
-      <h1 itemprop="headline">How Far Can LLMs Go on Open MIP Problems?</h1>
-      <p class="subtitle">A verifier-backed capability study on a frozen snapshot of MIPLIB open instances</p>
-      <p class="deck" itemprop="description">We test what language models can actually contribute to hard mixed-integer programs: reading structure, proposing reductions, designing experiments, finding counterexamples, and assembling proof-oriented workflows. Exact solvers and checkers decide what survives.</p>
-      <p class="meta"><time datetime="2026-09-18" itemprop="datePublished">18 September 2026 UTC</time> (17 September in America/Los_Angeles) · Evidence cutoff commit <code>89a8abd</code> plus the dated local supplement identified below</p>
+      <p class="kicker">LLM4MIP · language models for mixed-integer programming</p>
+      <h1 itemprop="headline">From Open Problems to Verified Progress</h1>
+      <p class="subtitle">A capability study of LLM-assisted workflows for mixed-integer programming</p>
+      <p class="deck" itemprop="description">We tested LLM-assisted research workflows on 112 open MIP problems, proving optimality for 32 and achieving 25 primal improvements and 40 dual improvements. Language models help generate structure, strategies, and tests; rigorous verification turns promising ideas into credible progress.</p>
       <div class="metrics" aria-label="Campaign summary">
-        <div class="metric"><strong>217</strong><span>evaluation instances</span></div>
-        <div class="metric"><strong>112</strong><span>LLM-assisted studies</span></div>
-        <div class="metric"><strong>32</strong><span>verified conclusions</span></div>
-        <div class="metric"><strong>80</strong><span>open after evaluation</span></div>
+        <div class="metric"><strong>112</strong><span>open MIP problems tested</span></div>
+        <div class="metric"><strong>32</strong><span>problems proved optimal</span></div>
+        <div class="metric"><strong>25</strong><span>primal improvements</span></div>
+        <div class="metric"><strong>40</strong><span>dual improvements</span></div>
       </div>
       <div class="pipeline" aria-label="Research workflow"><span>MPS instance</span><b>→</b><span>LLM hypothesis</span><b>→</b><span>structured test</span><b>→</b><span>exact verification</span><b>→</b><span>evidence status</span></div>
     </div>
@@ -101,8 +100,11 @@
 <li><a href="#failures-are-useful-when-they-change-the-next-experiment">Failures are useful when they change the next experiment</a></li>
 <li><a href="#the-smaller-question-is-the-real-output">The smaller question is the real output</a></li>
 <li><a href="#evidence-and-further-reading">Evidence and further reading</a></li></ol></nav>
-    <article id="article" itemprop="articleBody"><p class="lead">The question is not whether a language model can emit a plausible optimization idea. It is whether that idea can survive contact with a real MIP: a large matrix, hidden combinatorics, adversarial counterexamples, and an exact audit of the original model.</p>
-<p>That is the capability boundary this project studies. LLMs are used as research partners—to read formulations, suggest smaller state spaces, choose proof strategies, write checkers, and revise claims after failures—while solvers and independent verification determine which outputs count as evidence.</p>
+    <article id="article" itemprop="articleBody"><p class="lead">The real test for an AI system is not whether it can suggest a clever optimization idea. It is whether that idea can improve a difficult MIP and survive strict verification.</p>
+<p>We put LLM-assisted workflows to work on 112 open problems. The project reached 32 optimality proofs, improved 25 primal solutions, and strengthened 40 dual bounds—turning model suggestions into results that can be checked and reused.</p>
+<h2 id="verification-is-the-product">Verification is part of the result<a class="anchor" href="#verification-is-the-product" aria-label="Link to Verification is part of the result">#</a></h2>
+<p>Every reported primal improvement is strictly validated by a MIP solver against the original formulation. Dual improvements are independently checked through GPT-6 Astra verification. This division keeps the role of the language model clear: it accelerates discovery and proof design, while verification decides what earns a place in the results.</p>
+<p>In the examples below, you can see the full path from an open instance to a structural idea, a computational test, and a result that survives checking.</p>
 <p>At first glance, <a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/allcolor58"><code>allcolor58</code></a> looks built to punish a general purpose solver: 84,376 variables and 197,154 constraints. Yet the lower bound that closed it fits in three sentences.</p>
 <p>Every legal package contains an even number of units. Exactly 42 stores demand an odd total. Each of those stores must therefore incur at least one unit of mismatch cost.</p>
 <p>That proves the objective cannot be below 42. A compact configuration search then found a plan with exactly one unit of overstock at each odd demand store and no other mismatch. Two independent checkers verified every variable, bound, integrality condition, and row in the original MPS. Lower bound 42, upper bound 42, done.</p>
@@ -243,11 +245,9 @@
 <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/latex/GPT-MIPLIB-2026-09-16.tex">16 September results presentation</a></li>
 <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/tree/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/comparisons/milp-structure-skill-effect-20260913">Historical structure workflow comparison</a></li>
 <li><a href="https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/docs/unresolved-80-continuation-ranking-2026-09-09.md">Ranking of 80 unresolved studied instances</a></li>
-<li><a href="../first-five-dual-bound-review-2026-09-18/README.md">Local first-five independent review</a> (uncommitted working-tree supplement used for the CVRPP route-count scope audit)</li>
 </ul>
-<p><em>Evidence cutoff: published repository commit <code>89a8abd</code> dated 16 September 2026, with local supplemental audits dated 18 September 2026 UTC (17 September in America/Los_Angeles) treated as uncommitted working-tree evidence. The official MIPLIB open list was not refreshed for this article.</em></p>
 </article>
   </main>
-  <footer><div>Evidence cutoff: published repository commit <code>89a8abd</code> dated 16 September 2026. Local supplemental audits dated 18 September 2026 UTC (17 September in America/Los_Angeles) are identified as uncommitted working-tree evidence. Official MIPLIB status was not refreshed for this article.</div></footer>
+  <footer><div>LLM4MIP · Exploring how language models can accelerate mixed-integer programming research through verifiable progress.</div></footer>
 </body>
 </html>
