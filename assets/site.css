@@ -92,6 +92,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 h2, h3 { font-family: Arial, Helvetica, sans-serif; }
 h3 { line-height: 1.2; }
 .lede { max-width: 880px; margin: 0; font-size: 1.16rem; color: #493c39; }
+.skill-focus-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; max-width: none; margin: 0; padding: 0; list-style: none; counter-reset: skill-focus; }
+.skill-focus-list li { position: relative; min-height: 185px; padding: 1.15rem; overflow: hidden; border: 1px solid var(--line); border-top: 5px solid var(--cardinal); border-radius: 8px; background: linear-gradient(145deg, #fff 0%, var(--soft-red) 135%); color: var(--muted); font-size: 0.94rem; line-height: 1.5; box-shadow: 0 8px 20px rgba(46,45,41,0.08); counter-increment: skill-focus; }
+.skill-focus-list li:nth-child(2) { border-top-color: var(--green); background: linear-gradient(145deg, #fff 0%, #edf6f3 135%); }
+.skill-focus-list li:nth-child(3) { border-top-color: var(--blue); background: linear-gradient(145deg, #fff 0%, #edf5fa 135%); }
+.skill-focus-list li::before { content: "0" counter(skill-focus); display: grid; width: 2.15rem; height: 2.15rem; place-items: center; border-radius: 50%; background: var(--cardinal); color: #fff; font: 800 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.04em; box-shadow: 0 5px 12px rgba(140,21,21,0.2); }
+.skill-focus-list li:nth-child(2)::before { background: var(--green); box-shadow: 0 5px 12px rgba(23,107,91,0.2); }
+.skill-focus-list li:nth-child(3)::before { background: var(--blue); box-shadow: 0 5px 12px rgba(0,108,184,0.2); }
+.skill-focus-list strong { display: block; margin: 0.8rem 0 0.35rem; color: var(--ink); font: 800 1.08rem/1.25 Arial, Helvetica, sans-serif; }
 .note { color: var(--muted); font-size: 0.86rem; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; word-break: break-word; }
 
@@ -244,6 +252,7 @@ details > div { padding: 0 1rem 1rem; color: var(--muted); }
   .metric { min-height: 118px; padding: 1rem; }
   .metric strong { font-size: 2rem; }
   .page-grid, .workflow, .download-grid, .controls { grid-template-columns: 1fr; }
+  .skill-focus-list { grid-template-columns: 1fr; }
   .page-grid-two { grid-template-columns: 1fr; }
   .page-card { min-height: 0; }
   .panel { padding: 1rem; }
