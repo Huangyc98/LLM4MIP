@@ -32,7 +32,7 @@
       <div class="hero-inner">
         <p class="eyebrow">Deep dive 02 · skill-based comparison</p>
         <h1>LLM4MIP  Skills</h1>
-        <p class="dek">The downloadable <span class="mono">milp-structure-research</span> skill defines a structured workflow for instance analysis. Solver-specific packages are available for COPT and Gurobi. </p>
+        <p class="dek">The downloadable <span class="mono">milp-structure-research</span> skill helps LLMs analyze instance structure, design solver experiments, and verify the resulting primal and dual progress. Versions are available for COPT and Gurobi.</p>
         <div class="hero-actions">
           <a class="button light" href="../downloads/milp-structure-research-copt.tar.gz" download>Download for COPT</a>
           <a class="button light" href="../downloads/milp-structure-research-gurobi.tar.gz" download>Download for Gurobi</a>
@@ -47,21 +47,16 @@
       <section class="section" aria-labelledby="skill-heading">
         <div class="section-head">
           <div>
-            <p class="eyebrow" style="color:#8c1515">Workflow specification</p>
-            <h2 id="skill-heading">A structured protocol, not a solver preset</h2>
+            <p class="eyebrow" style="color:#8c1515">Skill focus</p>
+            <h2 id="skill-heading">How the skill helps LLM-assisted MIP solving</h2>
           </div>
-          <p>Each solver-specific package contains nine tracked skill files—including its native profiler—plus the MIT license.</p>
+          <!-- <p>The COPT and Gurobi versions follow the same research approach, with solver-specific tools for model inspection and profiling.</p> -->
         </div>
-        <p class="lede">The skill requires a researcher to freeze the claim and baseline, inspect the untouched matrix, recover semantics, classify the bottleneck, propose at least two falsifiable hypotheses, run bounded pilots, separate construction from proof, map back to the original model, and classify each result by its verification category.</p>
-        <div class="workflow" style="margin-top:1.4rem">
-          <article><h3>Profile</h3><p>Read domains, rows, sparsity, scale, symmetry, and possible graph or decomposition structure without optimizing.</p></article>
-          <article><h3>Hypothesize</h3><p>Write competing structural explanations and the smallest experiment that could disprove each one.</p></article>
-          <article><h3>Separate</h3><p>Run primal construction and dual/proof work as distinct pipelines with explicit budgets.</p></article>
-          <article><h3>Audit</h3><p>Lift candidates to the untouched MPS, replay certificates, preserve failures, and state the verified scope and limitations of each result.</p></article>
-        </div>
-        <div class="callout green">
-          <p><strong>Version used in the retrospective benchmark:</strong> the Gurobi-oriented package, with <span class="mono">SKILL.md</span> SHA-256 <span class="mono">f8a09b104f0af3786b2e702f60dde3de7fd54a1aac581dff9bdd8a3325c84b4f</span>. All 20 skill-arm instances recorded a pre-access skill-read gate. The COPT package is a solver-native adaptation of the same workflow.</p>
-        </div>
+        <ul class="skill-focus-list">
+          <li><strong>Find useful structure:</strong> identify exploitable patterns, primal heuristics, and dual certificates instead of relying only on generic solver tuning.</li>
+          <li><strong>Run targeted experiments:</strong> turn structural observations into focused tests with an optimization solver.</li>
+          <li><strong>Verify every result:</strong> check candidate solutions and bounds against the original model, using independent verification to determine what can be claimed.</li>
+        </ul>
       </section>
 
       <section class="section" aria-labelledby="design-heading">
