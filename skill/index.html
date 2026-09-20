@@ -32,7 +32,7 @@
       <div class="hero-inner">
         <p class="eyebrow">Deep dive 02 · skill-based improvement</p>
         <h1>Structure first, then solve</h1>
-        <p class="dek">The downloadable <span class="mono">milp-structure-research</span> skill turns structural investigation into a gated workflow. Across 20 historical paired cases, the skill-guided arm recorded stronger primal outcomes and exact closures—but did not dominate dual-bound progress.</p>
+        <p class="dek">The downloadable <span class="mono">milp-structure-research</span> skill turns structural investigation into a gated workflow. Across 20 historical paired cases, the skill-guided arm produced better primal bounds and certified global optimality on two instances—but did not dominate dual-bound improvement.</p>
         <div class="hero-actions">
           <a class="button light" href="../downloads/milp-structure-research.tar.gz" download>Download the skill</a>
           <a class="button ghost" href="#results">Explore the results</a>
@@ -96,18 +96,18 @@
         </div>
         <div class="panel">
           <div class="tabs" aria-label="Comparison metric">
-            <button type="button" data-metric="primal" aria-pressed="true">Selected primal</button>
+            <button type="button" data-metric="primal" aria-pressed="true">Primal bound</button>
             <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
-            <button type="button" data-metric="gap" aria-pressed="false">Common gap</button>
-            <button type="button" data-metric="strict" aria-pressed="false">Strict improvements</button>
-            <button type="button" data-metric="closure" aria-pressed="false">Exact closures</button>
+            <button type="button" data-metric="gap" aria-pressed="false">Relative gap</button>
+            <button type="button" data-metric="strict" aria-pressed="false">Baseline improvements</button>
+            <button type="button" data-metric="closure" aria-pressed="false">Certified optimality</button>
           </div>
           <h3 id="metric-title" class="chart-title"></h3>
           <p id="metric-note" class="chart-note" aria-live="polite"></p>
           <div id="metric-chart"></div>
         </div>
         <div class="callout blue">
-          <p><strong>Interpretation:</strong> the skill-guided arm was strongest at finding selected primal points, producing strict public-baseline improvements, and turning two open gaps into exact certificates. The comparison arm more often preserved a stronger numerical dual bound and smaller common gap. That division argues for a hybrid workflow.</p>
+          <p><strong>Interpretation:</strong> the skill-guided arm produced the better primal bound on 11 instances, yielded four strict improvements over frozen public baselines, and certified global optimality for two instances. The comparison arm produced the better dual bound on 12 instances and the smaller relative gap on 11. That division argues for a hybrid workflow.</p>
         </div>
       </section>
 
@@ -121,13 +121,13 @@
         </div>
         <div class="controls">
           <div class="field"><label for="comparison-search">Search instance, method, or final status</label><input id="comparison-search" type="search" placeholder="Try “exact route” or “neos”" autocomplete="off"></div>
-          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill led on primal</option><option value="skill-dual">Skill led on dual</option><option value="comparison-dual">Comparison led on dual</option><option value="strict">Skill strict improvement</option><option value="exact">Skill exact closure</option><option value="tolerance">Tolerance-indexed skill P</option></select></div>
+          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill better primal bound</option><option value="skill-dual">Skill better dual bound</option><option value="comparison-dual">Comparison better dual bound</option><option value="strict">Skill strict baseline improvement</option><option value="exact">Skill certified global optimum</option><option value="tolerance">Tolerance-indexed skill primal bound</option></select></div>
         </div>
         <p id="comparison-count" class="result-count" aria-live="polite"></p>
         <p class="scroll-hint">Swipe sideways to see every column.</p>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable skill experiment results table">
           <table class="results-table">
-            <thead><tr><th>Instance</th><th>Batch</th><th>Primal winner</th><th>Dual winner</th><th>Gap winner</th><th>Skill values</th><th>Comparison values</th><th>Skill method</th></tr></thead>
+            <thead><tr><th>Instance</th><th>Batch</th><th>Better primal bound</th><th>Better dual bound</th><th>Smaller relative gap</th><th>Skill bounds</th><th>Comparison bounds</th><th>Skill method</th></tr></thead>
             <tbody id="comparison-body"></tbody>
           </table>
         </div>

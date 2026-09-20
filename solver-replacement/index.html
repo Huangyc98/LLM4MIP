@@ -66,24 +66,24 @@
         </div>
         <div class="panel">
           <div class="tabs" aria-label="Comparison metric">
-            <button type="button" data-metric="primal" aria-pressed="true">Selected primal</button>
+            <button type="button" data-metric="primal" aria-pressed="true">Primal bound</button>
             <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
-            <button type="button" data-metric="gap" aria-pressed="false">Common gap</button>
-            <button type="button" data-metric="strict" aria-pressed="false">Strict improvements</button>
-            <button type="button" data-metric="closure" aria-pressed="false">Exact closures</button>
+            <button type="button" data-metric="gap" aria-pressed="false">Relative gap</button>
+            <button type="button" data-metric="strict" aria-pressed="false">Baseline improvements</button>
+            <button type="button" data-metric="closure" aria-pressed="false">Certified optimality</button>
           </div>
           <h3 id="metric-title" class="chart-title"></h3>
           <p id="metric-note" class="chart-note" aria-live="polite"></p>
           <div id="metric-chart"></div>
         </div>
-        <p>The structure-guided arm recorded better selected primals on 11 of 20 instances, four strict improvements over its frozen public baseline, and two exact closures. The comparison arm retained stronger dual bounds on 12 of 20 and smaller common gaps on 11. Strong primal discovery does not replace global bounding; strong branch-and-bound does not automatically reveal a portable structural proof.</p>
-        <p class="note">Six skill-arm primals were tolerance-indexed. The two comparison-study closures—<span class="mono">ns1456591</span> and <span class="mono">neos-3682128-sandon</span>—belong to a separate archive and are not added to the canonical campaign inventory of 30 conclusions.</p>
+        <p>The structure-guided arm produced the better primal bound on 11 of 20 instances, four strict improvements over its frozen public baseline, and certified global optimality for two instances. The comparison arm produced the stronger dual bound on 12 of 20 and the smaller relative gap on 11. Improving primal bounds does not replace global dual bounding; strong branch-and-bound performance does not by itself yield a portable optimality certificate.</p>
+        <p class="note">Six skill-arm primal bounds were tolerance-indexed. The two comparison-study certified global optima—<span class="mono">ns1456591</span> and <span class="mono">neos-3682128-sandon</span>—belong to a separate archive and are not added to the campaign inventory of 30 resolved instances.</p>
       </section>
 
       <section class="section" aria-labelledby="verification-heading">
         <div class="section-head">
-          <div><p class="eyebrow" style="color:#8c1515">Campaign-wide evidence</p><h2 id="verification-heading">Thirty conclusions, six verification forms</h2></div>
-          <p>This chart answers “how was the conclusion checked?”, not “who deserves credit for discovering it?”</p>
+          <div><p class="eyebrow" style="color:#8c1515">Campaign-wide evidence</p><h2 id="verification-heading">Thirty optimality / infeasibility results, six verification forms</h2></div>
+          <p>This chart classifies how each result was verified; it does not assign discovery credit.</p>
         </div>
         <div class="panel">
           <div class="stack" role="img" aria-label="18 portable exact, 1 large checked trace, 3 exact exhaustive, 3 theorem transfer, 3 numerical closure, 2 mixed evidence">
@@ -103,18 +103,18 @@
             <div class="legend-item"><span class="swatch" style="background:#8A4F00"></span><span>Mixed evidence</span><strong>2</strong></div>
           </div>
         </div>
-        <div class="callout green"><p>Eighteen conclusions can be replayed without a commercial MILP solver <em>after the artifact exists</em>. That is evidence for portable verification, not evidence that discovery was LLM-only. Five conclusions explicitly retain floating-point or commercial-solver dependence; one exact proof has a large external trace retained by hash.</p></div>
+        <div class="callout green"><p>Eighteen resolved-instance results can be replayed without a commercial MILP solver <em>after the artifact exists</em>. That is evidence for portable verification, not evidence that discovery was LLM-only. Five resolved-instance results explicitly retain floating-point or commercial-solver dependence; one exact proof has a large external trace retained by hash.</p></div>
       </section>
 
       <section class="section" aria-labelledby="inspect-heading">
         <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Inspect the paired evidence</p><h2 id="inspect-heading">Where did each workflow lead?</h2></div><a href="../downloads/skill-comparison.csv">Download CSV</a></div>
         <div class="controls">
           <div class="field"><label for="comparison-search">Search instance, method, or final status</label><input id="comparison-search" type="search" placeholder="Try “configuration” or “graphdraw”" autocomplete="off"></div>
-          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill led on primal</option><option value="skill-dual">Skill led on dual</option><option value="comparison-dual">Comparison led on dual</option><option value="strict">Skill strict improvement</option><option value="exact">Skill exact closure</option><option value="tolerance">Tolerance-indexed skill P</option></select></div>
+          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill better primal bound</option><option value="skill-dual">Skill better dual bound</option><option value="comparison-dual">Comparison better dual bound</option><option value="strict">Skill strict baseline improvement</option><option value="exact">Skill certified global optimum</option><option value="tolerance">Tolerance-indexed skill primal bound</option></select></div>
         </div>
         <p id="comparison-count" class="result-count" aria-live="polite"></p>
         <p class="scroll-hint">Swipe sideways to see every column.</p>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable solver-replacement comparison table"><table class="results-table"><thead><tr><th>Instance</th><th>Batch</th><th>Primal winner</th><th>Dual winner</th><th>Gap winner</th><th>Skill values</th><th>Comparison values</th><th>Skill method</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable solver-replacement comparison table"><table class="results-table"><thead><tr><th>Instance</th><th>Batch</th><th>Better primal bound</th><th>Better dual bound</th><th>Smaller relative gap</th><th>Skill bounds</th><th>Comparison bounds</th><th>Skill method</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
         <noscript><p class="noscript">The filterable table requires JavaScript. The complete values are available in the downloadable CSV.</p></noscript>
       </section>
 
