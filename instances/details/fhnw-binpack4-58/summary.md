@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** —
-- **Best bound or certificate:** geometric contradiction
-- **Study finding:** Infeasible, exact certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** —
+- **Dual bound / certificate:** geometric contradiction
+- **Optimization status and evidence:** Infeasible, exact certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** infeasible
+- **Resolved status:** infeasible
 - **Main method:** exact projection-area contradiction
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-binpack4-58-findings.tar.gz`
-- **Compressed bytes:** `11891`
-- **SHA-256:** `122939cfe891936bf90ac9b38efa810564cb51b258827e67971a1410a5ff3197`
+- **Compressed bytes:** `11913`
+- **SHA-256:** `71aa61c8749f6f029ab335b02f1cd79bdcee89830a8fc379e0a14847c3c9dd08`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binpack4-58/README.md

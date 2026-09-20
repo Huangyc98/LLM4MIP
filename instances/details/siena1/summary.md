@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 10,449,008.9 (verified @ 1e-9)
-- **Best bound or certificate:** 10,219,502.195349596
-- **Study finding:** Feasible; structure-specific decomposition attempts tested; global optimum open
+- **Primal bound / feasibility:** 10,449,008.9 (verified @ 1e-9)
+- **Dual bound / certificate:** 10,219,502.195349596
+- **Optimization status and evidence:** Feasible; structure-specific decomposition attempts tested; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `siena1-findings.tar.gz`
-- **Compressed bytes:** `233132`
-- **SHA-256:** `8c2a7e0fbba5152a17bc7a1a91a8cd93977beb67b62945e820f872e83f157c24`
+- **Compressed bytes:** `233147`
+- **SHA-256:** `d05a0518c0e96378fa45bc9b7e90358bf96d7e07d791fd898720beefb1a0c48b`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/siena1/README.md

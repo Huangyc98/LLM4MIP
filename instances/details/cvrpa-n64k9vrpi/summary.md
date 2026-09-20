@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 1,401 (new strict incumbent)
-- **Best bound or certificate:** 1,401
-- **Study finding:** Optimal, mixed database/computational evidence; exact MPS projection and rational 17+ bound, but no portable complete lower-bound trace
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 1,401 (new strict incumbent)
+- **Dual bound / certificate:** 1,401
+- **Optimization status and evidence:** Optimal, mixed database/computational evidence; exact MPS projection and rational 17+ bound, but no portable complete lower-bound trace
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 1,401
+- **Resolved status:** OPT = 1,401
 - **Main method:** exact compiled-MPS projection + CVRPLIB fixed-nine optimum + exact-route-count Gurobi/COPT exclusions + rational K>=17 dual
 - **Evidence grade:** MX — Mixed database and commercial-solver evidence
-- **Earlier source-table wording:** mixed database/computational global conclusion; no portable complete lower-bound trace
+- **Source evidence characterization:** mixed database and solver-based global-optimality evidence; no portable complete lower-bound trace
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `cvrpa-n64k9vrpi-findings.tar.gz`
-- **Compressed bytes:** `351399`
-- **SHA-256:** `dffc7ec7eb664b8813c2a8626b2f019cabe845f518c8a7c031ae04167d2e2110`
+- **Compressed bytes:** `351432`
+- **SHA-256:** `39478b6c792db51dd6dcaf82967eea8ef6b78ada7b877c64e7eff6119cda8a1d`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cvrpa-n64k9vrpi/README.md

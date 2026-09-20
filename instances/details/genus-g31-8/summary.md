@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Pending strict verification
-- **Best verified result:** -23 candidate (native genus 3; 1e-15 literal-MPS residual)
-- **Best bound or certificate:** -23 exact lower bound
-- **Study finding:** Same graph and lower bound; exact-decimal MPS optimum open pending a zero-tolerance witness
+- **Primal bound / feasibility:** -23 candidate (native genus 3; 1e-15 literal-MPS residual)
+- **Dual bound / certificate:** -23 exact lower bound
+- **Optimization status and evidence:** Same graph and lower bound; exact-decimal MPS optimum open pending a zero-tolerance witness
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `genus-g31-8-findings.tar.gz`
-- **Compressed bytes:** `11146`
-- **SHA-256:** `ed5ea2263320f3cd638dde271261db1bbdf952dedc6f5899287c2bc06efba45f`
+- **Compressed bytes:** `11171`
+- **SHA-256:** `bd52e66c1df933ec826147927692644a16084ca7aa8d2cf2f6cd08763080416b`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/genus-g31-8/README.md

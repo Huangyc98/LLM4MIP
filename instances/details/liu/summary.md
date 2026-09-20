@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 1,082 (new strict solution)
-- **Best bound or certificate:** 1,074 (area + even-lattice certificate)
-- **Study finding:** Feasible; target-1,080 critical-path study closes two restricted neighborhoods, but global optimum remains open
+- **Primal bound / feasibility:** 1,082 (new strict solution)
+- **Dual bound / certificate:** 1,074 (area + even-lattice certificate)
+- **Optimization status and evidence:** Feasible; target-1,080 critical-path study closes two restricted neighborhoods, but global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `liu-findings.tar.gz`
-- **Compressed bytes:** `364170`
-- **SHA-256:** `3bc5eca40a3bbfdfbf9e08e536156f381289d55a84bd41a754b4b1b2c8ecd333`
+- **Compressed bytes:** `364197`
+- **SHA-256:** `f6dfac11806d58be540fce4e8874d0f7da259613ee061df43326095800321707`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/liu/README.md

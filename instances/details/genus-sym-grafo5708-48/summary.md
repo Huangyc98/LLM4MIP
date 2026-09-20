@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -21 (genus 4)
-- **Best bound or certificate:** -21 exhaustive result
-- **Study finding:** Optimal, specialized exact exhaustive computation; no standalone proof trace
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -21 (genus 4)
+- **Dual bound / certificate:** -21 exhaustive result
+- **Optimization status and evidence:** Optimal, specialized exact exhaustive computation; no standalone proof trace
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = -21
+- **Resolved status:** OPT = -21
 - **Main method:** exhaustive orientable-genus computation + rotation
 - **Evidence grade:** EX — Specialized exact exhaustive computation without a standalone trace
-- **Earlier source-table wording:** exact exhaustive computation; no standalone proof trace
+- **Source evidence characterization:** exact exhaustive computation; no standalone proof trace
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `genus-sym-grafo5708-48-findings.tar.gz`
-- **Compressed bytes:** `20879`
-- **SHA-256:** `2d658ff1fea723b4909dd3edbaece48754fca4f6ff1cc1f255f44e1684e7a4e5`
+- **Compressed bytes:** `20904`
+- **SHA-256:** `5cf45a51786857e9942ee2f7324d5930a98b60d64a729ef2e67c1ccbb2e14be3`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/genus-sym-grafo5708-48/README.md

@@ -24,7 +24,8 @@
         <a href="./" aria-current="page">112 instances</a>
         <a href="../skill/">Skill experiment</a>
         <a href="../solver-replacement/">Replace solvers?</a>
-        <a href="../technical-report.pdf">Report</a>
+        <!-- Temporarily hidden: <a href="../technical-report.pdf">Report</a> -->
+        <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
@@ -47,18 +48,18 @@
           <p>Click a segment to filter the catalogue. These categories partition all 112 instances.</p>
         </div>
         <div class="status-strip" role="group" aria-label="Filter by campaign status">
-          <button type="button" data-status-filter="concluded" style="width:26.7857%;background:#176b5b" aria-label="Show 30 global conclusions" aria-pressed="false">30 concluded</button>
+          <button type="button" data-status-filter="concluded" style="width:26.7857%;background:#176b5b" aria-label="Show 30 instances with certified optimality or infeasibility" aria-pressed="false">30 resolved</button>
           <button type="button" data-status-filter="verified-open" style="width:66.9643%;background:#006cb8" aria-label="Show 75 verified feasible open instances" aria-pressed="false">75 verified/open</button>
           <button type="button" data-status-filter="pending" style="width:2.6786%;background:#8A4F00" aria-label="Show 3 pending strict verification" aria-pressed="false">3</button>
           <button type="button" data-status-filter="no-feasible" style="width:3.5714%;background:#8c1515" aria-label="Show 4 instances with no feasible point found" aria-pressed="false">4</button>
         </div>
-        <div class="legend">
-          <div class="legend-item"><span class="swatch" style="background:#176b5b"></span><span>Global conclusion</span><strong>30</strong></div>
+        <div class="legend legend-4">
+          <div class="legend-item"><span class="swatch" style="background:#176b5b"></span><span>Certified optimality / infeasibility</span><strong>30</strong></div>
           <div class="legend-item"><span class="swatch" style="background:#006cb8"></span><span>Verified feasible; open</span><strong>75</strong></div>
           <div class="legend-item"><span class="swatch" style="background:#8A4F00"></span><span>Pending strict verification</span><strong>3</strong></div>
           <div class="legend-item"><span class="swatch" style="background:#8c1515"></span><span>No feasible point found</span><strong>4</strong></div>
         </div>
-        <p class="note">The 30 conclusions comprise 28 supported optima and two supported infeasibility results. “Open” means global optimality remains unresolved; local closures, stronger bounds, or incumbent progress may still be substantial.</p>
+        <p class="note">The 30 resolved instances comprise 28 with certified optimality and two with certified infeasibility. “Open” means global optimality remains unresolved; local optimality, stronger bounds, or incumbent improvements may still be substantial.</p>
       </section>
 
       <section class="section" aria-labelledby="setup-heading">
@@ -96,7 +97,7 @@
             <label for="instance-filter">Campaign status</label>
             <select id="instance-filter">
               <option value="all">All 112</option>
-              <option value="concluded">Global conclusion (30)</option>
+              <option value="concluded">Certified optimality / infeasibility (30)</option>
               <option value="verified-open">Verified feasible; open (75)</option>
               <option value="pending">Pending strict verification (3)</option>
               <option value="no-feasible">No feasible point found (4)</option>
@@ -104,9 +105,10 @@
           </div>
         </div>
         <p id="instance-count" class="result-count" aria-live="polite"></p>
-        <div class="table-wrap">
+        <p class="scroll-hint">Swipe sideways to see every column.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable instance results table">
           <table class="results-table">
-            <thead><tr><th>Instance</th><th>Status</th><th>Best verified result</th><th>Best bound / certificate</th><th>Finding and progress</th><th>Files</th></tr></thead>
+            <thead><tr><th>Instance</th><th>Status</th><th>Primal bound / feasibility</th><th>Dual bound / certificate</th><th>Optimization status and evidence</th><th>Files</th></tr></thead>
             <tbody id="instance-body"></tbody>
           </table>
         </div>
@@ -115,12 +117,12 @@
 
       <section class="section" aria-labelledby="scope-heading">
         <h2 id="scope-heading">Evidence boundary</h2>
-        <p>These pages describe the repository snapshot, not the live MIPLIB leaderboard. The source base is commit <span class="mono">89a8abd</span> plus the disclosed 18 September reconciliation reviews. Some exact traces are retained externally by hash, some conclusions depend on published theorems, and five conclusions retain floating-point or commercial-solver dependence. Each summary leads with the reconciled current status even when older logs are preserved in its bundle.</p>
+        <p>These pages describe the repository snapshot, not the live MIPLIB leaderboard. The source base is commit <span class="mono">89a8abd</span> plus the disclosed 18 September reconciliation reviews. Some exact traces are retained externally by hash, some resolved-instance results depend on published theorems, and five retain floating-point or commercial-solver dependence. Each summary leads with the reconciled current status even when older logs are preserved in its bundle.</p>
       </section>
     </div>
   </main>
 
-  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · 112-instance catalogue</span><span><a href="../">Overview</a> · <a href="../technical-report.pdf">Technical report</a></span></div></footer>
+  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · 112-instance catalogue</span><span><a href="../">Overview</a><!-- Temporarily hidden: · <a href="../technical-report.pdf">Technical report</a> --> · <button class="footer-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button></span></div></footer>
   <script src="data.js"></script>
   <script src="instances.js"></script>
 </body>

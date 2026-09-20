@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** No feasible point found
-- **Best verified result:** no feasible witness
-- **Best bound or certificate:** no infeasibility certificate
-- **Study finding:** Exact order-CSP/CNF search remains unknown
+- **Primal bound / feasibility:** no feasible witness
+- **Dual bound / certificate:** no infeasibility certificate
+- **Optimization status and evidence:** Exact order-CSP/CNF search remains unknown
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3355323-arnon-findings.tar.gz`
-- **Compressed bytes:** `33716`
-- **SHA-256:** `6c2d3d2e488790f505d8be60b67567bb45cf48ef31b241d8f10628ae7e1faae4`
+- **Compressed bytes:** `33720`
+- **SHA-256:** `91f8336a3d277d477b201cfe8629c82b513ecd3afdbf46cd24b7ddb71ff7935f`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3355323-arnon/README.md

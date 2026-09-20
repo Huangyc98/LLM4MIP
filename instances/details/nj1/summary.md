@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 382.0606208032 (improved first strict incumbent)
-- **Best bound or certificate:** no new nontrivial strict global lower bound
-- **Study finding:** Tree/compound search, 21 pair, 39 anchor-fixed triple, and 67 anchor-fixed quad closures, plus a zero-tolerance audit; global optimum open
+- **Primal bound / feasibility:** 382.0606208032 (improved first strict incumbent)
+- **Dual bound / certificate:** no new nontrivial global dual bound
+- **Optimization status and evidence:** Tree/compound search solved 21 pair, 39 anchor-fixed triple, and 67 anchor-fixed quadruple neighborhoods to optimality; zero-tolerance feasibility audit completed; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `nj1-findings.tar.gz`
-- **Compressed bytes:** `2087914`
-- **SHA-256:** `2c5f04ce3eab2dfce736ef6b27561d08152487a483f85865bde605930cc7a8f9`
+- **Compressed bytes:** `2087935`
+- **SHA-256:** `5c123b4a6482bb760813a192b42626b5ffad5266887fe7f1ddf07d4380282300`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/nj1/README.md

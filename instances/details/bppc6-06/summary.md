@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 208
-- **Best bound or certificate:** 208
-- **Study finding:** Optimal, tight-profile CNF/LRAT certificate and exact witness
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 208
+- **Dual bound / certificate:** 208
+- **Optimization status and evidence:** Optimal, tight-profile CNF/LRAT certificate and exact witness
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 208
+- **Resolved status:** OPT = 208
 - **Main method:** exact tight-profile reduction + checked CNF/LRAT + witness
 - **Evidence grade:** HP — Checked exact proof with large trace retained externally by hash
-- **Earlier source-table wording:** checked exact certificate; 2.65 GiB proof files retained by hash outside Git
+- **Source evidence characterization:** checked exact certificate; 2.65 GiB proof files retained by hash outside Git
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `bppc6-06-findings.tar.gz`
-- **Compressed bytes:** `109796`
-- **SHA-256:** `9eca1bf2709e91cc5ac418d8c46068c157665d77e14b61f88a0f90e8b12f9926`
+- **Compressed bytes:** `109811`
+- **SHA-256:** `2faa68e1d845b43f4e82c66daf82b7cc538b78d80694f9d8ccdc9a007a90f0a2`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/bppc6-06/README.md

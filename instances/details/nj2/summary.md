@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 382.0606208032 (improved first strict incumbent)
-- **Best bound or certificate:** no new nontrivial strict global lower bound
-- **Study finding:** Exact lift, local-neighborhood closures, and zero-tolerance audit; global optimum open
+- **Primal bound / feasibility:** 382.0606208032 (improved first strict incumbent)
+- **Dual bound / certificate:** no new nontrivial global dual bound
+- **Optimization status and evidence:** Exact lift completed; local neighborhoods solved to optimality; zero-tolerance feasibility audit completed; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `nj2-findings.tar.gz`
-- **Compressed bytes:** `890704`
-- **SHA-256:** `56a46c3b64312a4d19b4352f8103e1b3ca9a6d5d1546d3eb50636a11dede010b`
+- **Compressed bytes:** `890711`
+- **SHA-256:** `e2887824875d46ad65067a065d36908f806f8cc576828e42dfa6df42e1e96b10`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/nj2/README.md

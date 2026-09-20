@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 0.0918239856 (strict)
-- **Best bound or certificate:** no new certified global bound
-- **Study finding:** Exact subset witnesses plus complete-hint CP-SAT; public lower-valued pattern fails zero-tolerance feasibility; global optimum open
+- **Primal bound / feasibility:** 0.0918239856 (strict)
+- **Dual bound / certificate:** no new certified global bound
+- **Optimization status and evidence:** Exact subset witnesses plus complete-hint CP-SAT; public lower-valued pattern fails zero-tolerance feasibility; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3691541-lonja-findings.tar.gz`
-- **Compressed bytes:** `230881`
-- **SHA-256:** `80f5186f3e9094341878f1d99a4a9bfdce97282d8b2cd66440f8fdb2292cc0f3`
+- **Compressed bytes:** `230907`
+- **SHA-256:** `5c5583fe02f651cf489090fcff3a36eb9d188dab996c2ef507fcf311830e95d0`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3691541-lonja/README.md

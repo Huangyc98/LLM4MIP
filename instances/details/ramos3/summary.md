@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 186
-- **Best bound or certificate:** 156 (covering-code bound)
-- **Study finding:** Feasible; strict local optimality proved to bit radius 7; global optimum open
+- **Primal bound / feasibility:** 186
+- **Dual bound / certificate:** 156 (covering-code bound)
+- **Optimization status and evidence:** Feasible; strict local optimality proved to bit radius 7; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ramos3-findings.tar.gz`
-- **Compressed bytes:** `16783`
-- **SHA-256:** `83c7b59a735ba25c56778fb62b7e6ead665c521c2b3e440f588ce851cbed8434`
+- **Compressed bytes:** `16801`
+- **SHA-256:** `801e8ba398ebb26b53706b7a391c53d120f812eb608eb9f26378b8350db73509`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ramos3/README.md

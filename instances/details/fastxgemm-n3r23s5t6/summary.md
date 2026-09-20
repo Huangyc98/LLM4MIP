@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 153 (BILR 2018; strictly verified)
-- **Best bound or certificate:** 90
-- **Study finding:** Strict interval [90,153]; LB is our proof, UB is excluded from our primal count; global optimum open
+- **Primal bound / feasibility:** 153 (BILR 2018; strictly verified)
+- **Dual bound / certificate:** 90
+- **Optimization status and evidence:** Verified primal-dual interval [90, 153]; the dual bound is proved in this work, while the primal bound comes from an attributed external construction and is excluded from the campaign's primal-bound count; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fastxgemm-n3r23s5t6-findings.tar.gz`
-- **Compressed bytes:** `4469927`
-- **SHA-256:** `c80ac4ba2db69b48aa84783e8a010967625b343ead6ec0492e9c8ada08215607`
+- **Compressed bytes:** `4469985`
+- **SHA-256:** `398905c9939c5c5224f272b97560b65925307acb9b8e349eae8f199a2bd453a2`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fastxgemm-n3r23s5t6/README.md

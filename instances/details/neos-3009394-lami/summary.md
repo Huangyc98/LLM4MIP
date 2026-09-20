@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 5.5
-- **Best bound or certificate:** 5.5
-- **Study finding:** Optimal, exact Hall/matching certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 5.5
+- **Dual bound / certificate:** 5.5
+- **Optimization status and evidence:** Optimal, exact Hall/matching certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 5.5
+- **Resolved status:** OPT = 5.5
 - **Main method:** exact bottleneck matching + Hall deficiency
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3009394-lami-findings.tar.gz`
-- **Compressed bytes:** `39053`
-- **SHA-256:** `51d2969675e0061394a567efc3a281bdb3cfac4d6a60e92a06a306849ecb1a77`
+- **Compressed bytes:** `39069`
+- **SHA-256:** `76cd37f57520fd0e2a7d5f5caa24f6bb2bfc5af462db49eaf401cfe55b834477`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3009394-lami/README.md

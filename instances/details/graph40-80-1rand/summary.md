@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -7
-- **Best bound or certificate:** -7
-- **Study finding:** Optimal, original-MPS/CNF/LRAT certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -7
+- **Dual bound / certificate:** -7
+- **Optimization status and evidence:** Optimal, original-MPS/CNF/LRAT certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = -7
+- **Resolved status:** OPT = -7
 - **Main method:** original-MPS audit + CNF/LRAT + witness
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `graph40-80-1rand-findings.tar.gz`
-- **Compressed bytes:** `4743`
-- **SHA-256:** `ab8ebf4cff11313f80c0a90f7a6c6859155019e6fac3693f623bd8d3870a731b`
+- **Compressed bytes:** `4757`
+- **SHA-256:** `b1b6936a1f4c302a5a6e815d8425cc0eeaa9f6b2ed0ad847610f774aa9c81d18`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/graph40-80-1rand/README.md

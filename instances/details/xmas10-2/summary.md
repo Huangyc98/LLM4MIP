@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -497 (497 cells)
-- **Best bound or certificate:** 511 cells official; 515 study solver
-- **Study finding:** Best known path reproduced; extensive cell-projection/LNS search; global optimum open
+- **Primal bound / feasibility:** -497 (497 cells)
+- **Dual bound / certificate:** 511 cells official; 515 study solver
+- **Optimization status and evidence:** Best known path reproduced; extensive cell-projection/LNS search; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `xmas10-2-findings.tar.gz`
-- **Compressed bytes:** `46338`
-- **SHA-256:** `71c4382dc43331ca96e6fa1cad4bcbcae4d91c351936e488714f034420eaa3cd`
+- **Compressed bytes:** `46353`
+- **SHA-256:** `4966863bc3a21c2091c845d50921dc1007dc0849031993b1c4e9049d4f801cb6`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/xmas10-2/README.md

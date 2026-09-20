@@ -4,13 +4,13 @@
 
 **[Open the LLM4MIP research website →](https://huangyc98.github.io/LLM4MIP/)**
 
-Research website for the `MIPLIB_openproblem` project. An LLM-assisted campaign studied 112 open MIP problems and produced 30 supported global conclusions (28 optimal values and two infeasibility results), 21 improved incumbents relative to MIPLIB v36, four first finite incumbents, and 41 lower-bound advantages relative to a frozen historical COPT table.
+Research website for the `MIPLIB_openproblem` project. An LLM-assisted campaign studied 112 open MIP problems and certified optimality or infeasibility for 30 instances (28 optimal and two infeasible), produced 21 primal-bound improvements relative to MIPLIB v36 plus four first finite primal bounds, and produced 41 dual-bound improvements relative to a frozen historical COPT table.
 
 Two of the 21 incumbent improvements use an attributed external `fastxgemm` construction; the project contribution there is truncation, mapping, and strict verification rather than authorship of the parent construction.
 
 The site is organized around one question: how much can language models help solve difficult mixed-integer programs? It separates the LLM's role in structural analysis, reduction design, falsification, checker construction, and workflow coordination from the role of solvers and deterministic proof systems. The campaign counts overlap and are descriptive, not a causal success-rate estimate.
 
-The closest 20-instance comparison is deliberately reported as a mixed result: the structure-focused workflow led on selected primal values and exact closures, while the comparison workflow more often retained the stronger numerical dual bound. Exact solvers, exhaustive computations, SAT/LRAT checking, and audits against the original MPS decide which claims count as evidence.
+The closest 20-instance comparison is deliberately reported as a mixed result: the structure-focused workflow more often produced the better primal bound and certified global optimality for two instances, while the comparison workflow more often produced the stronger numerical dual bound. Exact solvers, exhaustive computations, SAT/LRAT checking, and audits against the original MPS decide which claims count as evidence.
 
 ## Site structure
 

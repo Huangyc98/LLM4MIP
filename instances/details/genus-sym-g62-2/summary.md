@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -38 (MPS tolerance 1e-6)
-- **Best bound or certificate:** -40 (exact)
-- **Study finding:** Complete short-face catalogue and rational dual; optimum open
+- **Primal bound / feasibility:** -38 (MPS tolerance 1e-6)
+- **Dual bound / certificate:** -40 (exact)
+- **Optimization status and evidence:** Complete short-face catalogue and rational dual; optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `genus-sym-g62-2-findings.tar.gz`
-- **Compressed bytes:** `5439`
-- **SHA-256:** `6ad662828ebe3681927c2e14abe36b7e1c7c4dc94960d33501bdb948f9b02d01`
+- **Compressed bytes:** `5457`
+- **SHA-256:** `ea630f5a9f4fbfe9c12ddb6b6feed35596e8dd9d69125c47e3a1d448578874a3`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/genus-sym-g62-2/README.md

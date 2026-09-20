@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 128
-- **Best bound or certificate:** 107 (strict)
-- **Study finding:** Exact branch/dual certificates improved the lower bound; global optimum open; experiments paused
+- **Primal bound / feasibility:** 128
+- **Dual bound / certificate:** 107 (strict)
+- **Optimization status and evidence:** Exact branch/dual certificates improved the lower bound; global optimum open; experiments paused
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `scpj4scip-findings.tar.gz`
-- **Compressed bytes:** `3596599`
-- **SHA-256:** `c2a86b43241cfa1077b45aa45ee5a334dfc55937225bc10b6aaa17d285668c9a`
+- **Compressed bytes:** `3596616`
+- **SHA-256:** `9829ca42b7e683b707c525fe874da4ddb8886dab9435aaad9c454e3c4b9b72eb`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/scpj4scip/README.md

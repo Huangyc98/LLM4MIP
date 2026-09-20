@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -11.925808687
-- **Best bound or certificate:** -11.925808687
-- **Study finding:** Optimal, computational global conclusion; exact symmetry quotient and lift with no portable formal lower-bound trace
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -11.925808687
+- **Dual bound / certificate:** -11.925808687
+- **Optimization status and evidence:** Optimal, solver-based global-optimality evidence; exact symmetry quotient and lift with no portable formal lower-bound trace
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT approximately -11.925808687
+- **Resolved status:** OPT approximately -11.925808687
 - **Main method:** exact symmetry quotient and mapping + zero-gap solve + independently audited lifted solution
 - **Evidence grade:** NS — Strict primal audit plus floating-point zero-gap solver run
-- **Earlier source-table wording:** computational global conclusion; no portable formal lower-bound trace
+- **Source evidence characterization:** solver-based global-optimality evidence; no portable formal lower-bound trace
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-2978205-isar-findings.tar.gz`
-- **Compressed bytes:** `128567`
-- **SHA-256:** `8345eb49238ad795fc1e27d6bb474487334212700860717b3dafa5f048617293`
+- **Compressed bytes:** `128591`
+- **SHA-256:** `0e2422485ed6a147f53ac5a667a33c7be92f6baa37f6eb6388e7caf99bd876b5`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-2978205-isar/README.md

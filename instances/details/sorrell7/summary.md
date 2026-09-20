@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -198 (code size 198)
-- **Best bound or certificate:** -210 published; -216 study solver
-- **Study finding:** Feasible; any improvement must change at least 27 bits; global optimum open
+- **Primal bound / feasibility:** -198 (code size 198)
+- **Dual bound / certificate:** -210 published; -216 study solver
+- **Optimization status and evidence:** Feasible; any improvement must change at least 27 bits; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `sorrell7-findings.tar.gz`
-- **Compressed bytes:** `599525`
-- **SHA-256:** `3715f8874a56303f99c3d5037c0c39247d8810c153418bfb4f9c79055cb1394f`
+- **Compressed bytes:** `599546`
+- **SHA-256:** `c4ece06e543a7173ffcf9e1325b59895b5a6f20b5e86d6c80d57a51fbde134cb`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/sorrell7/README.md

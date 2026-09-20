@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 751 (new strict incumbent)
-- **Best bound or certificate:** 751
-- **Study finding:** Optimal, mixed database/computational evidence; no portable exact lower-bound trace
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 751 (new strict incumbent)
+- **Dual bound / certificate:** 751
+- **Optimization status and evidence:** Optimal, mixed database/computational evidence; no portable exact lower-bound trace
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 751
+- **Resolved status:** OPT = 751
 - **Main method:** exact compiled-MPS projection + CVRPLIB five-route optimum + Gurobi exclusion for at least six routes
 - **Evidence grade:** MX — Mixed database and commercial-solver evidence
-- **Earlier source-table wording:** mixed database/computational global conclusion; no portable exact lower-bound trace
+- **Source evidence characterization:** mixed database and solver-based global-optimality evidence; no portable exact lower-bound trace
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `cvrpb-n45k5vrpi-findings.tar.gz`
-- **Compressed bytes:** `410500`
-- **SHA-256:** `0e23e7798bf7a031c0afbc2374d835fd00dd4ff0dfe8ebeba10e2a8d03c47e6b`
+- **Compressed bytes:** `410529`
+- **SHA-256:** `c0247a5985d3e9aa77ce0e1a0d67a70f29c9eff7257a474a270494e3b3abd1b1`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cvrpb-n45k5vrpi/README.md

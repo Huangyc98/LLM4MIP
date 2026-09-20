@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 401,092
-- **Best bound or certificate:** 401,092 (Gurobi/COPT)
-- **Study finding:** Computational optimum; exact primal audit, no portable exact lower-bound certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 401,092
+- **Dual bound / certificate:** 401,092 (Gurobi/COPT)
+- **Optimization status and evidence:** Computational optimum; exact primal audit, no portable exact lower-bound certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT approximately 401,092
+- **Resolved status:** OPT approximately 401,092
 - **Main method:** exact component-balance/parity reduction + zero-gap Gurobi/COPT
 - **Evidence grade:** NS — Strict primal audit plus floating-point zero-gap solver run
-- **Earlier source-table wording:** computational global conclusion; no portable exact lower-bound certificate
+- **Source evidence characterization:** solver-based global-optimality evidence; no portable exact lower-bound certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3594536-henty-findings.tar.gz`
-- **Compressed bytes:** `216653`
-- **SHA-256:** `b98173f371d38631b2e1c0eea2f228b0148a4b72ad81c0bf15a0ee1669a02724`
+- **Compressed bytes:** `216679`
+- **SHA-256:** `2ed092ab77426078604afc6f52664f37987a932b2ce9e48ab00146eb0aedbfab`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3594536-henty/README.md

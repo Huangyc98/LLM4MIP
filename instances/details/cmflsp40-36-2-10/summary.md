@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 66,452,236.4536 (strict repair)
-- **Best bound or certificate:** 65,928,415.3068 (solver)
-- **Study finding:** 985 exact item/period neighborhoods closed; 0.7883% global gap; no strict primal improvement
+- **Primal bound / feasibility:** 66,452,236.4536 (strict repair)
+- **Dual bound / certificate:** 65,928,415.3068 (solver)
+- **Optimization status and evidence:** 985 exact item/period neighborhoods closed; 0.7883% global gap; no strict primal improvement
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `cmflsp40-36-2-10-findings.tar.gz`
-- **Compressed bytes:** `113259`
-- **SHA-256:** `cfc3243e62ae35ad35f0b10eb8a8c3f823a0380386a4a0a87cef9cfff6b2bab9`
+- **Compressed bytes:** `113271`
+- **SHA-256:** `2cfa10bf9129bb99a2b09fb1e21686e84f46d896036a8d1ff71fffc2d158c84d`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cmflsp40-36-2-10/README.md

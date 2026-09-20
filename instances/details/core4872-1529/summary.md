@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 1530
-- **Best bound or certificate:** 932 (portable)
-- **Study finding:** Independently replayed disjoint-row-packing certificate; global optimum open
+- **Primal bound / feasibility:** 1530
+- **Dual bound / certificate:** 932 (portable)
+- **Optimization status and evidence:** Independently replayed disjoint-row-packing certificate; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `core4872-1529-findings.tar.gz`
-- **Compressed bytes:** `98348`
-- **SHA-256:** `a0b63d2fe4eac03358648eb5922d4a6082ebaec0d5104d0a439593bfb9003c7f`
+- **Compressed bytes:** `98361`
+- **SHA-256:** `9d8fddac8c24a92958828d7b0c553acf8c1ec260c4abca236c46f6bd300680a2`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/core4872-1529/README.md

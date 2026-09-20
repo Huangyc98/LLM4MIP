@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 1,810
-- **Best bound or certificate:** 1,332 root
-- **Study finding:** Feasible minimum-prime-implicant witness; global optimum open
+- **Primal bound / feasibility:** 1,810
+- **Dual bound / certificate:** 1,332 root
+- **Optimization status and evidence:** Feasible minimum-prime-implicant witness; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `f2000-findings.tar.gz`
-- **Compressed bytes:** `656628`
-- **SHA-256:** `5b8f4c3cd156681b41575b66410546cbc9fe095804c5fc61f1f7f31c52ee4097`
+- **Compressed bytes:** `656645`
+- **SHA-256:** `b559a677a72fca8cb4a4dbcec4a5b80c2c6516527c6a1b1419d91cdc4dbdbe74`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/f2000/README.md

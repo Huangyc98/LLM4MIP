@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -17.94807560443689 (strict)
-- **Best bound or certificate:** -458.919072061
-- **Study finding:** Feasible; no 1e-6 improvement within bit radius 8; global optimum open
+- **Primal bound / feasibility:** -17.94807560443689 (strict)
+- **Dual bound / certificate:** -458.919072061
+- **Optimization status and evidence:** Feasible; no 1e-6 improvement within bit radius 8; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `eva1aprime5x5opt-findings.tar.gz`
-- **Compressed bytes:** `175207`
-- **SHA-256:** `32e6003ad20dc89035b0d4a50750fb38509810bd9d0686032fad690a67c1798a`
+- **Compressed bytes:** `175215`
+- **SHA-256:** `5f4e894e22bdb9f50ba4744eccf9eaa2f96b0703d287fcadf721116e8f77037e`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/eva1aprime5x5opt/README.md

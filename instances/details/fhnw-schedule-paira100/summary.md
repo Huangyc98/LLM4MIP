@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -15.113116512593402 (strict)
-- **Best bound or certificate:** -15.113116512593402 (Gurobi + audited valid cuts)
-- **Study finding:** Computational optimum; official lower headline is nonintegral, so no numerical primal improvement is claimed
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -15.113116512593402 (strict)
+- **Dual bound / certificate:** -15.113116512593402 (Gurobi + audited valid cuts)
+- **Optimization status and evidence:** Computational optimum; official lower headline is nonintegral, so no numerical primal improvement is claimed
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = -15.113116512593401992
+- **Resolved status:** OPT = -15.113116512593401992
 - **Main method:** portable exact branch-and-dual certificate with frozen or rebuilt strengthening, untouched-original-MPS audit, and paired-formulation cross-check where available
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** computational global conclusion; original-MPS and row-semantic audits, no portable formal MIP proof
+- **Source evidence characterization:** solver-based global-optimality evidence; original-MPS and row-semantic audits, no portable formal MIP proof
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-schedule-paira100-findings.tar.gz`
-- **Compressed bytes:** `508066`
-- **SHA-256:** `bff57f74c96d8e43fbfebc6cfc5a67d4562aa5a3027f00c0840200846fd450ea`
+- **Compressed bytes:** `508097`
+- **SHA-256:** `7b628150be83d078ea9708b11b033c96d34a97f6ff428f598041bf7930f19b64`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-schedule-paira100/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -33.7970576238223 (strict public point)
-- **Best bound or certificate:** exact structural bound max sum(A8)=36
-- **Study finding:** Full objective open; high-level acceptance count globally optimal and line 4 conditionally optimal
+- **Primal bound / feasibility:** -33.7970576238223 (strict public point)
+- **Dual bound / certificate:** exact structural bound max sum(A8)=36
+- **Optimization status and evidence:** Full objective open; high-level acceptance count globally optimal and line 4 conditionally optimal
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `s82-findings.tar.gz`
-- **Compressed bytes:** `49476`
-- **SHA-256:** `8dd16dd2332b1bb5d332353134568ef6df034faa6ce063ab44dbf133d10e6cd6`
+- **Compressed bytes:** `49488`
+- **SHA-256:** `52285d77f9cc97b47edaf1be60cbee757543fae2dd25594fe05f0045d8f3161b`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/s82/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 4,870 (exact audit)
-- **Best bound or certificate:** 3,956 (solver)
-- **Study finding:** Exact aggregation and path-component LNS completed; no improvement; global optimum open
+- **Primal bound / feasibility:** 4,870 (exact audit)
+- **Dual bound / certificate:** 3,956 (solver)
+- **Optimization status and evidence:** Exact aggregation and path-component LNS completed; no improvement; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-4533806-waima-findings.tar.gz`
-- **Compressed bytes:** `3528865`
-- **SHA-256:** `a0b79e837a2fa36b4770b86b70ce5d2ed6e1a19f3c58948d41a8f6b9021934c6`
+- **Compressed bytes:** `3528888`
+- **SHA-256:** `b0693129813dc8fab0c001ffb3cf0254ae842c9854554ca20484670a518843d1`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-4533806-waima/README.md
