@@ -12,6 +12,7 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interactive overview of how much LLM-assisted research helped on 112 open MIPLIB instances, with evidence-graded results and downloadable artifacts.">
+  <meta name="author" content="Yicheng Huang, Wenzhi Gao, Dongdong Ge, Madeleine Udell, Yinyu Ye">
   <meta property="og:type" content="website">
   <meta property="og:title" content="How Much Can LLMs Help Solve MIPs?">
   <meta property="og:description" content="A concise interactive overview of 112 open MIPLIB instances, 30 supported global conclusions, and a mixed skill-workflow comparison.">
@@ -27,17 +28,20 @@
         <a href="instances/">112 instances</a>
         <a href="skill/">Skill experiment</a>
         <a href="solver-replacement/">Replace solvers?</a>
-        <a href="technical-report.pdf">Report</a>
+        <!-- Temporarily hidden: <a href="technical-report.pdf">Report</a> -->
+        <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
       <div class="hero-inner">
         <p class="eyebrow">LLM-assisted mixed-integer programming · 18 September 2026</p>
+        <p class="author-line">Yicheng Huang<sup aria-label="co-lead author">*</sup>, Wenzhi Gao<sup aria-label="co-lead author">*</sup>, Dongdong Ge, Madeleine Udell, Yinyu Ye <span class="author-note"><sup aria-hidden="true">*</sup> Co-lead authors.</span></p>
         <h1>How much can LLMs help solve MIPs?</h1>
-        <p class="dek">Materially—as research partners that recover structure, propose smaller state spaces, and organize proof workflows. But the results still depend on optimization backends and independent checks.</p>
+        <p class="dek">LLM + Optimization solver solves 30/112 open instances from MIPLIB</p>
         <div class="hero-actions">
           <a class="button light" href="#overview">Explore the overview</a>
-          <a class="button ghost" href="technical-report.pdf">Download the technical report</a>
+          <!-- Temporarily hidden: <a class="button ghost" href="technical-report.pdf">Download the technical report</a> -->
+          <button class="button ghost" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
         </div>
       </div>
     </div>
@@ -52,11 +56,21 @@
     </section>
 
     <div class="content">
+      <section class="motivation-summary" aria-label="Motivation">
+        <p>LLMs have shown promise in advancing open problems in mathematics. An unresolved MIP instance poses a similar kind of challenge: its variables, constraints, objective, and data define a concrete open problem. This perspective motivates our central question—can LLMs make real-world MIP solving more effective, especially by accelerating established solver-based workflows through structural interpretation, reformulation, targeted experimentation, and verifiable proof construction?</p>
+        <p>Starting from a frozen benchmark universe of 217 open MIPLIB instances, we studied 112 using LLM-assisted solver workflows and separately compared two workflow variants on 20 instances. These experiments show how LLM reasoning can augment numerical optimization: LLMs broaden the search for structure, representations, and certificates, while solvers and independent checks provide the numerical bounds and verification needed for trustworthy results.</p>
+      </section>
+
+      <aside class="main-conclusion" aria-labelledby="main-conclusion-heading">
+        <span id="main-conclusion-heading">Conclusion</span>
+        <strong>LLM + optimization solver is a powerful workflow for real MIP solving.</strong>
+      </aside>
+
       <section id="overview" class="section" aria-labelledby="overview-heading">
         <div class="section-head">
           <div>
             <p class="eyebrow" style="color:#8c1515">Interactive summary</p>
-            <h2 id="overview-heading">One campaign, three views</h2>
+            <h2 id="overview-heading">Results on 112 Open MIPLIB instances</h2>
           </div>
           <p>Switch between campaign status, verification form, and the closest paired workflow comparison.</p>
         </div>
@@ -115,11 +129,18 @@
           </div>
         </div>
         <div class="download-grid">
+          <!-- Temporarily hidden technical report entrance.
           <article class="download-card">
             <h3>Technical report</h3>
             <p>The full argument, case studies, evidence taxonomy, and 30-row global-conclusion inventory.</p>
             <a class="button small" href="technical-report.pdf">PDF</a>
             <a class="button small" href="technical-report.tex">LaTeX</a>
+          </article>
+          -->
+          <article class="download-card">
+            <h3>Technical report</h3>
+            <p>The full argument, case studies, evidence taxonomy, and 30-row global-conclusion inventory.</p>
+            <button class="button small" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
           </article>
           <article class="download-card">
             <h3>Reconciliation audits</h3>
@@ -131,13 +152,31 @@
           <p><strong>Reading rule:</strong> the counts overlap and describe one deliberately uneven research campaign. They are not 96 distinct wins, a random-sample success rate, or proof that an LLM alone caused an outcome. Two <span class="mono">fastxgemm</span> incumbent improvements use an attributed external construction; this project contributes mapping and strict verification there.</p>
         </div>
       </section>
+
+      <section class="section cite-section" aria-labelledby="cite-heading">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#8c1515">Citation</p>
+            <h2 id="cite-heading">Cite as</h2>
+          </div>
+          <p>BibTeX for this research website.</p>
+        </div>
+        <pre class="bibtex-block"><code>@misc{huang2026llm4mip,
+  author = {Huang, Yicheng and Gao, Wenzhi and Ge, Dongdong and Udell, Madeleine and Ye, Yinyu},
+  title = {How Much Can {LLMs} Help Solve {MIPs}?},
+  year = {2026},
+  month = sep,
+  url = {https://huangyc98.github.io/LLM4MIP/},
+  note = {Research website. Yicheng Huang and Wenzhi Gao are co-lead authors}
+}</code></pre>
+      </section>
     </div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
       <span>LLM4MIP · Stanford cardinal <span class="mono">#8C1515</span></span>
-      <span><a href="https://github.com/Huangyc98/MIPLIB_openproblem">Research archive</a> · <a href="https://github.com/Huangyc98/LLM4MIP">Website source</a></span>
+      <span><!-- Temporarily hidden: <a href="https://github.com/Huangyc98/MIPLIB_openproblem">Research archive</a> · --><a href="https://github.com/Huangyc98/LLM4MIP">Website source</a></span>
     </div>
   </footer>
   <script src="assets/home.js"></script>

@@ -24,7 +24,8 @@
         <a href="../instances/">112 instances</a>
         <a href="./" aria-current="page">Skill experiment</a>
         <a href="../solver-replacement/">Replace solvers?</a>
-        <a href="../technical-report.pdf">Report</a>
+        <!-- Temporarily hidden: <a href="../technical-report.pdf">Report</a> -->
+        <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
@@ -123,7 +124,8 @@
           <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill led on primal</option><option value="skill-dual">Skill led on dual</option><option value="comparison-dual">Comparison led on dual</option><option value="strict">Skill strict improvement</option><option value="exact">Skill exact closure</option><option value="tolerance">Tolerance-indexed skill P</option></select></div>
         </div>
         <p id="comparison-count" class="result-count" aria-live="polite"></p>
-        <div class="table-wrap">
+        <p class="scroll-hint">Swipe sideways to see every column.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable skill experiment results table">
           <table class="results-table">
             <thead><tr><th>Instance</th><th>Batch</th><th>Primal winner</th><th>Dual winner</th><th>Gap winner</th><th>Skill values</th><th>Comparison values</th><th>Skill method</th></tr></thead>
             <tbody id="comparison-body"></tbody>
