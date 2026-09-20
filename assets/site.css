@@ -166,7 +166,6 @@ h3 { line-height: 1.2; }
 .status-strip button:focus-visible { outline: 3px solid #fff; outline-offset: -4px; }
 
 .download-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
-.reuse-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .download-grid > :only-child { grid-column: 1 / -1; }
 .download-card { padding: 1.2rem; border: 1px solid var(--line); background: var(--wash); }
 .download-card h3 { margin: 0 0 0.45rem; }
@@ -198,8 +197,6 @@ details > div { padding: 0 1rem 1rem; color: var(--muted); }
   .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .page-grid, .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .legend, .legend.legend-4, .legend.legend-6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .reuse-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .reuse-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
   .division { grid-template-columns: 1fr; }
   .division article:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -0.65rem; }
   .verdict { grid-template-columns: 1fr; }
@@ -225,7 +222,6 @@ details > div { padding: 0 1rem 1rem; color: var(--muted); }
   .metric { min-height: 118px; padding: 1rem; }
   .metric strong { font-size: 2rem; }
   .page-grid, .workflow, .download-grid, .controls { grid-template-columns: 1fr; }
-  .reuse-grid > :last-child:nth-child(odd) { grid-column: auto; }
   .page-card { min-height: 0; }
   .panel { padding: 1rem; }
   .legend, .legend.legend-4, .legend.legend-6 { grid-template-columns: 1fr; }
