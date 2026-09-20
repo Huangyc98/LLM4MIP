@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 242
-- **Dual bound / certificate:** 242 published
-- **Optimization status and evidence:** Optimal, exact MPS crosswalk + published exhaustive result
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 242
+- **Best bound or certificate:** 242 published
+- **Study result:** Optimal, exact MPS crosswalk + published exhaustive result
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 242
+- **Conclusion:** OPT = 242
 - **Main method:** exact MPS/TTP crosswalk + published exhaustive result
-- **Evidence grade:** LT — Exact crosswalk plus published theorem or exhaustive result
-- **Source evidence characterization:** literature-dependent theorem transfer
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** LT — Exact crosswalk plus published theorem or exhaustive result
+- **Earlier source-table status:** literature-dependent theorem transfer
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `circ10-3-findings.tar.gz`
-- **Compressed bytes:** `23757`
-- **SHA-256:** `d04bdfbe1581dd5c31e3cdc8a3eb8ae7ef6739be209627285e1536e574a22b14`
+- **Compressed bytes:** `23734`
+- **SHA-256:** `1ff69af9fbad108dc18caf6d99b844b772f918332f1fe7734ed9b20ead7b83c0`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/circ10-3/README.md

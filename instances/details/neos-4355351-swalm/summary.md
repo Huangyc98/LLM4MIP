@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 33.45763
-- **Dual bound / certificate:** 33.45763
-- **Optimization status and evidence:** Optimal, exact state-Steiner DP and zero-violation witness
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 33.45763
+- **Best bound or certificate:** 33.45763
+- **Study result:** Optimal, exact state-Steiner DP and zero-violation witness
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 33.45763
+- **Conclusion:** OPT = 33.45763
 - **Main method:** exact forbidden-turn state-Steiner subset DP + witness
-- **Evidence grade:** PE — Portable exact certificate
-- **Source evidence characterization:** self-contained exact certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** self-contained exact certificate
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-4355351-swalm-findings.tar.gz`
-- **Compressed bytes:** `212803`
-- **SHA-256:** `a8cdb0eea7e56bcba9734dfdd0fdf0787623112d1b8c50c86f0a8763ad60099a`
+- **Compressed bytes:** `212807`
+- **SHA-256:** `4ed61bea7dfa9d4f5df067d91c0a6998ae03be0aa6d43f16943650f40125cfa1`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-4355351-swalm/README.md

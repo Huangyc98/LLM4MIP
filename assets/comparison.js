@@ -28,7 +28,7 @@
     },
     closure: {
       title: "Certified global optimality",
-      note: "The skill-guided arm certified global optimality for two instances in this separate comparison archive; these are not included in the campaign's 30 resolved instances.",
+      note: "The skill-guided workflow certified global optimality for two instances in the separate 20-instance comparison; these results are not included in the 30 resolved instances reported for the 112-instance benchmark.",
       max: 2,
       items: [["Skill-guided arm", 2, "#8c1515"], ["Comparison arm", 0, "#006cb8"]]
     }

@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -3495.3706609999999806509 (strict repair)
-- **Dual bound / certificate:** -3504.689959073912780 (portable exact)
-- **Optimization status and evidence:** Rounded public tolerance vector verified; exact maximum-closure flow-cut certificate establishes the stated dual bound; structured neighborhoods tested; global optimum remains open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -3495.3706609999999806509 (strict repair)
+- **Best bound or certificate:** -3504.689959073912780 (portable exact)
+- **Study result:** Rounded public tolerance vector and closure flow=cut certificate; structured neighborhoods tested; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `rmine13-findings.tar.gz`
-- **Compressed bytes:** `2082668`
-- **SHA-256:** `5775b3cff3c46724859ac00a7fb6d1d5f2bfc83239e582cbc4a9c703326fc808`
+- **Compressed bytes:** `2082575`
+- **SHA-256:** `f4a59227f1ef669e5a9f54b04d0d80a09cef794f0675202fe3e4e16c3ae12efd`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/rmine13/README.md

@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 11,100
-- **Dual bound / certificate:** 11,100
-- **Optimization status and evidence:** Optimal, exact cyclic-cutwidth enumeration and audited witness
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 11,100
+- **Best bound or certificate:** 11,100
+- **Study result:** Optimal, exact cyclic-cutwidth enumeration and audited witness
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 11,100
+- **Conclusion:** OPT = 11,100
 - **Main method:** original-MPS ring recovery + exact cyclic-cutwidth enumeration + witness
-- **Evidence grade:** EX — Specialized exact exhaustive computation without a standalone trace
-- **Source evidence characterization:** exact exhaustive computation; no standalone proof trace
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** EX — Specialized exact exhaustive computation without a standalone trace
+- **Earlier source-table status:** exact exhaustive computation; no standalone proof trace
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ns1631475-findings.tar.gz`
-- **Compressed bytes:** `48864`
-- **SHA-256:** `2f97ec45e65d8d4d50f6ca5c8e10ff37506d886af4c481660896c58860af26f5`
+- **Compressed bytes:** `48851`
+- **SHA-256:** `c427eaff85874323d1d564c8f6fde5be88b3862f099415378f19f10d07b4e655`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ns1631475/README.md

@@ -20,6 +20,22 @@
     return td;
   }
 
+  function measureCell(display) {
+    const td = document.createElement("td");
+    td.className = "measure-cell";
+    const value = document.createElement("span");
+    value.className = "measure-value";
+    value.textContent = display?.value || "—";
+    td.append(value);
+    if (display?.note) {
+      const note = document.createElement("small");
+      note.className = "measure-note";
+      note.textContent = `(${display.note})`;
+      td.append(note);
+    }
+    return td;
+  }
+
   function linksCell(record) {
     const td = document.createElement("td");
     const wrap = document.createElement("div");
@@ -63,8 +79,8 @@
       row.append(
         name,
         statusCell,
-        cell(record.bestResult),
-        cell(record.bestBound),
+        measureCell(record.bestResultDisplay),
+        measureCell(record.bestBoundDisplay),
         cell(record.studyStatus, "finding"),
         linksCell(record)
       );

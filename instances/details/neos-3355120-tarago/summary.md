@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -11,110,906.689290019 (verified @ 1e-9)
-- **Dual bound / certificate:** -11,123,832.676970437
-- **Optimization status and evidence:** Feasible; incumbent-centered binary exchange attempted; 0.1163% gap remains
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -11,110,906.689290019 (verified @ 1e-9)
+- **Best bound or certificate:** -11,123,832.676970437
+- **Study result:** Feasible; incumbent-centered binary exchange attempted; 0.1163% gap remains
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3355120-tarago-findings.tar.gz`
-- **Compressed bytes:** `211837`
-- **SHA-256:** `aae88afc44d0eccd1f5ae80a6e310dcf3793c420e3b5fab7ea6da0f10d951b6c`
+- **Compressed bytes:** `211814`
+- **SHA-256:** `b4485810c95f9ce6c5a2d10f07b90302e74958778a7bdf8d8cc316de671294f8`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3355120-tarago/README.md

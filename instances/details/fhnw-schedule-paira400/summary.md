@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** -36.27696674236886 (new strict incumbent)
-- **Dual bound / certificate:** -36.27696674236886 (safe suffix master)
-- **Optimization status and evidence:** Computational optimum; two master runs and Pair-A/Pair-B full-row audits
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** -36.27696674236886 (new strict incumbent)
+- **Best bound or certificate:** -36.27696674236886 (safe suffix master)
+- **Study result:** Computational optimum; two master runs and Pair-A/Pair-B full-row audits
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = -36.276966742368865136
+- **Conclusion:** OPT = -36.276966742368865136
 - **Main method:** portable exact branch-and-dual certificate with frozen or rebuilt strengthening, untouched-original-MPS audit, and paired-formulation cross-check where available
-- **Evidence grade:** PE — Portable exact certificate
-- **Source evidence characterization:** solver-based global-optimality evidence; independent zero-gap reread and full-row audits, no portable formal MIP proof
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** computational optimality verification; independent zero-gap reread and full-row audits, no portable formal MIP proof
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-schedule-paira400-findings.tar.gz`
-- **Compressed bytes:** `328006`
-- **SHA-256:** `9f14010faf95ddea266280c6ad467f3a4f3b2b7bad76b5852c2957b162797aba`
+- **Compressed bytes:** `327996`
+- **SHA-256:** `88814ef371b96d6971b9b21df58b0998631c0ecc47601af94be3f039f0d9f10a`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-schedule-paira400/README.md

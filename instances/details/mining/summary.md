@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -833,589,149.2736538586882046
-- **Dual bound / certificate:** -835,361,895.5863052144840282387439 (strict)
-- **Optimization status and evidence:** Exact certified interval; 0.2126642740% gap; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -833,589,149.2736538586882046
+- **Best bound or certificate:** -835,361,895.5863052144840282387439 (strict)
+- **Study result:** Exact certified interval; 0.2126642740% gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `mining-findings.tar.gz`
-- **Compressed bytes:** `10063059`
-- **SHA-256:** `9b17d6b9e90cdb1771aa736b4c84b183aaa5f1260ec1068de3084e1c026bf80c`
+- **Compressed bytes:** `10063009`
+- **SHA-256:** `c3e7e4eefc6ee7e4c5599df5a933670500a5ccd2278bfcbbd33de8745649ac6e`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/mining/README.md

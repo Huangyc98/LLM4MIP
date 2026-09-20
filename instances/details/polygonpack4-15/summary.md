@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -63,613,612.411253203798895776945039... (strict repair)
-- **Dual bound / certificate:** no new global lower bound
-- **Optimization status and evidence:** Exact recovered geometry, radius/object neighborhoods and mask screening; no MIPLIB headline improvement; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -63,613,612.411253203798895776945039... (strict repair)
+- **Best bound or certificate:** no new global lower bound
+- **Study result:** Exact recovered geometry, radius/object neighborhoods and mask screening; no MIPLIB headline improvement; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `polygonpack4-15-findings.tar.gz`
-- **Compressed bytes:** `464209`
-- **SHA-256:** `daf77a55612c580e7b699ec7436a1f0452dd6c284d410a819625edf98b044909`
+- **Compressed bytes:** `464199`
+- **SHA-256:** `b15e8b969b0bbda24fae4c23c0277da3fe3b52404ddfd4e53985de1564939cd0`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/polygonpack4-15/README.md

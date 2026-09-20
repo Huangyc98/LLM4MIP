@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** -21 (genus 4)
-- **Dual bound / certificate:** -21 exhaustive result
-- **Optimization status and evidence:** Optimal, specialized exact exhaustive computation; no standalone proof trace
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** -21 (genus 4)
+- **Best bound or certificate:** -21 exhaustive result
+- **Study result:** Optimal, specialized exact exhaustive computation; no standalone proof trace
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = -21
+- **Conclusion:** OPT = -21
 - **Main method:** exhaustive orientable-genus computation + rotation
-- **Evidence grade:** EX — Specialized exact exhaustive computation without a standalone trace
-- **Source evidence characterization:** exact exhaustive computation; no standalone proof trace
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** EX — Specialized exact exhaustive computation without a standalone trace
+- **Earlier source-table status:** exact exhaustive computation; no standalone proof trace
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `genus-sym-grafo5708-48-findings.tar.gz`
-- **Compressed bytes:** `20904`
-- **SHA-256:** `5cf45a51786857e9942ee2f7324d5930a98b60d64a729ef2e67c1ccbb2e14be3`
+- **Compressed bytes:** `20886`
+- **SHA-256:** `fd982d0fa7eac5c6720f9cca1f6176ce274e90758c42e2a21b3c689380696403`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/genus-sym-grafo5708-48/README.md

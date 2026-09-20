@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** 66,452,236.4536 (strict repair)
-- **Dual bound / certificate:** 65,928,415.3068 (solver)
-- **Optimization status and evidence:** 985 exact item/period neighborhoods closed; 0.7883% global gap; no strict primal improvement
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 66,452,236.4536 (strict repair)
+- **Best bound or certificate:** 65,928,415.3068 (solver)
+- **Study result:** 985 exact item/period neighborhoods closed; 0.7883% global gap; no strict primal improvement
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `cmflsp40-36-2-10-findings.tar.gz`
-- **Compressed bytes:** `113271`
-- **SHA-256:** `2cfa10bf9129bb99a2b09fb1e21686e84f46d896036a8d1ff71fffc2d158c84d`
+- **Compressed bytes:** `113266`
+- **SHA-256:** `16c1d0707b873e21f28a8f23695f96533dd051ef6ac57e6fe7abb5a4e1dedddd`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cmflsp40-36-2-10/README.md

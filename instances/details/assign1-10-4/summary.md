@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 422
-- **Dual bound / certificate:** 422
-- **Optimization status and evidence:** Optimal, exact certificate
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 422
+- **Best bound or certificate:** 422
+- **Study result:** Optimal, exact certificate
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 422
+- **Conclusion:** OPT = 422
 - **Main method:** exact categorical counting bound + feasible witness
-- **Evidence grade:** PE — Portable exact certificate
-- **Source evidence characterization:** self-contained exact certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** self-contained exact certificate
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `assign1-10-4-findings.tar.gz`
-- **Compressed bytes:** `39103`
-- **SHA-256:** `ececaf70c7f0ec910dd85c38083989e2574e648bbc8ba67b52ea7216b0aa8c91`
+- **Compressed bytes:** `39087`
+- **SHA-256:** `57dfcc7b007e195a4adfeb2d4d0ebc2b509181d93ba1711d0572324a67cebeaf`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/assign1-10-4/README.md

@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** 8,844 (strict)
-- **Dual bound / certificate:** 8,566 (solver)
-- **Optimization status and evidence:** Exact identical-column quotient removes 9,944 variables; 3.1434% numerical gap; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 8,844 (strict)
+- **Best bound or certificate:** 8,566 (solver)
+- **Study result:** Exact identical-column quotient removes 9,944 variables; 3.1434% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `pb-gfrd-pnc-findings.tar.gz`
-- **Compressed bytes:** `278934`
-- **SHA-256:** `6a0fd3c8400a619eab53ba8b9d6adf045f15693801aa8e282e80ada4aabfe724`
+- **Compressed bytes:** `278927`
+- **SHA-256:** `2b7ce8928a418d63cecb1f9ad3ef05a5ed1dba36dedd23098eb63946c0441c22`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/pb-gfrd-pnc/README.md
