@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** 176497.152425682499961401493852... (strict repair)
-- **Dual bound / certificate:** no new certified global bound
-- **Optimization status and evidence:** BOM-aware Decimal reconstruction and period/item/Hamming neighborhoods; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 176497.152425682499961401493852... (strict repair)
+- **Best bound or certificate:** no new certified global bound
+- **Study result:** BOM-aware Decimal reconstruction and period/item/Hamming neighborhoods; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `set3-09-findings.tar.gz`
-- **Compressed bytes:** `654705`
-- **SHA-256:** `34ae11816e88f533ab2c5011c4feea6b1df94862512eb42c2d8d3361a3652c8a`
+- **Compressed bytes:** `654686`
+- **SHA-256:** `ec79ff4b23e4b256442604df6a4de86be54f86e8f88cc5436e16f0e2814be94d`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/set3-09/README.md

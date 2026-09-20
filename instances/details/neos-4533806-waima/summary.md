@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** 4,870 (exact audit)
-- **Dual bound / certificate:** 3,956 (solver)
-- **Optimization status and evidence:** Exact aggregation and path-component LNS completed; no improvement; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 4,870 (exact audit)
+- **Best bound or certificate:** 3,956 (solver)
+- **Study result:** Exact aggregation and path-component LNS completed; no improvement; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-4533806-waima-findings.tar.gz`
-- **Compressed bytes:** `3528888`
-- **SHA-256:** `b0693129813dc8fab0c001ffb3cf0254ae842c9854554ca20484670a518843d1`
+- **Compressed bytes:** `3528870`
+- **SHA-256:** `82abd7328be3b90e3d91e2639259fb0a7919150083b93c1b9bbe901f45cefb64`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-4533806-waima/README.md

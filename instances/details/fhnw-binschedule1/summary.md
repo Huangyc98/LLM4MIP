@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 55,158
-- **Dual bound / certificate:** 55,158
-- **Optimization status and evidence:** Optimal, exact interval-order path-cover certificate
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 55,158
+- **Best bound or certificate:** 55,158
+- **Study result:** Optimal, exact interval-order path-cover certificate
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 55,158
+- **Conclusion:** OPT = 55,158
 - **Main method:** endpoint interval-order path cover + colored matching witness
-- **Evidence grade:** PE — Portable exact certificate
-- **Source evidence characterization:** self-contained exact certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** self-contained exact certificate
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-binschedule1-findings.tar.gz`
-- **Compressed bytes:** `120281`
-- **SHA-256:** `235883ac9c0024fc3a50e23555fbf498862923de3e206e3ff976c395b3566024`
+- **Compressed bytes:** `120272`
+- **SHA-256:** `9337e1b07a2828c3beb4dc311042167a22088cfeea1a8e17548281b374637b84`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binschedule1/README.md

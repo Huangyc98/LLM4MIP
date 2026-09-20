@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -198 (code size 198)
-- **Dual bound / certificate:** -210 published; -216 study solver
-- **Optimization status and evidence:** Feasible; any improvement must change at least 27 bits; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -198 (code size 198)
+- **Best bound or certificate:** -210 published; -216 study solver
+- **Study result:** Feasible; any improvement must change at least 27 bits; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `sorrell7-findings.tar.gz`
-- **Compressed bytes:** `599546`
-- **SHA-256:** `c4ece06e543a7173ffcf9e1325b59895b5a6f20b5e86d6c80d57a51fbde134cb`
+- **Compressed bytes:** `599502`
+- **SHA-256:** `75281539d27c13269bfaab337d36ee0852634610fd3c0cc92438d3df85b6c34b`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/sorrell7/README.md

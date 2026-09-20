@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -51,837,707.95034043267785954996 (strict repair)
-- **Dual bound / certificate:** no new global lower bound
-- **Optimization status and evidence:** Full submitted-MPS geometry audit; no strict incumbent improvement; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -51,837,707.95034043267785954996 (strict repair)
+- **Best bound or certificate:** no new global lower bound
+- **Study result:** Full submitted-MPS geometry audit; no strict incumbent improvement; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `polygonpack4-7-findings.tar.gz`
-- **Compressed bytes:** `4198550`
-- **SHA-256:** `f5259b2a61352094c8a58af7f658386730ee58745be2b48cf09afc1ee34510be`
+- **Compressed bytes:** `4198532`
+- **SHA-256:** `a24117b5ed04b28c0851621d31df1b5d67f979957471c9f30e1d2b0ff5204db8`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/polygonpack4-7/README.md

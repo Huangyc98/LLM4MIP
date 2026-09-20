@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** -11.925808687
-- **Dual bound / certificate:** -11.925808687
-- **Optimization status and evidence:** Optimal, solver-based global-optimality evidence; exact symmetry quotient and lift with no portable formal lower-bound trace
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** -11.925808687
+- **Best bound or certificate:** -11.925808687
+- **Study result:** Optimal, computational optimality verification; exact symmetry quotient and lift with no portable formal lower-bound trace
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT approximately -11.925808687
+- **Conclusion:** OPT approximately -11.925808687
 - **Main method:** exact symmetry quotient and mapping + zero-gap solve + independently audited lifted solution
-- **Evidence grade:** NS — Strict primal audit plus floating-point zero-gap solver run
-- **Source evidence characterization:** solver-based global-optimality evidence; no portable formal lower-bound trace
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** NS — Strict primal audit plus floating-point zero-gap solver run
+- **Earlier source-table status:** computational optimality verification; no portable formal lower-bound trace
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-2978205-isar-findings.tar.gz`
-- **Compressed bytes:** `128591`
-- **SHA-256:** `0e2422485ed6a147f53ac5a667a33c7be92f6baa37f6eb6388e7caf99bd876b5`
+- **Compressed bytes:** `128580`
+- **SHA-256:** `7ac57073c0b9c71a9ac9a3827563fca3dc4bf96ef6e67c9a171b4498db55deef`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-2978205-isar/README.md

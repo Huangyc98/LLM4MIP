@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 42
-- **Dual bound / certificate:** 42
-- **Optimization status and evidence:** Optimal, exact parity certificate and validated witness
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 42
+- **Best bound or certificate:** 42
+- **Study result:** Optimal, exact parity certificate and validated witness
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 42
+- **Conclusion:** OPT = 42
 - **Main method:** parity lower bound + zero-tolerance witness
-- **Evidence grade:** PE — Portable exact certificate
-- **Source evidence characterization:** self-contained exact certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** self-contained exact certificate
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `allcolor58-findings.tar.gz`
-- **Compressed bytes:** `3513941`
-- **SHA-256:** `095fffb249537abb4638291aa6c3321f78e27d11dd02fd90ab3d71769c6b3c96`
+- **Compressed bytes:** `3513854`
+- **SHA-256:** `0d2c79b7ef5d0083b76f942f3662ca8e230c06da3d92e35dbe48d986e9fb5a5d`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/allcolor58/README.md

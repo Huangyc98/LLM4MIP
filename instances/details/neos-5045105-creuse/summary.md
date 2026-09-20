@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Pending strict verification
-- **Primal bound / feasibility:** 20.571410408673 (Gurobi-accepted)
-- **Dual bound / certificate:** 19.932229270717
-- **Optimization status and evidence:** Feasible under solver tolerances; combined observed gap 3.1071%; strict verification and global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 20.571410408673 (Gurobi-accepted)
+- **Best bound or certificate:** 19.932229270717
+- **Study result:** Feasible under solver tolerances; combined observed gap 3.1071%; strict verification and global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-5045105-creuse-findings.tar.gz`
-- **Compressed bytes:** `195900`
-- **SHA-256:** `a88018735c670190f4c460dd28fe6222e5078e3bc9a540e1542eb81425117b5f`
+- **Compressed bytes:** `195884`
+- **SHA-256:** `685e02be47d37a96cfa8c063b91d2a6dfb885cb296bd3307948ebdcb14f287e5`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-5045105-creuse/README.md

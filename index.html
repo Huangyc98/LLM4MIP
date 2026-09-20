@@ -11,7 +11,7 @@
     gtag('config', 'G-JNJSLE077H');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactive overview of how much LLM-assisted research helped on 112 open MIPLIB instances, with evidence-graded results and downloadable artifacts.">
+  <meta name="description" content="Interactive overview of how much LLM-assisted research helped on 112 open MIPLIB instances, with results classified by verification method and downloadable artifacts.">
   <meta name="author" content="Yicheng Huang, Wenzhi Gao, Dongdong Ge, Madeleine Udell, Yinyu Ye">
   <meta property="og:type" content="website">
   <meta property="og:title" content="How Much Can LLMs Help Solve MIPs?">
@@ -23,11 +23,11 @@
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <nav class="nav-wrap" aria-label="Primary navigation">
-      <a class="brand" href="index.html" aria-current="page">LLM4MIP <small>Evidence before claims</small></a>
+      <a class="brand" href="index.html" aria-current="page">LLM4MIP <small>Verified computational results</small></a>
       <div class="nav-links">
         <a href="instances/">112 instances</a>
-        <a href="skill/">Skill experiment</a>
-        <a href="solver-replacement/">Replace solvers?</a>
+        <a href="skill/">Skill comparison</a>
+        <!-- Temporarily hidden: <a href="solver-replacement/">Replace solvers?</a> -->
         <!-- Temporarily hidden: <a href="technical-report.pdf">Report</a> -->
         <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
@@ -37,7 +37,7 @@
         <p class="eyebrow">LLM-assisted mixed-integer programming · 18 September 2026</p>
         <p class="author-line">Yicheng Huang<sup aria-label="co-lead author">*</sup>, Wenzhi Gao<sup aria-label="co-lead author">*</sup>, Dongdong Ge, Madeleine Udell, Yinyu Ye <span class="author-note"><sup aria-hidden="true">*</sup> Co-lead authors.</span></p>
         <h1>How much can LLMs help solve MIPs?</h1>
-        <p class="dek">LLM + Optimization solver solves 30/112 open instances from MIPLIB</p>
+        <p class="dek">LLM-assisted solver workflows resolved 30 of 112 <strong>open</strong> MIPLIB instances</p>
         <div class="hero-actions">
           <a class="button light" href="#overview">Explore the overview</a>
           <!-- Temporarily hidden: <a class="button ghost" href="technical-report.pdf">Download the technical report</a> -->
@@ -48,8 +48,8 @@
   </header>
 
   <main id="main" class="page-shell" tabindex="-1">
-    <section class="metric-grid" aria-label="Campaign highlights">
-      <article class="metric"><strong>112</strong><span>open instances studied</span><small>One frozen research campaign; historical calibration excluded.</small></article>
+    <section class="metric-grid" aria-label="Benchmark summary">
+      <article class="metric"><strong>112</strong><span>open instances studied</span><small>Frozen 112-instance benchmark; the historical calibration instance is excluded.</small></article>
       <article class="metric"><strong>30</strong><span>certified optimality / infeasibility</span><small>28 certified optima and two certified infeasible instances.</small></article>
       <article class="metric"><strong>25</strong><span>primal-bound improvements</span><small>21 improved incumbents relative to MIPLIB v36 plus four first finite primal bounds.</small></article>
       <article class="metric"><strong>41</strong><span>dual-bound improvements</span><small>Relative to the displayed dual bounds in a frozen historical COPT table.</small></article>
@@ -57,8 +57,17 @@
 
     <div class="content">
       <section class="motivation-summary" aria-label="Motivation">
-        <p>LLMs have shown promise in advancing open problems in mathematics. An unresolved MIP instance poses a similar kind of challenge: its variables, constraints, objective, and data define a concrete open problem. This perspective motivates our central question—can LLMs make real-world MIP solving more effective, especially by accelerating established solver-based workflows through structural interpretation, reformulation, targeted experimentation, and verifiable proof construction?</p>
-        <p>Starting from a frozen benchmark universe of 217 open MIPLIB instances, we studied 112 using LLM-assisted solver workflows and separately compared two workflow variants on 20 instances. These experiments show how LLM reasoning can augment numerical optimization: LLMs broaden the search for structure, representations, and certificates, while solvers and independent checks provide the numerical bounds and verification needed for trustworthy results.</p>
+        <p>Mixed-integer programming (MIP) is a core modeling tool for planning, scheduling, logistics, energy systems, and many real-world applications. However, MIPs are notoriously hard to solve even with state-of-the-art optimization solvers.</p>
+        <p>Large language models (LLMs) have recently shown promise in advancing open problems in mathematics. An unresolved MIP instance can likewise be viewed as an "open problem": its variables, constraints, objective, and data define a concrete numerical open problem.</p>
+      </section>
+
+      <aside class="central-question" aria-labelledby="central-question-heading">
+        <span id="central-question-heading">Central question</span>
+        <strong>Can LLMs make real-world MIP solving more effective, especially by accelerating established solver-based workflows?</strong>
+      </aside>
+
+      <section class="motivation-summary" aria-label="Experiment summary">
+        <p>Starting from a benchmark of 217 open MIPLIB instances, we studied 112 using LLM-assisted solver workflows. Across these experiments, LLM reasoning complemented numerical optimization solvers by broadening the search for exploitable structure, primal heuristics, and dual certificates, while solvers and independent checks supplied numerical bounds and result verification.</p>
       </section>
 
       <aside class="main-conclusion" aria-labelledby="main-conclusion-heading">
@@ -66,25 +75,37 @@
         <strong>LLM + optimization solver is a powerful workflow for real MIP solving.</strong>
       </aside>
 
+      <section class="skill-download-callout" aria-labelledby="skill-download-heading">
+        <div>
+          <p class="eyebrow">Reusable workflow</p>
+          <h2 id="skill-download-heading">Structure-research skill files</h2>
+          <p>Based on the instance-level analyses, we created reusable skills for LLM-assisted solver workflows. They guide systematic analysis of instance structure and boosts solver performance in a separate 20-instance test set.</p>
+        </div>
+        <div class="skill-download-actions" aria-label="Download solver-specific skill files">
+          <a class="button small" href="downloads/milp-structure-research-copt.tar.gz" download>Download for COPT</a>
+          <a class="button small" href="downloads/milp-structure-research-gurobi.tar.gz" download>Download for Gurobi</a>
+        </div>
+      </section>
+
       <section id="overview" class="section" aria-labelledby="overview-heading">
         <div class="section-head">
           <div>
             <p class="eyebrow" style="color:#8c1515">Interactive summary</p>
-            <h2 id="overview-heading">Results on 112 Open MIPLIB instances</h2>
+            <h2 id="overview-heading"> Results on 112 Open MIPLIB instances</h2>
           </div>
-          <p>Switch between campaign status, verification form, and the closest paired workflow comparison.</p>
+          <!-- <p>Switch between benchmark outcomes, verification form, and the closest paired workflow comparison.</p> -->
         </div>
         <div class="panel">
-          <div class="tabs" aria-label="Overview chart view">
-            <button type="button" data-overview="status" aria-pressed="true">Campaign status</button>
-            <button type="button" data-overview="evidence" aria-pressed="false">Verification form</button>
+          <div class="tabs" role="group" aria-label="Overview chart view">
+            <button type="button" data-overview="status" aria-pressed="true">Benchmark outcomes</button>
+            <button type="button" data-overview="evidence" aria-pressed="false">Verification method</button>
             <button type="button" data-overview="skill" aria-pressed="false">Skill comparison</button>
           </div>
           <h3 id="overview-title" class="chart-title"></h3>
           <p id="overview-note" class="chart-note" aria-live="polite"></p>
           <div id="overview-chart"></div>
-          <table id="overview-data" class="data-list">
-            <thead><tr><th>Measure</th><th>Count</th></tr></thead>
+          <table id="overview-data" class="data-list" aria-labelledby="overview-title" aria-describedby="overview-note">
+            <thead><tr><th scope="col">Measure</th><th scope="col">Count</th><th id="overview-explanation-heading" scope="col" hidden>Explanation</th></tr></thead>
             <tbody></tbody>
           </table>
           <noscript><p class="noscript">Enable JavaScript to switch chart views. The headline counts remain available above and on the linked detail pages.</p></noscript>
@@ -95,58 +116,31 @@
         <div class="section-head">
           <div>
             <p class="eyebrow" style="color:#8c1515">Deep dives</p>
-            <h2 id="explore-heading">Open the evidence</h2>
+            <h2 id="explore-heading">Detailed statistics</h2>
           </div>
-          <p>The opening page stays intentionally short. Each linked page exposes its setup, caveats, data, and downloads.</p>
+          <!-- <p>The opening page stays intentionally short. Each linked page exposes its setup, caveats, data, and downloads.</p> -->
         </div>
-        <div class="page-grid">
+        <div class="page-grid page-grid-two">
           <article class="page-card">
-            <span class="number">01 · Instance archive</span>
-            <h3>What happened on each of the 112 instances?</h3>
-            <p>Search the full campaign, inspect a concise finding summary, and download a reproducible findings bundle for every instance.</p>
+            <span class="number">01 · Instance-level results</span>
+            <h3>Results for each of the 112 instances</h3>
+            <p>Review the complete benchmark results with summary.</p>
             <a href="instances/">Browse all instances →</a>
           </article>
           <article class="page-card">
-            <span class="number">02 · Skill experiment</span>
-            <h3>Did a structure-research skill change outcomes?</h3>
-            <p>Explore the 20-instance historical comparison, inspect exact values, and download the skill and machine-readable evidence.</p>
-            <a href="skill/">Inspect the skill experiment →</a>
+            <span class="number">02 · Skill comparison</span>
+            <h3>Does a structure-research skill matter?</h3>
+            <p>Review the 20-instance test set comparison for LLM w/o skills.</p>
+            <a href="skill/">View the skill comparison →</a>
           </article>
+          <!-- Temporarily hidden solver-replacement deep dive.
           <article class="page-card">
             <span class="number">03 · Division of labor</span>
             <h3>Can LLMs fully replace solvers?</h3>
-            <p>No—not in this campaign. See where LLM-guided work improved primal bounds, where the comparison workflow produced stronger dual bounds, and why independent verification remains decisive.</p>
-            <a href="solver-replacement/">Read the evidence-based verdict →</a>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="read-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Read and reuse</p>
-            <h2 id="read-heading">Report, source, and audit trail</h2>
-          </div>
-        </div>
-        <div class="download-grid">
-          <!-- Temporarily hidden technical report entrance.
-          <article class="download-card">
-            <h3>Technical report</h3>
-            <p>The full argument, case studies, evidence taxonomy, and 30-row optimality/infeasibility inventory.</p>
-            <a class="button small" href="technical-report.pdf">PDF</a>
-            <a class="button small" href="technical-report.tex">LaTeX</a>
+            <p>No—not in this benchmark study. See where LLM-guided work improved primal bounds, where the comparison workflow produced stronger dual bounds, and why independent verification remains decisive.</p>
+            <a href="solver-replacement/">Review the comparative results →</a>
           </article>
           -->
-          <article class="download-card">
-            <h3>Technical report</h3>
-            <p>The full argument, case studies, evidence taxonomy, and 30-row optimality/infeasibility inventory.</p>
-            <button class="button small" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
-          </article>
-          <article class="download-card">
-            <h3>Structure-research skill files</h3>
-            <p>Download the nine-file workflow used in the 20-instance comparison, including the profiler and MIT license.</p>
-            <a class="button small" href="downloads/milp-structure-research.tar.gz" download>Download skill files (.tar.gz)</a>
-          </article>
         </div>
       </section>
 

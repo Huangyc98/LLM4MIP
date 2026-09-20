@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** 1,247,295 (strict)
-- **Dual bound / certificate:** 1,063,103.147061621
-- **Optimization status and evidence:** Feasible; fixed-charge/network repair tested; global optimum open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 1,247,295 (strict)
+- **Best bound or certificate:** 1,063,103.147061621
+- **Study result:** Feasible; fixed-charge/network repair tested; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `n3700-findings.tar.gz`
-- **Compressed bytes:** `188423`
-- **SHA-256:** `0c3c34de9ba2700c98517595914139f70680765d7b947ee12d9d0c33466b6ee3`
+- **Compressed bytes:** `188429`
+- **SHA-256:** `3a30de612190592444a7fdaeed9b2b6b4f858384f9cb1f3ae7a2e43a10698621`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/n3700/README.md

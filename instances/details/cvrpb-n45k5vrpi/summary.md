@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 751 (new strict incumbent)
-- **Dual bound / certificate:** 751
-- **Optimization status and evidence:** Optimal, mixed database/computational evidence; no portable exact lower-bound trace
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 751 (new strict incumbent)
+- **Best bound or certificate:** 751
+- **Study result:** Optimal, mixed database/computational verification; no portable exact lower-bound trace
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 751
+- **Conclusion:** OPT = 751
 - **Main method:** exact compiled-MPS projection + CVRPLIB five-route optimum + Gurobi exclusion for at least six routes
-- **Evidence grade:** MX — Mixed database and commercial-solver evidence
-- **Source evidence characterization:** mixed database and solver-based global-optimality evidence; no portable exact lower-bound trace
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** MX — Mixed database and commercial-solver verification
+- **Earlier source-table status:** mixed database/computational optimality verification; no portable exact lower-bound trace
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `cvrpb-n45k5vrpi-findings.tar.gz`
-- **Compressed bytes:** `410529`
-- **SHA-256:** `c0247a5985d3e9aa77ce0e1a0d67a70f29c9eff7257a474a270494e3b3abd1b1`
+- **Compressed bytes:** `410499`
+- **SHA-256:** `d0018d62206b8e379baffa9628d861eeb850104c1bfb409257c2268f00f1d057`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cvrpb-n45k5vrpi/README.md

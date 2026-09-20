@@ -2,23 +2,23 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** 382.0606208032 (improved first strict incumbent)
-- **Dual bound / certificate:** no new nontrivial global dual bound
-- **Optimization status and evidence:** Tree/compound search solved 21 pair, 39 anchor-fixed triple, and 67 anchor-fixed quadruple neighborhoods to optimality; zero-tolerance feasibility audit completed; global optimum remains open
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** 382.0606208032 (improved first strict incumbent)
+- **Best bound or certificate:** no new nontrivial strict global lower bound
+- **Study result:** Tree/compound search, 21 pair, 39 anchor-fixed triple, and 67 anchor-fixed quad closures, plus a zero-tolerance audit; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `nj1-findings.tar.gz`
-- **Compressed bytes:** `2087935`
-- **SHA-256:** `5c123b4a6482bb760813a192b42626b5ffad5266887fe7f1ddf07d4380282300`
+- **Compressed bytes:** `2087919`
+- **SHA-256:** `3dca962735a7d249bb581f4f53526fb3f017bbabd73603cb5f13fdcb9f8b0478`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/nj1/README.md

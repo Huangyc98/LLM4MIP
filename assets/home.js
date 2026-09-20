@@ -4,28 +4,28 @@
   const views = {
     status: {
       title: "What happened across the 112 studied instances?",
-      note: "These four categories partition the campaign. A resolved instance has established optimality or infeasibility evidence; official MIPLIB labels may not yet have changed.",
+      note: "These four categories partition the 112-instance benchmark. A resolved instance has a verified optimality or infeasibility result; official MIPLIB labels may not yet have changed.",
       mode: "stack",
       total: 112,
       items: [
         ["Certified optimality / infeasibility", 30, "#176b5b"],
-        ["Verified feasible; open", 75, "#006cb8"],
-        ["Pending strict verification", 3, "#8A4F00"],
+        ["Verified feasible; open", 76, "#006cb8"],
+        ["Numerically optimal up to 1e-10 tolerance", 2, "#8A4F00"],
         ["No feasible point found", 4, "#8c1515"]
       ]
     },
     evidence: {
       title: "How were the 30 optimality / infeasibility results verified?",
-      note: "This classifies verification form, not credit. Portable replay after discovery is different from LLM-only discovery.",
+      note: "This classifies the basis of verification, not discovery credit. Portable replay after discovery is different from LLM-only discovery.",
       mode: "stack",
       total: 30,
       items: [
-        ["Portable exact certificate", 18, "#8c1515"],
-        ["Checked proof trace", 1, "#b1040e"],
-        ["Exhaustive exact verification", 3, "#176b5b"],
-        ["Published-theorem transfer", 3, "#620059"],
-        ["Floating-point zero-gap verification", 3, "#006cb8"],
-        ["Mixed computational evidence", 2, "#8A4F00"]
+        ["Mathematically proven certificate", 18, "#8c1515", "Solver/LLM finds a primal bound. LLM proves a certificate mathematically"],
+        ["Logic reasoning", 1, "#b1040e", "Solver/LLM finds a primal bound. LLM finds a certificate through LLM-based logic reasoning"],
+        ["Enumeration", 3, "#176b5b", "Solver/LLM finds a primal bound. LLM finds a dual bound by enumeration"],
+        ["Published-theorem transfer", 3, "#620059", "Solver/LLM finds a primal bound. LLM plugs instance data into a published theorem statement"],
+        ["Floating-point zero-gap verification", 3, "#006cb8", "Solver finds a dual bound. LLM finds a matching primal solution"],
+        ["Mixed computational verification", 2, "#8A4F00", "A combination of above methods"]
       ]
     },
     skill: {
@@ -47,9 +47,11 @@
   const chart = document.querySelector("#overview-chart");
   const title = document.querySelector("#overview-title");
   const note = document.querySelector("#overview-note");
+  const table = document.querySelector("#overview-data");
   const tableBody = document.querySelector("#overview-data tbody");
+  const explanationHeading = document.querySelector("#overview-explanation-heading");
   const buttons = document.querySelectorAll("[data-overview]");
-  if (!chart || !title || !note || !tableBody || !buttons.length) return;
+  if (!chart || !title || !note || !table || !tableBody || !explanationHeading || !buttons.length) return;
 
   function render(key) {
     const view = views[key];
@@ -64,7 +66,7 @@
       stack.setAttribute("role", "img");
       stack.setAttribute("aria-label", view.items.map(item => `${item[0]}: ${item[1]}`).join("; "));
       const legend = document.createElement("div");
-      legend.className = `legend legend-${view.items.length}`;
+      legend.className = `legend legend-${view.items.length} compact-legend`;
       view.items.forEach(([label, value, color]) => {
         const segment = document.createElement("div");
         segment.className = "stack-segment";
@@ -91,13 +93,24 @@
       chart.append(list);
     }
 
-    view.items.forEach(([label, value]) => {
+    const showExplanations = key === "evidence";
+    explanationHeading.hidden = !showExplanations;
+    table.classList.toggle("has-explanations", showExplanations);
+
+    view.items.forEach(([label, value, , explanation]) => {
       const row = document.createElement("tr");
-      const metric = document.createElement("td");
+      const metric = document.createElement("th");
       const result = document.createElement("td");
+      metric.scope = "row";
       metric.textContent = label;
       result.textContent = String(value);
       row.append(metric, result);
+      if (showExplanations) {
+        const detail = document.createElement("td");
+        detail.className = "measure-explanation";
+        detail.textContent = explanation;
+        row.append(detail);
+      }
       tableBody.append(row);
     });
 

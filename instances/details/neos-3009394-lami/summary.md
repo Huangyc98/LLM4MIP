@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 5.5
-- **Dual bound / certificate:** 5.5
-- **Optimization status and evidence:** Optimal, exact Hall/matching certificate
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 5.5
+- **Best bound or certificate:** 5.5
+- **Study result:** Optimal, exact Hall/matching certificate
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT = 5.5
+- **Conclusion:** OPT = 5.5
 - **Main method:** exact bottleneck matching + Hall deficiency
-- **Evidence grade:** PE — Portable exact certificate
-- **Source evidence characterization:** self-contained exact certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** self-contained exact certificate
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3009394-lami-findings.tar.gz`
-- **Compressed bytes:** `39069`
-- **SHA-256:** `76cd37f57520fd0e2a7d5f5caa24f6bb2bfc5af462db49eaf401cfe55b834477`
+- **Compressed bytes:** `39060`
+- **SHA-256:** `9504f5520e54cb1195dfe562610f8d633f74d6e60b4090d6629f7ecdd7d73fbb`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3009394-lami/README.md

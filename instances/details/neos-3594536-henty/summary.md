@@ -2,27 +2,27 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Instance-level optimization result
+## Results and progress
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 401,092
-- **Dual bound / certificate:** 401,092 (Gurobi/COPT)
-- **Optimization status and evidence:** Computational optimum; exact primal audit, no portable exact lower-bound certificate
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 401,092
+- **Best bound or certificate:** 401,092 (Gurobi/COPT)
+- **Study result:** Computational optimum; exact primal audit, no portable exact lower-bound certificate
 
-## Optimality / infeasibility result
+## Certified optimality or infeasibility result
 
-- **Resolved status:** OPT approximately 401,092
+- **Conclusion:** OPT approximately 401,092
 - **Main method:** exact component-balance/parity reduction + zero-gap Gurobi/COPT
-- **Evidence grade:** NS — Strict primal audit plus floating-point zero-gap solver run
-- **Source evidence characterization:** solver-based global-optimality evidence; no portable exact lower-bound certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+- **Verification category:** NS — Strict primal audit plus floating-point zero-gap solver run
+- **Earlier source-table status:** computational optimality verification; no portable exact lower-bound certificate
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
 ## Experiment workflow
 
 1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
 2. Profile the untouched formulation and propose falsifiable structural hypotheses.
 3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
 ## Download bundle
 
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3594536-henty-findings.tar.gz`
-- **Compressed bytes:** `216679`
-- **SHA-256:** `2ed092ab77426078604afc6f52664f37987a932b2ce9e48ab00146eb0aedbfab`
+- **Compressed bytes:** `216674`
+- **SHA-256:** `5b6c27423826b646b5a10142ad361da1eb28d9772dd5a1d5cb11ec01863d5551`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3594536-henty/README.md
