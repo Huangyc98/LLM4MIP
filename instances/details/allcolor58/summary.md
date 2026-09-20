@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 42
-- **Best bound or certificate:** 42
-- **Study finding:** Optimal, exact parity certificate and validated witness
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 42
+- **Dual bound / certificate:** 42
+- **Optimization status and evidence:** Optimal, exact parity certificate and validated witness
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 42
+- **Resolved status:** OPT = 42
 - **Main method:** parity lower bound + zero-tolerance witness
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `allcolor58-findings.tar.gz`
-- **Compressed bytes:** `3513856`
-- **SHA-256:** `4be69c76c63ea1e862b412375aa506d6247ef114efa7a767e3439e1e5d2624dd`
+- **Compressed bytes:** `3513941`
+- **SHA-256:** `095fffb249537abb4638291aa6c3321f78e27d11dd02fd90ab3d71769c6b3c96`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/allcolor58/README.md

@@ -90,16 +90,16 @@
         <div class="section-head">
           <div>
             <p class="eyebrow" style="color:#8c1515">Observed outcomes</p>
-            <h2 id="results-heading">The result is useful—and mixed</h2>
+            <h2 id="results-heading">Primal-bound gains with dual-bound tradeoffs</h2>
           </div>
-          <p>Switch metrics to see which side of the MIP each workflow advanced.</p>
+          <p>Compare primal bounds, dual bounds, relative optimality gaps, strict public-baseline improvements, and certified optimality.</p>
         </div>
         <div class="panel">
           <div class="tabs" aria-label="Comparison metric">
             <button type="button" data-metric="primal" aria-pressed="true">Primal bound</button>
             <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
             <button type="button" data-metric="gap" aria-pressed="false">Relative gap</button>
-            <button type="button" data-metric="strict" aria-pressed="false">Baseline improvements</button>
+            <button type="button" data-metric="strict" aria-pressed="false">Strict primal-bound improvements</button>
             <button type="button" data-metric="closure" aria-pressed="false">Certified optimality</button>
           </div>
           <h3 id="metric-title" class="chart-title"></h3>
@@ -107,7 +107,7 @@
           <div id="metric-chart"></div>
         </div>
         <div class="callout blue">
-          <p><strong>Interpretation:</strong> the skill-guided arm produced the better primal bound on 11 instances, yielded four strict improvements over frozen public baselines, and certified global optimality for two instances. The comparison arm produced the better dual bound on 12 instances and the smaller relative gap on 11. That division argues for a hybrid workflow.</p>
+          <p><strong>Interpretation:</strong> the skill-guided arm produced the better primal bound on 11 instances, yielded four strict primal-bound improvements over frozen public baselines, and certified global optimality for two instances. The comparison arm produced the better dual bound on 12 instances and the smaller relative gap on 11. That division argues for a hybrid workflow.</p>
         </div>
       </section>
 

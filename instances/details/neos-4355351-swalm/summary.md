@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 33.45763
-- **Best bound or certificate:** 33.45763
-- **Study finding:** Optimal, exact state-Steiner DP and zero-violation witness
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 33.45763
+- **Dual bound / certificate:** 33.45763
+- **Optimization status and evidence:** Optimal, exact state-Steiner DP and zero-violation witness
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 33.45763
+- **Resolved status:** OPT = 33.45763
 - **Main method:** exact forbidden-turn state-Steiner subset DP + witness
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-4355351-swalm-findings.tar.gz`
-- **Compressed bytes:** `212796`
-- **SHA-256:** `e893621d07407fe957d97163c9a216fc804406dcedd8a301a9e6293741cefa58`
+- **Compressed bytes:** `212803`
+- **SHA-256:** `a8cdb0eea7e56bcba9734dfdd0fdf0787623112d1b8c50c86f0a8763ad60099a`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-4355351-swalm/README.md

@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 73,623.79
-- **Best bound or certificate:** 73,623.79
-- **Study finding:** Optimal, exact spanning-tree DP and cost exclusion
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 73,623.79
+- **Dual bound / certificate:** 73,623.79
+- **Optimization status and evidence:** Optimal, exact spanning-tree DP and cost exclusion
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 73,623.79
+- **Resolved status:** OPT = 73,623.79
 - **Main method:** exact spanning-tree subset DP + ten-edge cost exclusion
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `dfn-bwin-DBE-findings.tar.gz`
-- **Compressed bytes:** `27203`
-- **SHA-256:** `ec5d85028ad19ed6c247ecf134f831ce7b2c42bd06fd2dd4d767ae0efe3b2125`
+- **Compressed bytes:** `27247`
+- **SHA-256:** `1e5b63263b1b3230955146d9f567e7e3ad0485f2bd3c4746390f79fb2081d2de`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/dfn-bwin-DBE/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -10618.7507269999999491342 (strict repair)
-- **Best bound or certificate:** -10679.232567260660741 (portable exact)
-- **Study finding:** Exact 1,441,651-row primal replay and closure flow=cut certificate; global optimum open
+- **Primal bound / feasibility:** -10618.7507269999999491342 (strict repair)
+- **Dual bound / certificate:** -10679.232567260660741 (portable exact)
+- **Optimization status and evidence:** Exact replay of the 1,441,651-row primal solution and an exact maximum-closure flow-cut dual-bound certificate; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `rmine21-findings.tar.gz`
-- **Compressed bytes:** `5994222`
-- **SHA-256:** `a3b431ee533d176e3283ba48a6803fbbb64847e1eea3d7e6ee7f4c73ffab7b6d`
+- **Compressed bytes:** `5994261`
+- **SHA-256:** `821d5de5060aec9dafa34e547738011954dbb2421cb6a46500915fbba215d74a`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/rmine21/README.md

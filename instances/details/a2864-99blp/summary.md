@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -257
-- **Best bound or certificate:** -257 published theorem
-- **Study finding:** Optimal, exact geometry crosswalk + published theorem; theorem computation not replayed locally
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -257
+- **Dual bound / certificate:** -257 published theorem
+- **Optimization status and evidence:** Optimal, exact geometry crosswalk + published theorem; theorem computation not replayed locally
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = -257
+- **Resolved status:** OPT = -257
 - **Main method:** exact finite-geometry crosswalk + published theorem
 - **Evidence grade:** LT — Exact crosswalk plus published theorem or exhaustive result
-- **Earlier source-table wording:** literature-dependent theorem transfer
+- **Source evidence characterization:** literature-dependent theorem transfer
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `a2864-99blp-findings.tar.gz`
-- **Compressed bytes:** `1788888`
-- **SHA-256:** `15f7ee81afa5d03076ecdb735e8168433b74e6bf15b1a452f1a7f651349411bd`
+- **Compressed bytes:** `1788892`
+- **SHA-256:** `778126d79d2751da224c423235938134ae2d11712f2030f4cfa6f525d8ffd197`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/a2864-99blp/README.md

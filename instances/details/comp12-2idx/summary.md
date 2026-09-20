@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 277
-- **Best bound or certificate:** 165 (solver)
-- **Study finding:** Feasible; global optimum open; prior radius-10 local result retained
+- **Primal bound / feasibility:** 277
+- **Dual bound / certificate:** 165 (solver)
+- **Optimization status and evidence:** Feasible; global optimum open; prior radius-10 local result retained
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `comp12-2idx-findings.tar.gz`
-- **Compressed bytes:** `116890`
-- **SHA-256:** `5ee8b7a777e35c75e3164f7febce0f6645e4961577e8ef8c0b3d90a2221bd280`
+- **Compressed bytes:** `116905`
+- **SHA-256:** `257f9a1daf6baffd568d64ddeff129c804ab3a9b324fe01620d6b9154d9e892d`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/comp12-2idx/README.md

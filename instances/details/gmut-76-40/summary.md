@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -14,169,477.7859 (strict repaired)
-- **Best bound or certificate:** -14,171,086.31587 (solver)
-- **Study finding:** Exact-decimal primal audit; 0.0114% numerical gap; global optimum open
+- **Primal bound / feasibility:** -14,169,477.7859 (strict repaired)
+- **Dual bound / certificate:** -14,171,086.31587 (solver)
+- **Optimization status and evidence:** Exact-decimal primal audit; 0.0114% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `gmut-76-40-findings.tar.gz`
-- **Compressed bytes:** `8481`
-- **SHA-256:** `730f734c55d36c50cdccc71fcee6f1a1aa5f65bb4cfb55b62ced55529d3ca07f`
+- **Compressed bytes:** `8493`
+- **SHA-256:** `41a0bb8e86c289411786b143091b3fa4e0c1a042d7463c3ef5acaf81784eeea5`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/gmut-76-40/README.md

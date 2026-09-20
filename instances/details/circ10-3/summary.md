@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 242
-- **Best bound or certificate:** 242 published
-- **Study finding:** Optimal, exact MPS crosswalk + published exhaustive result
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 242
+- **Dual bound / certificate:** 242 published
+- **Optimization status and evidence:** Optimal, exact MPS crosswalk + published exhaustive result
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 242
+- **Resolved status:** OPT = 242
 - **Main method:** exact MPS/TTP crosswalk + published exhaustive result
 - **Evidence grade:** LT — Exact crosswalk plus published theorem or exhaustive result
-- **Earlier source-table wording:** literature-dependent theorem transfer
+- **Source evidence characterization:** literature-dependent theorem transfer
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `circ10-3-findings.tar.gz`
-- **Compressed bytes:** `23722`
-- **SHA-256:** `2a67f44606646afb9268b620f0df1a651996805219d5558912988084c22810c8`
+- **Compressed bytes:** `23757`
+- **SHA-256:** `d04bdfbe1581dd5c31e3cdc8a3eb8ae7ef6739be209627285e1536e574a22b14`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/circ10-3/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 1062
-- **Best bound or certificate:** 1055 (portable)
-- **Study finding:** Exact set-cover reduction and independently checked dual certificate; global optimum open
+- **Primal bound / feasibility:** 1062
+- **Dual bound / certificate:** 1055 (portable)
+- **Optimization status and evidence:** Exact set-cover reduction and independently checked dual certificate; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `core4284-1064-findings.tar.gz`
-- **Compressed bytes:** `729527`
-- **SHA-256:** `ee9ab0f13609f7f8a4763583750af6c39c866bdfb6002bb16ce84afedcb09165`
+- **Compressed bytes:** `729535`
+- **SHA-256:** `356f482aed7c7b2645662be4686d7d4d2df129763df2d225d5302103c4c32188`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/core4284-1064/README.md

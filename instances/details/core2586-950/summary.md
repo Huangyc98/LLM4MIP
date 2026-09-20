@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 944 (strict)
-- **Best bound or certificate:** 937 (solver)
-- **Study finding:** Exact set-cover reduction OPT = 87 + OPT(hard); 0.7415% numerical gap; global optimum open
+- **Primal bound / feasibility:** 944 (strict)
+- **Dual bound / certificate:** 937 (solver)
+- **Optimization status and evidence:** Exact set-cover reduction OPT = 87 + OPT(hard); 0.7415% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `core2586-950-findings.tar.gz`
-- **Compressed bytes:** `112670`
-- **SHA-256:** `0eb012759ca34285ac4e6b8aad1be9a618006f47a4b41e668cf20ad840f16812`
+- **Compressed bytes:** `112681`
+- **SHA-256:** `39b1e448465020af07bad0e8ac23b3464e4f6fb0bd28a5eb996ecb619e89afcc`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/core2586-950/README.md

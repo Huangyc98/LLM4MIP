@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 15,958
-- **Best bound or certificate:** 15,958
-- **Study finding:** Optimal, exact interval-order path-cover certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 15,958
+- **Dual bound / certificate:** 15,958
+- **Optimization status and evidence:** Optimal, exact interval-order path-cover certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 15,958
+- **Resolved status:** OPT = 15,958
 - **Main method:** endpoint interval-order path cover + even-load lattice
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-binschedule0-findings.tar.gz`
-- **Compressed bytes:** `42453`
-- **SHA-256:** `693f9c500521d74ba58337fcbc2b38ca3e99188fe1115256a891ffeefa7bcdba`
+- **Compressed bytes:** `42474`
+- **SHA-256:** `94309f1f67b5e268bf2e3ab040af95b99d55d5fe4e67c3bda99a29f6bcc990b1`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binschedule0/README.md

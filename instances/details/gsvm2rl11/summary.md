@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 18,539.12716192643 (strict)
-- **Best bound or certificate:** 2,096.755457820071
-- **Study finding:** Feasible; sparse-exchange prototypes tested; global optimum open
+- **Primal bound / feasibility:** 18,539.12716192643 (strict)
+- **Dual bound / certificate:** 2,096.755457820071
+- **Optimization status and evidence:** Feasible; sparse-exchange prototypes tested; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `gsvm2rl11-findings.tar.gz`
-- **Compressed bytes:** `82217`
-- **SHA-256:** `5e25a0083be513bc3e891e6339fdc2d8614d99711e2356fffc7df13e92258580`
+- **Compressed bytes:** `82231`
+- **SHA-256:** `a44e161200a854f0b935bbd45e8a7e17ffce9e505744f413166f587385f31307`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/gsvm2rl11/README.md

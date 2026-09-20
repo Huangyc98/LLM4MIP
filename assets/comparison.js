@@ -3,32 +3,32 @@
   const data = Array.isArray(window.COMPARISON_DATA) ? window.COMPARISON_DATA : [];
   const metrics = {
     primal: {
-      title: "Selected primal value",
-      note: "At absolute tolerance 1e-7: the skill-guided arm recorded 11 better values and nine ties. Six selected skill values were tolerance-indexed.",
+      title: "Primal bound (incumbent objective)",
+      note: "At absolute tolerance 1e-7, the skill-guided arm produced the better primal bound on 11 instances and tied on nine. Six skill-arm primal bounds were tolerance-indexed.",
       max: 20,
-      items: [["Skill-guided better", 11, "#8c1515"], ["Tie", 9, "#77736f"], ["Comparison better", 0, "#006cb8"]]
+      items: [["Skill-guided better", 11, "#8c1515"], ["Equal within 1e-7", 9, "#77736f"], ["Comparison better", 0, "#006cb8"]]
     },
     dual: {
       title: "Valid global dual bound",
-      note: "The comparison arm retained the stronger dual bound on 12 instances; the skill-guided arm led on eight.",
+      note: "The comparison arm produced the better dual bound on 12 instances; the skill-guided arm produced the better dual bound on eight.",
       max: 20,
       items: [["Skill-guided better", 8, "#8c1515"], ["Comparison better", 12, "#006cb8"]]
     },
     gap: {
-      title: "Smaller common symmetric gap",
-      note: "The comparison arm had the smaller normalized gap on 11 instances; the skill-guided arm led on nine.",
+      title: "Smaller relative optimality gap",
+      note: "The comparison arm had the smaller normalized relative gap on 11 instances; the skill-guided arm had the smaller gap on nine.",
       max: 20,
       items: [["Skill-guided smaller", 9, "#8c1515"], ["Comparison smaller", 11, "#006cb8"]]
     },
     strict: {
-      title: "Strict improvements over the frozen public baseline",
+      title: "Strict primal-bound improvements over the frozen public baseline",
       note: "Counts are independent outcomes, not a partition of 20. Each arm is judged under the archived strict acceptance rules.",
       max: 4,
       items: [["Skill-guided arm", 4, "#8c1515"], ["Comparison arm", 2, "#006cb8"]]
     },
     closure: {
-      title: "Exact global closures",
-      note: "The two skill-arm closures belong to this separate comparison archive; they are not added to the canonical 30-conclusion campaign inventory.",
+      title: "Certified global optimality",
+      note: "The skill-guided arm certified global optimality for two instances in this separate comparison archive; these are not included in the campaign's 30 resolved instances.",
       max: 2,
       items: [["Skill-guided arm", 2, "#8c1515"], ["Comparison arm", 0, "#006cb8"]]
     }
@@ -64,7 +64,7 @@
   const count = document.querySelector("#comparison-count");
   if (!tableBody || !search || !filter || !count) return;
 
-  const labels = {skill_better: "Skill", no_skill_better: "Comparison", tie: "Tie"};
+  const labels = {skill_better: "Skill", no_skill_better: "Comparison", tie: "Within tolerance"};
   function compact(raw) {
     if (raw === undefined || raw === null || raw === "") return "—";
     const number = Number(raw);
@@ -84,14 +84,14 @@
   function valueCell(primary, secondary, gap) {
     const td = document.createElement("td");
     const p = document.createElement("div");
-    p.textContent = `P ${compact(primary)}`;
+    p.textContent = `Primal ${compact(primary)}`;
     p.title = primary;
     const d = document.createElement("div");
-    d.textContent = `D ${compact(secondary)}`;
+    d.textContent = `Dual ${compact(secondary)}`;
     d.title = secondary;
     const g = document.createElement("div");
     g.className = "note";
-    g.textContent = `gap ${(Number(gap) * 100).toFixed(3)}%`;
+    g.textContent = `relative gap ${(Number(gap) * 100).toFixed(3)}%`;
     td.append(p, d, g);
     return td;
   }
@@ -123,7 +123,7 @@
       if (record.skill_primal_is_tolerance_indexed === "true") {
         const marker = document.createElement("span");
         marker.className = "badge pending";
-        marker.textContent = "Tolerance-indexed P";
+        marker.textContent = "Tolerance-indexed primal bound";
         method.prepend(marker, document.createElement("br"));
       }
       tr.append(

@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 2,428
-- **Best bound or certificate:** 2,428
-- **Study finding:** Optimal, exact endpoint clique/parity certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 2,428
+- **Dual bound / certificate:** 2,428
+- **Optimization status and evidence:** Optimal, exact endpoint clique/parity certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 2,428
+- **Resolved status:** OPT = 2,428
 - **Main method:** endpoint interval-order clique + parity
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-binschedule2-findings.tar.gz`
-- **Compressed bytes:** `67475`
-- **SHA-256:** `83680f66a1dec2a31cb1772119a74e9d05343e4e36c9e3d8b8bd73e42ef40921`
+- **Compressed bytes:** `67509`
+- **SHA-256:** `116a2beaaad302b630b0f1ff8a20c2b0cec5239cfcf1d54aadc35b85baf39672`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binschedule2/README.md

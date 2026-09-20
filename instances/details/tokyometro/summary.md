@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 8,263.1 (strict)
-- **Best bound or certificate:** 7,117.5 (solver)
-- **Study finding:** Translation and impossible-direction audit; 13.864% numerical gap; global optimum open
+- **Primal bound / feasibility:** 8,263.1 (strict)
+- **Dual bound / certificate:** 7,117.5 (solver)
+- **Optimization status and evidence:** Translation and impossible-direction audit; 13.864% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `tokyometro-findings.tar.gz`
-- **Compressed bytes:** `38160`
-- **SHA-256:** `b7ca127a351d42bf627834711ec464b0ed59520a423ded9059f28512f9717d9d`
+- **Compressed bytes:** `38167`
+- **SHA-256:** `309153a41ef28ba01efbfd063d631544bab064657b9e1d3f9a0368ce1abd6eda`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/tokyometro/README.md

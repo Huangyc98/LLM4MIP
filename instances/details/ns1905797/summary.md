@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 13.98258 (new strict incumbent)
-- **Best bound or certificate:** 12.38858 (COPT, numerical)
-- **Study finding:** Serialized file passes zero-tolerance Fraction audit; 11.40% numerical gap; global optimum open
+- **Primal bound / feasibility:** 13.98258 (new strict incumbent)
+- **Dual bound / certificate:** 12.38858 (COPT, numerical)
+- **Optimization status and evidence:** Serialized file passes zero-tolerance Fraction audit; 11.40% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ns1905797-findings.tar.gz`
-- **Compressed bytes:** `633906`
-- **SHA-256:** `965fb39efe2cd4216634bd1adb832f5a31b930282cb64b125245b18a3d110ee4`
+- **Compressed bytes:** `633980`
+- **SHA-256:** `698e163194d6f1079aa28b5539231cfadd36dd544eb54166c13fd88195089290`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ns1905797/README.md

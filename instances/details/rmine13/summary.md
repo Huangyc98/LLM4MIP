@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -3495.3706609999999806509 (strict repair)
-- **Best bound or certificate:** -3504.689959073912780 (portable exact)
-- **Study finding:** Rounded public tolerance vector and closure flow=cut certificate; structured neighborhoods tested; global optimum open
+- **Primal bound / feasibility:** -3495.3706609999999806509 (strict repair)
+- **Dual bound / certificate:** -3504.689959073912780 (portable exact)
+- **Optimization status and evidence:** Rounded public tolerance vector verified; exact maximum-closure flow-cut certificate establishes the stated dual bound; structured neighborhoods tested; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `rmine13-findings.tar.gz`
-- **Compressed bytes:** `2082587`
-- **SHA-256:** `baa143b55107d5240b3fc5387d9bf07754a6fd4d13f226049203c203f172f10c`
+- **Compressed bytes:** `2082668`
+- **SHA-256:** `5775b3cff3c46724859ac00a7fb6d1d5f2bfc83239e582cbc4a9c703326fc808`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/rmine13/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -51,837,707.95034043267785954996 (strict repair)
-- **Best bound or certificate:** no new global lower bound
-- **Study finding:** Full submitted-MPS geometry audit; no strict incumbent improvement; global optimum open
+- **Primal bound / feasibility:** -51,837,707.95034043267785954996 (strict repair)
+- **Dual bound / certificate:** no new global lower bound
+- **Optimization status and evidence:** Full submitted-MPS geometry audit; no strict incumbent improvement; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `polygonpack4-7-findings.tar.gz`
-- **Compressed bytes:** `4198527`
-- **SHA-256:** `11f6af5c6b4923f3bcbb61eb04f66769876b66b046c7099d3e682ff7f08b99ab`
+- **Compressed bytes:** `4198550`
+- **SHA-256:** `f5259b2a61352094c8a58af7f658386730ee58745be2b48cf09afc1ee34510be`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/polygonpack4-7/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** No feasible point found
-- **Best verified result:** no feasible point
-- **Best bound or certificate:** local infeasibility certificates
-- **Study finding:** Global feasibility open
+- **Primal bound / feasibility:** no feasible point
+- **Dual bound / certificate:** local infeasibility certificates
+- **Optimization status and evidence:** Global feasibility open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `datt256-findings.tar.gz`
-- **Compressed bytes:** `23637`
-- **SHA-256:** `a9894f89b7809454e7bbb02b9885a79c46fbacd38b38812914d00f0157cac176`
+- **Compressed bytes:** `23648`
+- **SHA-256:** `e9aa966a723a66bd4d84c50fe36bf6373403018a816fe8019ade0d4db9b2e28e`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/datt256/README.md

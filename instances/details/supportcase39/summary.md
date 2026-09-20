@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -1,085,083.856820570460
-- **Best bound or certificate:** -1,085,325.230699 root
-- **Study finding:** New strict incumbent from Gaussian-boundary block search; global optimum open
+- **Primal bound / feasibility:** -1,085,083.856820570460
+- **Dual bound / certificate:** -1,085,325.230699 root
+- **Optimization status and evidence:** New strict incumbent from Gaussian-boundary block search; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `supportcase39-findings.tar.gz`
-- **Compressed bytes:** `53138`
-- **SHA-256:** `81f38860f50a178b0e9af8b3ca77bc85b14ea89e9be56a553d6858d8284b2a8b`
+- **Compressed bytes:** `53152`
+- **SHA-256:** `04d336fa6735a591d06b4c260b599d75c0fc18cfbb54ed8c0bdd7d2ee0696a5e`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/supportcase39/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 2,147 (external-derived; strictly verified)
-- **Best bound or certificate:** 93
-- **Study finding:** Strict interval [93,2147]; LB is our proof, UB is excluded from our primal count; global optimum open
+- **Primal bound / feasibility:** 2,147 (external-derived; strictly verified)
+- **Dual bound / certificate:** 93
+- **Optimization status and evidence:** Verified primal-dual interval [93, 2,147]; the dual bound is proved in this work, while the primal bound comes from an attributed external construction and is excluded from the campaign's primal-bound count; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fastxgemm-n3r21s3t6-findings.tar.gz`
-- **Compressed bytes:** `4033161`
-- **SHA-256:** `58ef461d980743a71a264f4303a2299d6b22a20ce9ab460a77b1419fd6b797c1`
+- **Compressed bytes:** `4033239`
+- **SHA-256:** `45228d1f92efdb2a9e3c7bccfaa6324798c84c8b8d2f5a4f6087132f7ca838d1`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fastxgemm-n3r21s3t6/README.md

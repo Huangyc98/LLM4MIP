@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 664.020833333333
-- **Best bound or certificate:** 578.2171855753
-- **Study finding:** Feasible; global optimum open
+- **Primal bound / feasibility:** 664.020833333333
+- **Dual bound / certificate:** 578.2171855753
+- **Optimization status and evidence:** Feasible; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `dano3mip-findings.tar.gz`
-- **Compressed bytes:** `55321`
-- **SHA-256:** `6a5cf5866bad231a3c842d7d51d7a139645470e96f8aa8900d3a603f4bf0e8e5`
+- **Compressed bytes:** `55322`
+- **SHA-256:** `ee2d29cd202984753aaf6a06810100e8f3191aa9a83fa92fa37220844fe691bc`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/dano3mip/README.md

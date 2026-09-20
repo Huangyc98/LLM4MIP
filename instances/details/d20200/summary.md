@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 12,237
-- **Best bound or certificate:** 12,232 solver; 12,230 independently exact
-- **Study finding:** Custom tree incomplete: 33 pending subtrees; no new bound
+- **Primal bound / feasibility:** 12,237
+- **Dual bound / certificate:** 12,232 solver; 12,230 independently exact
+- **Optimization status and evidence:** Custom tree incomplete: 33 pending subtrees; no new bound
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `d20200-findings.tar.gz`
-- **Compressed bytes:** `3871`
-- **SHA-256:** `7cf7ccd26ab40eadd08410793acfc9fe697143c7c3d1301ece29e7d8d07603ff`
+- **Compressed bytes:** `3890`
+- **SHA-256:** `a58ea5d5c608556525f90086917e1d9177e724eb8b5e9b676d9023b12e7ec1b2`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/d20200/README.md

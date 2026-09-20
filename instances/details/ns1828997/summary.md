@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 8
-- **Best bound or certificate:** no new lower-bound-8 certificate
-- **Study finding:** Exact 375-choice projection and cutoff-7 CNF; exact search remains unknown
+- **Primal bound / feasibility:** 8
+- **Dual bound / certificate:** no new lower-bound-8 certificate
+- **Optimization status and evidence:** Exact 375-choice projection and cutoff-7 CNF; exact search remains unknown
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ns1828997-findings.tar.gz`
-- **Compressed bytes:** `55023`
-- **SHA-256:** `81e2ce212be9b60eea1559c6340289e3e07274dd3347efecc2f83f0bf0af5b76`
+- **Compressed bytes:** `55029`
+- **SHA-256:** `6894f1d63233afeb0b913d51f166de11abe7f2e40cbea155414f9558d3f70f44`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ns1828997/README.md

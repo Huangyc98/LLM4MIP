@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 450
-- **Best bound or certificate:** 450
-- **Study finding:** Optimal, exact dynamic program
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 450
+- **Dual bound / certificate:** 450
+- **Optimization status and evidence:** Optimal, exact dynamic program
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 450
+- **Resolved status:** OPT = 450
 - **Main method:** capacity-feasible route DP + exact partition
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `cvrpp-n16k8vrpi-findings.tar.gz`
-- **Compressed bytes:** `56479`
-- **SHA-256:** `745fb5abf15e0defbaafa53decc38905a8bc81f425bd32f20ba382801c0a1a97`
+- **Compressed bytes:** `56492`
+- **SHA-256:** `af1253f27877509ed15615b010ee664bd9b2f2cb32d0d10bc14bae75abc79443`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cvrpp-n16k8vrpi/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 38,842 (exact reconstruction)
-- **Best bound or certificate:** 31,882 (exact global certificate)
-- **Study finding:** New global geometric proof; historical six-rectangle local exclusion remains separate; global optimum open
+- **Primal bound / feasibility:** 38,842 (exact reconstruction)
+- **Dual bound / certificate:** 31,882 (exact global certificate)
+- **Optimization status and evidence:** New global geometric proof; historical six-rectangle local exclusion remains separate; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `graphdraw-mainerd-findings.tar.gz`
-- **Compressed bytes:** `153135`
-- **SHA-256:** `6c69605325a893ffb8cadca97fb96882c77936795bade957bacae1a7526c8094`
+- **Compressed bytes:** `153164`
+- **SHA-256:** `46bd11145b5bf859c678dad9341f302447d384d1f387d1b8ad70d4c468d613c0`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/graphdraw-mainerd/README.md

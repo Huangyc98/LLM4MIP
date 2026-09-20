@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 36,161,699.3779386893546367410 (strict numerical polish)
-- **Best bound or certificate:** 35,556,219.47983733 (locally reproducible solver LB; 1.6744% gap)
-- **Study finding:** Same integer pattern and only 0.000893823 lower; 50/50 blocks closed conditionally; archived PDF-only LB 35,599,182.4 is stronger; global optimum open
+- **Primal bound / feasibility:** 36,161,699.3779386893546367410 (strict numerical polish)
+- **Dual bound / certificate:** 35,556,219.47983733 (locally reproducible solver dual bound; 1.6744% gap)
+- **Optimization status and evidence:** The incumbent retains the same integer pattern and improves the primal objective by only 0.000893823; all 50 blocks were solved to conditional optimality; the archived PDF-only dual bound 35,599,182.4 is stronger; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `sing17-findings.tar.gz`
-- **Compressed bytes:** `968526`
-- **SHA-256:** `0daa494a818b6929edf8c2d6e8c982a10dcc8499326acb404e21f23c3b8966f3`
+- **Compressed bytes:** `968556`
+- **SHA-256:** `0205168df0c570a7d9bca28fef1a032bf63f37c19bdb39d479aedec90a0c10ab`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/sing17/README.md

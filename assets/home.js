@@ -20,12 +20,12 @@
       mode: "stack",
       total: 30,
       items: [
-        ["Portable exact", 18, "#8c1515"],
-        ["Large checked trace", 1, "#b1040e"],
-        ["Exact exhaustive", 3, "#176b5b"],
-        ["Theorem transfer", 3, "#620059"],
-        ["Numerical closure", 3, "#006cb8"],
-        ["Mixed evidence", 2, "#8A4F00"]
+        ["Portable exact certificate", 18, "#8c1515"],
+        ["Checked proof trace", 1, "#b1040e"],
+        ["Exhaustive exact verification", 3, "#176b5b"],
+        ["Published-theorem transfer", 3, "#620059"],
+        ["Floating-point zero-gap verification", 3, "#006cb8"],
+        ["Mixed computational evidence", 2, "#8A4F00"]
       ]
     },
     skill: {
@@ -35,7 +35,7 @@
       max: 20,
       items: [
         ["Primal bound: skill better", 11, "#8c1515"],
-        ["Primal bound: tie", 9, "#77736f"],
+        ["Primal bound: equal within 1e-7", 9, "#77736f"],
         ["Dual bound: skill better", 8, "#8c1515"],
         ["Dual bound: comparison better", 12, "#006cb8"],
         ["Relative gap: skill smaller", 9, "#8c1515"],
@@ -64,7 +64,7 @@
       stack.setAttribute("role", "img");
       stack.setAttribute("aria-label", view.items.map(item => `${item[0]}: ${item[1]}`).join("; "));
       const legend = document.createElement("div");
-      legend.className = "legend";
+      legend.className = `legend legend-${view.items.length}`;
       view.items.forEach(([label, value, color]) => {
         const segment = document.createElement("div");
         segment.className = "stack-segment";

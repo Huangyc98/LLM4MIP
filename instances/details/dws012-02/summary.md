@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 119443.31072434435 (new strict incumbent)
-- **Best bound or certificate:** 23459.58492171858
-- **Study finding:** Sibling-design transplant improves MIPLIB v36 by 449.99998531942; global optimum open
+- **Primal bound / feasibility:** 119443.31072434435 (new strict incumbent)
+- **Dual bound / certificate:** 23459.58492171858
+- **Optimization status and evidence:** Sibling-design transplant improves MIPLIB v36 by 449.99998531942; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `dws012-02-findings.tar.gz`
-- **Compressed bytes:** `454038`
-- **SHA-256:** `1abe330d1d297ed21a0c7c96f582b86a59076f60f203d355195bc3dcc9a3b98d`
+- **Compressed bytes:** `454054`
+- **SHA-256:** `824003855b7791997339726ed98a046f89b33ba688b0a6ee4bf39b2ab4e6068c`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/dws012-02/README.md

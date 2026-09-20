@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 65,257.573990387 (new strict incumbent)
-- **Best bound or certificate:** no new certified global bound
-- **Study finding:** Three-vehicle-block LNS and two exact original-MPS audits; improves MIPLIB by 247.6265848893; global optimum open
+- **Primal bound / feasibility:** 65,257.573990387 (new strict incumbent)
+- **Dual bound / certificate:** no new certified global bound
+- **Optimization status and evidence:** Three-vehicle-block LNS and two exact original-MPS audits; improves MIPLIB by 247.6265848893; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-5266653-tugela-findings.tar.gz`
-- **Compressed bytes:** `123505`
-- **SHA-256:** `917bd967b2a0935d4d86a135f6613913109354eb51d29de9cce6c41e09b4baae`
+- **Compressed bytes:** `123519`
+- **SHA-256:** `665e8f03495f880a7653e8ea81548b00eb6c2406fa6bd59e1a5da6c7b9529356`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-5266653-tugela/README.md

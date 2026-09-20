@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 11,100
-- **Best bound or certificate:** 11,100
-- **Study finding:** Optimal, exact cyclic-cutwidth enumeration and audited witness
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 11,100
+- **Dual bound / certificate:** 11,100
+- **Optimization status and evidence:** Optimal, exact cyclic-cutwidth enumeration and audited witness
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 11,100
+- **Resolved status:** OPT = 11,100
 - **Main method:** original-MPS ring recovery + exact cyclic-cutwidth enumeration + witness
 - **Evidence grade:** EX — Specialized exact exhaustive computation without a standalone trace
-- **Earlier source-table wording:** exact exhaustive computation; no standalone proof trace
+- **Source evidence characterization:** exact exhaustive computation; no standalone proof trace
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ns1631475-findings.tar.gz`
-- **Compressed bytes:** `48846`
-- **SHA-256:** `5e2be3eeecbd1dbb98e3473fc1c2dbbe2130117b5b7a0efe65e14127e8aa869a`
+- **Compressed bytes:** `48864`
+- **SHA-256:** `2f97ec45e65d8d4d50f6ca5c8e10ff37506d886af4c481660896c58860af26f5`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ns1631475/README.md

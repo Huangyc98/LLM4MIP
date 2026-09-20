@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 358,152.26219370891
-- **Best bound or certificate:** 221,230.41433552347 (solver)
-- **Study finding:** Same verified design; prior member-radius-7 result retained; global optimum open
+- **Primal bound / feasibility:** 358,152.26219370891
+- **Dual bound / certificate:** 221,230.41433552347 (solver)
+- **Optimization status and evidence:** Same verified design; prior member-radius-7 result retained; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `milo-v13-4-3d-4-0-findings.tar.gz`
-- **Compressed bytes:** `69831`
-- **SHA-256:** `4101e9b1d3cf9ee4af16efedca6647a076e137532cf23bf9605fe8400694021a`
+- **Compressed bytes:** `69852`
+- **SHA-256:** `8ec63a72f9f8961d75409fa2bd74db7f63975a336733c233312c7bc4998e3c37`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/milo-v13-4-3d-4-0/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 8,844 (strict)
-- **Best bound or certificate:** 8,566 (solver)
-- **Study finding:** Exact identical-column quotient removes 9,944 variables; 3.1434% numerical gap; global optimum open
+- **Primal bound / feasibility:** 8,844 (strict)
+- **Dual bound / certificate:** 8,566 (solver)
+- **Optimization status and evidence:** Exact identical-column quotient removes 9,944 variables; 3.1434% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `pb-gfrd-pnc-findings.tar.gz`
-- **Compressed bytes:** `278922`
-- **SHA-256:** `3f6025c2694cc7fb2d23418e73e216bcd9e8469470c47c20f73f7ac489583acb`
+- **Compressed bytes:** `278934`
+- **SHA-256:** `6a0fd3c8400a619eab53ba8b9d6adf045f15693801aa8e282e80ada4aabfe724`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/pb-gfrd-pnc/README.md

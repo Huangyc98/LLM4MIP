@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 233
-- **Best bound or certificate:** 224 solver
-- **Study finding:** Exact kernelization; global optimum open
+- **Primal bound / feasibility:** 233
+- **Dual bound / certificate:** 224 solver
+- **Optimization status and evidence:** Exact kernelization; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ex1010-pi-findings.tar.gz`
-- **Compressed bytes:** `1491975`
-- **SHA-256:** `9653aa034e9b85856ef54b1c0b66f1470096251b752532747694294c49550589`
+- **Compressed bytes:** `1491980`
+- **SHA-256:** `85d56ec67460eb92be81761f7e9d18b9a52eba58629b7b9ca934b0679dee6dd8`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ex1010-pi/README.md

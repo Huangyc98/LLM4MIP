@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 318
-- **Best bound or certificate:** 283 (strict)
-- **Study finding:** Exact domination and independently replayed target-282 branch/dual certificate; global optimum open
+- **Primal bound / feasibility:** 318
+- **Dual bound / certificate:** 283 (strict)
+- **Optimization status and evidence:** Exact domination and independently replayed target-282 branch/dual certificate; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `scpk4-findings.tar.gz`
-- **Compressed bytes:** `2537715`
-- **SHA-256:** `f1e7720a03ed458488b079a91baa9e2673ec2319f17d96ba48b37cd993f4b68d`
+- **Compressed bytes:** `2537736`
+- **SHA-256:** `eb9476fca399c4d3903940815b72f18629f4d53f30623a53c9f9b88faaf5cab6`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/scpk4/README.md

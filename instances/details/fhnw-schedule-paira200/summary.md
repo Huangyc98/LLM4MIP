@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -19.369961204645204 (new strict incumbent)
-- **Best bound or certificate:** -19.369961204645204 (Gurobi + audited valid cuts)
-- **Study finding:** Computational optimum; independent rerun and original-MPS audit
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -19.369961204645204 (new strict incumbent)
+- **Dual bound / certificate:** -19.369961204645204 (Gurobi + audited valid cuts)
+- **Optimization status and evidence:** Computational optimum; independent rerun and original-MPS audit
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = -19.369961204645205810
+- **Resolved status:** OPT = -19.369961204645205810
 - **Main method:** portable exact branch-and-dual certificate with frozen or rebuilt strengthening, untouched-original-MPS audit, and paired-formulation cross-check where available
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** computational global conclusion; original-MPS and cross-formulation audits, no portable formal MIP proof
+- **Source evidence characterization:** solver-based global-optimality evidence; original-MPS and cross-formulation audits, no portable formal MIP proof
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-schedule-paira200-findings.tar.gz`
-- **Compressed bytes:** `889068`
-- **SHA-256:** `979b2bb3507b11f9a0258c666f125788a70fb4484396f4b356620cf732d885fa`
+- **Compressed bytes:** `889102`
+- **SHA-256:** `abf6f69c086141748adbda82f35fe93cc42535f8f37782343125a882d9c67fda`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-schedule-paira200/README.md

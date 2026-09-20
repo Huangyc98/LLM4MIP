@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Pending strict verification
-- **Best verified result:** 20.571410408673 (Gurobi-accepted)
-- **Best bound or certificate:** 19.932229270717
-- **Study finding:** Feasible under solver tolerances; combined observed gap 3.1071%; strict verification and global optimum open
+- **Primal bound / feasibility:** 20.571410408673 (Gurobi-accepted)
+- **Dual bound / certificate:** 19.932229270717
+- **Optimization status and evidence:** Feasible under solver tolerances; combined observed gap 3.1071%; strict verification and global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-5045105-creuse-findings.tar.gz`
-- **Compressed bytes:** `195881`
-- **SHA-256:** `e1933c7c46a3319140c2d6980564abd3888ebb923edc18de99a1af22e1fd3c41`
+- **Compressed bytes:** `195900`
+- **SHA-256:** `a88018735c670190f4c460dd28fe6222e5078e3bc9a540e1542eb81425117b5f`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-5045105-creuse/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 82,030.5522222395466198 (1e-9 feasible)
-- **Best bound or certificate:** 44,641.72316928 (solver)
-- **Study finding:** Fixed-design recourse optimum and exact projection blueprint; 45.5792% numerical gap; global optimum open
+- **Primal bound / feasibility:** 82,030.5522222395466198 (1e-9 feasible)
+- **Dual bound / certificate:** 44,641.72316928 (solver)
+- **Optimization status and evidence:** Fixed-design recourse optimum and exact projection blueprint; 45.5792% numerical gap; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `dws012-01-findings.tar.gz`
-- **Compressed bytes:** `198373`
-- **SHA-256:** `2e7c8b3aec062de46c2fefa1d6300e0eafb8de0942ce29017b95aaf0bd41b0b6`
+- **Compressed bytes:** `198383`
+- **SHA-256:** `f94cec951ba73dfd34f447b92df49b7d88c667d73f3e0aa20d7dcf9035ff793d`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/dws012-01/README.md

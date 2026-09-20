@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** -8
-- **Best bound or certificate:** -8
-- **Study finding:** Optimal, exact active-layer quotient and A=9 relaxed infeasibility
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** -8
+- **Dual bound / certificate:** -8
+- **Optimization status and evidence:** Optimal, exact active-layer quotient and A=9 relaxed infeasibility
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = -8
+- **Resolved status:** OPT = -8
 - **Main method:** exact active-layer quotient + A=9 interval-chain infeasibility
 - **Evidence grade:** EX — Specialized exact exhaustive computation without a standalone trace
-- **Earlier source-table wording:** exact exhaustive computation; no standalone proof trace
+- **Source evidence characterization:** exact exhaustive computation; no standalone proof trace
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-4360552-sangro-findings.tar.gz`
-- **Compressed bytes:** `183456`
-- **SHA-256:** `2edae334f026851619431104c68523e92a41356dd91f9f05f4061a71e5d73b34`
+- **Compressed bytes:** `183465`
+- **SHA-256:** `d2cca8ce49fbc5296d78922280f6fb30f9c2eb44f5aff51a4e76e6fcc94c94c5`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-4360552-sangro/README.md

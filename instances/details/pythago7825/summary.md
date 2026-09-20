@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** —
-- **Best bound or certificate:** published UNSAT theorem
-- **Study finding:** Infeasible, exact encoding/core crosswalk + published theorem; proof archive not replayed locally
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** —
+- **Dual bound / certificate:** published UNSAT theorem
+- **Optimization status and evidence:** Infeasible, exact encoding/core crosswalk + published theorem; proof archive not replayed locally
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** infeasible
+- **Resolved status:** infeasible
 - **Main method:** exact NAE-SAT crosswalk + published UNSAT theorem
 - **Evidence grade:** LT — Exact crosswalk plus published theorem or exhaustive result
-- **Earlier source-table wording:** literature-dependent theorem transfer
+- **Source evidence characterization:** literature-dependent theorem transfer
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `pythago7825-findings.tar.gz`
-- **Compressed bytes:** `35485491`
-- **SHA-256:** `8dcef94f8abd606e7639c1f18ae9b3c7f5703e15378c3fa31ccd1df3c79faf0b`
+- **Compressed bytes:** `35485479`
+- **SHA-256:** `7d5aa6970458eebca46f03cff747262f2fbcd0e09f582bb73d8c911604abaf09`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/pythago7825/README.md

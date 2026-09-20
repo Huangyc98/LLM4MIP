@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 11,070.7016616034 (strict repair)
-- **Best bound or certificate:** 10,905.7397762548 (solver)
-- **Study finding:** 1.4901% local reproducible gap; article partition and truck-radius-2 neighborhoods closed; global optimum open
+- **Primal bound / feasibility:** 11,070.7016616034 (strict repair)
+- **Dual bound / certificate:** 10,905.7397762548 (solver)
+- **Optimization status and evidence:** 1.4901% local reproducible gap; article partition and truck-radius-2 neighborhoods closed; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `shs1042-findings.tar.gz`
-- **Compressed bytes:** `511697`
-- **SHA-256:** `4190da6cd2add2b4c2ae9da4b1afa9a0cd744fa52bff8308ba40daff425af647`
+- **Compressed bytes:** `511709`
+- **SHA-256:** `6a811e3baabce9b802436605f36220191162d39e6cb7b40c0d368026bd710dc2`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/shs1042/README.md

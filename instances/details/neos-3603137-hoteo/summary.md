@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** No feasible point found
-- **Best verified result:** no feasible point
-- **Best bound or certificate:** CP and SAT UNKNOWN
-- **Study finding:** Global feasibility open; no UNSAT proof
+- **Primal bound / feasibility:** no feasible point
+- **Dual bound / certificate:** CP and SAT UNKNOWN
+- **Optimization status and evidence:** Global feasibility open; no UNSAT proof
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `neos-3603137-hoteo-findings.tar.gz`
-- **Compressed bytes:** `2572`
-- **SHA-256:** `69bcfb32393e9f69aaa1c5390607bf5de7fd5774d9a6358aaf47614a0974ff27`
+- **Compressed bytes:** `2586`
+- **SHA-256:** `abbc0d80145680442697fc104aa4d2876e190c84a1ec7a61b86c6913e9e43038`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3603137-hoteo/README.md

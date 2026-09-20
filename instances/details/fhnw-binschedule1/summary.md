@@ -2,19 +2,19 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
-- **Campaign status:** Global conclusion
-- **Best verified result:** 55,158
-- **Best bound or certificate:** 55,158
-- **Study finding:** Optimal, exact interval-order path-cover certificate
+- **Campaign status:** Certified optimality / infeasibility
+- **Primal bound / feasibility:** 55,158
+- **Dual bound / certificate:** 55,158
+- **Optimization status and evidence:** Optimal, exact interval-order path-cover certificate
 
-## Supported global conclusion
+## Optimality / infeasibility result
 
-- **Conclusion:** OPT = 55,158
+- **Resolved status:** OPT = 55,158
 - **Main method:** endpoint interval-order path cover + colored matching witness
 - **Evidence grade:** PE — Portable exact certificate
-- **Earlier source-table wording:** self-contained exact certificate
+- **Source evidence characterization:** self-contained exact certificate
 - **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
 
 ## Experiment workflow
@@ -38,6 +38,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `fhnw-binschedule1-findings.tar.gz`
-- **Compressed bytes:** `120263`
-- **SHA-256:** `7c0101b608e3e80110d158b3765f1343a9eb2cc671f579890cc6af23dc899481`
+- **Compressed bytes:** `120281`
+- **SHA-256:** `235883ac9c0024fc3a50e23555fbf498862923de3e206e3ff976c395b3566024`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-binschedule1/README.md

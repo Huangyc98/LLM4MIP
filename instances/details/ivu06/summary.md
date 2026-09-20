@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 142.864331576
-- **Best bound or certificate:** 135.900242315 (portable)
-- **Study finding:** Exact rational dual checked against all columns; global optimum open
+- **Primal bound / feasibility:** 142.864331576
+- **Dual bound / certificate:** 135.900242315 (portable)
+- **Optimization status and evidence:** Exact rational dual checked against all columns; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ivu06-findings.tar.gz`
-- **Compressed bytes:** `89587`
-- **SHA-256:** `3fd56e1dd65725dcd3c50005df1a5498c63e55e2e25721ca16b34244d78c7be2`
+- **Compressed bytes:** `89603`
+- **SHA-256:** `14613f39033be9896e40cd2c34431497890c9fb988654664297621eab7a460d7`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ivu06/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 68,750 (strict repair)
-- **Best bound or certificate:** 62,785.565316 (strict)
-- **Study finding:** Exact primal/dual interval; global optimum open
+- **Primal bound / feasibility:** 68,750 (strict repair)
+- **Dual bound / certificate:** 62,785.565316 (strict)
+- **Optimization status and evidence:** Exact primal/dual interval; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `ns2122698-findings.tar.gz`
-- **Compressed bytes:** `293176`
-- **SHA-256:** `9b4086f1e84d37a90de0e3e1c14d2683feea3b621a7cf2a07058df2e7422ac95`
+- **Compressed bytes:** `293193`
+- **SHA-256:** `3fa7fe879333b9f6e1c9afa2c3178236d22e45a621cac0a15fe1c707f38f20b3`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/ns2122698/README.md

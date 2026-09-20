@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 123,046.81611861245 (strict normalized)
-- **Best bound or certificate:** no new bound
-- **Study finding:** Route RVND/ILS and capacity-preserving compound exchanges tested; global optimum open
+- **Primal bound / feasibility:** 123,046.81611861245 (strict normalized)
+- **Dual bound / certificate:** no new bound
+- **Optimization status and evidence:** Route RVND/ILS and capacity-preserving compound exchanges tested; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `lr1dr02vc05v8a-t360-findings.tar.gz`
-- **Compressed bytes:** `3383`
-- **SHA-256:** `20af43e6c120b769673f1ad8ce46f630b88ef7f4620f869718bf862a0fc4b6b4`
+- **Compressed bytes:** `3395`
+- **SHA-256:** `11a26efe8fc1f629913c96e5ec4d7959e2f0f2b058045a452129c8b8593db986`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/lr1dr02vc05v8a-t360/README.md

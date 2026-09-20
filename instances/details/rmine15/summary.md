@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -5018.823005000000004879 (new strict incumbent)
-- **Best bound or certificate:** -5042.036233392018593 (portable exact)
-- **Study finding:** 34-block exchange; 121 pair and 61 clique cuts; exact primal and flow=cut audits; global optimum open
+- **Primal bound / feasibility:** -5018.823005000000004879 (new strict incumbent)
+- **Dual bound / certificate:** -5042.036233392018593 (portable exact)
+- **Optimization status and evidence:** 34-block exchange; 121 pair and 61 clique cuts; exact primal and flow=cut audits; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `rmine15-findings.tar.gz`
-- **Compressed bytes:** `7864749`
-- **SHA-256:** `43a0c895fa873f7a0f72327b43056f0c8f00c9af8d2d96808b6239e664033e99`
+- **Compressed bytes:** `7864761`
+- **SHA-256:** `8f99256957321dc927bb94ab518428a324454a3c87727f0d6ac8048fc420b277`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/rmine15/README.md

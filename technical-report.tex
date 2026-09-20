@@ -110,7 +110,7 @@
   \node[anchor=west,text=Muted] at (0,0.92) {82 studied instances remain unresolved};
   \node[anchor=west,text=Muted,font=\itshape\small] at (0,0.35) {26.8\% is descriptive, not a success-rate estimate};
 
-  \node[anchor=west,font=\bfseries\large,text=AcademicBlue] at (8.0,5.7) {Evidence behind 30 conclusions};
+  \node[anchor=west,font=\bfseries\large,text=AcademicBlue] at (8.0,5.7) {Verification of 30 resolved instances};
   \fill[AcademicBlue] (8.0,4.65) rectangle +(4.05,0.72);
   \fill[MidBlue] (12.05,4.65) rectangle +(0.23,0.72);
   \fill[ExactGreen] (12.28,4.65) rectangle +(0.68,0.72);
@@ -122,7 +122,7 @@
   \node[text=white,font=\bfseries] at (13.30,5.01) {3};
   \node[text=white,font=\bfseries] at (13.98,5.01) {3};
   \node[text=white,font=\bfseries] at (14.55,5.01) {2};
-  \foreach \y/\c/\t in {3.95/AcademicBlue/{18  Portable exact},3.35/MidBlue/{1  Large checked trace by hash},2.75/ExactGreen/{3  Exact exhaustive},2.15/TheoremBrown/{3  Theorem transfer},1.55/NumericalRed/{3  Numerical closure},0.95/MixedPurple/{2  Mixed evidence}}{
+  \foreach \y/\c/\t in {3.95/AcademicBlue/{18  Portable exact},3.35/MidBlue/{1  Large checked trace by hash},2.75/ExactGreen/{3  Exact exhaustive},2.15/TheoremBrown/{3  Theorem transfer},1.55/NumericalRed/{3  Floating-point optimality},0.95/MixedPurple/{2  Mixed evidence}}{
     \fill[\c,rounded corners=1pt] (8.0,\y) rectangle +(0.28,0.28);
     \node[anchor=west,text=Ink] at (8.46,\y+0.14) {\t};
   }
@@ -165,9 +165,9 @@ Audience & Mixed-integer optimization, exact algorithms, automated reasoning, an
 
 \textbf{Short answer.} Language models helped materially as research copilots, especially in semantic recovery, state-space redesign, experiment construction, falsification, and proof orchestration. They did not replace mixed-integer solvers, SAT engines, exact enumeration, or deterministic checking. The durable contribution of the \texttt{\detokenize{MIPLIB_openproblem}} project is the loop connecting LLM-generated hypotheses to independently checkable mathematical objects.
 
-On the fixed 4 September 2026 snapshot of 217 officially open MIPLIB instances, the LLM-assisted campaign studied 112 current open instances and retained one historical calibration instance. The reconciled working tree supports 30 global conclusions among the 112 studied instances: 28 optimal values and two infeasibility results. Eighty two studied instances remain globally unresolved. These numbers describe repository evidence, not updates to the official MIPLIB status pages, and they do not estimate a success probability because instance selection and research budgets were nonuniform \sourcecite{ref:repo}.
+On the fixed 4 September 2026 snapshot of 217 officially open MIPLIB instances, the LLM-assisted campaign studied 112 current open instances and retained one historical calibration instance. The reconciled working tree supports 30 evidence-graded optimality or infeasibility results among the 112 studied instances: 28 optimal objective values and two infeasibility results. Eighty two studied instances remain globally unresolved. These numbers describe repository evidence, not updates to the official MIPLIB status pages, and they do not estimate a success probability because instance selection and research budgets were nonuniform \sourcecite{ref:repo}.
 
-The repository also records 21 improvements over existing MIPLIB v36 primal values, four first finite incumbents, and 41 improved lower bounds relative to a frozen historical COPT 10 hour table. These are different, overlapping outcomes of the campaign. They are not 96 distinct wins, the primal and dual counts do not share a baseline, and the lower-bound comparison is not a same-hardware or same-budget solver benchmark.
+The repository also records 21 primal-bound improvements over existing MIPLIB v36 incumbent values, four first finite incumbents, and 41 dual-bound improvements relative to a frozen historical COPT 10 hour table. These are different, overlapping outcomes of the campaign. They are not 96 distinct wins, the primal and dual counts do not share a baseline, and the dual-bound comparison is not a same-hardware or same-budget solver benchmark.
 
 The central findings are:
 
@@ -175,25 +175,25 @@ The central findings are:
 \item The LLM was most useful when it helped replace a large anonymous formulation by a smaller object: a tree, interval order, parity argument, finite cutoff, or proof-producing SAT instance.
 \item Construction and proof remain different pipelines. A strong feasible solution does not prove a lower bound, and a lower bound does not supply a witness.
 \item Solvers search and bound; deterministic checkers decide what survives. Reduced-model optimality, local infeasibility, and unchecked SAT unsatisfiability remain scoped statements.
-\item The strongest direct comparison is mixed. In a nonrandomized 20-instance study, the structure arm recorded better selected primals and two exact closures, while the comparison arm more often retained stronger numerical dual bounds.
+\item The strongest direct comparison is mixed. In a nonrandomized 20-instance study, the structure arm produced stronger primal bounds under the archived $10^{-7}$ comparison rule and two exact global optimality certificates, while the comparison arm more often retained stronger numerical dual bounds.
 \item The campaign counts establish research output, not sole LLM causation or a universal success rate.
 \end{enumerate}
 
 \section{Research question: what counts as help?}
 
-The capability question has four outcome dimensions: strict primal progress, a valid global dual improvement, a supported global conclusion, and proof portability. An LLM can contribute by interpreting the matrix, proposing a representation, designing a falsification test, or generating a checker. The claim itself counts only after the appropriate solver, exact computation, original-MPS audit, or proof replay succeeds.
+The capability question has four outcome dimensions: a strict primal-bound improvement, a valid global dual-bound improvement, an evidence-supported optimality or infeasibility result, and proof portability. An LLM can contribute by interpreting the matrix, proposing a representation, designing a falsification test, or generating a checker. The claim itself counts only after the appropriate solver, exact computation, original-MPS audit, or proof replay succeeds.
 
 For a minimization problem, the project uses the basic proof obligation \(\mathbf{LB \leq OPT \leq UB}\), with global optimality established only when a valid lower bound and a strictly feasible upper bound coincide.
 
-The phrase \textbf{open instance} is frozen to the MIPLIB open list downloaded on 4 September 2026 \sourcecite{ref:miplib}. It means the official record at that snapshot did not contain a global closure. It does not mean that no later local computation, external construction, or published theorem exists. The project therefore separates three statuses:
+The phrase \textbf{open instance} is frozen to the MIPLIB open list downloaded on 4 September 2026 \sourcecite{ref:miplib}. It means the official record at that snapshot did not report global optimality or infeasibility. It does not mean that no later local computation, external construction, or published theorem exists. The project therefore separates three statuses:
 
 \begin{itemize}
 \item the official status in the frozen MIPLIB snapshot;
-\item the conclusion supported by the repository evidence; and
-\item whether that conclusion has a portable, independently replayable proof.
+\item the optimality or infeasibility result supported by the repository evidence; and
+\item whether that result has a portable, independently replayable proof.
 \end{itemize}
 
-The numerical baseline for this report is the 16 September 2026 presentation \sourcecite{ref:deck} and the 14 September dual bound audit \sourcecite{ref:audit}, reconciled with the two 18 September working tree reviews. The 14 September audit upgrades the five \texttt{\detokenize{fhnw-schedule-pair}} instances from solver based closures to exact branch and dual certificates and corrects several terminal decimal digits.
+The numerical baseline for this report is the 16 September 2026 presentation \sourcecite{ref:deck} and the 14 September dual bound audit \sourcecite{ref:audit}, reconciled with the two 18 September working tree reviews. The 14 September audit upgrades the five \texttt{\detokenize{fhnw-schedule-pair}} instances from solver-based optimality results to exact branch-and-dual certificates and corrects several terminal decimal digits.
 
 The uncommitted 18 September first five review is treated as a supplement \sourcecite{ref:first-five}. It hardens the \texttt{\detokenize{assign1-10-4}} and \texttt{\detokenize{fhnw-binschedule0}} checks and fills a proof scope gap in \texttt{\detokenize{cvrpp-n16k8vrpi}} by covering every nonempty route count from one through fifteen. Because that package is not yet in the published commit, this report marks the CVRPP classification as pending integration even though the supplemental audit again obtains value 450.
 
@@ -215,17 +215,17 @@ Self-contained portable exact certificate & 17 & 1 & 18\textsuperscript{*} & Ori
 Checked exact result with large trace stored outside Git by hash & 1 & 0 & 1 & Compact mapping and logs are local; the 2.65 GiB proof trace must be obtained or regenerated \\
 Specialized exact exhaustive computation without standalone trace & 3 & 0 & 3 & Exact program and output are archived, but not a small independent proof object \\
 Exact model crosswalk plus published result & 2 & 1 & 3 & Local mapping is checked; the external theorem or computation is accepted rather than replayed \\
-Floating-point solver closure & 3 & 0 & 3 & Strict primal audit plus commercial global lower bound; no portable exact lower bound trace \\
+Floating-point solver optimality result & 3 & 0 & 3 & Strict primal audit plus commercial global lower bound; no portable exact lower bound trace \\
 Mixed database and computational argument & 2 & 0 & 2 & Exact projection is combined with external benchmark values and commercial exclusions \\
 \textbf{Total} & \textbf{28} & \textbf{2} & \textbf{30} &  \\
 \bottomrule
 \end{tabularx}
 \rowcolors{2}{}{}
-\caption{Reconciled working tree evidence classification for the 30 repository supported global conclusions.}
+\caption{Reconciled working tree evidence classification for the 30 repository-supported optimality or infeasibility results.}
 \label{tab:evidence}
 \end{table}
 
-The 18 portable exact conclusions include the five exact FHNW scheduling certificates completed in the 14 September audit. The table gives a reconciled working tree classification, not a commit only classification. The asterisk marks one material qualification: the committed CVRPP proof fixed eight routes even though the compiled model permits up to fifteen vehicle slots. The uncommitted supplement closes that scope gap; until it is integrated, the portable classification should carry this audit note. The exact exhaustive class has three members after the two g31 conclusions were removed. The three literature transfers rely on exact local crosswalks to externally published results \sourcecite{ref:circ-paper}\sourcecite{ref:a2864-paper}\sourcecite{ref:pythago-paper}.
+The 18 portable exact optimality or infeasibility results include the five exact FHNW scheduling certificates completed in the 14 September audit. The table gives a reconciled working tree classification, not a commit only classification. The asterisk marks one material qualification: the committed CVRPP proof fixed eight routes even though the compiled model permits up to fifteen vehicle slots. The uncommitted supplement closes that scope gap; until it is integrated, the portable classification should carry this audit note. The exact exhaustive class has three members after the two g31 results were removed. The three literature transfers rely on exact local crosswalks to externally published results \sourcecite{ref:circ-paper}\sourcecite{ref:a2864-paper}\sourcecite{ref:pythago-paper}.
 
 This evidence model also defines what weaker artifacts do not prove:
 
@@ -264,7 +264,7 @@ Independent checker & Audits the original MPS, mappings, witnesses, proof traces
 The recurring protocol can be summarized as follows.
 
 \begin{enumerate}
-\item \textbf{Freeze the target claim.} Decide whether the goal is a primal improvement, a dual bound, feasibility, infeasibility, or global closure.
+\item \textbf{Freeze the target claim.} Decide whether the goal is a primal-bound improvement, a dual-bound improvement, feasibility, infeasibility, or a global optimality certificate.
 \item \textbf{Read the untouched MPS.} Record variable domains, objective support, row senses, coefficient patterns, sparsity, repeated columns, numerical scales, and candidate graph or block structure.
 \item \textbf{Recover semantics and provenance.} Identify the underlying problem family, sibling formulations, public solutions, and relevant theorems without treating names or metadata as proof.
 \item \textbf{Form falsifiable structural hypotheses.} Each proposed reduction or inequality is paired with a small counterexample search or exact consistency check.
@@ -295,9 +295,9 @@ The key design principle is that expression complexity and combinatorial complex
 \midrule
 Open instances in frozen 4 September snapshot & 217 & Historical universe, not a live status query \\
 Current open instances studied & 112 & Plus one historical calibration instance, \texttt{\detokenize{rmine14}} \\
-Repository supported global conclusions & 30 & 28 optimal and 2 infeasible \\
+Repository-supported optimality or infeasibility results & 30 & 28 optimal and 2 infeasible \\
 Studied but globally unresolved & 82 & Includes useful primal, dual, structural, and negative results \\
-Closure fraction within studied set & 26.8 percent & Descriptive only; selection and budgets were nonuniform \\
+Optimality/infeasibility result fraction within studied set & 26.8 percent & Descriptive only; selection and budgets were nonuniform \\
 \bottomrule
 \end{tabularx}
 \rowcolors{2}{}{}
@@ -305,11 +305,11 @@ Closure fraction within studied set & 26.8 percent & Descriptive only; selection
 \label{tab:coverage}
 \end{table}
 
-\subsection{Primal and dual progress}
+\subsection{Primal- and dual-bound results}
 
-The repository counts 21 numerical improvements over the official MIPLIB v36 solution baseline \sourcecite{ref:v36} and four first finite incumbents, for 25 primal advances. The count includes two \texttt{\detokenize{fastxgemm}} improvements derived from an attributed external construction; the independent project contribution is the truncation, mapping, and strict verification, not authorship of the parent construction. The published R23 construction is reproduced but not counted as a project primal improvement.
+The repository counts 21 primal-bound improvements relative to the official MIPLIB v36 incumbent baseline \sourcecite{ref:v36} and four first finite incumbents, for a total of 25 instances with either a primal-bound improvement or a first finite incumbent. The count includes two \texttt{\detokenize{fastxgemm}} improvements derived from an attributed external construction; the independent project contribution is the truncation, mapping, and strict verification, not authorship of the parent construction. The published R23 construction is reproduced but not counted as a project primal-bound improvement.
 
-The 41 lower-bound advantages compare repository bounds with displayed values in a frozen historical COPT 10 hour table \sourcecite{ref:copt-table}. They mix exact certificates, theorem transfers, commercial solver bounds, and numerical evidence. They therefore measure archived bound progress, not solver speed. Two notable exact but still nonclosing bounds are \texttt{\detokenize{graphdraw-mainerd >= 31,882}} and \texttt{\detokenize{graphdraw-opmanager >= 58,950}}.
+The 41 dual-bound improvements compare repository dual bounds with displayed lower bounds in a frozen historical COPT 10 hour table \sourcecite{ref:copt-table}. They mix exact certificates, theorem transfers, commercial solver bounds, and numerical evidence. They therefore quantify archived dual-bound improvements relative to that historical table, not solver speed. Two notable exact but still nonclosing dual bounds are \texttt{\detokenize{graphdraw-mainerd >= 31,882}} and \texttt{\detokenize{graphdraw-opmanager >= 58,950}}.
 
 \subsection{Verification performed for this report}
 
@@ -324,13 +324,13 @@ These replays do not cover the external theorem computations, the absent 2.65 Gi
 
 \section{Closest available comparison: a mixed result}
 
-A separate historical study compared a structure research skill with a run that did not invoke it on twenty instances \sourcecite{ref:comparison}. Under its absolute \texttt{\detokenize{1e-7}} selected-primal rule, the structure arm recorded better values on eleven instances and tied on nine. It recorded two exact global closures, versus none in the comparison arm. Six selected values were tolerance indexed rather than strict incumbents; against strict public baselines, the improvement counts were four for the structure arm and two for the comparison arm. The comparison arm retained stronger dual bounds on twelve of twenty instances and smaller common gaps on eleven of twenty. The structure arm's two closures, \texttt{\detokenize{ns1456591}} and \texttt{\detokenize{neos-3682128-sandon}}, remain in that separate comparison archive and are not integrated into the canonical 112-instance, 30-conclusion inventory.
+A separate historical study compared a structure research skill with a run that did not invoke it on twenty instances \sourcecite{ref:comparison}. Under its absolute \texttt{\detokenize{1e-7}} tolerance for primal-bound comparisons, the structure arm produced a stronger primal bound on eleven instances and tied on nine. It produced two exact global optimality certificates, versus none in the comparison arm. Six skill-arm primal bounds were tolerance indexed rather than strict incumbents; against strict public baselines, the improvement counts were four for the structure arm and two for the comparison arm. The comparison arm retained stronger dual bounds on twelve of twenty instances and smaller symmetric relative optimality gaps, computed as $|P-D|/\max\{1,|P|,|D|\}$, on eleven of twenty. The structure arm's two exact optimality certifications, \texttt{\detokenize{ns1456591}} and \texttt{\detokenize{neos-3682128-sandon}}, remain in that separate comparison archive and are not integrated into the canonical inventory of 30 evidence-graded optimality or infeasibility results across 112 studied instances.
 
 This is observational evidence, not a causal estimate. The runs were not randomized, blinded, or equal budget; machines, starts, solver states, and stopping decisions differed. The defensible conclusion is operational:
 
 \begin{itemize}
 \item structure-first work is valuable for semantic recovery, new representations, primal construction, certificate design, and original-model audit;
-\item a protected generic solver budget remains valuable for numerical dual progress when the structural route does not close the instance.
+\item a protected generic solver budget remains valuable for numerical dual-bound improvement when the structural route does not establish global optimality or infeasibility.
 \end{itemize}
 
 The comparison therefore supports a hybrid research design rather than replacing branch and bound with a language model.
@@ -381,7 +381,7 @@ The limitation is equally explicit: the complete CNF, DRAT, and LRAT artifacts t
 
 The archive is unusually useful because it records incorrect turns and their scope.
 
-An early FHNW scheduling route interpreted a latest start bound as a completion deadline. That missing duration term produced invalid energy cuts and apparent zero gaps. Original model counterexamples forced the dual claims to be withdrawn. The final five proofs use safe release suffix relaxations, complete binary branch trees, exact rational leaf duals, and full original MPS witnesses. The correction changed both the mathematics and the evidence grade.
+An early FHNW scheduling route interpreted a latest start bound as a completion deadline. That missing duration term produced invalid energy cuts and apparent zero primal-dual gaps. Original model counterexamples forced the dual claims to be withdrawn. The final five proofs use safe release suffix relaxations, complete binary branch trees, exact rational leaf duals, and full original MPS witnesses. The correction changed both the mathematics and the evidence grade.
 
 Other recurring failure modes include:
 
@@ -399,7 +399,7 @@ The response is a persistent experimental ledger. Each result states the precise
 
 \section{Remaining research frontier}
 
-The 82 unresolved studied instances contain more than unfinished solver runs. Many already have exact intervals, verified reductions, completed local exclusions, or proof kernels. The frozen continuation ranking \sourcecite{ref:ranking} predates the two g31 qualifications and therefore covers 80 of the 82 current unresolved instances. It argues that the best next target is not necessarily the smallest displayed gap. Priority should instead go to an instance already reduced to a small auditable decision problem with a plausible certificate route.
+The 82 unresolved studied instances contain more than unfinished solver runs. Many already have exact intervals, verified reductions, completed local exclusions, or proof kernels. The frozen continuation ranking \sourcecite{ref:ranking} predates the two g31 qualifications and therefore covers 80 of the 82 current unresolved instances. It argues that the best next target is not necessarily the smallest displayed primal-dual gap. Priority should instead go to an instance already reduced to a small auditable decision problem with a plausible certificate route.
 
 The leading continuation portfolio in the 9 September snapshot is:
 
@@ -407,7 +407,7 @@ The leading continuation portfolio in the 9 September snapshot is:
 \item \texttt{\detokenize{graph40-20-1rand}}, where a sibling SAT and LRAT template suggests a direct 16 cut refutation after graph identity is certified;
 \item \texttt{\detokenize{genus-sym-g62-2}}, where only a small recorded frontier remains in an exact face search;
 \item \texttt{\detokenize{genus-g61-25}}, where the next even face target is finite and checkpointed;
-\item \texttt{\detokenize{ns1828997}}, where a very small strict gap and objective lattice make a cutoff proof plausible after exact reproduction.
+\item \texttt{\detokenize{ns1828997}}, where a very small strict primal-dual gap and objective lattice make a cutoff proof plausible after exact reproduction.
 \end{enumerate}
 
 The ranking is a research allocation heuristic, not a calibrated probability of solution. Each continuation needs a stage gate that confirms the required inputs, mapping, and proof backend before a long run.
@@ -416,19 +416,19 @@ The ranking is a research allocation heuristic, not a calibrated probability of 
 
 \subsection{Selection and budget bias}
 
-The 112 studied instances were not sampled randomly, and the project preferentially pursued visible structure, tractable certificates, and promising siblings. Research budgets varied. The ratio 30 divided by 112 is therefore a historical closure fraction, not a general success rate.
+The 112 studied instances were not sampled randomly, and the project preferentially pursued visible structure, tractable certificates, and promising siblings. Research budgets varied. The ratio 30 divided by 112 is therefore the historical fraction with an evidence-supported optimality or infeasibility result, not a general success rate.
 
 \subsection{Evidence heterogeneity}
 
-Exact certificates, specialized exhaustive programs, published theorems, commercial zero gap logs, and mixed database arguments do not provide the same portability. Aggregate counts must preserve their evidence mix.
+Exact certificates, specialized exhaustive programs, published theorems, commercial-solver logs reporting zero primal-dual gaps, and mixed database arguments do not provide the same portability. Aggregate counts must preserve their evidence mix.
 
 \subsection{Official status lag}
 
-Repository conclusions may postdate the frozen MIPLIB solution file or remain unreviewed upstream. This report never treats a repository closure as an official status change.
+Repository results may postdate the frozen MIPLIB solution file or remain unreviewed upstream. This report never treats a repository-supported optimality or infeasibility result as an official status change.
 
 \subsection{External and missing artifacts}
 
-The large BPPC trace is external by hash; literature computations were not replayed; three exact exhaustive results lack compact independent traces; three closures are floating-point solver closures; two mixed CVRP conclusions additionally depend on commercial route-count exclusions; and seventeen instance folders retain provenance rather than a local MPS copy. The two 18 September reconciliation audits are uncommitted source-repository working tree supplements and are not bundled with LLM4MIP, so public readers cannot replay them until they are published or copied into a stable evidence package.
+The large BPPC trace is external by hash; literature computations were not replayed; three exact exhaustive results lack compact independent traces; three optimality results rely on floating-point solver bounds; two mixed CVRP optimality results additionally depend on commercial route-count exclusions; and seventeen instance folders retain provenance rather than a local MPS copy. The two 18 September reconciliation audits are uncommitted source-repository working tree supplements and are not bundled with LLM4MIP, so public readers cannot replay them until they are published or copied into a stable evidence package.
 
 \subsection{Reproducibility details}
 
@@ -459,24 +459,24 @@ The archive already follows much of this contract, but the supplemental audits s
 
 \section{Conclusion}
 
-How much can LLMs help solve MIPs? This campaign shows material assistance: the archive records 30 supported global conclusions, 25 primal advances, and 41 historical lower-bound advantages across 112 studied open instances. The closest 20-instance comparison also records an operational advantage in selected primals and exact closures. None of those counts isolates the LLM's marginal contribution, estimates a randomized causal effect, defines a universal success rate, or shows that the language model can replace an optimizer.
+How much can LLMs help solve MIPs? This campaign shows material assistance: across 112 studied open instances, the archive records 30 evidence-graded optimality or infeasibility results, 25 instances with either a primal-bound improvement or a first finite incumbent, and 41 dual-bound improvements relative to a frozen historical table. In the closest 20-instance comparison, the structure arm produced stronger primal bounds on eleven instances under the archived comparison rule and two exact global optimality certificates. None of those counts isolates the LLM's marginal contribution, estimates a randomized causal effect, defines a universal success rate, or shows that the language model can replace an optimizer.
 
 The defensible conclusion is narrower and more useful. LLMs can materially expand the search for semantics, representations, falsification tests, and certificate routes. Generic solvers remain essential for numerical search and bounds; exact scripts, original-MPS audits, and proof systems enforce the boundary between a plausible idea and a proved statement.
 
-The strongest examples are changes of state space rather than parameter searches: even capacity becomes parity, network design becomes a tree dynamic program, scheduling becomes an interval chain cover, and a narrow packing cutoff becomes a proof-producing SAT instance. The reusable scientific asset is the loop that connects those representations back to the original MPS and assigns each conclusion the evidence grade it actually earns. The most valuable AI contribution is often a smaller question whose answer can be independently checked.
+The strongest examples are changes of state space rather than parameter searches: even capacity becomes parity, network design becomes a tree dynamic program, scheduling becomes an interval chain cover, and a narrow packing cutoff becomes a proof-producing SAT instance. The reusable scientific asset is the loop that connects those representations back to the original MPS and assigns each result the evidence grade it actually earns. The most valuable AI contribution is often a smaller question whose answer can be independently checked.
 
-\clearpage\appendix\section{Reconciled repository supported global conclusions}
+\clearpage\appendix\section{Reconciled repository-supported optimality and infeasibility results}
 
-Abbreviations: \texttt{\detokenize{PE}} portable exact certificate; \texttt{\detokenize{HP}} checked exact proof with large trace external by hash; \texttt{\detokenize{EX}} specialized exact exhaustive computation; \texttt{\detokenize{LT}} exact crosswalk plus published theorem or result; \texttt{\detokenize{NS}} numerical solver closure; \texttt{\detokenize{MX}} mixed database and computational evidence.
+Abbreviations: \texttt{\detokenize{PE}} portable exact certificate; \texttt{\detokenize{HP}} checked exact proof with large trace external by hash; \texttt{\detokenize{EX}} specialized exact exhaustive computation; \texttt{\detokenize{LT}} exact crosswalk plus published theorem or result; \texttt{\detokenize{NS}} floating-point solver optimality result; \texttt{\detokenize{MX}} mixed database and computational evidence.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.385\textwidth}>{\raggedright\arraybackslash}p{0.425\textwidth}>{\centering\arraybackslash}p{0.11\textwidth}}
-\caption{Reconciled repository supported global conclusions and evidence grades.}\label{tab:global-conclusions}\\
+\caption{Reconciled repository-supported optimality and infeasibility results with evidence grades.}\label{tab:global-conclusions}\\
 \toprule
-\textbf{Instance} & \textbf{Conclusion} & \textbf{Grade} \\ \midrule
+\textbf{Instance} & \textbf{Optimality / infeasibility result} & \textbf{Grade} \\ \midrule
 \endfirsthead
 \multicolumn{3}{l}{\sffamily\small\itshape Continued from the previous page}\\
 \toprule
-\textbf{Instance} & \textbf{Conclusion} & \textbf{Grade} \\ \midrule
+\textbf{Instance} & \textbf{Optimality / infeasibility result} & \textbf{Grade} \\ \midrule
 \endhead
 \midrule\multicolumn{3}{r}{\sffamily\small\itshape Continued on the next page}\\
 \endfoot
@@ -507,7 +507,7 @@ Abbreviations: \texttt{\detokenize{PE}} portable exact certificate; \texttt{\det
 \texttt{\detokenize{a2864-99blp}} & OPT = -257 & LT \\
 \texttt{\detokenize{neos-3594536-henty}} & OPT approximately 401,092 & NS \\
 \texttt{\detokenize{neos-2978205-isar}} & OPT approximately -11.925808687 & NS \\
-\texttt{\detokenize{minutedispatchstrategy}} & repository closure approximately 3,109.9034777596576 & NS\textsuperscript{\(\dagger\)} \\
+\texttt{\detokenize{minutedispatchstrategy}} & solver-supported optimum approximately 3,109.9034777596576 & NS\textsuperscript{\(\dagger\)} \\
 \texttt{\detokenize{cvrpb-n45k5vrpi}} & OPT = 751 & MX \\
 \texttt{\detokenize{cvrpa-n64k9vrpi}} & OPT = 1,401 & MX \\
 \texttt{\detokenize{fhnw-binpack4-58}} & infeasible & PE \\
@@ -515,7 +515,7 @@ Abbreviations: \texttt{\detokenize{PE}} portable exact certificate; \texttt{\det
 \end{longtable}
 
 \Needspace{4\baselineskip}
-{\footnotesize\itshape \textsuperscript{*}CVRPP's portable grade uses the 18 September local scope supplement, which is pending integration into the published commit. \quad \textsuperscript{\(\dagger\)}The minutedispatchstrategy closure retains an unresolved discrepancy with an older unavailable-PDF primal value. The two g31 models are excluded because their saved $-23$ points fail literal exact-decimal MPS feasibility by $10^{-15}$, although their lower bounds and native graph optima are confirmed.\par}
+{\footnotesize\itshape \textsuperscript{*}CVRPP's portable grade uses the 18 September local scope supplement, which is pending integration into the published commit. \quad \textsuperscript{\(\dagger\)}The solver-supported optimum for minutedispatchstrategy retains an unresolved discrepancy with an older unavailable-PDF primal value. The two g31 models are excluded because their saved $-23$ points fail literal exact-decimal MPS feasibility by $10^{-15}$, although their lower bounds and native graph optima are confirmed.\par}
 
 \section*{References}\addcontentsline{toc}{section}{References}
 

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** -656,214.95420 (strict)
-- **Best bound or certificate:** no new bound
-- **Study finding:** Exact fixed-unassigned 224-block categorical neighborhood closed; global optimum open
+- **Primal bound / feasibility:** -656,214.95420 (strict)
+- **Dual bound / certificate:** no new bound
+- **Optimization status and evidence:** Exact fixed-unassigned 224-block categorical neighborhood closed; global optimum open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `bab3-findings.tar.gz`
-- **Compressed bytes:** `2787`
-- **SHA-256:** `3df35668de3f796de97ef433fac7d2a53682547bd376608931535855f50fd0ec`
+- **Compressed bytes:** `2798`
+- **SHA-256:** `ee92287d0af396c32cc34f469e297ff839b219a428330abc995fad4b8ba5ad99`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/bab3/README.md

@@ -2,16 +2,16 @@
 
 > Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Finding and progress
+## Instance-level optimization result
 
 - **Campaign status:** Verified feasible; open
-- **Best verified result:** 19,108,639.4603941927675439822 (strict repair)
-- **Best bound or certificate:** 18,853,382.0323116 (solver; 1.3358% gap)
-- **Study finding:** 1,200 s root-cut LB improves archived PDF-only LB by about 76,817.9; 74/74 blocks and 6 selected groups closed conditionally; global optimum open
+- **Primal bound / feasibility:** 19,108,639.4603941927675439822 (strict repair)
+- **Dual bound / certificate:** 18,853,382.0323116 (solver dual bound; 1.3358% gap)
+- **Optimization status and evidence:** A 1,200 s root-cut run improves the archived PDF-only dual bound by approximately 76,817.9; all 74 blocks and six selected groups were solved to conditional optimality; global optimum remains open
 
 ## Interpretation
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
+The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
 ## Experiment workflow
 
@@ -34,6 +34,6 @@ Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP w
 ## Package integrity
 
 - **Archive:** `sing11-findings.tar.gz`
-- **Compressed bytes:** `697663`
-- **SHA-256:** `c6e7e2cf9576d8ae6486ceb1f33e3a6982d7942c1820168bc9366c55c5c40c3a`
+- **Compressed bytes:** `697687`
+- **SHA-256:** `d68fff27ddcdaeec33033a947350881c640e036decca692db72b9e3913e8f02c`
 - **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/sing11/README.md
