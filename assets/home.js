@@ -32,8 +32,8 @@
       ]
     },
     skill: {
-      title: "Primal-skill and dual-skill vs general AI and no-skill solver",
-      note: "General AI is the historical AI + solver workflow without the dedicated skills. No-skill solver uses the best recorded COPT/Gurobi bounds. All 20 cases count under the original acceptance tolerances. ns1456591 is accepted at 1e-6; its numerical advantage is tolerance-level, not an improvement beyond the exact optimum. Budgets and resources differ.",
+      title: "Solver + primal/dual skill vs Vanilla prompting and solver baseline",
+      note: "Vanilla prompting is the historical LLM + solver workflow without the dedicated primal/dual skills. The solver baseline uses the best recorded COPT/Gurobi bounds. All 20 cases count under the original acceptance tolerances. ns1456591 is accepted at 1e-6; its numerical advantage is tolerance-level, not an improvement beyond the exact optimum. Budgets and resources differ.",
       mode: "paired", items: []
     }
   };
@@ -63,12 +63,13 @@
     if (key==='skill') {
       explanationHeading.hidden=true;table.classList.remove('has-explanations');
       const grid=document.createElement('div');grid.className='skill-objective-grid';
-      const groups=[['Primal-skill vs general AI','ai_primal_skill_outcome'],['Primal-skill vs no-skill solver','solver_primal_skill_outcome'],['Dual-skill vs general AI','ai_dual_skill_outcome'],['Dual-skill vs no-skill solver','solver_dual_skill_outcome']];
+      const groups=[['Solver + primal skill vs Vanilla prompting','ai_primal_skill_outcome'],['Solver + primal skill vs solver baseline','solver_primal_skill_outcome'],['Solver + dual skill vs Vanilla prompting','ai_dual_skill_outcome'],['Solver + dual skill vs solver baseline','solver_dual_skill_outcome']];
       for(const [label,statKey] of groups) {
         const counts=window.FOCUSED_SKILL_DATA.stats[statKey];
         const card=document.createElement('article');const heading=document.createElement('h4');heading.textContent=label;
         const stack=document.createElement('div');stack.className='stack';stack.setAttribute('role','img');
-        const parts=[['win','Skill better',palette[0]],['tie','Tie',palette[1]],['loss','Baseline better',palette[2]]];
+        const baselineLabel=statKey.startsWith('ai_')?'Vanilla prompting better':'Solver baseline better';
+        const parts=[['win','Solver + skill better',palette[0]],['tie','Tie',palette[1]],['loss',baselineLabel,palette[2]]];
         const detail=document.createElement('p');detail.className='chart-note';
         stack.setAttribute('aria-label',parts.map(([k,l])=>`${l}: ${counts[k]||0}`).join('; '));
         detail.classList.add('overview-skill-legend');

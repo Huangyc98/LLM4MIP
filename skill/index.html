@@ -11,7 +11,7 @@
     gtag('config', 'G-JNJSLE077H');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Download primal-skill and dual-skill and review their retrospective 20-instance comparison.">
+  <meta name="description" content="Download the primal and dual skills and review the 20-instance comparison of Solver + primal/dual skill with Vanilla prompting.">
   <title>Skill-Based Workflow Comparison | LLM4MIP</title>
   <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -70,23 +70,23 @@
         </div>
         <div class="download-grid">
           <article class="download-card">
-            <h3>Primal-skill and dual-skill arms</h3>
-            <p>Primal-skill and dual-skill call MIP solvers, including Gurobi and COPT, to solve the same 20 instances, with an overall runtime limit of 150 minutes per instance for each skill.</p>
+            <h3>Solver + primal/dual skill</h3>
+            <p>An LLM uses the dedicated primal and dual skills together with MIP solvers, including Gurobi and COPT, on the same 20 instances. Each skill was given an overall runtime limit of 150 minutes per instance.</p>
           </article>
           <article class="download-card">
-            <h3>Comparison arm</h3>
-            <p>An archived comparison workflow on the same 20 minimization instances that did not use this specific skill. It still used computational tools and problem-specific methods; it is not a “solver-only” control.</p>
+            <h3>Vanilla prompting</h3>
+            <p>An archived LLM + solver workflow on the same 20 minimization instances, run without the dedicated primal/dual skills. It still used computational tools and problem-specific methods; it is not a solver-only control.</p>
           </article>
         </div>
-        <p>Both skill experiments used five batches of four instances, with checkpoints every 30 minutes and batch barriers. The comparison arm is the historical no-skill AI workflow. Solver comparisons take the best valid bounds from the recorded solver runs. Downloads above are current skills; the <a href="../downloads/primal-frozen-skill.tar.gz">frozen primal-skill</a> and <a href="../downloads/dual-frozen-skill.tar.gz">frozen dual-skill</a> versions produced these experimental results.</p>
+        <p>Both skill-assisted experiments used five batches of four instances, with checkpoints every 30 minutes and batch barriers. Vanilla prompting is the historical workflow without the dedicated skills. Solver-baseline comparisons take the best valid bounds from the recorded solver runs. Downloads above are current skills; the <a href="../downloads/primal-frozen-skill.tar.gz">frozen primal-skill</a> and <a href="../downloads/dual-frozen-skill.tar.gz">frozen dual-skill</a> versions produced these experimental results.</p>
       </section>
 
 <section id="results" class="section">
 <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Paired results</p><h2>Observed differences in primal and dual bounds</h2></div><a href="../downloads/primal-dual-comparison.csv">Download all 20 rows</a></div>
-<p class="note">This table uses dedicated primal-skill and dual-skill runs. Solver selects the best valid primal and dual bounds across the recorded COPT and Gurobi runs; it is a post-hoc combination, not one solver run.</p><div class="panel"><div class="tabs focused-tabs" aria-label="Skill comparison">
-<button data-focused="gap" aria-pressed="true">Combined gap vs AI</button><button data-focused="solver" aria-pressed="false">Combined gap vs solver</button><button data-focused="primal" aria-pressed="false">Primal</button><button data-focused="dual" aria-pressed="false">Dual</button>
+<p class="note">This table reports the Solver + primal/dual skill workflow, combining dedicated primal-skill and dual-skill runs. The solver baseline selects the best valid primal and dual bounds across the recorded COPT and Gurobi runs; it is a post-hoc combination, not one solver run.</p><div class="panel"><div class="tabs focused-tabs" aria-label="Skill comparison">
+<button data-focused="gap" aria-pressed="true">Primal &amp; dual skills vs Vanilla prompting</button><button data-focused="solver" aria-pressed="false">Primal &amp; dual skills vs Solver baseline</button><button data-focused="primal" aria-pressed="false">Primal skill vs Solver baseline</button><button data-focused="dual" aria-pressed="false">Dual skill vs Solver baseline</button>
 </div><h3 id="focused-title"></h3><p id="focused-note" class="chart-note" aria-live="polite"></p><div id="focused-chart" class="bar-list"></div></div>
-<div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Instance-level comparison results</p><h2>Inspect all 20 paired results</h2></div><a href="../downloads/primal-dual-comparison.csv">Download CSV</a></div><div class="controls"><div class="field"><label for="focused-search">Search instance, method, or final status</label><input id="focused-search" type="search" placeholder="Try “exact route” or “neos”"></div><div class="field"><label for="focused-filter">Outcome filter</label><select id="focused-filter"><option value="all">All 20</option><option value="win">Skill better</option><option value="tie">Tie</option><option value="loss">Baseline better</option></select></div></div>
+<div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Instance-level comparison results</p><h2>Inspect all 20 paired results</h2></div><a href="../downloads/primal-dual-comparison.csv">Download CSV</a></div><div class="controls"><div class="field"><label for="focused-search">Search instance, method, or final status</label><input id="focused-search" type="search" placeholder="Try “exact route” or “neos”"></div><div class="field"><label for="focused-filter">Outcome filter</label><select id="focused-filter"><option value="all">All 20</option><option value="win">Solver + skill better</option><option value="tie">Tie</option><option value="loss">Vanilla prompting better</option></select></div></div>
 <p id="focused-count" class="result-count" aria-live="polite"></p><p class="scroll-hint">Swipe sideways to see every column.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Skill comparison results"><table class="results-table"><thead><tr id="focused-head"></tr></thead><tbody id="focused-body"></tbody></table></div>
 <noscript><p>The charts and table require JavaScript. Headline outcomes are below; the complete CSV is downloadable above.</p></noscript>
 </section>
