@@ -1,45 +1,31 @@
 (function () {
   "use strict";
 
+  const campaign = window.CAMPAIGN_DATA;
   const views = {
     status: {
-      title: "What happened across the 112 studied instances?",
-      note: "These four categories partition the campaign. A resolved instance has established optimality or infeasibility evidence; official MIPLIB labels may not yet have changed.",
-      mode: "stack",
-      total: 112,
-      items: [
-        ["Certified optimality / infeasibility", 30, "#176b5b"],
-        ["Verified feasible; open", 75, "#006cb8"],
-        ["Pending strict verification", 3, "#8A4F00"],
-        ["No feasible point found", 4, "#8c1515"]
-      ]
+      title: `What happened across the ${campaign.instances} studied instances?`,
+      note: "These categories partition the campaign. The 34 conclusions include 32 optimal and two infeasible results; two genus optima accept residuals below 1e-10. Official MIPLIB labels may differ.",
+      mode: "stack", total: campaign.instances, items: campaign.statusItems
     },
     evidence: {
-      title: "How were the 30 optimality / infeasibility results verified?",
-      note: "This classifies verification form, not credit. Portable replay after discovery is different from LLM-only discovery.",
-      mode: "stack",
-      total: 30,
-      items: [
-        ["Portable exact certificate", 18, "#8c1515"],
-        ["Checked proof trace", 1, "#b1040e"],
-        ["Exhaustive exact verification", 3, "#176b5b"],
-        ["Published-theorem transfer", 3, "#620059"],
-        ["Floating-point zero-gap verification", 3, "#006cb8"],
-        ["Mixed computational evidence", 2, "#8A4F00"]
-      ]
+      title: `How were the ${campaign.closed} global conclusions verified?`,
+      note: "Verification forms have different evidence strength. Tolerance-accepted genus closures are separate from exact certificates; verification does not assign discovery credit.",
+      mode: "stack", total: campaign.closed, items: campaign.evidenceItems
     },
     skill: {
-      title: "How did the workflows compare on primal and dual bounds?",
-      note: "Paired historical results on 20 instances. The comparison was nonrandomized and unequal-resource, so these are observed outcomes—not a causal effect estimate.",
-      mode: "bars",
-      max: 20,
+      title: "Dedicated primal and dual skills, compared by objective",
+      note: "Against historical no-skill AI: primal has 9 wins, 9 ties, 1 loss and 1 excluded invalid candidate; dual has 17 wins, 1 tie and 2 losses. The combined gap uses best valid bounds after separate runs, with unequal resources.",
+      mode: "bars", max: 20,
       items: [
-        ["Primal bound: skill better", 11, "#8c1515"],
-        ["Primal bound: equal within 1e-7", 9, "#77736f"],
-        ["Dual bound: skill better", 8, "#8c1515"],
-        ["Dual bound: comparison better", 12, "#006cb8"],
-        ["Relative gap: skill smaller", 9, "#8c1515"],
-        ["Relative gap: comparison smaller", 11, "#006cb8"]
+        ["Primal-skill: better P", window.FOCUSED_SKILL_DATA.stats.primal_outcome.win, "#8c1515"],
+        ["Primal-skill: tied P", window.FOCUSED_SKILL_DATA.stats.primal_outcome.tie, "#77736f"],
+        ["Primal-skill: worse P", window.FOCUSED_SKILL_DATA.stats.primal_outcome.loss, "#006cb8"],
+        ["Primal-skill: excluded candidate", 1, "#8A4F00"],
+        ["Dual-skill: better D", window.FOCUSED_SKILL_DATA.stats.dual_outcome.win, "#8c1515"],
+        ["Dual-skill: tied D", window.FOCUSED_SKILL_DATA.stats.dual_outcome.tie, "#77736f"],
+        ["Dual-skill: worse D", window.FOCUSED_SKILL_DATA.stats.dual_outcome.loss, "#006cb8"],
+        ["Combined: smaller gap vs AI", window.FOCUSED_SKILL_DATA.stats.gap_outcome.win, "#176b5b"]
       ]
     }
   };

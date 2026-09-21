@@ -1,39 +1,32 @@
 # polygonpack5-15
 
-> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
+Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
 
-## Instance-level optimization result
+## Current result
 
-- **Campaign status:** Verified feasible; open
-- **Primal bound / feasibility:** -55,494,687.647606651289167114364938... (strict repair)
-- **Dual bound / certificate:** no new global lower bound
-- **Optimization status and evidence:** Improves the only audited official literal-zero solution but not the MIPLIB tolerance headline; global optimum open
+- Cohort: original112
+- Status: Accepted feasible; open
+- Primal: -55,494,687.647606651289167114364938... (strict repair)
+- Dual / certificate: no new global lower bound
+- Global conclusion: Not established
+- Evidence: See the stated numerical tolerances and source audits.
+- Project primal update vs MIPLIB v36: False (not_in_project_primal_table)
+- Dual improvement vs historical COPT 10h: False
 
-## Interpretation
+Improves the only audited official literal-zero solution but not the MIPLIB tolerance headline; global optimum open
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
-## Experiment workflow
 
-1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
-2. Profile the untouched formulation and propose falsifiable structural hypotheses.
-3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+## Evidence and provenance
 
-## Download bundle
+[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/polygonpack5-15/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
 
-The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
+The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
+The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
+and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
 
-## Provenance
+## Download scope
 
-Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
+The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
 
-- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
-- **Source README SHA-256:** `8ef27da1f430907eac6188b940efabcfa02860383ae149c3b4594548f548ceab`
-
-## Package integrity
-
-- **Archive:** `polygonpack5-15-findings.tar.gz`
-- **Compressed bytes:** `633270`
-- **SHA-256:** `71fe3c45de84d92f7cebcfcbd994a8980763a2fa6444d9910a2b1842db0ff471`
-- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/polygonpack5-15/README.md
+Archive SHA-256: `71fe3c45de84d92f7cebcfcbd994a8980763a2fa6444d9910a2b1842db0ff471`

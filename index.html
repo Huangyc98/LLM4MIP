@@ -11,11 +11,11 @@
     gtag('config', 'G-JNJSLE077H');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactive overview of how much LLM-assisted research helped on 112 open MIPLIB instances, with evidence-graded results and downloadable artifacts.">
+  <meta name="description" content="Interactive overview of how much LLM-assisted research helped on 132 open MIPLIB instances, with evidence-graded results and downloadable artifacts.">
   <meta name="author" content="Yicheng Huang, Wenzhi Gao, Dongdong Ge, Madeleine Udell, Yinyu Ye">
   <meta property="og:type" content="website">
   <meta property="og:title" content="How Much Can LLMs Help Solve MIPs?">
-  <meta property="og:description" content="A concise interactive overview of 112 open MIPLIB instances, certified optimality or infeasibility for 30 instances, and a paired workflow comparison.">
+  <meta property="og:description" content="A concise interactive overview of 132 open MIPLIB instances, 32 optimal and 2 infeasible results, and a paired workflow comparison.">
   <title>How Much Can LLMs Help Solve MIPs? | LLM4MIP</title>
   <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -25,7 +25,7 @@
     <nav class="nav-wrap" aria-label="Primary navigation">
       <a class="brand" href="index.html" aria-current="page">LLM4MIP <small>Evidence before claims</small></a>
       <div class="nav-links">
-        <a href="instances/">112 instances</a>
+        <a href="instances/">132 instances</a>
         <a href="skill/">Skill experiment</a>
         <a href="solver-replacement/">Replace solvers?</a>
         <!-- Temporarily hidden: <a href="technical-report.pdf">Report</a> -->
@@ -34,10 +34,10 @@
     </nav>
     <div class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">LLM-assisted mixed-integer programming · 18 September 2026</p>
+        <p class="eyebrow">LLM-assisted mixed-integer programming · 21 September 2026</p>
         <p class="author-line">Yicheng Huang<sup aria-label="co-lead author">*</sup>, Wenzhi Gao<sup aria-label="co-lead author">*</sup>, Dongdong Ge, Madeleine Udell, Yinyu Ye <span class="author-note"><sup aria-hidden="true">*</sup> Co-lead authors.</span></p>
         <h1>How much can LLMs help solve MIPs?</h1>
-        <p class="dek">LLM + Optimization solver solves 30/112 open instances from MIPLIB</p>
+        <p class="dek">LLM-assisted solver research: 32 optimal and 2 infeasible results across 132 MIPLIB instances</p>
         <div class="hero-actions">
           <a class="button light" href="#overview">Explore the overview</a>
           <!-- Temporarily hidden: <a class="button ghost" href="technical-report.pdf">Download the technical report</a> -->
@@ -49,16 +49,16 @@
 
   <main id="main" class="page-shell" tabindex="-1">
     <section class="metric-grid" aria-label="Campaign highlights">
-      <article class="metric"><strong>112</strong><span>open instances studied</span><small>One frozen research campaign; historical calibration excluded.</small></article>
-      <article class="metric"><strong>30</strong><span>certified optimality / infeasibility</span><small>28 certified optima and two certified infeasible instances.</small></article>
-      <article class="metric"><strong>25</strong><span>primal-bound improvements</span><small>21 improved incumbents relative to MIPLIB v36 plus four first finite primal bounds.</small></article>
-      <article class="metric"><strong>41</strong><span>dual-bound improvements</span><small>Relative to the displayed dual bounds in a frozen historical COPT table.</small></article>
+      <article class="metric"><strong data-campaign="instances">132</strong><span>instances studied</span><small>112 original cases + 20 subsequent cases; historical calibration excluded.</small></article>
+      <article class="metric"><strong data-campaign="closed">34</strong><span>optimality / infeasibility conclusions</span><small>32 optimal (including two genus closures at residual &lt; 1e-10) and two infeasible.</small></article>
+      <article class="metric"><strong data-campaign="project_primal_updates">29</strong><span>primal-bound updates</span><small>25 finite incumbent improvements relative to MIPLIB v36 plus four first feasible solutions.</small></article>
+      <article class="metric"><strong data-campaign="dual_improvements_at_1e_7">66</strong><span>dual-bound improvements</span><small>Versus historical COPT 10h, at absolute threshold 1e-7; evidence grades vary.</small></article>
     </section>
 
     <div class="content">
       <section class="motivation-summary" aria-label="Motivation">
         <p>LLMs have shown promise in advancing open problems in mathematics. An unresolved MIP instance poses a similar kind of challenge: its variables, constraints, objective, and data define a concrete open problem. This perspective motivates our central question—can LLMs make real-world MIP solving more effective, especially by accelerating established solver-based workflows through structural interpretation, reformulation, targeted experimentation, and verifiable proof construction?</p>
-        <p>Starting from a frozen benchmark universe of 217 open MIPLIB instances, we studied 112 using LLM-assisted solver workflows and separately compared two workflow variants on 20 instances. These experiments show how LLM reasoning can augment numerical optimization: LLMs broaden the search for structure, representations, and certificates, while solvers and independent checks provide the numerical bounds and verification needed for trustworthy results.</p>
+        <p>Starting from a frozen benchmark universe of 217 open MIPLIB instances, we studied 132 using LLM-assisted solver workflows: 112 original cases and 20 subsequent cases used in a workflow comparison. These experiments show how LLM reasoning can augment numerical optimization: LLMs broaden the search for structure, representations, and certificates, while solvers and independent checks provide the numerical bounds and verification needed for trustworthy results.</p>
       </section>
 
       <aside class="main-conclusion" aria-labelledby="main-conclusion-heading">
@@ -70,7 +70,7 @@
         <div class="section-head">
           <div>
             <p class="eyebrow" style="color:#8c1515">Interactive summary</p>
-            <h2 id="overview-heading">Results on 112 Open MIPLIB instances</h2>
+            <h2 id="overview-heading">Results on 132 Open MIPLIB instances</h2>
           </div>
           <p>Switch between campaign status, verification form, and the closest paired workflow comparison.</p>
         </div>
@@ -102,20 +102,20 @@
         <div class="page-grid">
           <article class="page-card">
             <span class="number">01 · Instance archive</span>
-            <h3>What happened on each of the 112 instances?</h3>
-            <p>Search the full campaign, inspect a concise finding summary, and download a reproducible findings bundle for every instance.</p>
+            <h3>What happened on each of the 132 instances?</h3>
+            <p>Search the full campaign, inspect a concise finding summary, and follow the evidence links and download a historical research archive or a compact result bundle for every instance.</p>
             <a href="instances/">Browse all instances →</a>
           </article>
           <article class="page-card">
             <span class="number">02 · Skill experiment</span>
-            <h3>Did a structure-research skill change outcomes?</h3>
+            <h3>Do primal-skill and dual-skill improve their target bounds?</h3>
             <p>Explore the 20-instance historical comparison, inspect exact values, and download the skill and machine-readable evidence.</p>
             <a href="skill/">Inspect the skill experiment →</a>
           </article>
           <article class="page-card">
             <span class="number">03 · Division of labor</span>
             <h3>Can LLMs fully replace solvers?</h3>
-            <p>No—not in this campaign. See where LLM-guided work improved primal bounds, where the comparison workflow produced stronger dual bounds, and why independent verification remains decisive.</p>
+            <p>No—not in this campaign. See where LLM-guided work improved primal bounds, how dedicated primal and dual workflows complement each other, and why independent verification remains decisive.</p>
             <a href="solver-replacement/">Read the evidence-based verdict →</a>
           </article>
         </div>
@@ -132,20 +132,20 @@
           <!-- Temporarily hidden technical report entrance.
           <article class="download-card">
             <h3>Technical report</h3>
-            <p>The full argument, case studies, evidence taxonomy, and 30-row optimality/infeasibility inventory.</p>
+            <p>The report is being prepared for the expanded campaign; the existing PDF retains the historical 30-row inventory.</p>
             <a class="button small" href="technical-report.pdf">PDF</a>
             <a class="button small" href="technical-report.tex">LaTeX</a>
           </article>
           -->
           <article class="download-card">
             <h3>Technical report</h3>
-            <p>The full argument, case studies, evidence taxonomy, and 30-row optimality/infeasibility inventory.</p>
+            <p>The report is being prepared for the expanded campaign; the existing PDF retains the historical 30-row inventory.</p>
             <button class="button small" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
           </article>
           <article class="download-card">
-            <h3>Structure-research skill files</h3>
-            <p>Download the nine-file workflow used in the 20-instance comparison, including the profiler and MIT license.</p>
-            <a class="button small" href="downloads/milp-structure-research.tar.gz" download>Download skill files (.tar.gz)</a>
+            <h3>Primal-skill and dual-skill</h3>
+            <p>Download both experimental skills, their current versions, and the 20-instance comparison data.</p>
+            <a class="button small" href="skill/#results">Compare and download skills</a>
           </article>
         </div>
       </section>
@@ -176,6 +176,8 @@
       <span><!-- Temporarily hidden: <a href="https://github.com/Huangyc98/MIPLIB_openproblem">Research archive</a> · --><a href="https://github.com/Huangyc98/LLM4MIP">Website source</a></span>
     </div>
   </footer>
+  <script src="assets/campaign-data.js"></script>
+  <script src="assets/focused-skill-data.js"></script>
   <script src="assets/home.js"></script>
 </body>
 </html>

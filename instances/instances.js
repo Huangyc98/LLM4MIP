@@ -16,7 +16,7 @@
   function cell(text, className) {
     const td = document.createElement("td");
     if (className) td.className = className;
-    td.textContent = text || "—";
+    td.textContent = text ?? "—";
     return td;
   }
 
@@ -32,11 +32,14 @@
     archive.className = "button small";
     archive.href = record.archive;
     archive.download = "";
-    archive.textContent = `Bundle · ${formatBytes(record.archiveBytes)}`;
-    wrap.append(summary, archive);
+    archive.textContent = `${record.bundleKind === "result" ? "Result bundle" : "Research archive"} · ${formatBytes(record.archiveBytes)}`;
+    const source = document.createElement("a");
+    source.href = record.sourceUrl;
+    source.textContent = "Source evidence";
+    wrap.append(summary, archive, source);
     const meta = document.createElement("span");
     meta.className = "download-meta";
-    meta.textContent = `${record.includedFiles} source files · SHA-256 ${record.archiveSha256.slice(0, 12)}…`;
+    meta.textContent = `${record.includedFiles} files · SHA-256 ${record.archiveSha256.slice(0, 12)}…`;
     td.append(wrap, meta);
     return td;
   }
@@ -45,9 +48,14 @@
     const term = search.value.trim().toLowerCase();
     const status = filter.value;
     const visible = data.filter(record => {
-      if (status !== "all" && record.status !== status) return false;
+      const matches = status === "all" || record.status === status ||
+        (status === "primal-improved" && record.primalImprovement) ||
+        (status === "dual-improved" && record.dualImprovement) ||
+        (status === "optimal" && record.globalConclusion?.startsWith("OPT")) ||
+        (status === "infeasible" && record.globalConclusion === "Infeasible");
+      if (!matches) return false;
       if (!term) return true;
-      return [record.instance, record.bestResult, record.bestBound, record.studyStatus, record.globalMethod, record.evidenceLevel]
+      return [record.instance, record.bestResult, record.bestBound, record.studyStatus, record.globalMethod, record.evidenceLevel, record.globalConclusion]
         .filter(Boolean).join(" ").toLowerCase().includes(term);
     });
 
@@ -60,6 +68,10 @@
       badge.className = `badge ${record.status}`;
       badge.textContent = record.statusLabel;
       statusCell.append(badge);
+      const contributions = document.createElement("small");
+      contributions.className = "download-meta";
+      contributions.textContent = [record.primalImprovement && "Primal update", record.dualImprovement && "Dual improvement"].filter(Boolean).join(" · ");
+      statusCell.append(contributions);
       row.append(
         name,
         statusCell,

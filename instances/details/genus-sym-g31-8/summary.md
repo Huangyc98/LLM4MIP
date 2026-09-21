@@ -1,39 +1,32 @@
 # genus-sym-g31-8
 
-> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
+Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
 
-## Instance-level optimization result
+## Current result
 
-- **Campaign status:** Pending strict verification
-- **Primal bound / feasibility:** -23 candidate (native genus 3; 1e-15 literal-MPS residual)
-- **Dual bound / certificate:** -23 exact lower bound
-- **Optimization status and evidence:** Native graph optimum established; exact-decimal MPS optimum open pending a zero-tolerance witness
+- Cohort: original112
+- Status: Global conclusion
+- Primal: -23
+- Dual / certificate: -23
+- Global conclusion: OPT = -23 (residual < 1e-10)
+- Evidence: Tolerance-accepted closure
+- Project primal update vs MIPLIB v36: False (not_in_project_primal_table)
+- Dual improvement vs historical COPT 10h: True
 
-## Interpretation
+P=D=-23; primal row residual 1e-15 < 1e-10 accepted policy; not literal-zero feasibility
 
-The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger dual bound, an exact structural reduction, a local neighborhood solved to optimality, or a documented negative experiment.
 
-## Experiment workflow
 
-1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
-2. Profile the untouched formulation and propose falsifiable structural hypotheses.
-3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+## Evidence and provenance
 
-## Download bundle
+[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/genus-sym-g31-8/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
 
-The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
+The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
+The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
+and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
 
-## Provenance
+## Download scope
 
-Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
+The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
 
-- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
-- **Source README SHA-256:** `0bf569a0e3c0148fa07adc11cedca2b0e5671c509ab4265754047def48c6aa1e`
-
-## Package integrity
-
-- **Archive:** `genus-sym-g31-8-findings.tar.gz`
-- **Compressed bytes:** `4969`
-- **SHA-256:** `86aac86f5fc8e41646577ef1a2db78e2dac30e8958b8aafbfcbb22f579a983b9`
-- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/genus-sym-g31-8/README.md
+Archive SHA-256: `86aac86f5fc8e41646577ef1a2db78e2dac30e8958b8aafbfcbb22f579a983b9`

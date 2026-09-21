@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Build the static instance catalogue and reproducible download bundles.
+"""Site build entry point; current catalogue uses build_campaign_data.
 
-The source of truth is the adjacent MIPLIB_openproblem working tree.  The
-script deliberately excludes the historical rmine14 calibration and official
-raw MPS inputs. Every omission is recorded, with hashes, in the package
-manifest; derived proof models and large proof traces remain included.
+The helpers below document the legacy September 18 archive packaging. The
+default build uses the checked-in September 21 inputs, preserving those
+historical bundles and the separately frozen skill comparison downloads.
 """
 
 from __future__ import annotations
@@ -441,10 +440,10 @@ def build_downloads() -> None:
 
 
 def main() -> None:
-    records = build_instances()
-    build_downloads()
-    total_bytes = sum(int(record["archiveBytes"]) for record in records)
-    print(f"Built {len(records)} instance summaries and archives ({total_bytes / 1024 / 1024:.1f} MiB compressed).")
+    from build_campaign_data import main as build_campaign
+    build_campaign()
+    from build_skill_data import main as build_skill
+    build_skill()
 
 
 if __name__ == "__main__":

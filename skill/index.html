@@ -11,8 +11,8 @@
     gtag('config', 'G-JNJSLE077H');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Download the milp-structure-research skill and explore its 20-instance historical comparison.">
-  <title>Skill-Based Improvement Experiment | LLM4MIP</title>
+  <meta name="description" content="Primal-skill and dual-skill experiments on 20 MIPLIB instances: separate bound comparisons, combined gaps, frozen skills and auditable results.">
+  <title>Primal-skill and Dual-skill | LLM4MIP</title>
   <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
     <nav class="nav-wrap" aria-label="Primary navigation">
       <a class="brand" href="../">LLM4MIP <small>Evidence before claims</small></a>
       <div class="nav-links">
-        <a href="../instances/">112 instances</a>
+        <a href="../instances/">132 instances</a>
         <a href="./" aria-current="page">Skill experiment</a>
         <a href="../solver-replacement/">Replace solvers?</a>
         <!-- Temporarily hidden: <a href="../technical-report.pdf">Report</a> -->
@@ -31,123 +31,53 @@
     <div class="hero">
       <div class="hero-inner">
         <p class="eyebrow">Deep dive 02 · skill-based improvement</p>
-        <h1>Structure first, then solve</h1>
-        <p class="dek">The downloadable <span class="mono">milp-structure-research</span> skill turns structural investigation into a gated workflow. Across 20 historical paired cases, the skill-guided arm produced better primal bounds and certified global optimality on two instances—but did not dominate dual-bound improvement.</p>
+        <h1>Two skills, two optimization objectives</h1>
+        <p class="dek">Compare primal with primal-skill and dual with dual-skill, then combine their best valid bounds to reduce the optimality gap.</p>
         <div class="hero-actions">
-          <a class="button light" href="../downloads/milp-structure-research.tar.gz" download>Download the skill</a>
+          <a class="button light" href="#results">Compare the two skills</a>
           <a class="button ghost" href="#results">Explore the results</a>
         </div>
       </div>
     </div>
   </header>
 
-  <main id="main" class="page-shell" tabindex="-1">
-    <div class="content">
-      <section class="section" aria-labelledby="skill-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">The intervention</p>
-            <h2 id="skill-heading">A research discipline, not a solver preset</h2>
-          </div>
-          <p>Nine tracked skill files—including the profiler—plus the MIT license are packaged in one 21 KiB download.</p>
-        </div>
-        <p class="lede">The skill requires a researcher to freeze the claim and baseline, inspect the untouched matrix, recover semantics, classify the bottleneck, propose at least two falsifiable hypotheses, run bounded pilots, separate construction from proof, map back to the original model, and grade the resulting evidence.</p>
-        <div class="workflow" style="margin-top:1.4rem">
-          <article><h3>Profile</h3><p>Read domains, rows, sparsity, scale, symmetry, and possible graph or decomposition structure without optimizing.</p></article>
-          <article><h3>Hypothesize</h3><p>Write competing structural explanations and the smallest experiment that could disprove each one.</p></article>
-          <article><h3>Separate</h3><p>Run primal construction and dual/proof work as distinct pipelines with explicit budgets.</p></article>
-          <article><h3>Audit</h3><p>Lift candidates to the untouched MPS, replay certificates, preserve failures, and state the evidence boundary.</p></article>
-        </div>
-        <div class="callout green">
-          <p><strong>Version used in the experiment:</strong> <span class="mono">SKILL.md</span> SHA-256 <span class="mono">f8a09b104f0af3786b2e702f60dde3de7fd54a1aac581dff9bdd8a3325c84b4f</span>. All 20 skill-arm instances recorded a pre-access skill-read gate.</p>
-        </div>
-      </section>
+  <main id="main" class="page-shell" tabindex="-1"><div class="content">
+<section id="results" class="section">
+<div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Paired results</p><h2>Compare each skill on its own objective</h2></div><a href="../downloads/primal-dual-comparison.csv">Download all 20 rows</a></div>
+<div class="panel"><div class="tabs focused-tabs" aria-label="Skill comparison">
+<button data-focused="gap" aria-pressed="true">Combined gap vs AI</button><button data-focused="solver" aria-pressed="false">Combined gap vs solver</button><button data-focused="primal" aria-pressed="false">Primal</button><button data-focused="dual" aria-pressed="false">Dual</button>
+</div><div id="focused-solver-control" class="field" hidden><label for="focused-solver">Solver baseline</label><select id="focused-solver"><option value="copt">COPT · historical 10h</option><option value="direct">Gurobi · 150 min</option></select></div><h3 id="focused-title"></h3><p id="focused-note" class="chart-note" aria-live="polite"></p><div id="focused-chart" class="bar-list"></div></div>
+<div class="controls"><div class="field"><label for="focused-search">Search instance or method</label><input id="focused-search" type="search" placeholder="Try graphdraw or ns1456591"></div><div class="field"><label for="focused-filter">Outcome</label><select id="focused-filter"><option value="all">All outcomes</option><option value="win">Skill better</option><option value="tie">Tie</option><option value="loss">Baseline better</option><option value="excluded">Excluded candidate</option></select></div></div>
+<p id="focused-count" class="result-count" aria-live="polite"></p><p class="scroll-hint">Swipe sideways to see every column.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Skill comparison results"><table class="results-table"><thead><tr id="focused-head"></tr></thead><tbody id="focused-body"></tbody></table></div>
+<noscript><p>The charts and table require JavaScript. Headline outcomes are below; the complete CSV is downloadable above.</p></noscript>
+</section>
 
-      <section class="section" aria-labelledby="design-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Experiment design</p>
-            <h2 id="design-heading">What was compared</h2>
-          </div>
-        </div>
-        <div class="download-grid">
-          <article class="download-card">
-            <h3>Skill-guided arm</h3>
-            <p>Run <span class="mono">controlled_miplib20_20260911_1451</span>: Codex <span class="mono">gpt-5.6-sol</span> at ultra reasoning, Gurobi 13.0.1, eight solver threads per instance, and a 32 GiB soft cap. Two disclosed cases used Windows/Gurobi 13.0.2.</p>
-          </article>
-          <article class="download-card">
-            <h3>Comparison arm</h3>
-            <p>A user-designated historical report on the same 20 minimization instances that did not use this specific skill. It still used computational tools and problem-specific methods; it is not a “solver-only” control.</p>
-          </article>
-        </div>
-        <p>Models and public baselines were frozen on 11 September 2026. The five batches ran at most four instances in parallel, with batch barriers and no transfer of unused time. Batch 1 allowed 40–120 active minutes per instance; batches 2–5 allowed 90–150. The skill run accumulated 1,729.5301 active minutes and 1,010.2245 overlapping solver minutes.</p>
-        <div class="callout">
-          <p><strong>Design limit:</strong> this is a paired historical reconstruction, not a randomized, blinded, equal-resource A/B experiment. Machines, budgets, solver states, starts, baselines, tolerances, stopping decisions, and research order may differ. The page reports association and mechanism—not a net causal effect.</p>
-        </div>
-      </section>
+<section class="section"><div class="section-head"><div><p class="eyebrow" style="color:#8c1515">From 112 cases to reusable workflows</p><h2>Better feasible solutions. Stronger global bounds.</h2></div></div>
+<p>We distilled research records and failure cases from 112 MIPLIB instances into two reusable skills. This is a workflow written as instructions and reference material, not model training. The subsequent evaluation uses 20 different instance names; related problem families may still transfer.</p>
+<div class="download-grid"><article class="download-card"><h3>Primal-skill</h3><p>Find and improve feasible solutions: validate incumbent transfers, organize structural neighborhoods, repair continuous recourse, lift candidates to the original model, and continue searching after an improvement.</p><a href="../downloads/primal-frozen-skill.tar.gz">Download experimental primal-skill</a></article><article class="download-card"><h3>Dual-skill</h3><p>Strengthen valid global bounds: derive safe relaxations, valid cuts and decompositions, exhaust complete cutoffs, and independently check the scope of each certificate.</p><a href="../downloads/dual-frozen-skill.tar.gz">Download experimental dual-skill</a></article></div>
+</section>
+<section class="section"><h2>What “primal” and “dual” mean in this comparison</h2><p><strong>Primal vs primal-skill</strong> compares the historical no-skill AI's P with the dedicated primal-skill run's P. <strong>Dual vs dual-skill</strong> compares the same no-skill AI's D with the dedicated dual-skill run's strongest Gurobi / certified D. Lower P and higher D are better. The baseline is an AI research workflow using solvers, not a pure solver or a newly run objective-specific control.</p>
+<div class="table-wrap"><table class="results-table"><thead><tr><th>Arm</th><th>Protocol</th><th>Resources / limits</th></tr></thead><tbody>
+<tr><td>Primal-skill</td><td>20 cases; 150 wall minutes each; checkpoints every 30 minutes</td><td>Primarily Euler4 / Gurobi 13.0.2; 12 CPU slots; SoftMemLimit 80 decimal GB</td></tr>
+<tr><td>Dual-skill</td><td>20 cases; 150 wall minutes each; checkpoints every 30 minutes</td><td>Euler4 / Gurobi 13.0.2; 8 threads; 56 GiB soft memory limit</td></tr>
+<tr><td>No-skill AI</td><td>Same 20 minimization instances; two historical batches</td><td>Settings and budgets differ; model identity audit retained</td></tr>
+<tr><td>Direct solver</td><td>Separate original-model Gurobi 150-minute baseline</td><td>Used for the combined-gap comparison; not the dual experiment's 300-second probe</td></tr>
+</tbody></table></div><p>Skill experiments ran in five batches of four different instances with batch barriers. They did not run the primal and dual skills online together on each instance. These are historical comparisons with unequal resources, not randomized or equal-budget causal estimates.</p></section>
 
-      <section id="results" class="section" aria-labelledby="results-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Observed outcomes</p>
-            <h2 id="results-heading">Primal-bound gains with dual-bound tradeoffs</h2>
-          </div>
-          <p>Compare primal bounds, dual bounds, relative optimality gaps, strict public-baseline improvements, and certified optimality.</p>
-        </div>
-        <div class="panel">
-          <div class="tabs" aria-label="Comparison metric">
-            <button type="button" data-metric="primal" aria-pressed="true">Primal bound</button>
-            <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
-            <button type="button" data-metric="gap" aria-pressed="false">Relative gap</button>
-            <button type="button" data-metric="strict" aria-pressed="false">Strict primal-bound improvements</button>
-            <button type="button" data-metric="closure" aria-pressed="false">Certified optimality</button>
-          </div>
-          <h3 id="metric-title" class="chart-title"></h3>
-          <p id="metric-note" class="chart-note" aria-live="polite"></p>
-          <div id="metric-chart"></div>
-        </div>
-        <div class="callout blue">
-          <p><strong>Interpretation:</strong> the skill-guided arm produced the better primal bound on 11 instances, yielded four strict primal-bound improvements over frozen public baselines, and certified global optimality for two instances. The comparison arm produced the better dual bound on 12 instances and the smaller relative gap on 11. That division argues for a hybrid workflow.</p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="table-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Instance-level evidence</p>
-            <h2 id="table-heading">Inspect all 20 paired results</h2>
-          </div>
-          <a href="../downloads/skill-comparison.csv">Download CSV</a>
-        </div>
-        <div class="controls">
-          <div class="field"><label for="comparison-search">Search instance, method, or final status</label><input id="comparison-search" type="search" placeholder="Try “exact route” or “neos”" autocomplete="off"></div>
-          <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill better primal bound</option><option value="skill-dual">Skill better dual bound</option><option value="comparison-dual">Comparison better dual bound</option><option value="strict">Skill strict baseline improvement</option><option value="exact">Skill certified global optimum</option><option value="tolerance">Tolerance-indexed skill primal bound</option></select></div>
-        </div>
-        <p id="comparison-count" class="result-count" aria-live="polite"></p>
-        <p class="scroll-hint">Swipe sideways to see every column.</p>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable skill experiment results table">
-          <table class="results-table">
-            <thead><tr><th>Instance</th><th>Batch</th><th>Better primal bound</th><th>Better dual bound</th><th>Smaller relative gap</th><th>Skill bounds</th><th>Comparison bounds</th><th>Skill method</th></tr></thead>
-            <tbody id="comparison-body"></tbody>
-          </table>
-        </div>
-        <noscript><p class="noscript">The filterable table requires JavaScript. The complete data are available in the downloadable CSV.</p></noscript>
-      </section>
-
-      <section class="section" aria-labelledby="downloads-heading">
-        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Downloads</p><h2 id="downloads-heading">Reuse and audit the experiment</h2></div></div>
-        <div class="download-grid">
-          <article class="download-card"><h3>Skill package</h3><p>Nine tracked files spanning the profiling script, references, and agent metadata, plus the repository license.</p><a class="button small" href="../downloads/milp-structure-research.tar.gz" download>Skill .tar.gz</a></article>
-          <article class="download-card"><h3>Evidence package</h3><p>Full comparison directory, including report, script, source notes, CSV, and machine-readable audit.</p><a class="button small" href="../downloads/skill-experiment-evidence.tar.gz" download>Evidence .tar.gz</a></article>
-          <article class="download-card"><h3>Machine-readable results</h3><p>Unrounded instance-level values and comparison labels.</p><a class="button small" href="../downloads/skill-comparison.csv">CSV</a> <a class="button small" href="../downloads/skill-comparison-audit.json">Audit JSON</a></article>
-          <article class="download-card"><h3>Methods and provenance</h3><p>The narrative report and the exact source/reproduction notes used for this page.</p><a class="button small" href="../downloads/skill-comparison-report.md">Report.md</a> <a class="button small" href="../downloads/skill-comparison-source.md">Source.md</a></article>
-        </div>
-      </section>
-    </div>
-  </main>
-
+<section class="section"><h2>What the results support</h2><div class="download-grid">
+<article class="download-card"><h3>Primal-skill: 9 wins, 9 ties, 1 loss</h3><p>One of the 20 candidates is excluded: ns1456591's reported 988.1403051801293 lies below the independently proved optimum 988.14128344. The original raw table counted it among 10 wins; this page keeps it visible but does not credit it as an improvement.</p></article>
+<article class="download-card"><h3>Dual-skill: 17 wins, 1 tie, 2 losses</h3><p>Fourteen instances have independent certified bounds, nine improve their certified-bound trajectory, and two close exactly. Strongest numerical bounds and independently certified bounds are separate columns.</p></article>
+<article class="download-card"><h3>Complementary bounds reduce gaps</h3><p>The two-skill portfolio has a smaller gap on 18/20 cases versus the no-skill AI, averaging 15.8079 percentage points less. Against historical COPT, it wins 19 and loses 1, including three wins by finding a feasible solution where COPT recorded none. Against direct Gurobi 150 minutes, it wins 17, ties 1 and loses 2, including one feasibility win. Mean gap reduction remains 19.2762 percentage points over the 19 finite Gurobi pairs.</p></article></div>
+<p>Gap = (P − D) / max(1, |P|, |D|). Bound comparisons use absolute tolerance 1e-7; gap comparisons use 1e-9 in fraction units. Mean changes are percentage-point differences, not relative percentages. A solver run without a feasible solution loses to a skill result with a valid feasible solution. Such feasibility wins count in outcomes but not in mean numerical gap reductions. COPT has 17 finite-gap pairs; three cases record no primal, including cdma, which aborted after 0.1 seconds. COPT version, hardware and full model hashes are not available for a matched comparison.</p>
+<div class="callout blue"><p><strong>Combination rule:</strong> select the lowest valid P and highest valid D after independent runs, using Gurobi and independent certificates only. Exclude the invalid ns1456591 candidate and use the dual run's exact feasible lift. This is a post-hoc portfolio with a larger total search budget, not measured online parallel acceleration.</p></div>
+<p>Primal acceptance retains historical numerical tolerances, mainly 1e-6; additional GMP checks used explicit 1e-5 row/objective and 1e-4 integrality tolerances. Results were not uniformly revalidated at zero tolerance. The two exact closures are already in the 132-instance campaign and must not be counted twice.</p></section>
+<section class="section"><h2>Reuse the skills and audit the evidence</h2><p>The experimental frozen packages produced these results. Current packages include later revisions and must not be attributed retroactively to the experiment.</p><div class="download-grid">
+<article class="download-card"><h3>Primal-skill</h3><p>Experimental SHA-256: <span class="mono">1bab6d94a097dcb4f0506a4b03120aee57fa9c829ca7250ed066fd7782feb341</span></p><a href="../downloads/primal-frozen-skill.tar.gz">Frozen experiment version</a> · <a href="../downloads/primal-current-skill.tar.gz">Current version</a></article>
+<article class="download-card"><h3>Dual-skill</h3><p>Experimental SHA-256: <span class="mono">61cc3bbe39f9b690ff6b0115cc7bb02475b786e6732af7de727b5b5280d16535</span></p><a href="../downloads/dual-frozen-skill.tar.gz">Frozen experiment version</a> · <a href="../downloads/dual-current-skill.tar.gz">Current version</a></article>
+<article class="download-card"><h3>Results and provenance</h3><p>Pinned source tables, study reports, skill versions and file hashes. Full large-scale models and logs are not embedded.</p><a href="../downloads/primal-dual-comparison.csv">CSV</a> · <a href="../downloads/primal-dual-comparison.json">JSON</a> · <a href="../downloads/primal-dual-evidence.tar.gz">Evidence package</a> · <a href="../downloads/primal-dual-source.md">Source and rebuild notes</a></article></div></section>
+</div></main>
   <footer class="footer"><div class="footer-inner"><span>LLM4MIP · skill experiment</span><span><a href="../">Overview</a> · <a href="../solver-replacement/">Can LLMs replace solvers?</a></span></div></footer>
-  <script src="../assets/comparison-data.js"></script>
-  <script src="../assets/comparison.js"></script>
+  <script src="../assets/focused-skill-data.js"></script>
+  <script src="../assets/focused-skill.js"></script>
 </body>
 </html>

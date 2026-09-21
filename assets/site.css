@@ -269,3 +269,11 @@ details > div { padding: 0 1rem 1rem; color: var(--muted); }
   .page-shell { box-shadow: none; }
   .metric-grid { margin-top: 0; }
 }
+
+/* Keep the four skill comparisons in the same 2-by-2 order on every screen. */
+@media screen {
+  .tabs.focused-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
+  .tabs.focused-tabs button { width: 100%; white-space: normal; }
+}
+#focused-solver-control[hidden] { display: none; }
+#focused-solver-control { max-width: 24rem; margin-bottom: 1rem; }

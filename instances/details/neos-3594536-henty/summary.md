@@ -1,43 +1,32 @@
 # neos-3594536-henty
 
-> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
+Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
 
-## Instance-level optimization result
+## Current result
 
-- **Campaign status:** Certified optimality / infeasibility
-- **Primal bound / feasibility:** 401,092
-- **Dual bound / certificate:** 401,092 (Gurobi/COPT)
-- **Optimization status and evidence:** Computational optimum; exact primal audit, no portable exact lower-bound certificate
+- Cohort: original112
+- Status: Global conclusion
+- Primal: 401092
+- Dual / certificate: 401092
+- Global conclusion: OPT = 401092
+- Evidence: Floating-point zero-gap verification
+- Project primal update vs MIPLIB v36: True (numeric_improvement)
+- Dual improvement vs historical COPT 10h: True
 
-## Optimality / infeasibility result
+Computational optimum; exact primal audit, no portable exact lower-bound certificate
 
-- **Resolved status:** OPT approximately 401,092
-- **Main method:** exact component-balance/parity reduction + zero-gap Gurobi/COPT
-- **Evidence grade:** NS — Strict primal audit plus floating-point zero-gap solver run
-- **Source evidence characterization:** solver-based global-optimality evidence; no portable exact lower-bound certificate
-- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.
+归约部分严格成立，401092这一数值由历史全局solver支持。两种solver一致和401092可行解不等于独立精确下界证书；本次没有重跑它们。没有采用improve-only cutoff分支或较弱400947替代原声明。
 
-## Experiment workflow
+## Evidence and provenance
 
-1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
-2. Profile the untouched formulation and propose falsifiable structural hypotheses.
-3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
-4. Map useful results back to the original MPS and grade the surviving evidence.
+[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/neos-3594536-henty/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
 
-## Download bundle
+The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
+The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
+and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
 
-The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
+## Download scope
 
-## Provenance
+The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
 
-Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
-
-- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
-- **Source README SHA-256:** `852dc28839ef3674b391f65ebb5f7d09ff6de60c7124d362a0710f6f9bf7e5ac`
-
-## Package integrity
-
-- **Archive:** `neos-3594536-henty-findings.tar.gz`
-- **Compressed bytes:** `216679`
-- **SHA-256:** `2ed092ab77426078604afc6f52664f37987a932b2ce9e48ab00146eb0aedbfab`
-- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/neos-3594536-henty/README.md
+Archive SHA-256: `2ed092ab77426078604afc6f52664f37987a932b2ce9e48ab00146eb0aedbfab`

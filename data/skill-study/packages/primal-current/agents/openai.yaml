@@ -1,0 +1,6 @@
+interface:
+  display_name: "MIP Primal 解改进"
+  short_description: "基于实例结构、已有可行解和自适应邻域，更快搜索并验证 MIP primal 解"
+  default_prompt: "使用 $mip-primal-improve 在整个给定预算内持续优化并验证 primal；通用 MILP 后端默认先用 COPT，不可用或不兼容时记录原因并选择 Gurobi、cuOPT 等兼容后端，每次改善后继续搜索。"
+policy:
+  allow_implicit_invocation: true
