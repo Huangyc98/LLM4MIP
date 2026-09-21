@@ -33,7 +33,7 @@
     },
     skill: {
       title: "Solver + primal/dual skill vs Vanilla prompting and solver baseline",
-      note: "Vanilla prompting is the historical LLM + solver workflow without the dedicated primal/dual skills. The solver baseline uses the best recorded COPT/Gurobi bounds. All 20 cases count under the original acceptance tolerances. ns1456591 is accepted at 1e-6; its numerical advantage is tolerance-level, not an improvement beyond the exact optimum. Budgets and resources differ.",
+      note: "Vanilla prompting is the historical LLM + solver workflow without the dedicated primal/dual skills. The solver baseline uses the best recorded COPT/Gurobi bounds. All 20 cases count under the original acceptance tolerances.",
       mode: "paired", items: []
     }
   };
