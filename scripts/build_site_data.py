@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 """Site build entry point; current catalogue uses build_campaign_data.
 
+<<<<<<< Updated upstream
 The helpers below document the legacy September 18 archive packaging. The
 default build uses the checked-in September 21 inputs, preserving those
 historical bundles and the separately frozen skill comparison downloads.
+=======
+The benchmark source of truth is the adjacent MIPLIB_openproblem working tree;
+solver-specific skill sources are versioned under this site's downloads tree.
+The script deliberately excludes the historical rmine14 calibration and
+official raw MPS inputs. Every omission is recorded, with hashes, in the
+package manifest; derived proof models and large proof traces remain included.
+>>>>>>> Stashed changes
 """
 
 from __future__ import annotations
@@ -25,10 +33,9 @@ SOURCE_README = SOURCE / "README.md"
 PUBLICATION_REPORT = SITE / "technical-report.tex"
 DETAILS = SITE / "instances" / "details"
 DOWNLOADS = SITE / "downloads"
-PENDING_STRICT = {
+NUMERICALLY_OPTIMAL_1E10 = {
     "genus-g31-8",
     "genus-sym-g31-8",
-    "neos-5045105-creuse",
 }
 NO_FEASIBLE = {
     "datt256",
@@ -53,7 +60,7 @@ EVIDENCE_GROUPS = {
     "EX": {"label": "Specialized exact exhaustive computation without a standalone trace", "instances": {"neos-4360552-sangro", "ns1631475", "genus-sym-grafo5708-48"}},
     "LT": {"label": "Exact crosswalk plus published theorem or exhaustive result", "instances": {"circ10-3", "a2864-99blp", "pythago7825"}},
     "NS": {"label": "Strict primal audit plus floating-point zero-gap solver run", "instances": {"neos-3594536-henty", "neos-2978205-isar", "minutedispatchstrategy"}},
-    "MX": {"label": "Mixed database and commercial-solver evidence", "instances": {"cvrpb-n45k5vrpi", "cvrpa-n64k9vrpi"}},
+    "MX": {"label": "Mixed database and commercial-solver verification", "instances": {"cvrpb-n45k5vrpi", "cvrpa-n64k9vrpi"}},
 }
 FHNW_EXACT_SCHEDULES = {
     "fhnw-schedule-paira100",
@@ -61,6 +68,70 @@ FHNW_EXACT_SCHEDULES = {
     "fhnw-schedule-pairb200",
     "fhnw-schedule-paira400",
     "fhnw-schedule-pairb400",
+}
+
+LEADING_BOUND = re.compile(
+    r"^([+-]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?(?:[eE][+-]?\d+)?)(?:\.{3})?(?:\s+(.*))?$"
+)
+
+# These entries need more than mechanical separation of a leading number and
+# its qualifier. In particular, progress counters and structural quantities
+# are not objective bounds, and xmas10-2 is reported in a negated MPS objective.
+BOUND_DISPLAY_OVERRIDES: dict[tuple[str, str], dict[str, str | None]] = {
+    ("d20200", "dual"): {
+        "value": "12,232",
+        "note": "solver bound; independently checked exact bound: 12,230",
+    },
+    ("datt256", "primal"): {"value": "—", "note": "no feasible point"},
+    ("datt256", "dual"): {"value": "—", "note": "local infeasibility certificates"},
+    ("fhnw-binpack4-58", "primal"): {"value": "—", "note": "infeasible"},
+    ("fhnw-binpack4-58", "dual"): {"value": "—", "note": "geometric contradiction"},
+    ("genus-g31-8", "primal"): {
+        "value": "-23",
+        "note": "candidate; native genus 3; literal-MPS residual 1e-15",
+    },
+    ("genus-sym-g31-8", "primal"): {
+        "value": "-23",
+        "note": "candidate; native genus 3; literal-MPS residual 1e-15",
+    },
+    ("neos-3355323-arnon", "primal"): {"value": "—", "note": "no feasible witness"},
+    ("neos-3355323-arnon", "dual"): {"value": "—", "note": "no infeasibility certificate"},
+    ("neos-3603137-hoteo", "primal"): {"value": "—", "note": "no feasible point"},
+    ("neos-3603137-hoteo", "dual"): {"value": "—", "note": "CP and SAT status unknown"},
+    ("polygonpack4-15", "primal"): {
+        "value": "-63,613,612.4112532",
+        "note": "rounded display; full precision in source bundle; strict repair",
+    },
+    ("polygonpack5-15", "primal"): {
+        "value": "-55,494,687.6476067",
+        "note": "rounded display; full precision in source bundle; strict repair",
+    },
+    ("pythago7825", "primal"): {"value": "—", "note": "infeasible"},
+    ("pythago7825", "dual"): {"value": "—", "note": "published UNSAT theorem"},
+    ("s82", "dual"): {
+        "value": "—",
+        "note": "exact structural bound: max sum(A8) = 36; not an objective bound",
+    },
+    ("set3-09", "primal"): {
+        "value": "176,497.1524256825",
+        "note": "rounded display; full precision in source bundle; strict repair",
+    },
+    ("sorrell7", "dual"): {
+        "value": "-210",
+        "note": "published coding-theory bound; study solver bound: -216",
+    },
+    ("supportcase30", "primal"): {
+        "value": "—",
+        "note": "no feasible point; best partial coverage: 987/1,024",
+    },
+    ("supportcase30", "dual"): {
+        "value": "—",
+        "note": "37 covering rows remain; not an objective bound",
+    },
+    ("xmas10-2", "dual"): {
+        "value": "-511",
+        "note": "objective equivalent of the official 511-cell upper bound; study solver bound: -515",
+    },
 }
 
 
@@ -94,6 +165,36 @@ def plain(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
 
+def academic_wording(value: str) -> str:
+    return (
+        value.replace("campaign's", "benchmark's")
+        .replace("mixed database/computational evidence", "mixed database/computational verification")
+        .replace("solver-based global-optimality evidence", "solver-based global-optimality verification")
+        .replace("computational global conclusion", "computational optimality verification")
+    )
+
+
+def bound_display(instance: str, kind: str, value: str) -> dict[str, str | None]:
+    """Split a table measure into a numeric line and a qualifying note.
+
+    Values remain strings so long integer and decimal representations are not
+    rounded by JSON or JavaScript. Only a number anchored at the start of the
+    source field can become the primary display value.
+    """
+    override = BOUND_DISPLAY_OVERRIDES.get((instance, kind))
+    if override:
+        return override.copy()
+    if value == "—":
+        return {"value": "—", "note": None}
+    match = LEADING_BOUND.fullmatch(value)
+    if not match:
+        return {"value": "—", "note": value}
+    note = (match.group(2) or "").strip()
+    if note.startswith("(") and note.endswith(")"):
+        note = note[1:-1].strip()
+    return {"value": match.group(1), "note": note or None}
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -123,11 +224,11 @@ def add_file(tar: tarfile.TarFile, path: Path, arcname: str) -> None:
 
 def status_for(name: str, globals_by_name: dict[str, list[str]]) -> tuple[str, str]:
     if name in globals_by_name:
-        return "concluded", "Global conclusion"
+        return "concluded", "Certified optimality / infeasibility"
     if name in NO_FEASIBLE:
         return "no-feasible", "No feasible point found"
-    if name in PENDING_STRICT:
-        return "pending", "Pending strict verification"
+    if name in NUMERICALLY_OPTIMAL_1E10:
+        return "numeric-optimal", "Numerically optimal up to 1e-10 tolerance"
     return "verified-open", "Verified feasible; open"
 
 
@@ -165,31 +266,31 @@ def summary_markdown(record: dict[str, object], global_row: list[str] | None) ->
         "",
         "> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.",
         "",
-        "## Finding and progress",
+        "## Results and progress",
         "",
-        f"- **Campaign status:** {record['statusLabel']}",
+        f"- **Benchmark outcome:** {record['statusLabel']}",
         f"- **Best verified result:** {record['bestResult']}",
         f"- **Best bound or certificate:** {record['bestBound']}",
-        f"- **Study finding:** {record['studyStatus']}",
+        f"- **Study result:** {record['studyStatus']}",
     ]
     if global_row:
         grade_code, grade_label = evidence_grade(str(record["instance"]))
         lines += [
             "",
-            "## Supported global conclusion",
+            "## Certified optimality or infeasibility result",
             "",
             f"- **Conclusion:** {record['globalConclusion']}",
             f"- **Main method:** {record['globalMethod']}",
-            f"- **Evidence grade:** {grade_code} — {grade_label}",
-            f"- **Earlier source-table wording:** {plain(global_row[3])}",
-            "- **Reconciliation rule:** The evidence grade above governs this snapshot when older instance or table wording differs.",
+            f"- **Verification category:** {grade_code} — {grade_label}",
+            f"- **Earlier source-table status:** {academic_wording(plain(global_row[3]))}",
+            "- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.",
         ]
     else:
         lines += [
             "",
             "## Interpretation",
             "",
-            "The campaign does not claim a global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.",
+            "The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.",
         ]
     lines += [
         "",
@@ -198,7 +299,7 @@ def summary_markdown(record: dict[str, object], global_row: list[str] | None) ->
         "1. Freeze the original model, baseline, objective convention, and acceptance tolerance.",
         "2. Profile the untouched formulation and propose falsifiable structural hypotheses.",
         "3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.",
-        "4. Map useful results back to the original MPS and grade the surviving evidence.",
+        "4. Map useful results back to the original MPS and classify the resulting verification method.",
         "",
         "## Download bundle",
         "",
@@ -304,18 +405,22 @@ def build_instances() -> list[dict[str, object]]:
                 raise RuntimeError(f"Evidence grade mismatch for {name}: report {report_grade}, mapping {grade_code}")
         else:
             conclusion = None
+        best_result = plain(row[1])
+        best_bound = plain(row[2])
         record: dict[str, object] = {
             "instance": name,
             "status": status,
             "statusLabel": label,
-            "bestResult": plain(row[1]),
-            "bestBound": plain(row[2]),
-            "studyStatus": plain(row[3]),
+            "bestResult": best_result,
+            "bestResultDisplay": bound_display(name, "primal", best_result),
+            "bestBound": best_bound,
+            "bestBoundDisplay": bound_display(name, "dual", best_bound),
+            "studyStatus": academic_wording(plain(row[3])),
             "globalConclusion": conclusion,
             "globalMethod": current_global_method(name, global_row) if global_row else None,
             "evidenceGrade": grade_code,
             "evidenceLevel": grade_label,
-            "sourceEvidenceNote": plain(global_row[3]) if global_row else None,
+            "sourceEvidenceNote": academic_wording(plain(global_row[3])) if global_row else None,
             "summary": f"details/{name}/summary.md",
             "archive": f"details/{name}/{name}-findings.tar.gz",
             "sourceBaseCommit": "89a8abd0847941bdf774353a1983d5e6a00457a0",
@@ -350,8 +455,8 @@ def build_instances() -> list[dict[str, object]]:
     graded = set().union(*(group["instances"] for group in EVIDENCE_GROUPS.values()))
     if graded != set(globals_by_name):
         raise RuntimeError(f"Evidence-grade roster differs from global table: {sorted(graded ^ set(globals_by_name))}")
-    counts = {key: sum(record["status"] == key for record in records) for key in ("concluded", "verified-open", "pending", "no-feasible")}
-    expected = {"concluded": 30, "verified-open": 75, "pending": 3, "no-feasible": 4}
+    counts = {key: sum(record["status"] == key for record in records) for key in ("concluded", "verified-open", "numeric-optimal", "no-feasible")}
+    expected = {"concluded": 30, "verified-open": 76, "numeric-optimal": 2, "no-feasible": 4}
     if counts != expected:
         raise RuntimeError(f"Unexpected status counts: {counts}; expected {expected}")
 
@@ -394,12 +499,24 @@ def deterministic_multi_archive(
 
 def build_downloads() -> None:
     DOWNLOADS.mkdir(exist_ok=True)
-    skill_source = SOURCE / "skills" / "milp-structure-research"
+    gurobi_skill_source = DOWNLOADS / "milp-structure-research"
+    copt_skill_source = DOWNLOADS / "milp-structure-research-copt"
+    if not gurobi_skill_source.is_dir() or not copt_skill_source.is_dir():
+        raise FileNotFoundError("solver-specific skill source directories are missing")
     deterministic_tree_archive(
-        skill_source,
+        gurobi_skill_source,
         DOWNLOADS / "milp-structure-research.tar.gz",
         "milp-structure-research",
-        [(SOURCE / "LICENSE", "milp-structure-research/LICENSE")],
+    )
+    deterministic_tree_archive(
+        gurobi_skill_source,
+        DOWNLOADS / "milp-structure-research-gurobi.tar.gz",
+        "milp-structure-research",
+    )
+    deterministic_tree_archive(
+        copt_skill_source,
+        DOWNLOADS / "milp-structure-research-copt.tar.gz",
+        "milp-structure-research-copt",
     )
     comparison = SOURCE / "docs" / "comparisons" / "milp-structure-skill-effect-20260913"
     comparison_downloads = {

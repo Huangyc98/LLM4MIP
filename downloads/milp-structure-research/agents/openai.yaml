@@ -1,7 +1,0 @@
-interface:
-  display_name: "MILP Structure Research"
-  short_description: "Route hard MILPs to structure-specific methods"
-  default_prompt: "Use $milp-structure-research to diagnose this MILP and design an auditable structure-specific research plan."
-
-policy:
-  allow_implicit_invocation: false
