@@ -74,8 +74,21 @@ def main():
                     solver_gap=str(sg) if sg is not None else '',solver_feasibility_win=not sp,
                     solver_gap_reduction_pp=str(reduction*100) if reduction is not None else '',
                     solver_gap_outcome='win' if not sp or (reduction is not None and reduction>Decimal('1e-9')) else 'loss' if reduction is not None and reduction<Decimal('-1e-9') else 'tie' if reduction is not None else 'NA')
+        for prefix,bp,bd in [('ai',r['no_skill_primal'],r['no_skill_dual']),('solver',item['solver_primal'],item['solver_dual'])]:
+            for kind,baseline,skill,sign in [('primal',bp,item['selected_primal'],1),('dual',bd,item['selected_dual'],-1)]:
+                base=finite(baseline)
+                delta=(base-Decimal(skill))*sign if base is not None else None
+                item[prefix+'_portfolio_'+kind+'_outcome']='win' if kind=='primal' and base is None else 'NA' if delta is None else 'win' if delta>Decimal('1e-7') else 'loss' if delta<Decimal('-1e-7') else 'tie'
+            for kind,baseline,skill,sign in [('primal',bp,r['primal_skill_primal'],1),('dual',bd,r['dual_gurobi_strongest'],-1)]:
+                base=finite(baseline)
+                delta=(base-Decimal(skill))*sign if base is not None else None
+                item[prefix+'_'+kind+'_skill_outcome']='excluded' if kind=='primal' and excluded else 'win' if kind=='primal' and base is None else 'NA' if delta is None else 'win' if delta>Decimal('1e-7') else 'loss' if delta<Decimal('-1e-7') else 'tie'
         result.append(item)
     stats={key:dict(Counter(r[key] for r in result)) for key in ['primal_outcome','primal_raw_outcome','dual_outcome','gap_outcome','direct_gap_outcome','copt_gap_outcome','solver_gap_outcome']}
+    for prefix in ['ai','solver']:
+        for kind in ['primal','dual']:
+            key=prefix+'_'+kind+'_skill_outcome'
+            stats[key]=dict(Counter(r[key] for r in result))
     for prefix in ['direct','copt','solver']:
         stats[prefix+'_feasibility_wins']=sum(r[prefix+'_feasibility_win'] for r in result)
     assert stats['primal_outcome']=={'win':9,'tie':9,'loss':1,'excluded':1}

@@ -311,3 +311,13 @@ details > div { padding: 0 1rem 1rem; color: var(--muted); }
   .tabs.focused-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
   .tabs.focused-tabs button { width: 100%; white-space: normal; }
 }
+
+#results > .panel + .section-head { margin-top: 2.5rem; }
+
+.skill-objective-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+.skill-objective-grid h4 { margin:0 0 .75rem; }
+@media (max-width:640px) { .skill-objective-grid { grid-template-columns:1fr; } }
+
+.overview-skill-legend { display:flex; flex-wrap:wrap; gap:.4rem 1rem; }
+.overview-skill-legend > span { display:inline-flex; align-items:center; gap:.4rem; }
+.overview-skill-legend .swatch { flex:0 0 auto; }

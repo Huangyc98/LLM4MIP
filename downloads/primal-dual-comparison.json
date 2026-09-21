@@ -49,7 +49,15 @@
       "solver_gap": "0.667906163842562857259791817301264648504113177173571984011132181007080394537591574466924053",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "44.8050644492215505950208128598018572152431821883845272586080606809487433413237618744192771",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "polygonpack4-10",
@@ -100,7 +108,15 @@
       "solver_gap": "0.446640372155419596080144408868823974297932635524860050015450287595596446101432655520254117",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "14.7028755659661356827870290987857784859425925620413013305772272580916552826155637605612962",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "scpm1",
@@ -151,7 +167,15 @@
       "solver_gap": "0.295668754237288135593220338983050847457627118644067796610169491525423728813559322033898305",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "7.03428696935264968595145661711327841429157592399709623457374617302654420351608117918126440",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "ger50-17-trans-dfn-3t",
@@ -202,7 +226,15 @@
       "solver_gap": "0.0177552412585750369010346681335467158753752941913688807220839637582818074725931925398995404",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "0.890808438223092189459571389891967817271475830733061974508911104202260534062141037068617106",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "eva1aprime6x6opt",
@@ -253,7 +285,15 @@
       "solver_gap": "0.905173527698058366475652713769902931205657384389911679382614824826269820512048346477943913",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "9.23533050727871757722027185554596671307296407220282053722623691934219786329346093041041000",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "cmflsp60-36-2-6",
@@ -304,7 +344,15 @@
       "solver_gap": "0.00741642374984795532405042210541920960366170390915297946911749146735195117828744686790768525",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "-0.390327192687188544111524913718672790955753287840167527422492239816257252762999241130270525",
-      "solver_gap_outcome": "loss"
+      "solver_gap_outcome": "loss",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "loss",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "loss",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "loss",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "loss"
     },
     {
       "instance": "r4l4-02-tree-bounds-50",
@@ -355,7 +403,15 @@
       "solver_gap": "0.0466914023470165408141536839901995544865596966483286195674579048285105649502735445302159530",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "1.60215149276022905777524138899801235730431525268692572671413736393275424723081326386672567",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "sct1",
@@ -406,7 +462,15 @@
       "solver_gap": "0.0608077479734188338521423282042790608025889647273468091788459865896069523848312711804040444",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "-0.0703288188025618103361356136625307172419041494530896738921994225382673684231583451358097700",
-      "solver_gap_outcome": "loss"
+      "solver_gap_outcome": "loss",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "loss",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "loss",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "shipsched",
@@ -457,7 +521,15 @@
       "solver_gap": "0.324726314274622851949768671513549239920687376074025115664243225380039656311962987442167878",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "9.11459248429984222487014849654021978034440696654469959740466990784224330829031499458551580",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "loss",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "loss",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "rocII-8-11",
@@ -508,7 +580,15 @@
       "solver_gap": "0.346698278376186838066466505027003479594308986546789458802796046174177869731597402737401093",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "8.61098633983326079480231886141439195266270914537268530498349632638563807299053553600745280",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "ns1856153",
@@ -559,7 +639,15 @@
       "solver_gap": "0.998191817268264330004337081751480635480561324563645013716547302319707601628199741844877912",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "95.9393314149762994169273298309649831503145070997092388103290405900250654121071348354740689",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "dc1l",
@@ -610,7 +698,15 @@
       "solver_gap": "0.00508530655813773282250229884931426338733880405653842892701215714142378254082930188941069884",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "-0.0442605268661832660664270551890710269687567798826719626596063994077822680975929889809475440",
-      "solver_gap_outcome": "loss"
+      "solver_gap_outcome": "loss",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "loss",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "loss",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "loss",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "loss"
     },
     {
       "instance": "neos-5221106-oparau",
@@ -661,7 +757,15 @@
       "solver_gap": "1",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "46.9325445222561388715951862033941751693707478600069178068005848230257562981247911484221243",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "zeil",
@@ -712,7 +816,15 @@
       "solver_gap": "0.349344651093343138758137433589193737770954799413310658013740067833781992247567911263162479",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "10.5138891836817800072764830605388819193478999361177530213387552106860903354034494993319804",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "loss",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "loss"
     },
     {
       "instance": "cdma",
@@ -763,7 +875,15 @@
       "solver_gap": "0.276964249808983940394978457874198189684617818896055497986674077469989273207648289312648882",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "19.4458248027953295469519702772688088839355723495829648445035951396305779842942721545869312",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "ns1456591",
@@ -814,7 +934,15 @@
       "solver_gap": "0.534910453897754369782801056264546851772111429611180558460913443483014494151863070045045031",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "53.4910453897754369782801056264546851772111429611180558460913443483014494151863070045045031",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "excluded",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "tie",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "excluded",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "seqsolve1",
@@ -865,7 +993,15 @@
       "solver_gap": "0.000467617488894084638765489829319616553659106850596212298339957914425999532382511105915361235",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "0E-93",
-      "solver_gap_outcome": "tie"
+      "solver_gap_outcome": "tie",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "tie",
+      "solver_portfolio_dual_outcome": "tie",
+      "solver_primal_skill_outcome": "tie",
+      "solver_dual_skill_outcome": "tie"
     },
     {
       "instance": "stockholm",
@@ -916,7 +1052,15 @@
       "solver_gap": "0.176923075787815658789175775201686077023610388140309711574732003425781905170067692731619486",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "4.57755348042091014121265948738172245645939946976867607550598722782409215635103156824391580",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "win",
+      "ai_portfolio_dual_outcome": "tie",
+      "ai_primal_skill_outcome": "win",
+      "ai_dual_skill_outcome": "tie",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "loss",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "loss"
     },
     {
       "instance": "supportcase22",
@@ -967,7 +1111,15 @@
       "solver_gap": "",
       "solver_feasibility_win": true,
       "solver_gap_reduction_pp": "",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "win",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "win",
+      "solver_dual_skill_outcome": "win"
     },
     {
       "instance": "neos-3682128-sandon",
@@ -1018,7 +1170,15 @@
       "solver_gap": "0.328818722629724840501373782477296470591383659665244880589343336206786279810927004141573079",
       "solver_feasibility_win": false,
       "solver_gap_reduction_pp": "32.8818722629724840501373782477296470591383659665244880589343336206786279810927004141573079",
-      "solver_gap_outcome": "win"
+      "solver_gap_outcome": "win",
+      "ai_portfolio_primal_outcome": "tie",
+      "ai_portfolio_dual_outcome": "win",
+      "ai_primal_skill_outcome": "tie",
+      "ai_dual_skill_outcome": "win",
+      "solver_portfolio_primal_outcome": "loss",
+      "solver_portfolio_dual_outcome": "win",
+      "solver_primal_skill_outcome": "loss",
+      "solver_dual_skill_outcome": "win"
     }
   ],
   "stats": {
@@ -1054,6 +1214,28 @@
     "solver_gap_outcome": {
       "win": 16,
       "loss": 3,
+      "tie": 1
+    },
+    "ai_primal_skill_outcome": {
+      "win": 9,
+      "tie": 9,
+      "loss": 1,
+      "excluded": 1
+    },
+    "ai_dual_skill_outcome": {
+      "win": 17,
+      "loss": 2,
+      "tie": 1
+    },
+    "solver_primal_skill_outcome": {
+      "win": 16,
+      "loss": 2,
+      "excluded": 1,
+      "tie": 1
+    },
+    "solver_dual_skill_outcome": {
+      "win": 15,
+      "loss": 4,
       "tie": 1
     },
     "direct_feasibility_wins": 1,

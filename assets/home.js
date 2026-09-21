@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  // Shared ordering across all three overview charts: red, blue, green, gray.
+  const palette = ['#8c1515', '#006cb8', '#176b5b', '#77736f', '#b66a6a', '#719bbd', '#639b8d'];
   const views = {
     status: {
       title: "What happened across the 132 studied instances?",
@@ -30,23 +32,17 @@
       ]
     },
     skill: {
-      title: "How did the workflows compare on primal and dual bounds?",
-      note: "Paired historical results on 20 instances. The comparison was nonrandomized and unequal-resource, so these are observed outcomes—not a causal effect estimate.",
-      mode: "bars",
-      max: 20,
-      items: [
-        ["Primal bound: skill better", 9, "#8c1515"],
-        ["Primal bound: equal within 1e-7", 9, "#77736f"],
-        ["Primal bound: comparison better", 1, "#006cb8"],
-        ["Primal bound: excluded candidate", 1, "#8A4F00"],
-        ["Dual bound: skill better", 17, "#8c1515"],
-        ["Dual bound: comparison better", 2, "#006cb8"],
-        ["Dual bound: equal within 1e-7", 1, "#77736f"],
-        ["Relative gap: skill smaller", 18, "#8c1515"],
-        ["Relative gap: comparison smaller", 2, "#006cb8"]
-      ]
+      title: "Primal-skill and dual-skill vs general AI and no-skill solver",
+      note: "General AI is the historical AI + solver workflow without the dedicated skills. No-skill solver uses the best recorded COPT/Gurobi bounds. Each comparison covers 20 cases; the invalid ns1456591 primal candidate is excluded. Budgets and resources differ.",
+      mode: "paired", items: []
     }
   };
+
+  views.evidence.items.sort((a, b) => b[1] - a[1]);
+
+  for (const view of Object.values(views)) {
+    view.items.forEach((item, index) => { item[2] = palette[index % palette.length]; });
+  }
 
   const chart = document.querySelector("#overview-chart");
   const title = document.querySelector("#overview-title");
@@ -63,6 +59,32 @@
     note.textContent = view.note;
     chart.replaceChildren();
     tableBody.replaceChildren();
+    table.querySelector('thead th:nth-child(2)').textContent=key==='skill'?'Win / Tie / Loss / Excluded':'Count';
+    if (key==='skill') {
+      explanationHeading.hidden=true;table.classList.remove('has-explanations');
+      const grid=document.createElement('div');grid.className='skill-objective-grid';
+      const groups=[['Primal-skill vs general AI','ai_primal_skill_outcome'],['Primal-skill vs no-skill solver','solver_primal_skill_outcome'],['Dual-skill vs general AI','ai_dual_skill_outcome'],['Dual-skill vs no-skill solver','solver_dual_skill_outcome']];
+      for(const [label,statKey] of groups) {
+        const counts=window.FOCUSED_SKILL_DATA.stats[statKey];
+        const card=document.createElement('article');const heading=document.createElement('h4');heading.textContent=label;
+        const stack=document.createElement('div');stack.className='stack';stack.setAttribute('role','img');
+        const parts=[['win','Skill better',palette[0]],['tie','Tie',palette[1]],['loss','Baseline better',palette[2]],['excluded','Excluded',palette[3]]];
+        const detail=document.createElement('p');detail.className='chart-note';
+        stack.setAttribute('aria-label',parts.map(([k,l])=>`${l}: ${counts[k]||0}`).join('; '));
+        detail.classList.add('overview-skill-legend');
+        for(const [k,label,color] of parts) {
+          const entry=document.createElement('span');const swatch=document.createElement('span');
+          swatch.className='swatch';swatch.style.background=color;
+          entry.append(swatch,document.createTextNode(`${label}: ${counts[k]||0}`));detail.append(entry);
+        }
+        for(const [k,,color] of parts) {const n=counts[k]||0;if(!n)continue;const segment=document.createElement('div');segment.className='stack-segment';segment.style.width=`${n/20*100}%`;segment.style.background=color;segment.textContent=String(n);stack.append(segment);}
+        card.append(heading,stack,detail);grid.append(card);
+        const tr=document.createElement('tr');const th=document.createElement('th');th.scope='row';th.textContent=label;const td=document.createElement('td');td.textContent=parts.map(([k])=>counts[k]||0).join(' / ');tr.append(th,td);tableBody.append(tr);
+      }
+      chart.append(grid);
+      buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.overview===key)));return;
+    }
+
 
     if (view.mode === "stack") {
       const stack = document.createElement("div");
