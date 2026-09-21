@@ -1,56 +1,56 @@
-# 原模型验收与“更快”的测量
+# Original-Model Acceptance and Measuring "Faster"
 
-## 1. 两条验收路径不能混淆
+## 1. Keep the two acceptance paths distinct
 
-**构造/修复**：固定整数选择，放开连续 recourse 或明确指定的其它离散变量，重新优化；得到的是一个新向量。它不能证明原输入向量可行。
+**Construction or repair:** Fix the integer choices, leave continuous recourse or explicitly selected discrete variables free, and reoptimize. The result is a new vector. This procedure does not establish feasibility of the original input vector.
 
-**检查给定向量**：重读最终落盘的 `.sol`，解释所有缺项，所有变量固定为提交值；检查 untouched original model。求解器固定点复查之外，用不同代码路径做直接行回代。对普通 MPS 可复用 MIPLIB GMP checker；有 indicator/SOS 等扩展时必须用支持其语义的 checker，不能静默略过。
+**Checking a submitted vector:** Reload the final serialized `.sol` file, apply the documented convention for omitted variables, fix every variable to its submitted value, and check the untouched original model. In addition to a solver fixed-point check, substitute the vector into every row through an independent code path. The MIPLIB GMP checker can be reused for ordinary MPS models. Models with indicators, SOS constraints, or other extensions require a checker that implements their semantics; never omit unsupported constructs silently.
 
-逐项记录：
+Record all of the following:
 
-- 模型文件、解文件、checker版本/源码和 SHA-256；压缩文件 hash 和解压内容 hash 不混用；
-- 不允许 NaN/Infinity、重复变量、未知变量、错误格式；稀疏未出现变量是否补0由文件约定决定；
-- 上下界、integer/binary/semi-integer/SOS 等适用域；ordinary、ranged、indicator 等全部原约束；
-- objective sense、constant、原始十进制系数与最终向量重算目标；
-- 最大行/变量界/整数违约，容差与检查算术；
-- 对 candidate 列出搜索状态和对该具体向量的独立验收状态。
+- Model file, solution file, checker version or source, and SHA-256. Keep the compressed-file hash separate from the hash of its decompressed contents.
+- Reject NaN or infinity, duplicate variables, unknown variables, and malformed records. Whether omitted variables in a sparse solution mean zero must follow the file-format contract.
+- Check bounds and every applicable domain, including integer, binary, semi-integer, and SOS domains. Check all original ordinary, ranged, indicator, and other applicable constraints.
+- Recompute the objective from the original decimal coefficients and the final vector, including the objective sense and constant.
+- Record the largest row, bound, and integrality violations, the tolerances, and the arithmetic used by the checker.
+- For each candidate, report both its search status and the independent acceptance status of that exact vector.
 
-修复后重新检查；不能简单把 near-integer 四舍五入就宣称可行。gmut-76-50 的更低点取整后仍有明显流量违约。标准 checker 有容差时，`passed` 仅支持对应容差的可行性。
+Recheck a repaired vector from scratch. Do not round a nearly integral vector and then declare it feasible. For `gmut-76-50`, rounding the lower-objective point still leaves a material flow violation. If a standard checker uses nonzero tolerances, `passed` supports feasibility only at those stated tolerances.
 
-有限精度 Decimal 算出零并不自动等同于完全有理证明：若运算可能舍入，说明 precision 和误差处理；要求数学零容差时使用 Fraction、整数缩放、区间包围或足够的可证明精度。原始有理系统的可行点不一定能精确写成有限小数，也不能随意 truncate 分数。
+A zero computed with finite-precision `Decimal` arithmetic is not automatically a fully rational proof. If arithmetic may round, report the precision and error treatment. When mathematical zero tolerance is required, use `Fraction`, integer scaling, interval enclosures, or sufficient provable precision. A feasible point for a rational system need not have a terminating decimal representation, so arbitrary truncation of fractions is invalid.
 
-来源：[仓库22项验证协议](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/comparisons/miplib-v36-primal-copt-validation-20260908/README.md)。其 GMP 使用线性/目标 `1e-5`、整数 `1e-4`；COPT 用 `1e-9`。这两类通过不等于22份数学零误差证书。
+Source: [the repository's 22-candidate validation protocol](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/comparisons/miplib-v36-primal-copt-validation-20260908/README.md). Its GMP checks use `1e-5` for linear rows and the objective and `1e-4` for integrality; COPT uses `1e-9`. Passing either check does not turn the 22 results into mathematical zero-error certificates.
 
-## 2. 目标比较与严格改善阈值
+## 2. Objective comparison and strict-improvement thresholds
 
-令方向 `s=+1` 为 minimization，`s=-1` 为 maximization，改善量为 `s*(z_old-z_new)`，必须为正。相对改善使用 `improvement/max(1,abs(z_old))`，不要除以负数。
+Let `s=+1` for minimization and `s=-1` for maximization. Define improvement as `s*(z_old-z_new)` and require it to be positive. Define relative improvement as `improvement/max(1,abs(z_old))`; never divide by a negative objective value.
 
-无已知有限 baseline：报告 `first_feasible` 和首次可行时间，不报告无限改善百分比。普通连续优化的显著改善阈值可用事先约定的绝对/相对标准，但要与验证误差分开。判断微小差值时，对旧解新解使用同一个原始系数重算；报告 interval 时要保证区间严格分离。
+When no finite baseline is known, report `first_feasible` and the time of first feasibility. Do not report an infinite improvement percentage. Ordinary numerical optimization may use a predeclared absolute or relative significance threshold, but keep that threshold separate from validation error. For small differences, recompute both old and new objectives from the same original coefficients. If reporting objective intervals, require the intervals to be strictly separated before claiming improvement.
 
-如果证明目标或某个最优代表位于 `a+g Z`，更好目标可选相邻格点；未证明不能因数据看着整数就设 `UB-1`。liu 的“最优可取偶数”足以把更优可行性搜索缩到1080；并不是说每个非最小连续布局的边长都必须为偶数。
+If it has been proved that the objective, or some optimal representative, lies in `a+g Z`, the next lattice point can define the better-objective target. Do not assume `UB-1` merely because the data look integral. For `liu`, the proof that an optimum can be even is enough to reduce the better-feasibility target to 1080; it does not mean that every nonminimal continuous layout must have an even side length.
 
-分类是两个独立轴：
+Use two independent classification axes:
 
-- **结果类型**：first_feasible / discrete_improvement / recourse_improvement / numerical_polish / repair_only / no_improvement。
-- **来源**：project_construction / solver_generated / transferred / external / external_derived / reproduction。
+- **Result type:** `first_feasible`, `discrete_improvement`, `recourse_improvement`, `numerical_polish`, `repair_only`, or `no_improvement`.
+- **Provenance:** `project_construction`, `solver_generated`, `transferred`, `external`, `external_derived`, or `reproduction`.
 
-相同 integer pattern 的 recourse 大幅改善仍可能很有价值；不要把所有相同模式改进一概归成无意义 polishing。sing17 的具体幅度和历史记录才支持该标注。
+A large recourse gain with the same integer pattern can still be valuable. Do not dismiss every same-pattern improvement as insignificant polishing. The label for `sing17` is supported by its particular magnitude and history, not merely by its unchanged integer pattern.
 
-## 3. 持久 ledger 的最小字段
+## 3. Minimum fields for a persistent ledger
 
-每条 experiment 保存：`run_id, seed, backend/version, model/start hashes, method, hypothesis, scope, cutoff, free/fixed variables, anchor, start_s, wall_s, workers, status, candidate, next_action`。
+Store the following for every experiment: `run_id, seed, backend/version, model/start hashes, method, hypothesis, scope, cutoff, free/fixed variables, anchor, start_s, wall_s, workers, status, candidate, next_action`.
 
-`run_manifest.json` 另存求解器选择链：顶层记录 `requested_backend, preferred_backend, backend_selection_order, selected_backend/version`；`backend_probe` 是数组，每个被探测或跳过的后端各有一个对象，至少包含 API/命令路径、许可证结果、模型特性、读入/短测试结果、探测耗时和 `fallback_reason`。跳过或失败的后端也保留原因；默认 COPT 成功时其 `fallback_reason` 明确为 `not_applicable`，不要留空。换后端后，每条 experiment 仍记录实际使用的 backend/version。
+In `run_manifest.json`, also store the backend-selection chain. At the top level record `requested_backend, preferred_backend, backend_selection_order, selected_backend/version`. Make `backend_probe` an array with one object for every backend that was probed or skipped. Each object should include at least the API or executable path, license result, model features, load or short-test result, probe duration, and `fallback_reason`. Preserve reasons for skipped and failed backends. When the default COPT probe succeeds, set its `fallback_reason` explicitly to `not_applicable` instead of leaving it blank. After a backend change, every experiment must still record the backend and version it actually used.
 
-`scope` 应能恢复实际邻域，例如：中心解sha、period `[7,9]`、哪些开采状态固定、最终 pit 是否固定。只写 `radius=3` 不够。记录 stopped/incomplete/closed；没有新候选的完整失败也要入账。
+The `scope` must reconstruct the real neighborhood. For example, record the center-solution SHA, period `[7,9]`, which extraction states were fixed, and whether the final pit was fixed. `radius=3` alone is insufficient. Distinguish `stopped`, `incomplete`, and `closed`. Log completed failures even when they produce no candidate.
 
-`candidate.audit` 应来自真实 checker 输出，不由模型自行填“通过”。摘要工具只是聚合记录，不能建立真实可行性。其简化输入是：
+`candidate.audit` must come from real checker output; the model must not invent a passing audit record. The summarizer only aggregates records and cannot establish feasibility. Its compact input begins with:
 
 ```json
-{"type":"meta","instance":"example","model_sha256":"64位实际模型SHA256","sense":"min","baseline":"100","min_improvement":"0.001"}
+{"type":"meta","instance":"example","model_sha256":"actual 64-hex-digit model SHA-256","sense":"min","baseline":"100","min_improvement":"0.001"}
 ```
 
-之后每行一个 experiment，例如（哈希字段必须替换成实际64位十六进制）：
+Follow it with one experiment object per line, for example. Replace every hash placeholder with the actual 64-digit hexadecimal value:
 
 ```json
 {
@@ -59,10 +59,10 @@
   "scope":{"center_sha256":"actual hash", "free_periods":[7,8,9], "outside_fixed":true},
   "candidate":{
     "objective":"98.5", "verified_at_s":"99", "category":"discrete_improvement",
-    "solution_sha256":"64位实际解SHA256",
+    "solution_sha256":"actual 64-hex-digit solution SHA-256",
     "audit":{
       "passed":true, "all_original_constraints_checked":true,
-      "model_sha256":"64位实际模型SHA256", "solution_sha256":"64位实际解SHA256",
+      "model_sha256":"actual 64-hex-digit model SHA-256", "solution_sha256":"actual 64-hex-digit solution SHA-256",
       "recomputed_objective":"98.5", "grade":"numerical",
       "row_tolerance":"1e-9", "integrality_tolerance":"1e-9",
       "report":"validation/window-01.json"
@@ -71,22 +71,22 @@
 }
 ```
 
-保存 JSONL 时每个对象压成一行。`candidate` 没有则省略。`verified_at_s` 是自任务起点的验收完成时间，须落在对应 experiment 的 start/end 内，wall 包含验证。可用 grade：`exact_rational`、`decimal_zero`、`numerical`。工具不打开 audit.report，也不校验真实文件哈希或约束；其输出必须配合原验证文件使用。
+Serialize each JSONL object on one line. Omit `candidate` when none exists. `verified_at_s` is the acceptance-completion time measured from the task start; it must fall within the corresponding experiment's start/end interval, and `wall_s` must include validation. Supported grades are `exact_rational`, `decimal_zero`, and `numerical`. The summarizer does not open `audit.report`, validate real file hashes, or check model constraints. Always retain its output alongside the original validation files.
 
-小于预设 `min_improvement` 的数值改善仍会保留在 best trajectory；只是不触发达到阈值的首次 baseline improvement。若多次小改善累积达到阈值，应正确计算从 baseline 的累积变化。
+A numerical improvement smaller than the predeclared `min_improvement` remains in the best trajectory; it simply does not trigger the threshold-reaching time for the first baseline improvement. If several small improvements cumulatively reach the threshold, compute their cumulative change from the baseline correctly.
 
-## 4. 如何验证“更快”
+## 4. How to test whether the skill is faster
 
-仓库历史是异质研究记录，算法、种子、CPU、start和预算不统一。不能从22/112或23/112推出GPT成功率，更不能把某缩减模型188秒与另一全流程10小时简单相除称加速。
+The repository history is a heterogeneous research record. Algorithms, seeds, CPUs, starts, and budgets differ. Neither 22/112 nor 23/112 estimates GPT's success rate, and dividing a 188-second reduced-model run by a different ten-hour end-to-end study does not establish a speedup.
 
-建议后续对照：
+Use the following design for a controlled comparison:
 
-1. 同一个原模型、相同可访问初始解、相同硬件与线程、相同预算、相同验收标准。比较 skill policy 本身时锁定相同 solver/version；若一方发生 COPT→Gurobi/cuOPT 回退，则将其报告为完整系统比较或单独的 fallback 因素，不能把差异全部归因于 skill。若允许外部检索/预计算，双方允许，并把成本单列；不可泄漏目标更优答案到 baseline 侧不允许的 skill 侧。
-2. 分别比较 cold baseline、相同 start 的 solver baseline、skill policy；这样区分“种子变强”与“搜索策略变快”。
-3. 主要比较整个相同预算内的 best-primal 轨迹与预算结束时最终 best；同时记录首个验证可行解、首个严格改进和预设改善阈值的时间。首次改善只是一项测量，不是停止条件；双方取得首次改善后都继续到共同总预算或有效终止条件。
-4. 无成功运行按预算截尾保留，不从时间平均中删除。报告成功数、全部实例分布和时间曲线；不只报告成功案例均值。
-5. 记录读取、结构分析、GPT tokens/API、构造、求解、lift、验证及人工准备时间；算子 wall×workers 仅是分配量估计，不是实际CPU用时。并发 wall 不相加。
-6. 按底层实例家族划分训练/调试与测试，nj和FHNW A/B不得跨集合造成同源泄漏；多seed检验稳定性。
-7. 做消融：去掉 sibling、去掉结构邻域、去掉kick、去掉持久负记录，比较 verified primal 而非仅 solver打印值。
+1. Hold fixed the untouched original model, accessible initial solution, hardware, thread count, budget, and acceptance standard. When comparing the skill policy itself, also hold the solver and version fixed. If one side falls back from COPT to Gurobi or cuOPT, report the result as a whole-system comparison or isolate fallback as a separate factor; do not attribute the entire difference to the skill. If external search or preprocessing is allowed, allow it on both sides and report its cost separately. Do not leak a stronger target solution to only one side.
+2. Compare a cold baseline, a solver baseline with the same start, and the skill policy separately. This distinguishes the value of a stronger seed from faster search after the seed.
+3. Make the primary outcome the best-primal trajectory over the same full budget and the final verified best at the budget limit. Also record the times of the first verified feasible solution, first strict improvement, and first predeclared threshold-reaching improvement. First improvement is a metric, not a stopping condition; both sides continue until the common total budget or another valid termination condition.
+4. Retain unsuccessful runs as right-censored at the budget limit instead of deleting them from timing averages. Report success counts, full-instance distributions, and time curves, not only the mean over successful cases.
+5. Record time spent on input, structural analysis, GPT tokens or API calls, construction, solving, lifting, validation, and human preparation. Operator wall time multiplied by worker count is an allocation estimate rather than observed CPU time. Do not add concurrent wall intervals.
+6. Split training or development and test data by underlying instance family. Do not place related `nj` or FHNW A/B formulations across the split. Use multiple seeds to assess stability.
+7. Run ablations without sibling transfer, structural neighborhoods, kicks, and persistent negative-result memory. Compare independently verified primal values rather than solver-reported values alone.
 
-本 skill 的工具测试只验证检索与记账正确性，不是上述优化性能试验。
+This skill's utility tests check only retrieval and accounting behavior. They are not the optimization performance experiment described above.

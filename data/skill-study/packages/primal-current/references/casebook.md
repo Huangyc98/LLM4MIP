@@ -1,69 +1,69 @@
-# 成功机制与没有改进的对照案例
+# Mechanisms Behind Success and No-Improvement Controls
 
-所有仓库链接固定于 `b329d3812c5acf51733e0e9f7baabdda7b1008d2`，读取日期 2026-09-14。这里的“为什么可复用”是机制分析，不等同于对原 GPT 决策动机或因果加速的证明。时间是历史记录，不是本次复现。
+All repository links are pinned to `b329d3812c5acf51733e0e9f7baabdda7b1008d2` and were accessed on 2026-09-14. The explanations of why a mechanism may be reusable are mechanism analyses; they are not evidence of the original GPT's decision rationale or of a causal speedup. Reported times are historical records, not timings from the current reproduction.
 
-## 统计先对齐
+## Align the Statistics First
 
-- 总体为固定 2026-09-04 open 集合中的 112 题；另一个目录 `rmine14` 是历史校准，不在分母。
-- 9 月 8 日验证包是 22 个给定向量：18 个数值改进（含 sing17）+4 个首次有限解。它验证可行性/目标，不验证新颖性或全局最优。
-- 最新项目 primal 表是 **23 项**：增加 `dws012-02` 后变成 **19+4**。旧“22/22”不能外推成新 23 项的统一复验。
-- `sing17` 的约 `2.47e-11` 相对变化属于数值 polishing。另有三个 fastxgemm 外部或外部派生向量优于旧公开记录，但仓库明确不计入项目 primal 贡献。
-- 其余 86 题是“未列该项目 primal 表”，包括已知解最优性证明、严格修复、局部结果和未解决可行性，不能直接当成失败的 primal 算法试验。
-- nj 三模型共享底层分区；FHNW pair A/B 共享底层排程数据。逐 formulation 数量不能当作独立样本量。
+- The overall set contains 112 instances from the frozen 2026-09-04 open set. The separate `rmine14` directory is a historical calibration and is excluded from the denominator.
+- The September 8 validation bundle contains 22 supplied vectors: 18 numerical improvements, including `sing17`, plus 4 first finite solutions. It validates feasibility and objective values, not novelty or global optimality.
+- The latest project primal table contains **23 entries**: adding `dws012-02` changes the count to **19+4**. The earlier "22/22" result cannot be extrapolated into a uniform revalidation of all 23 current entries.
+- The approximately `2.47e-11` relative change for `sing17` is numerical polishing. Three external or externally derived `fastxgemm` vectors also improve old public records, but the repository explicitly excludes them from the project's primal contribution count.
+- The remaining 86 instances are "not listed in the project's primal table." They include proofs of optimality for known solutions, exact repairs, local results, and unresolved feasibility cases, so they cannot be treated directly as failed trials of a primal algorithm.
+- The three `nj` formulations share one underlying partition. Each FHNW Pair A/B pair shares underlying scheduling data. Counts by formulation are not independent sample sizes.
 
-来源：[最新 README 结果表](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/README.md)、[旧 22 项验证报告](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/comparisons/miplib-v36-primal-copt-validation-20260908/README.md)。
+Sources: [latest README results table](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/README.md) and [earlier 22-entry validation report](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/comparisons/miplib-v36-primal-copt-validation-20260908/README.md).
 
-## 所有 23 个项目表实例的机制
+## Mechanisms for All 23 Instances in the Project Table
 
-| 实例 | 结果 | 改进产生的实际动作 | 对 GPT 的启发 / 归因边界 |
+| Instance | Result | Action That Produced the Improvement | Lesson for GPT / Attribution Boundary |
 |---|---|---|---|
-| allcolor58 | 258→42 | 从 allcolor10 公开构型出发，精确 residual 配置搜索；释放容量种类 | 固定容量达到 55/58 后停滞；允许容量变化才完成。外部种子+项目构造，不能仅归因于 parity 下界 |
-| circ10-3 | 256→242 | 恢复 CIRC10 赛程编码，构造并验证 242 见证 | 利用原问题文献/构造和映射；不必从匿名 MPS 零开始 |
-| bley_xs1noM | 3873690.77→3855895.86 | 兄弟解 identity-column 迁移，检查目标模型额外整数上界 | 先查数据族里的可用强解；迁移并非新的原生组合构造 |
-| dws012-02 | 119893.31070966377→119443.31072434435 | 264 设计位置比较，只交换一个已选/未选位置，补全目标模型 recourse | 两个解均选 19，重合 18；其余操作决策仍须满足原行。395 DEC 小块并不能独立求解 |
-| cvrpb-n45k5vrpi | 775→751 | 恢复 B-n45-k5 路线与原 indicator gadget，再 lift | 外部领域基准帮助找强种子；车数最优性论证与 primal 构造分开 |
-| cvrpa-n64k9vrpi | 1617→1401 | 恢复 A-n64-k9 数据、构造路线、回填完整原向量 | 同上；原模型允许 free fleet，不能仅凭文件名断言固定九车 |
-| fhnw-binschedule0 | 16088→15958 | 319319 变量→507-item interval-order；匹配/path cover 后构造 load | interval core 改变了搜索对象，lower-bound certificate 本身不生成完整解 |
-| fhnw-binschedule1 | 55198→55158 | 约114万变量→773 items；colored matching 构造见证 | 除端点负载外仍须检查内部机器负载 |
-| fhnw-schedule-paira200 | -19.2298568218154→-19.369961204645204 | job selection、有效冲突/能量强化和原模型排程 | 30 个 selected jobs；A/B 是同一数据集不同编码 |
-| fhnw-schedule-pairb200 | -19.24094384259708→-19.3699612046452058100 | 对应 selection 与重构、原 Pair-B 全行验证 | 与 A200 共享解，不当作独立算法胜利 |
-| fhnw-schedule-paira400 | -35.54680465280395→-36.27696674236886 | 安全 400-binary suffix master 与可行 schedule 重构 | 60 selected jobs；master 松弛需独立 lift |
-| fhnw-schedule-pairb400 | -35.4584→-36.27696674236886 | 与 A400 对应的独立重构/交叉检查 | 早期 deadline 误读产生无效 cuts；有效 primal 可保留，错误 proof 必须撤销 |
-| liu | 1083.984782 headline→1082 | 官方严格 1084 layout→sequence-pair hint→CP-SAT | 尺寸偶数+差分系统证明最优可取偶数，直接搜索1082；460.253 s 是特定阶段耗时 |
-| neos-3594536-henty | 401223→401092 | component balance/parity 缩减，spanning-forest 恢复自由流 | 缩减模型 188.34 s 闭合；这不是整个研究端到端时间 |
-| rmine15 | -5018.819990999996→-5018.823005000000004879 | 三期 [7,9] 重排，34 矿块/35 bits 协同变化 | 小但真实离散改进；微小幅度不等于数值假象 |
-| neos-5266653-tugela | 65505.2005752763→65257.573990387 | 联合车辆块 3/11/12，连续势差分修复 | 车辆列交错；不能按连续列切片选择块 |
-| supportcase39 | -1085080.906934894→-1085083.856820570460 | 高斯边界 11×11 窗口，30 个控制变量联合调整 | 单点、双点、5/7/9 窗口都未改善；扩大语义窗口才成功 |
-| nj1 | unknown→382.0606208032 | 人口均衡连通分区、recombination、kick+descent | 与 nj2/3 共用595标签分区；目标为先找到首个完整可行解再改善 |
-| nj2 | unknown→382.0606208032 | 同一分区重构 root/flow 变量 | 不是第二次独立发现 |
-| nj3 | unknown→382.0606208032 | 标签修复迁移，后续同源分区改进 | current 从383.6229暂退到389.6399再下降到382.0606；best不被坏kick覆盖 |
-| ns1905797 | unknown→13.98258 | 重平衡4块分配，CP路线构造→完整start→COPT improvement | 15.03429→5秒阶段14.62129→120秒阶段13.98258；900秒续跑未再改善 |
-| nag | 945→930 | 有界通用 COPT 求解 | 930来自2700秒run；不能编造结构方法解释所有成功 |
-| sing17 | 36161699.37883251→36161699.3779386893546367410 | 固定同一整数模式，连续重优化 | 数值 polishing；不能标成新的离散模式 |
+| allcolor58 | 258→42 | Started from the public `allcolor10` construction, ran an exact residual configuration search, and released capacity types | Fixed capacities stalled after covering 55/58 stores; allowing capacity changes completed the construction. This was an external seed plus a project construction, so the result cannot be attributed solely to the parity lower bound |
+| circ10-3 | 256→242 | Recovered the CIRC10 scheduling encoding, then constructed and validated a 242 witness | Use the original problem literature, constructions, and mappings; there is no need to start from an anonymous MPS alone |
+| bley_xs1noM | 3873690.77→3855895.86 | Transferred a sibling solution through identity columns and checked the target model's additional integer upper bounds | Look for strong available solutions in the same data family first; the transfer is not a new native combinatorial construction |
+| dws012-02 | 119893.31070966377→119443.31072434435 | Compared 264 design positions, swapped only one selected position with one unselected position, and completed the target model's recourse | Both solutions select 19 positions and overlap on 18; all remaining operating decisions must still satisfy the original rows. The 395 small DEC blocks cannot be solved independently |
+| cvrpb-n45k5vrpi | 775→751 | Recovered the B-n45-k5 routes and the original indicator gadget, then lifted the result | An external domain benchmark can provide a strong seed; the vehicle-count optimality argument remains separate from the primal construction |
+| cvrpa-n64k9vrpi | 1617→1401 | Recovered the A-n64-k9 data, constructed routes, and filled the complete original-space vector | As above; the original model permits a free fleet, so a fixed nine-vehicle requirement cannot be inferred from the filename alone |
+| fhnw-binschedule0 | 16088→15958 | Reduced 319319 variables to a 507-item interval-order core, then constructed loads after matching/path cover | The interval core changes the search object; a lower-bound certificate does not itself produce a complete solution |
+| fhnw-binschedule1 | 55198→55158 | Reduced approximately 1.14 million variables to 773 items, then constructed a witness with colored matching | Internal machine loads must be checked in addition to endpoint loads |
+| fhnw-schedule-paira200 | -19.2298568218154→-19.369961204645204 | Combined job selection, valid conflict/energy strengthening, and scheduling in the original model | 30 jobs are selected; Pair A and Pair B are different encodings of the same dataset |
+| fhnw-schedule-pairb200 | -19.24094384259708→-19.3699612046452058100 | Performed the corresponding selection and reconstruction, then validated every original Pair B row | The solution is shared with A200 and is not a second independent algorithmic success |
+| fhnw-schedule-paira400 | -35.54680465280395→-36.27696674236886 | Used a safe 400-binary suffix master and reconstructed a feasible schedule | 60 jobs are selected; the master relaxation requires an independent lift |
+| fhnw-schedule-pairb400 | -35.4584→-36.27696674236886 | Independently reconstructed and cross-checked the counterpart of the A400 solution | An early deadline misinterpretation produced invalid cuts; the valid primal may be retained, but the incorrect proof must be withdrawn |
+| liu | 1083.984782 headline→1082 | Moved from the official strict 1084 layout to a sequence-pair hint and then to CP-SAT | Even dimensions plus the system of difference constraints show that an optimum can be chosen with even dimensions, allowing a direct search for 1082; `460.253 s` is the runtime of a specific stage |
+| neos-3594536-henty | 401223→401092 | Reduced by component balance/parity and recovered free flows through a spanning forest | The reduced model closed in `188.34 s`; this is not the end-to-end time of the full research effort |
+| rmine15 | -5018.819990999996→-5018.823005000000004879 | Rearranged periods `[7,9]`, jointly changing 34 mining blocks and 35 bits | This is a small but real discrete improvement; a small magnitude does not imply a numerical artifact |
+| neos-5266653-tugela | 65505.2005752763→65257.573990387 | Jointly changed vehicle blocks 3, 11, and 12 and repaired the continuous potential differences | Vehicle columns are interleaved; blocks cannot be selected by slicing contiguous columns |
+| supportcase39 | -1085080.906934894→-1085083.856820570460 | Used an 11×11 Gaussian-boundary window to adjust 30 control variables jointly | Single-point, two-point, and 5/7/9 windows all failed to improve; the larger semantic window succeeded |
+| nj1 | unknown→382.0606208032 | Used population-balanced connected partitioning, recombination, and kick plus descent | Shares a 595-label partition with `nj2` and `nj3`; first construct a complete feasible solution, then improve it |
+| nj2 | unknown→382.0606208032 | Reconstructed root and flow variables from the same partition | This is not a second independent discovery |
+| nj3 | unknown→382.0606208032 | Transferred a label-repair construction and later improved the same-source partition | `current` temporarily worsened from `383.6229` to `389.6399` before descending to `382.0606`; a bad kick never overwrote `best` |
+| ns1905797 | unknown→13.98258 | Rebalanced a four-block assignment, constructed CP routes, created a complete start, and then applied COPT improvement | The trajectory was `15.03429` → `14.62129` in a 5-second stage → `13.98258` in a 120-second stage; a 900-second continuation found no further improvement |
+| nag | 945→930 | Ran a bounded generic COPT solve | The value 930 came from the 2700-second run; do not invent a structural-method explanation for every success |
+| sing17 | 36161699.37883251→36161699.3779386893546367410 | Fixed the same integer pattern and reoptimized the continuous variables | Numerical polishing; do not label it as a new discrete pattern |
 
-逐题来源与原目标字段保存在 [instances.json](instances.json)。上述表的比较基线固定为 v36，不能冒充实时排行榜。
+Per-instance sources and original objective fields are stored in [instances.json](instances.json). The comparison baseline in the table is frozen at v36 and must not be presented as a live leaderboard.
 
-## 关键原始证据入口
+## Primary Evidence Entry Points
 
-- [allcolor58 构造过程](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/allcolor58/reports/objective-42-certificate.md)：固定容量53秒到55店、flex约40秒到58店；这些时间来自日志文件时间区间，未含前期研究。
-- [dws012-02 完整报告](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/dws012-02/reports/final_report.md)：先否定伪分解，再 sibling design transplant；完整研究72分42秒。
-- [ns1905797 构造和 warm-start](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/ns1905797/README.md)：从块分配失衡到完整可行点；混用块解时违反 R0054 的候选被拒绝。
-- [rmine15 三期窗口](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/rmine15/README.md)、[supportcase39 边界窗口](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/supportcase39/README.md)、[tugela 联合车辆源码](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/neos-5266653-tugela/experiments/copt_interleaved_block_lns.py)。
-- [liu 各表示与格结构](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/liu/README.md)、[henty quotient/lift](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/neos-3594536-henty/README.md)。
-- [nj3 最新局部范围与迁移](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/nj3/README.md)：21 pair、39 anchored triples、67 anchored quads 已有局部关闭；下一步不能重复这些固定 scope。
-- [nag 逐次运行](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/nag/final_report.md)、[FHNW 家族日志分析](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/fhnw-schedule-pair-results-and-log-analysis-2026-09-08.zh.md)。
+- [allcolor58 construction record](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/allcolor58/reports/objective-42-certificate.md): the fixed-capacity run covered 55 stores in 53 seconds, and the flexible run covered 58 stores in approximately 40 seconds. These timings come from log-file intervals and exclude earlier research.
+- [complete dws012-02 report](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/dws012-02/reports/final_report.md): first rejected a false decomposition, then used a sibling design transplant; the complete research effort took 72 minutes 42 seconds.
+- [ns1905797 construction and warm start](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/ns1905797/README.md): progressed from an imbalanced block assignment to a complete feasible point; a candidate that mixed block solutions and violated `R0054` was rejected.
+- [rmine15 three-period window](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/rmine15/README.md), [supportcase39 boundary window](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/supportcase39/README.md), and [tugela joint-vehicle source](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/neos-5266653-tugela/experiments/copt_interleaved_block_lns.py).
+- [liu representations and lattice structure](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/liu/README.md) and [henty quotient/lift](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/neos-3594536-henty/README.md).
+- [latest nj3 local scopes and transfer record](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/nj3/README.md): 21 pairs, 39 anchored triples, and 67 anchored quadruples have already been closed locally; the next search must not repeat those fixed scopes.
+- [nag run sequence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/instances/nag/final_report.md) and [FHNW family log analysis](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/fhnw-schedule-pair-results-and-log-analysis-2026-09-08.zh.md).
 
-## 从未改善案例学到的边界
+## Boundaries Learned from Cases Without Improvement
 
-| 情况 | 实例证据 | skill 的动作 |
+| Situation | Instance Evidence | Skill Action |
 |---|---|---|
-| 小交换已充分探索 | t1722 连通≤5、comp12 bit≤10、sorrell 至少需13删14加 | 读取 scope；更换/增大真实动作，避免重复已覆盖半径 |
-| 单块可优化，全局仍卡住 | sing5/11/17、cmflsp、bab3 | 联合共享资源相关块；局部块关闭不代表全局可分 |
-| 分解标签误导 | dws012-02 的395小块全是linking vars | 用私有变量与耦合行核对分解，不能按 DEC 开始独立子问题 |
-| nominal improvement 被审计否定 | bley、gmut-76-50、polygonpack、minutedispatchstrategy | 整数归一化+recourse+原模型重算后再判断 |
-| relaxed/partial solution 看起来很好 | supportcase30 987/1024；datt256 470/480 | 保存 near-feasible，继续修复；不作为 primal bound |
-| 更强 lower bound 并不产生新解 | graph40、scpl/scpk/scpj、genus、mining | primal 任务中只把 bound 当目标提示，不默认展开长证明 |
-| 解已是最优或模型不可行 | graph40 已匹配既有解；fhnw-binpack/pythago infeasible | 经核对后退出无意义搜索；仍可借鉴结构但不能计作新primal |
-| 接口/分析占掉搜索时间 | allcolor 早期大量 extractor 修补和巨型输出 | 持久记录反例；紧凑画像后尽快做实际构造，不堆分析日志 |
+| Small exchanges have already been explored adequately | `t1722` connected moves of size at most 5; `comp12` bit moves of size at most 10; `sorrell` needs at least 13 removals and 14 additions | Read the recorded scope; change or enlarge the real move and avoid repeating a covered radius |
+| One block can be optimized while the global model remains stuck | `sing5/11/17`, `cmflsp`, `bab3` | Optimize jointly across blocks coupled by shared resources; closing one local block does not establish global separability |
+| Decomposition labels are misleading | All 395 small `dws012-02` blocks contain only linking variables | Check private variables and coupling rows before using a decomposition; do not begin independent subproblems from the DEC labels alone |
+| Audit rejects a nominal improvement | `bley`, `gmut-76-50`, `polygonpack`, `minutedispatchstrategy` | Normalize integer variables, optimize recourse, and recompute on the original model before deciding whether the result improved |
+| A relaxed or partial solution looks strong | `supportcase30` reaches 987/1024; `datt256` reaches 470/480 | Preserve the near-feasible point and continue repair; do not report it as a primal bound |
+| A stronger lower bound does not produce a new solution | `graph40`, `scpl/scpk/scpj`, `genus`, `mining` | In a primal task, use the bound only as a target signal and do not expand into a long proof campaign by default |
+| The known solution is already optimal or the model is infeasible | `graph40` matches the existing solution; `fhnw-binpack/pythago` is infeasible | After verification, stop unproductive primal search; the structure may still be reusable, but it does not count as a new primal result |
+| Interface work or analysis consumes the search budget | Early `allcolor` work spent substantial time repairing extractors and producing huge outputs | Retain negative-result memory, create a compact structure card, and begin actual construction promptly instead of accumulating analysis logs |
 
-已有 [milp-structure-research](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/skills/milp-structure-research/SKILL.md) 覆盖更广的结构/dual/proof 研究；本 skill 复用其证据纪律，新增以 verified-primal 时间、构造种子、warm-start、适应性邻域与停止/记忆为中心的路由。
+The existing [milp-structure-research](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/skills/milp-structure-research/SKILL.md) skill covers a wider range of structural, dual, and proof research. This skill reuses its evidence discipline and adds routing centered on time to a verified primal, construction seeds, warm starts, adaptive neighborhoods, stopping conditions, and negative-result memory.
