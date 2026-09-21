@@ -1,6 +1,88 @@
 (function () {
   'use strict';
   const {rows, stats} = window.FOCUSED_SKILL_DATA;
+  const methodSummaries = {
+  "graphdraw-grafo2": {
+    "primal": "Reposition connected parts of the drawing and adjust nearby coordinates.",
+    "dual": "Bound connected components separately and add valid component cuts."
+  },
+  "polygonpack4-10": {
+    "primal": "Rearrange small groups of polygons and repair their positions and rotations.",
+    "dual": "Rule out incompatible polygon combinations using validated conflict cuts."
+  },
+  "scpm1": {
+    "primal": "Exchange selected columns and prioritize low-cost repairs.",
+    "dual": "Combine constraints and use exact bounds to rule out better solutions."
+  },
+  "ger50-17-trans-dfn-3t": {
+    "primal": "Adjust linked capacity decisions and reoptimize the remaining continuous variables.",
+    "dual": "Add cuts linking flow balance to capacity and strengthen the global bound."
+  },
+  "eva1aprime6x6opt": {
+    "primal": "Exchange groups in the design and repair the remaining variables.",
+    "dual": "Identify mutually incompatible choices and add clique constraints."
+  },
+  "cmflsp60-36-2-6": {
+    "primal": "Revise production setups over selected time windows and repair the schedule.",
+    "dual": "Strengthen links between setup decisions, product families, and active periods."
+  },
+  "r4l4-02-tree-bounds-50": {
+    "primal": "Adjust linked timetable events and reconstruct a feasible schedule.",
+    "dual": "Eliminate redundant timing variables and derive bounds from cycle constraints."
+  },
+  "sct1": {
+    "primal": "Exchange linked choices and repair decisions that compete for tight resources.",
+    "dual": "Enforce integrality of activation decisions and strengthen the full-model search."
+  },
+  "shipsched": {
+    "primal": "Change the order of small groups of ships and recompute feasible timings.",
+    "dual": "Tighten event-order constraints and remove redundant timing variables."
+  },
+  "rocII-8-11": {
+    "primal": "Change configurations across related periods and repair continuous decisions.",
+    "dual": "Use objective-counting bounds and exhaustive case splits to exclude better solutions."
+  },
+  "ns1856153": {
+    "primal": "Exchange tree edges and jointly repair linked placement decisions.",
+    "dual": "Replace connectivity logic with cut constraints and verify bounds by tree enumeration."
+  },
+  "dc1l": {
+    "primal": "Replace selected crews and repair the remaining coverage decisions.",
+    "dual": "Simplify the coverage model and derive bounds by relaxing selected constraints."
+  },
+  "neos-5221106-oparau": {
+    "primal": "Refit bottleneck routes and exchange route segments.",
+    "dual": "Strengthen route bounds with subtour elimination and demand-flow constraints."
+  },
+  "zeil": {
+    "primal": "Recombine timetable choices and repair conflicts around busy intervals.",
+    "dual": "Derive bounds from weighted time windows using a minimum-cut relaxation."
+  },
+  "cdma": {
+    "primal": "Combine existing binary solutions and repair groups of linked decisions.",
+    "dual": "Simplify and rescale the model, then verify a bound with an exact LP certificate."
+  },
+  "ns1456591": {
+    "primal": "Exchange route blocks and repair continuous variables in the original model.",
+    "dual": "Remove route symmetries and enumerate routes to certify the optimal partition."
+  },
+  "seqsolve1": {
+    "primal": "Reassign staff at shortage sites and repair working-hour decisions.",
+    "dual": "Use capacity and staffing cuts to rule out better objective values."
+  },
+  "stockholm": {
+    "primal": "Change groups of toll decisions and repair the remaining variables.",
+    "dual": "Add path-cover constraints and combine them into a verified lower bound."
+  },
+  "supportcase22": {
+    "primal": "Combine binary patterns and repair inconsistent groups of decisions.",
+    "dual": "Propagate constraints and exhaustively check objective-related cases for a bound."
+  },
+  "neos-3682128-sandon": {
+    "primal": "Revise linked scheduling decisions around active penalties.",
+    "dual": "Bound setup and assignment choices using scheduling decomposition and dynamic programming."
+  }
+};
   const definitions = {
     primal: {title:'Solver + primal skill vs Vanilla prompting and solver baseline', key:'primal_outcome', note:'Lower P is better. Against Vanilla prompting: 10 wins / 9 ties / 1 loss. Against the solver baseline: 17 / 1 / 2. ns1456591 is accepted under its original 1e-6 row and integrality tolerances; its numerical advantage does not improve on the exact optimum. Vanilla prompting uses no dedicated skill; the solver baseline uses the best recorded bounds. Absolute tolerance: 1e-7. The outcome filter uses the Vanilla prompting comparison.'},
     dual: {title:'Solver + dual skill vs Vanilla prompting and solver baseline', key:'dual_outcome', note:'Higher D is better. Against Vanilla prompting: 17 wins / 1 tie / 2 losses. Against the solver baseline: 15 / 1 / 4. Vanilla prompting uses no dedicated skill; the solver baseline uses the best recorded bounds. Numerical bounds retain their stated evidence levels. Absolute tolerance: 1e-7. The outcome filter uses the Vanilla prompting comparison.'},
@@ -33,6 +115,17 @@
     }
     return td;
   }
+  function methodCell(r, kind) {
+    const td=cell(methodSummaries[r.instance][kind]);
+    td.className='finding';
+    const details=document.createElement('details');
+    const summary=document.createElement('summary');summary.textContent='Evidence and experiment details';
+    const text=document.createElement('p');
+    text.textContent=kind==='primal'?
+      (r.primal_tolerance_accepted?'Accepted at the original 1e-6 row and integrality tolerances (max residual 9.9e-7). Numerical objective 988.1403051801293; exact optimum 988.14128344. ':r.primal_evidence+'; row tolerance '+r.primal_row_tolerance+', integrality tolerance '+r.primal_integrality_tolerance+'. ')+r.primal_method:
+      r.dual_evidence+'; '+r.dual_method;
+    details.append(summary,text);td.append(details);return td;
+  }
   function render() {
     const selected=activeTab;
 
@@ -58,17 +151,17 @@
     }
     }
     const baselineName=selected==='gap'?'Vanilla prompting':'Solver baseline';
-    const headers= selected==='primal'?['Instance','Solver + primal skill P','Vanilla prompting P','Solver baseline P','vs Vanilla prompting','vs solver baseline','Evidence / method']:
-      selected==='dual'?['Instance','Solver + dual skill D','Vanilla prompting D','Solver baseline D','vs Vanilla prompting','vs solver baseline','Evidence / method']:
-      ['Instance','Batch','Better primal bound','Better dual bound','Smaller relative gap','Solver + skill bounds',baselineName+' bounds','Gap','Skill-guided method'];
+    const headers= selected==='primal'?['Instance','Solver + primal skill P','Vanilla prompting P','Solver baseline P','vs Vanilla prompting','vs solver baseline','Skill-guided method']:
+      selected==='dual'?['Instance','Solver + dual skill D','Vanilla prompting D','Solver baseline D','vs Vanilla prompting','vs solver baseline','Skill-guided method']:
+      ['Instance','Better primal bound','Better dual bound','Smaller relative gap','Solver + skill bounds',baselineName+' bounds','Gap','Skill-guided method'];
     const head=document.querySelector('#focused-head');head.replaceChildren();
     headers.forEach(x=>{const th=document.createElement('th');th.textContent=x;head.append(th);});
     const body=document.querySelector('#focused-body');body.replaceChildren();
-    const visible=rows.filter(r=>(filter.value==='all'||r[def.key]===filter.value)&&[r.instance,r.primal_method,r.dual_method].join(' ').toLowerCase().includes(search.value.trim().toLowerCase()));
+    const visible=rows.filter(r=>(filter.value==='all'||r[def.key]===filter.value)&&[r.instance,r.primal_method,r.dual_method,methodSummaries[r.instance].primal,methodSummaries[r.instance].dual].join(' ').toLowerCase().includes(search.value.trim().toLowerCase()));
     for(const r of visible) {
       const tr=document.createElement('tr');const name=cell(r.instance);name.className='instance-name';tr.append(name);
-      if(selected==='primal')tr.append(cell(r.primal_skill_primal),cell(r.no_skill_primal),cell(r.solver_primal||'No feasible solution'),badgeCell(r.ai_primal_skill_outcome,'Solver + primal skill','Vanilla prompting'),badgeCell(r.solver_primal_skill_outcome,'Solver + primal skill','Solver baseline'),cell((r.primal_tolerance_accepted?'Accepted at the original 1e-6 row and integrality tolerances (max residual 9.9e-7). Numerical objective 988.1403051801293; exact optimum 988.14128344. ':r.primal_evidence+'; row tolerance '+r.primal_row_tolerance+', integrality tolerance '+r.primal_integrality_tolerance+'. ')+r.primal_method));
-      else if(selected==='dual')tr.append(cell(r.dual_gurobi_strongest),cell(r.no_skill_dual),cell(r.solver_dual),badgeCell(r.ai_dual_skill_outcome,'Solver + dual skill','Vanilla prompting'),badgeCell(r.solver_dual_skill_outcome,'Solver + dual skill','Solver baseline'),cell(r.dual_evidence+'; '+r.dual_method));
+      if(selected==='primal')tr.append(cell(r.primal_skill_primal),cell(r.no_skill_primal),cell(r.solver_primal||'No feasible solution'),badgeCell(r.ai_primal_skill_outcome,'Solver + primal skill','Vanilla prompting'),badgeCell(r.solver_primal_skill_outcome,'Solver + primal skill','Solver baseline'),methodCell(r,'primal'));
+      else if(selected==='dual')tr.append(cell(r.dual_gurobi_strongest),cell(r.no_skill_dual),cell(r.solver_dual),badgeCell(r.ai_dual_skill_outcome,'Solver + dual skill','Vanilla prompting'),badgeCell(r.solver_dual_skill_outcome,'Solver + dual skill','Solver baseline'),methodCell(r,'dual'));
       else {
         const prefix=selected==='gap'?'ai':'solver';
         const feasibilityWin=selected==='solver' && r.solver_feasibility_win;
@@ -81,13 +174,13 @@
           feasibilityWin?'Skill found a feasible solution':`Reduction ${Number(reduction).toFixed(4)} pp`];
         lines.forEach(text=>{const line=document.createElement('div');line.textContent=text;gapCell.append(line);});
         const method=cell('');method.className='finding';
-        for(const [label,value] of [['Primal-skill',r.primal_method],['Dual-skill',r.dual_method]]) {
-          const line=document.createElement('div');const strong=document.createElement('strong');strong.textContent=label+':';line.append(strong,document.createTextNode(String(value).replace(/;\s*/g,'; ')));method.append(line);
+        for(const [label,value] of [['Primal-skill',methodSummaries[r.instance].primal],['Dual-skill',methodSummaries[r.instance].dual]]) {
+          const line=document.createElement('div');const strong=document.createElement('strong');strong.textContent=label+': ';line.append(strong,document.createTextNode(value));method.append(line);
         }
         if(r.excluded_primal_candidates!=='[]') {
           const note=document.createElement('small');note.textContent='Primal-skill candidate accepted at 1e-6 tolerance; the combined gap uses the independently verified exact feasible lift.';method.prepend(note);
         }
-        tr.append(cell(r.batch),badgeCell(r[prefix+'_portfolio_primal_outcome'],'Solver + skill',baselineName),badgeCell(r[prefix+'_portfolio_dual_outcome'],'Solver + skill',baselineName),badgeCell(r[def.key],'Solver + skill',baselineName),boundsCell(r.selected_primal,r.selected_dual),boundsCell(bp,bd),gapCell,method);
+        tr.append(badgeCell(r[prefix+'_portfolio_primal_outcome'],'Solver + skill',baselineName),badgeCell(r[prefix+'_portfolio_dual_outcome'],'Solver + skill',baselineName),badgeCell(r[def.key],'Solver + skill',baselineName),boundsCell(r.selected_primal,r.selected_dual),boundsCell(bp,bd),gapCell,method);
       }
       body.append(tr);
     }
