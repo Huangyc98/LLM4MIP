@@ -1,31 +1,49 @@
 (function () {
   "use strict";
 
-  const campaign = window.CAMPAIGN_DATA;
   const views = {
     status: {
-      title: `What happened across the ${campaign.instances} studied instances?`,
-      note: "These categories partition the campaign. The 34 conclusions include 32 optimal and two infeasible results; two genus optima accept residuals below 1e-10. Official MIPLIB labels may differ.",
-      mode: "stack", total: campaign.instances, items: campaign.statusItems
+      title: "What happened across the 132 studied instances?",
+      note: "These four categories partition the 132-instance benchmark. A resolved instance has a verified optimality or infeasibility result; official MIPLIB labels may not yet have changed.",
+      mode: "stack",
+      total: 132,
+      items: [
+        ["Certified optimality / infeasibility", 32, "#176b5b"],
+        ["Verified feasible; open", 94, "#006cb8"],
+        ["Numerically optimal up to 1e-10 tolerance", 2, "#8A4F00"],
+        ["No feasible point found", 4, "#8c1515"]
+      ]
     },
     evidence: {
-      title: `How were the ${campaign.closed} global conclusions verified?`,
-      note: "Verification forms have different evidence strength. Tolerance-accepted genus closures are separate from exact certificates; verification does not assign discovery credit.",
-      mode: "stack", total: campaign.closed, items: campaign.evidenceItems
+      title: "How were the 34 optimality / infeasibility results verified?",
+      note: "This classifies the basis of verification, not discovery credit. Portable replay after discovery is different from LLM-only discovery.",
+      mode: "stack",
+      total: 34,
+      items: [
+        ["Mathematically proven certificate", 20, "#8c1515", "Solver/LLM finds a primal bound. LLM proves a certificate mathematically"],
+        ["Logic reasoning", 1, "#b1040e", "Solver/LLM finds a primal bound. LLM finds a certificate through LLM-based logic reasoning"],
+        ["Enumeration", 3, "#176b5b", "Solver/LLM finds a primal bound. LLM finds a dual bound by enumeration"],
+        ["Published-theorem transfer", 3, "#620059", "Solver/LLM finds a primal bound. LLM plugs instance data into a published theorem statement"],
+        ["Floating-point zero-gap verification", 3, "#006cb8", "Solver finds a dual bound. LLM finds a matching primal solution"],
+        ["Mixed computational verification", 2, "#8A4F00", "A combination of above methods"],
+        ["Numerical closure at 1e-10 tolerance", 2, "#666666", "Residuals below the accepted tolerance"]
+      ]
     },
     skill: {
-      title: "Dedicated primal and dual skills, compared by objective",
-      note: "Against historical no-skill AI: primal has 9 wins, 9 ties, 1 loss and 1 excluded invalid candidate; dual has 17 wins, 1 tie and 2 losses. The combined gap uses best valid bounds after separate runs, with unequal resources.",
-      mode: "bars", max: 20,
+      title: "How did the workflows compare on primal and dual bounds?",
+      note: "Paired historical results on 20 instances. The comparison was nonrandomized and unequal-resource, so these are observed outcomes—not a causal effect estimate.",
+      mode: "bars",
+      max: 20,
       items: [
-        ["Primal-skill: better P", window.FOCUSED_SKILL_DATA.stats.primal_outcome.win, "#8c1515"],
-        ["Primal-skill: tied P", window.FOCUSED_SKILL_DATA.stats.primal_outcome.tie, "#77736f"],
-        ["Primal-skill: worse P", window.FOCUSED_SKILL_DATA.stats.primal_outcome.loss, "#006cb8"],
-        ["Primal-skill: excluded candidate", 1, "#8A4F00"],
-        ["Dual-skill: better D", window.FOCUSED_SKILL_DATA.stats.dual_outcome.win, "#8c1515"],
-        ["Dual-skill: tied D", window.FOCUSED_SKILL_DATA.stats.dual_outcome.tie, "#77736f"],
-        ["Dual-skill: worse D", window.FOCUSED_SKILL_DATA.stats.dual_outcome.loss, "#006cb8"],
-        ["Combined: smaller gap vs AI", window.FOCUSED_SKILL_DATA.stats.gap_outcome.win, "#176b5b"]
+        ["Primal bound: skill better", 9, "#8c1515"],
+        ["Primal bound: equal within 1e-7", 9, "#77736f"],
+        ["Primal bound: comparison better", 1, "#006cb8"],
+        ["Primal bound: excluded candidate", 1, "#8A4F00"],
+        ["Dual bound: skill better", 17, "#8c1515"],
+        ["Dual bound: comparison better", 2, "#006cb8"],
+        ["Dual bound: equal within 1e-7", 1, "#77736f"],
+        ["Relative gap: skill smaller", 18, "#8c1515"],
+        ["Relative gap: comparison smaller", 2, "#006cb8"]
       ]
     }
   };
@@ -33,9 +51,11 @@
   const chart = document.querySelector("#overview-chart");
   const title = document.querySelector("#overview-title");
   const note = document.querySelector("#overview-note");
+  const table = document.querySelector("#overview-data");
   const tableBody = document.querySelector("#overview-data tbody");
+  const explanationHeading = document.querySelector("#overview-explanation-heading");
   const buttons = document.querySelectorAll("[data-overview]");
-  if (!chart || !title || !note || !tableBody || !buttons.length) return;
+  if (!chart || !title || !note || !table || !tableBody || !explanationHeading || !buttons.length) return;
 
   function render(key) {
     const view = views[key];
@@ -50,7 +70,7 @@
       stack.setAttribute("role", "img");
       stack.setAttribute("aria-label", view.items.map(item => `${item[0]}: ${item[1]}`).join("; "));
       const legend = document.createElement("div");
-      legend.className = `legend legend-${view.items.length}`;
+      legend.className = `legend legend-${view.items.length} compact-legend`;
       view.items.forEach(([label, value, color]) => {
         const segment = document.createElement("div");
         segment.className = "stack-segment";
@@ -77,13 +97,24 @@
       chart.append(list);
     }
 
-    view.items.forEach(([label, value]) => {
+    const showExplanations = key === "evidence";
+    explanationHeading.hidden = !showExplanations;
+    table.classList.toggle("has-explanations", showExplanations);
+
+    view.items.forEach(([label, value, , explanation]) => {
       const row = document.createElement("tr");
-      const metric = document.createElement("td");
+      const metric = document.createElement("th");
       const result = document.createElement("td");
+      metric.scope = "row";
       metric.textContent = label;
       result.textContent = String(value);
       row.append(metric, result);
+      if (showExplanations) {
+        const detail = document.createElement("td");
+        detail.className = "measure-explanation";
+        detail.textContent = explanation;
+        row.append(detail);
+      }
       tableBody.append(row);
     });
 

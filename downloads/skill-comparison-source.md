@@ -7,7 +7,7 @@ Comparison date: 2026-09-13.
 - `sources/no-skill-report.md`: Markdown source of the user-designated run without `milp-structure-research`.
 - `sources/skill-report.zh.md`: consolidated report of the user-designated skill run.
 - `sources/skill-summary.csv`: 20-row machine-readable summary of the skill run.
-- `../../../skills/milp-structure-research/SKILL.md`: the exact skill version used by the run; SHA-256 `f8a09b104f0af3786b2e702f60dde3de7fd54a1aac581dff9bdd8a3325c84b4f`.
+- Historical skill: [frozen entrypoint](../../experiment-handoff-20260920/evidence/historical-SKILL.md); SHA-256 `f8a09b104f0af3786b2e702f60dde3de7fd54a1aac581dff9bdd8a3325c84b4f`. The live skill was changed to COPT-first on 2026-09-20; retrieve the full historical skill directory from commit `a5919b51192b4f4493e77ae0fefb71f085e0820d` when reproducing the old workflow.
 
 The published text snapshots use repository-normalized line endings, so their byte hashes differ from the original Windows working copies. `audit.json` records both the original-input hashes and the published-snapshot hashes.
 
@@ -33,7 +33,7 @@ python .\docs\comparisons\milp-structure-skill-effect-20260913\compare_skill_eff
   --no-skill-report .\docs\comparisons\milp-structure-skill-effect-20260913\sources\no-skill-report.md `
   --skill-summary .\docs\comparisons\milp-structure-skill-effect-20260913\sources\skill-summary.csv `
   --skill-report .\docs\comparisons\milp-structure-skill-effect-20260913\sources\skill-report.zh.md `
-  --skill-file .\skills\milp-structure-research\SKILL.md `
+  --skill-file .\docs\experiment-handoff-20260920\evidence\historical-SKILL.md `
   --csv-out .\docs\comparisons\milp-structure-skill-effect-20260913\comparison.generated.csv `
   --audit-out .\docs\comparisons\milp-structure-skill-effect-20260913\audit.generated.json
 ```

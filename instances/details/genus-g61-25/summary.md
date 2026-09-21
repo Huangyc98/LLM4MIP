@@ -1,32 +1,39 @@
 # genus-g61-25
 
-Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
+> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Current result
+## Results and progress
 
-- Cohort: original112
-- Status: Accepted feasible; open
-- Primal: -40
-- Dual / certificate: -42
-- Global conclusion: Not established
-- Evidence: See the stated numerical tolerances and source audits.
-- Project primal update vs MIPLIB v36: False (not_in_project_primal_table)
-- Dual improvement vs historical COPT 10h: True
+- **Benchmark outcome:** Verified feasible; open
+- **Best verified result:** -40 (genus 10; MPS tolerance 1e-6)
+- **Best bound or certificate:** -42 (exact; genus ≥9)
+- **Study result:** Complete 44-face exclusion; 42-face target unresolved
 
-Complete 44-face exclusion; 42-face target unresolved
+## Interpretation
 
+The benchmark study does not report a certified global optimum or infeasibility result for this instance. The archived work may still contain a stricter incumbent, a stronger lower bound, an exact structural reduction, a closed local neighborhood, or a documented negative experiment.
 
+## Experiment workflow
 
-## Evidence and provenance
+1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
+2. Profile the untouched formulation and propose falsifiable structural hypotheses.
+3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
-[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/genus-g61-25/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
+## Download bundle
 
-The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
-The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
-and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
+The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
 
-## Download scope
+## Provenance
 
-The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
+Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
 
-Archive SHA-256: `3edf2c3ca75152bbc9f5a9454e43573728ebf013cd115d2c1e4c878f2875fbf4`
+- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
+- **Source README SHA-256:** `a8958cd2d9281b3bd030106524b4646113fa2da22c52e27ba25fdce8dc29ad46`
+
+## Package integrity
+
+- **Archive:** `genus-g61-25-findings.tar.gz`
+- **Compressed bytes:** `25840`
+- **SHA-256:** `a0ed0805b7a36d6cee992e168be452c8dc955c720be03726162b45dd0d3d7b19`
+- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/genus-g61-25/README.md

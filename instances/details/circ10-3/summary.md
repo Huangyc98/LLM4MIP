@@ -1,32 +1,43 @@
 # circ10-3
 
-Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
+> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Current result
+## Results and progress
 
-- Cohort: original112
-- Status: Global conclusion
-- Primal: 242
-- Dual / certificate: 242
-- Global conclusion: OPT = 242
-- Evidence: Published-theorem transfer
-- Project primal update vs MIPLIB v36: True (numeric_improvement)
-- Dual improvement vs historical COPT 10h: True
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 242
+- **Best bound or certificate:** 242 published
+- **Study result:** Optimal, exact MPS crosswalk + published exhaustive result
 
-Optimal, exact MPS crosswalk + published exhaustive result
+## Certified optimality or infeasibility result
 
-通过文献迁移审核。未独立重放外部完整搜索，也未取得期刊14页完整正文；本地242可行性日志、较弱220界均不充当外部最优性证明。
+- **Conclusion:** OPT = 242
+- **Main method:** exact MPS/TTP crosswalk + published exhaustive result
+- **Verification category:** LT — Exact crosswalk plus published theorem or exhaustive result
+- **Earlier source-table status:** literature-dependent theorem transfer
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
-## Evidence and provenance
+## Experiment workflow
 
-[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/circ10-3/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
+1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
+2. Profile the untouched formulation and propose falsifiable structural hypotheses.
+3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
-The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
-The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
-and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
+## Download bundle
 
-## Download scope
+The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
 
-The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
+## Provenance
 
-Archive SHA-256: `d04bdfbe1581dd5c31e3cdc8a3eb8ae7ef6739be209627285e1536e574a22b14`
+Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
+
+- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
+- **Source README SHA-256:** `daea6a1aa6cd12e9c46b496f2a5700d80ade6a68b8ea900ff54e217437ab9a0d`
+
+## Package integrity
+
+- **Archive:** `circ10-3-findings.tar.gz`
+- **Compressed bytes:** `23734`
+- **SHA-256:** `1ff69af9fbad108dc18caf6d99b844b772f918332f1fe7734ed9b20ead7b83c0`
+- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/circ10-3/README.md

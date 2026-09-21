@@ -5,20 +5,19 @@
     primal: {title:'Primal vs primal-skill', key:'primal_outcome', note:'Lower P is better. 9 wins, 9 ties, 1 loss; one invalid candidate excluded. The raw historical table counted 10 wins. Absolute comparison tolerance: 1e-7.'},
     dual: {title:'Dual vs dual-skill', key:'dual_outcome', note:'Higher D is better. Strongest Gurobi / independently certified bounds: 17 wins, 1 tie, 2 losses versus the no-skill AI. Numerical and independent certificates are shown separately. Absolute tolerance: 1e-7.'},
     gap: {title:'Primal-skill + dual-skill vs no-skill AI', key:'gap_outcome', note:'Post-hoc best valid bounds: 18 smaller gaps and 2 larger gaps; mean reduction 15.8079 percentage points over 20 pairs. Gurobi and independent certificates only.'},
-    direct: {title:'Primal-skill + dual-skill vs direct Gurobi 150 min', key:'direct_gap_outcome', note:'17 skill wins (16 smaller gaps + 1 feasible solution where the solver found none), 1 tie and 2 losses. Mean gap reduction: 19.2762 percentage points over the 19 finite-gap pairs.'},
-    copt: {title:'Primal-skill + dual-skill vs historical COPT 10h', key:'copt_gap_outcome', note:'19 skill wins (16 smaller gaps + 3 feasible solutions where COPT recorded none) and 1 loss. The cdma COPT run aborted after 0.1 seconds; its feasibility loss is not a completed 10h result. Mean gap reduction: 24.1816 percentage points over 17 finite-gap pairs. This is a cross-solver historical reference.'}
+    solver: {title:'Primal-skill + dual-skill vs solver', key:'solver_gap_outcome', note:'Solver uses the lowest valid primal and highest valid dual across the recorded solver runs. Skill wins 16 (15 smaller gaps + 1 feasible solution where neither solver recorded one), ties 1 and loses 3. Mean reduction: 18.9091 percentage points over 19 finite-gap pairs. Historical budgets and solver configurations differ.'}
   };
   const labels={win:'Skill better',tie:'Tie',loss:'Baseline better',excluded:'Excluded candidate',NA:'Unavailable'};
   const colors={win:'#8c1515',tie:'#77736f',loss:'#006cb8',excluded:'#8A4F00',NA:'#8A4F00'};
   let activeTab='gap';
-  const solver=document.querySelector('#focused-solver');
+
   const search=document.querySelector('#focused-search');
   const filter=document.querySelector('#focused-filter');
   function cell(text) {const td=document.createElement('td');td.textContent=text;return td;}
   function percent(value) {const n=Number(value);return value && Number.isFinite(n)?(n*100).toFixed(4)+'%':'Unavailable';}
   function render() {
-    const selected=activeTab==='solver'?solver.value:activeTab;
-    document.querySelector('#focused-solver-control').hidden=activeTab!=='solver';
+    const selected=activeTab;
+
     const def=definitions[selected];
     document.querySelector('#focused-title').textContent=def.title;
     document.querySelector('#focused-note').textContent=def.note;
@@ -52,6 +51,6 @@
     document.querySelectorAll('[data-focused]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.focused===activeTab)));
   }
   document.querySelectorAll('[data-focused]').forEach(b=>b.addEventListener('click',()=>{activeTab=b.dataset.focused;filter.value='all';render();}));
-  solver.addEventListener('change',()=>{filter.value='all';render();});
+
   search.addEventListener('input',render);filter.addEventListener('change',render);render();
 }());

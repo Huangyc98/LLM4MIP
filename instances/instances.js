@@ -20,6 +20,22 @@
     return td;
   }
 
+  function measureCell(display) {
+    const td = document.createElement("td");
+    td.className = "measure-cell";
+    const value = document.createElement("span");
+    value.className = "measure-value";
+    value.textContent = display?.value ?? "—";
+    td.append(value);
+    if (display?.note) {
+      const note = document.createElement("small");
+      note.className = "measure-note";
+      note.textContent = `(${display.note})`;
+      td.append(note);
+    }
+    return td;
+  }
+
   function linksCell(record) {
     const td = document.createElement("td");
     const wrap = document.createElement("div");
@@ -32,14 +48,11 @@
     archive.className = "button small";
     archive.href = record.archive;
     archive.download = "";
-    archive.textContent = `${record.bundleKind === "result" ? "Result bundle" : "Research archive"} · ${formatBytes(record.archiveBytes)}`;
-    const source = document.createElement("a");
-    source.href = record.sourceUrl;
-    source.textContent = "Source evidence";
-    wrap.append(summary, archive, source);
+    archive.textContent = `Bundle · ${formatBytes(record.archiveBytes)}`;
+    wrap.append(summary, archive);
     const meta = document.createElement("span");
     meta.className = "download-meta";
-    meta.textContent = `${record.includedFiles} files · SHA-256 ${record.archiveSha256.slice(0, 12)}…`;
+    meta.textContent = `${record.includedFiles} source files · SHA-256 ${record.archiveSha256.slice(0, 12)}…`;
     td.append(wrap, meta);
     return td;
   }
@@ -48,14 +61,9 @@
     const term = search.value.trim().toLowerCase();
     const status = filter.value;
     const visible = data.filter(record => {
-      const matches = status === "all" || record.status === status ||
-        (status === "primal-improved" && record.primalImprovement) ||
-        (status === "dual-improved" && record.dualImprovement) ||
-        (status === "optimal" && record.globalConclusion?.startsWith("OPT")) ||
-        (status === "infeasible" && record.globalConclusion === "Infeasible");
-      if (!matches) return false;
+      if (status !== "all" && record.status !== status) return false;
       if (!term) return true;
-      return [record.instance, record.bestResult, record.bestBound, record.studyStatus, record.globalMethod, record.evidenceLevel, record.globalConclusion]
+      return [record.instance, record.bestResult, record.bestBound, record.studyStatus, record.globalMethod, record.evidenceLevel]
         .filter(Boolean).join(" ").toLowerCase().includes(term);
     });
 
@@ -68,15 +76,11 @@
       badge.className = `badge ${record.status}`;
       badge.textContent = record.statusLabel;
       statusCell.append(badge);
-      const contributions = document.createElement("small");
-      contributions.className = "download-meta";
-      contributions.textContent = [record.primalImprovement && "Primal update", record.dualImprovement && "Dual improvement"].filter(Boolean).join(" · ");
-      statusCell.append(contributions);
       row.append(
         name,
         statusCell,
-        cell(record.bestResult),
-        cell(record.bestBound),
+        measureCell(record.bestResultDisplay),
+        measureCell(record.bestBoundDisplay),
         cell(record.studyStatus, "finding"),
         linksCell(record)
       );

@@ -1,32 +1,43 @@
 # cvrpb-n45k5vrpi
 
-Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
+> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Current result
+## Results and progress
 
-- Cohort: original112
-- Status: Global conclusion
-- Primal: 751
-- Dual / certificate: 751
-- Global conclusion: OPT = 751
-- Evidence: Mixed computational evidence
-- Project primal update vs MIPLIB v36: True (numeric_improvement)
-- Dual improvement vs historical COPT 10h: True
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** 751 (new strict incumbent)
+- **Best bound or certificate:** 751
+- **Study result:** Optimal, mixed database/computational verification; no portable exact lower-bound trace
 
-Optimal, mixed database/computational evidence; no portable exact lower-bound trace
+## Certified optimality or infeasibility result
 
-按允许外部结果和合理solver日志的标准通过。固定5车外部计算及K≥6商业搜索未由本次重新求解；altman的原MPS COPT超时日志不是成功排除，cutoff可行性模型的目标0也不是路线下界。
+- **Conclusion:** OPT = 751
+- **Main method:** exact compiled-MPS projection + CVRPLIB five-route optimum + Gurobi exclusion for at least six routes
+- **Verification category:** MX — Mixed database and commercial-solver verification
+- **Earlier source-table status:** mixed database/computational optimality verification; no portable exact lower-bound trace
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
-## Evidence and provenance
+## Experiment workflow
 
-[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/cvrpb-n45k5vrpi/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
+1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
+2. Profile the untouched formulation and propose falsifiable structural hypotheses.
+3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
-The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
-The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
-and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
+## Download bundle
 
-## Download scope
+The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
 
-The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
+## Provenance
 
-Archive SHA-256: `c0247a5985d3e9aa77ce0e1a0d67a70f29c9eff7257a474a270494e3b3abd1b1`
+Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
+
+- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
+- **Source README SHA-256:** `ef221375d4007d8412b94f151d249e6add9420d5179938fa5e9974783a972fbc`
+
+## Package integrity
+
+- **Archive:** `cvrpb-n45k5vrpi-findings.tar.gz`
+- **Compressed bytes:** `410499`
+- **SHA-256:** `d0018d62206b8e379baffa9628d861eeb850104c1bfb409257c2268f00f1d057`
+- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/cvrpb-n45k5vrpi/README.md

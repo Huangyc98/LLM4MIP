@@ -11,28 +11,28 @@
     gtag('config', 'G-JNJSLE077H');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Searchable findings and downloadable research bundles for 132 studied open MIPLIB instances.">
-  <title>132 Instance Findings | LLM4MIP</title>
+  <meta name="description" content="Searchable results and downloadable research bundles for 132 studied open MIPLIB instances.">
+  <title>Results for 132 Open MIPLIB Instances | LLM4MIP</title>
   <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <nav class="nav-wrap" aria-label="Primary navigation">
-      <a class="brand" href="../">LLM4MIP <small>Evidence before claims</small></a>
+      <a class="brand" href="../">LLM4MIP <small>Verified computational results</small></a>
       <div class="nav-links">
         <a href="./" aria-current="page">132 instances</a>
-        <a href="../skill/">Skill experiment</a>
-        <a href="../solver-replacement/">Replace solvers?</a>
+        <a href="../skill/">Skill comparison</a>
+        <!-- Temporarily hidden: <a href="../solver-replacement/">Replace solvers?</a> -->
         <!-- Temporarily hidden: <a href="../technical-report.pdf">Report</a> -->
         <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">Deep dive 01 · complete campaign catalogue</p>
-        <h1>132 instances, one auditable index</h1>
-        <p class="dek">All 132 studied instances have current result summaries and source evidence links. Downloads preserve 112 historical research archives and add 20 compact result bundles.</p>
+        <p class="eyebrow">Deep dive 01 · complete benchmark catalogue</p>
+        <h1>Results for 132 open MIPLIB instances</h1>
+        <p class="dek">Every studied current-open instance has a concise result summary and a compressed bundle of the related computational materials.</p>
       </div>
     </div>
   </header>
@@ -43,38 +43,29 @@
         <div class="section-head">
           <div>
             <p class="eyebrow" style="color:#8c1515">Snapshot</p>
-            <h2 id="snapshot-heading">What the campaign established</h2>
+            <h2 id="snapshot-heading">Benchmark results by optimization status</h2>
           </div>
-          <p>Click a segment to filter the catalogue. These categories partition all 132 instances.</p>
+          <p>Click a segment to filter the catalogue</p>
         </div>
-        <!-- CAMPAIGN_STATUS_START -->
-<div class="status-strip" role="group" aria-label="Filter by campaign status"><button type="button" data-status-filter="concluded" style="width:25.757576%;background:#176b5b" aria-label="Global conclusion: 34" aria-pressed="false">34</button><button type="button" data-status-filter="verified-open" style="width:70.454545%;background:#006cb8" aria-label="Accepted feasible; open: 93" aria-pressed="false">93</button><button type="button" data-status-filter="pending" style="width:0.757576%;background:#8A4F00" aria-label="Pending strict verification: 1" aria-pressed="false">1</button><button type="button" data-status-filter="no-feasible" style="width:3.030303%;background:#8c1515" aria-label="No feasible point found: 4" aria-pressed="false">4</button></div><div class="legend legend-4"><div class="legend-item"><span class="swatch" style="background:#176b5b"></span><span>Global conclusion</span><strong>34</strong></div><div class="legend-item"><span class="swatch" style="background:#006cb8"></span><span>Accepted feasible; open</span><strong>93</strong></div><div class="legend-item"><span class="swatch" style="background:#8A4F00"></span><span>Pending strict verification</span><strong>1</strong></div><div class="legend-item"><span class="swatch" style="background:#8c1515"></span><span>No feasible point found</span><strong>4</strong></div></div>
-<!-- CAMPAIGN_STATUS_END -->
-        <p class="note">34 global conclusions: 32 optimal and two infeasible. The optimal count includes two genus closures accepting residuals below 1e-10. Feasible/open cases retain their stated tolerances; these are not uniformly exact certificates. Primal and dual improvement counts overlap.</p>
-      </section>
-
-      <section class="section" aria-labelledby="setup-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Simplified experiment setup</p>
-            <h2 id="setup-heading">The same four gates for every claim</h2>
-          </div>
+        <div class="status-strip" role="group" aria-label="Filter by benchmark outcome">
+          <button type="button" data-status-filter="concluded" style="width:24.242424%;background:#176b5b" aria-label="Show 32 instances with certified optimality or infeasibility" aria-pressed="false">32 resolved</button>
+          <button type="button" data-status-filter="verified-open" style="width:71.212121%;background:#006cb8" aria-label="Show 94 verified feasible open instances" aria-pressed="false">94 verified/open</button>
+          <button type="button" data-status-filter="numeric-optimal" style="width:1.515152%;background:#8A4F00" aria-label="Show 2 instances that are numerically optimal up to 1e-10 tolerance" aria-pressed="false">2</button>
+          <button type="button" data-status-filter="no-feasible" style="width:3.030303%;background:#8c1515" aria-label="Show 4 instances with no feasible point found" aria-pressed="false">4</button>
         </div>
-        <div class="workflow">
-          <article><h3>Freeze</h3><p>Record the untouched model, baseline, objective convention, and acceptance tolerance.</p></article>
-          <article><h3>Understand</h3><p>Profile the matrix and formulate at least two falsifiable structural hypotheses.</p></article>
-          <article><h3>Test</h3><p>Run bounded primal, dual, reduction, enumeration, or certificate experiments.</p></article>
-          <article><h3>Verify</h3><p>Map survivors back to the original MPS and report only the evidence grade earned.</p></article>
+        <div class="legend legend-4">
+          <div class="legend-item"><span class="swatch" style="background:#176b5b"></span><span>Certified optimality / infeasibility</span><strong>32</strong></div>
+          <div class="legend-item"><span class="swatch" style="background:#006cb8"></span><span>Verified feasible; open</span><strong>94</strong></div>
+          <div class="legend-item"><span class="swatch" style="background:#8A4F00"></span><span>Numerically optimal up to 1e-10 tolerance</span><strong>2</strong></div>
+          <div class="legend-item"><span class="swatch" style="background:#8c1515"></span><span>No feasible point found</span><strong>4</strong></div>
         </div>
-        <div class="callout blue">
-          <p><strong>Bundle policy:</strong> the original 112 research archives remain unchanged, retaining their reports, scripts, solutions and proof artifacts (official raw input models are excluded and recorded by hash). The subsequent 20 downloads contain result summaries, ledger records and a license; detailed proof and experiment materials are linked at their source. Current summaries supersede historical counts and genus policy. The historical <span class="mono">rmine14</span> calibration is excluded.</p>
-        </div>
+        <p class="note">The 32 resolved instances comprise 30 with certified optimality and two with certified infeasibility. “Open” means global optimality remains unresolved; local optimality, stronger bounds, or incumbent improvements may still be substantial.</p>
       </section>
 
       <section id="catalogue" class="section" aria-labelledby="catalogue-heading">
         <div class="section-head">
           <div>
-            <p class="eyebrow" style="color:#8c1515">Finding archive</p>
+            <p class="eyebrow" style="color:#8c1515">Instance results</p>
             <h2 id="catalogue-heading">Search all instances</h2>
           </div>
           <a href="instances.json">Download catalogue JSON</a>
@@ -85,11 +76,13 @@
             <input id="instance-search" type="search" placeholder="Try “parity”, “strict incumbent”, or “fhnw”" autocomplete="off">
           </div>
           <div class="field">
-            <label for="instance-filter">Status or improvement</label>
+            <label for="instance-filter">Benchmark outcome</label>
             <select id="instance-filter">
-              <!-- CAMPAIGN_OPTIONS_START -->
-<option value="all">All 132</option><option value="concluded">Global conclusion (34)</option><option value="verified-open">Accepted feasible; open (93)</option><option value="pending">Pending strict verification (1)</option><option value="no-feasible">No feasible point found (4)</option><option value="optimal">Optimal (32)</option><option value="infeasible">Infeasible (2)</option><option value="primal-improved">Primal update (29)</option><option value="dual-improved">Dual improvement (66)</option>
-<!-- CAMPAIGN_OPTIONS_END -->
+              <option value="all">All 132</option>
+              <option value="concluded">Certified optimality / infeasibility (32)</option>
+              <option value="verified-open">Verified feasible; open (94)</option>
+              <option value="numeric-optimal">Numerically optimal up to 1e-10 tolerance (2)</option>
+              <option value="no-feasible">No feasible point found (4)</option>
             </select>
           </div>
         </div>
@@ -97,17 +90,17 @@
         <p class="scroll-hint">Swipe sideways to see every column.</p>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable instance results table">
           <table class="results-table">
-            <thead><tr><th>Instance</th><th>Status</th><th>Primal bound / feasibility</th><th>Dual bound / certificate</th><th>Optimization status and evidence</th><th>Files</th></tr></thead>
+            <thead><tr><th scope="col">Instance</th><th scope="col">Status</th><th scope="col">Primal bound</th><th scope="col">Dual bound</th><th scope="col">Optimization result and verification</th><th scope="col">Files</th></tr></thead>
             <tbody id="instance-body"></tbody>
           </table>
         </div>
         <noscript><p class="noscript">The searchable table requires JavaScript. Download <a href="instances.json">the full JSON catalogue</a>, which contains every summary and archive path.</p></noscript>
       </section>
 
-      <section class="section" aria-labelledby="scope-heading">
-        <h2 id="scope-heading">Evidence boundary</h2>
-        <p>These pages describe the repository snapshot, not the live MIPLIB leaderboard. The result ledger is pinned to research commit <span class="mono">b63b896</span>; original evidence grades retain the 18 September reconciliation. The subsequent 20 cases use post-hoc best valid bounds across separate skill runs. Dual improvements compare 108 pairs of finite bounds (131 cases have finite COPT 10h baselines), using an absolute threshold of 1e-7; numerical improvements are not all formal certificates. Two primal updates derive from attributed external constructions, and one is numerical polishing. Each summary discloses its evidence and archive scope.</p>
-      </section>
+      <!-- <section class="section" aria-labelledby="scope-heading">
+        <h2 id="scope-heading">Verification scope</h2>
+        <p>These pages describe the repository snapshot, not the live MIPLIB leaderboard. The source base is commit <span class="mono">89a8abd</span> plus the disclosed 18 September reconciliation reviews. Some exact traces are retained externally by hash, some resolved-instance results depend on published theorems, and five retain floating-point or commercial-solver dependence. Each summary leads with the reconciled current status even when older logs are preserved in its bundle.</p>
+      </section> -->
     </div>
   </main>
 

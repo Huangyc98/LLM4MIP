@@ -5,7 +5,7 @@ Snapshot: 21 September 2026. Repository research results; not a live MIPLIB lead
 ## Current result
 
 - Cohort: subsequent20
-- Status: Accepted feasible; open
+- Status: Verified feasible; open
 - Primal: 122.0
 - Dual / certificate: 106.0
 - Global conclusion: Not established
@@ -29,4 +29,4 @@ and independently certified bounds are distinct. Genus g31 closures accept resid
 
 The result bundle contains this summary, the per-instance ledger and license. Detailed experiment records and certificates are linked in the research repository; they are not embedded in this compact bundle.
 
-Archive SHA-256: `d943082e2e5e1526b47885044720f7db041eeb4c78d9b4f6fcd8b59d9c070105`
+Archive SHA-256: `ca46ccb436d2d70f15b5178b2b00ca66512150cdea64e3f957f59a53ea8fe95a`

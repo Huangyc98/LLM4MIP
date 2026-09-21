@@ -1,32 +1,43 @@
 # fhnw-schedule-paira100
 
-Snapshot: 21 September 2026. Repository research results; not a live MIPLIB leaderboard.
+> Snapshot: 2026-09-18 UTC. This is a concise publication summary of the archived research state; it is not an official MIPLIB status change.
 
-## Current result
+## Results and progress
 
-- Cohort: original112
-- Status: Global conclusion
-- Primal: -15.113116512593402
-- Dual / certificate: -15.113116512593401992
-- Global conclusion: OPT = -15.113116512593402
-- Evidence: Portable exact certificate
-- Project primal update vs MIPLIB v36: False (not_in_project_primal_table)
-- Dual improvement vs historical COPT 10h: True
+- **Benchmark outcome:** Certified optimality / infeasibility
+- **Best verified result:** -15.113116512593402 (strict)
+- **Best bound or certificate:** -15.113116512593402 (Gurobi + audited valid cuts)
+- **Study result:** Computational optimum; official lower headline is nonintegral, so no numerical primal improvement is claimed
 
-Computational optimum; official lower headline is nonintegral, so no numerical primal improvement is claimed
+## Certified optimality or infeasibility result
 
-采用本题原MPS字面系数对应的精确认证值。最终证明不依赖已撤回的旧energy cuts或浮点D_safe。精确树证书是后续补全，不冒充旧搜索轨迹重放。
+- **Conclusion:** OPT = -15.113116512593401992
+- **Main method:** portable exact branch-and-dual certificate with frozen or rebuilt strengthening, untouched-original-MPS audit, and paired-formulation cross-check where available
+- **Verification category:** PE — Portable exact certificate
+- **Earlier source-table status:** computational optimality verification; original-MPS and row-semantic audits, no portable formal MIP proof
+- **Reconciliation rule:** The verification category above governs this summary when older instance or table wording differs.
 
-## Evidence and provenance
+## Experiment workflow
 
-[Instance evidence](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/instances/fhnw-schedule-paira100/README.md) · [Complete campaign ledger](https://github.com/Huangyc98/MIPLIB_openproblem/blob/b63b89634917ccde2f9e7dc7aefe1583a3eb55e8/results/catalogue.json)
+1. Freeze the original model, baseline, objective convention, and acceptance tolerance.
+2. Profile the untouched formulation and propose falsifiable structural hypotheses.
+3. Run bounded primal, dual, reduction, or certificate experiments with explicit stopping rules.
+4. Map useful results back to the original MPS and classify the resulting verification method.
 
-The full campaign contains 132 instances: 112 original cases and 20 subsequent evaluation cases.
-The subsequent cohort uses post-hoc best valid bounds from separate skill runs; numerical bounds
-and independently certified bounds are distinct. Genus g31 closures accept residuals below 1e-10.
+## Download bundle
 
-## Download scope
+The sibling `.tar.gz` archive copies the related research material from this instance directory and adds this summary plus a package manifest. Only official raw `.mps`/`.mps.gz` inputs are omitted to avoid redistributing bulky benchmark source files; public solutions, hashes, derived proof models, runs, logs, and any proof traces present in the directory remain included. Files retained externally by hash cannot be embedded here.
 
-The downloadable research bundle is the unchanged 18 September archive. This summary and the current catalogue supersede its historical counts and genus policy.
+## Provenance
 
-Archive SHA-256: `7b628150be83d078ea9708b11b033c96d34a97f6ff428f598041bf7930f19b64`
+Generated from the local `MIPLIB_openproblem` research archive for the LLM4MIP website. Read the source instance README and package manifest before reusing a numerical claim.
+
+- **Source base commit:** `89a8abd0847941bdf774353a1983d5e6a00457a0` plus the disclosed 18 September working-tree reconciliation
+- **Source README SHA-256:** `2843e2c13cc2d03b0e9df8665f841c4673b13f69a858780d8c3005931fd8e7c8`
+
+## Package integrity
+
+- **Archive:** `fhnw-schedule-paira100-findings.tar.gz`
+- **Compressed bytes:** `508081`
+- **SHA-256:** `41885bcf6518a0f349648a517da4ca234ed5667bb2b942141fb72fe738d8684a`
+- **Pinned source README:** https://github.com/Huangyc98/MIPLIB_openproblem/blob/89a8abd0847941bdf774353a1983d5e6a00457a0/instances/fhnw-schedule-paira100/README.md

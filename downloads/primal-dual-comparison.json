@@ -41,7 +41,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "109951.5",
+      "solver_dual": "36514.21542626445",
+      "solver_primal_source": "COPT historical 10h",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.667906163842562857259791817301264648504113177173571984011132181007080394537591574466924053",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "44.8050644492215505950208128598018572152431821883845272586080606809487433413237618744192771",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "polygonpack4-10",
@@ -84,7 +92,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "-51836833.79437952",
+      "solver_dual": "-93676573.4",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "COPT historical 10h",
+      "solver_gap": "0.446640372155419596080144408868823974297932635524860050015450287595596446101432655520254117",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "14.7028755659661356827870290987857784859425925620413013305772272580916552826155637605612962",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "scpm1",
@@ -127,7 +143,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "590.0",
+      "solver_dual": "415.555435",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "COPT historical 10h",
+      "solver_gap": "0.295668754237288135593220338983050847457627118644067796610169491525423728813559322033898305",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "7.03428696935264968595145661711327841429157592399709623457374617302654420351608117918126440",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "ger50-17-trans-dfn-3t",
@@ -170,7 +194,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "4002.3268",
+      "solver_dual": "3931.2645220703394",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.0177552412585750369010346681335467158753752941913688807220839637582818074725931925398995404",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "0.890808438223092189459571389891967817271475830733061974508911104202260534062141037068617106",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "eva1aprime6x6opt",
@@ -213,7 +245,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "-13.360636598750812",
+      "solver_dual": "-140.895641",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "COPT historical 10h",
+      "solver_gap": "0.905173527698058366475652713769902931205657384389911679382614824826269820512048346477943913",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "9.23533050727871757722027185554596671307296407220282053722623691934219786329346093041041000",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "cmflsp60-36-2-6",
@@ -256,7 +296,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "73891245.6476",
+      "solver_dual": "73343236.85847329",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.00741642374984795532405042210541920960366170390915297946911749146735195117828744686790768525",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "-0.390327192687188544111524913718672790955753287840167527422492239816257252762999241130270525",
+      "solver_gap_outcome": "loss"
     },
     {
       "instance": "r4l4-02-tree-bounds-50",
@@ -299,7 +347,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "502956319.0",
+      "solver_dual": "479472583.1465966",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.0466914023470165408141536839901995544865596966483286195674579048285105649502735445302159530",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "1.60215149276022905777524138899801235730431525268692572671413736393275424723081326386672567",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "sct1",
@@ -342,7 +398,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "-187.85043796133093",
+      "solver_dual": "-200.01276368708199",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.0608077479734188338521423282042790608025889647273468091788459865896069523848312711804040444",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "-0.0703288188025618103361356136625307172419041494530896738921994225382673684231583451358097700",
+      "solver_gap_outcome": "loss"
     },
     {
       "instance": "shipsched",
@@ -385,7 +449,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "121040.0",
+      "solver_dual": "81735.12692019965",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.324726314274622851949768671513549239920687376074025115664243225380039656311962987442167878",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "9.11459248429984222487014849654021978034440696654469959740466990784224330829031499458551580",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "rocII-8-11",
@@ -428,7 +500,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "-7.723856420472524",
+      "solver_dual": "-11.822801264436444",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.346698278376186838066466505027003479594308986546789458802796046174177869731597402737401093",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "8.61098633983326079480231886141439195266270914537268530498349632638563807299053553600745280",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "ns1856153",
@@ -471,7 +551,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "34.943478676096305",
+      "solver_dual": "0.06318419472889095",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.998191817268264330004337081751480635480561324563645013716547302319707601628199741844877912",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "95.9393314149762994169273298309649831503145070997092388103290405900250654121071348354740689",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "dc1l",
@@ -514,7 +602,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "1760000.09",
+      "solver_dual": "1751049.95",
+      "solver_primal_source": "COPT historical 10h",
+      "solver_dual_source": "COPT historical 10h",
+      "solver_gap": "0.00508530655813773282250229884931426338733880405653842892701215714142378254082930188941069884",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "-0.0442605268661832660664270551890710269687567798826719626596063994077822680975929889809475440",
+      "solver_gap_outcome": "loss"
     },
     {
       "instance": "neos-5221106-oparau",
@@ -557,7 +653,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": true
+      "copt_feasibility_win": true,
+      "solver_primal": "61.95999976028899",
+      "solver_dual": "0.0",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "1",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "46.9325445222561388715951862033941751693707478600069178068005848230257562981247911484221243",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "zeil",
@@ -600,7 +704,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "1282.556499999999",
+      "solver_dual": "834.502247",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "COPT historical 10h",
+      "solver_gap": "0.349344651093343138758137433589193737770954799413310658013740067833781992247567911263162479",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "10.5138891836817800072764830605388819193478999361177530213387552106860903354034494993319804",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "cdma",
@@ -643,7 +755,15 @@
       "copt_result": "abort",
       "copt_runtime_seconds": "0.1",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": true
+      "copt_feasibility_win": true,
+      "solver_primal": "-2.296610845333332E+16",
+      "solver_dual": "-31763447999999988",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.276964249808983940394978457874198189684617818896055497986674077469989273207648289312648882",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "19.4458248027953295469519702772688088839355723495829648445035951396305779842942721545869312",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "ns1456591",
@@ -686,7 +806,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "988.1412834399999",
+      "solver_dual": "459.574181",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "COPT historical 10h",
+      "solver_gap": "0.534910453897754369782801056264546851772111429611180558460913443483014494151863070045045031",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "53.4910453897754369782801056264546851772111429611180558460913443483014494151863070045045031",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "seqsolve1",
@@ -729,7 +857,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "4277.0",
+      "solver_dual": "4275.0",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.000467617488894084638765489829319616553659106850596212298339957914425999532382511105915361235",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "0E-93",
+      "solver_gap_outcome": "tie"
     },
     {
       "instance": "stockholm",
@@ -772,7 +908,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "129.99999982069238",
+      "solver_dual": "107.0",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.176923075787815658789175775201686077023610388140309711574732003425781905170067692731619486",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "4.57755348042091014121265948738172245645939946976867607550598722782409215635103156824391580",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "supportcase22",
@@ -815,7 +959,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": true,
-      "copt_feasibility_win": true
+      "copt_feasibility_win": true,
+      "solver_primal": "",
+      "solver_dual": "1.4000000000000001",
+      "solver_primal_source": "",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "",
+      "solver_feasibility_win": true,
+      "solver_gap_reduction_pp": "",
+      "solver_gap_outcome": "win"
     },
     {
       "instance": "neos-3682128-sandon",
@@ -858,7 +1010,15 @@
       "copt_result": "stop",
       "copt_runtime_seconds": "36000.0",
       "direct_feasibility_win": false,
-      "copt_feasibility_win": false
+      "copt_feasibility_win": false,
+      "solver_primal": "34666765.52061766",
+      "solver_dual": "23267683.964423973",
+      "solver_primal_source": "Gurobi 150 min",
+      "solver_dual_source": "Gurobi 150 min",
+      "solver_gap": "0.328818722629724840501373782477296470591383659665244880589343336206786279810927004141573079",
+      "solver_feasibility_win": false,
+      "solver_gap_reduction_pp": "32.8818722629724840501373782477296470591383659665244880589343336206786279810927004141573079",
+      "solver_gap_outcome": "win"
     }
   ],
   "stats": {
@@ -891,13 +1051,21 @@
       "win": 19,
       "loss": 1
     },
+    "solver_gap_outcome": {
+      "win": 16,
+      "loss": 3,
+      "tie": 1
+    },
     "direct_feasibility_wins": 1,
     "copt_feasibility_wins": 3,
+    "solver_feasibility_wins": 1,
     "gap_reduction_pp_mean": "15.8078929902736826392993900564828984069498226211258716872654933324243828585089985748826912",
     "gap_reduction_pp_pairs": 20,
     "direct_gap_reduction_pp_mean": "19.2762286534223252303051460234938197352247253731238638901038629895969859155383290083844813",
     "direct_gap_reduction_pp_pairs": 19,
     "copt_gap_reduction_pp_mean": "24.1815709368461256258348877545344084341897244300302410918538006993962750863495762764681329",
-    "copt_gap_reduction_pp_pairs": 17
+    "copt_gap_reduction_pp_pairs": 17,
+    "solver_gap_reduction_pp_mean": "18.9091179350241012210396776694344264219339180719797517507434646648516520813999267697670717",
+    "solver_gap_reduction_pp_pairs": 19
   }
 }

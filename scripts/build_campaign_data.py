@@ -17,9 +17,9 @@ SITE = Path(__file__).resolve().parents[1]
 SOURCE_COMMIT = 'b63b89634917ccde2f9e7dc7aefe1583a3eb55e8'
 SOURCE_URL = f'https://github.com/Huangyc98/MIPLIB_openproblem/blob/{SOURCE_COMMIT}/'
 STATUS = {
-    'concluded': ('Global conclusion', '#176b5b'),
-    'verified-open': ('Accepted feasible; open', '#006cb8'),
-    'pending': ('Pending strict verification', '#8A4F00'),
+    'concluded': ('Certified optimality / infeasibility', '#176b5b'),
+    'verified-open': ('Verified feasible; open', '#006cb8'),
+    'numeric-optimal': ('Numerically optimal up to 1e-10 tolerance', '#8A4F00'),
     'no-feasible': ('No feasible point found', '#8c1515'),
 }
 # Retain the published 18 September evidence reconciliation for old cases.
@@ -63,7 +63,7 @@ def result_bundle(path, name, row, summary):
 def main():
     catalogue = read('data/campaign-catalogue.json')
     metrics = read('data/campaign-metrics.json')
-    legacy = {r['instance']: r for r in read('data/legacy-catalogue-20260918.json')}
+    legacy = {r['instance']: r for r in read('data/upstream-catalogue-b48994a.json')}
     assert len(catalogue) == len({r['instance'] for r in catalogue}) == metrics['instances'] == 132
     assert sum(r['project_primal_update'] for r in catalogue) == metrics['project_primal_updates']
     assert sum(r['dual_improved_at_1e_7'] for r in catalogue) == metrics['dual_improvements_at_1e_7']
@@ -72,6 +72,7 @@ def main():
         name = row['instance']; prior = legacy.get(name, {})
         closed = row['conclusion'].startswith('optimal') or row['conclusion'] == 'infeasible'
         status = 'concluded' if closed else prior.get('status', 'verified-open')
+        if row['conclusion'] == 'optimal_with_tolerance': status = 'numeric-optimal'
         grade = prior.get('evidenceGrade')
         if row['conclusion'] == 'optimal_with_tolerance': grade = 'TC'
         elif name in ('ns1456591', 'neos-3682128-sandon'): grade = 'PE'
@@ -92,7 +93,10 @@ def main():
                  summary=f'details/{name}/summary.md', archive=f'details/{name}/{name}-findings.tar.gz',
                  bundleKind='historical' if prior else 'result')
         r['sourceEvidenceNote'] = row['audit_evidence'] or row['evidence_note']
-        r['bundleSnapshot'] = '2026-09-18' if prior else '2026-09-21'
+        for field in ('bestResult','bestBound'):
+            old_display=prior.get(field+'Display',{})
+            r[field+'Display']={'value':str(r[field]) if r[field] is not None else '—','note':old_display.get('note')}
+        r['bundleSnapshot'] = 'upstream-b48994a' if prior else '2026-09-21'
         if not prior:
             r['sourceBaseCommit'] = SOURCE_COMMIT; r['includedFiles'] = 3; r['excludedFiles'] = 0
         evidence = r['evidenceLevel'] or 'See the stated numerical tolerances and source audits.'
@@ -139,12 +143,13 @@ and independently certified bounds are distinct. Genus g31 closures accept resid
         else:
             assert archive.exists() and sha(archive)==prior['archiveSha256'], name
         summary += f"\nArchive SHA-256: `{r['archiveSha256']}`\n"
-        write(folder/'summary.md', summary)
+        if not prior:
+            write(folder/'summary.md', summary)
         records.append(r)
     records.sort(key=lambda r:r['instance'].lower())
     counts = Counter(r['status'] for r in records)
-    grades = Counter(r['evidenceGrade'] for r in records if r['status']=='concluded')
-    assert counts == {'concluded':34, 'verified-open':93, 'pending':1, 'no-feasible':4}
+    grades = Counter(r['evidenceGrade'] for r in records if r['status'] in ('concluded','numeric-optimal'))
+    assert counts == {'concluded':32, 'verified-open':94, 'numeric-optimal':2, 'no-feasible':4}
     assert sum(grades.values()) == metrics['optimal_including_tolerance']+metrics['infeasible'] == 34
     campaign = dict(metrics, closed=34, statusCounts=dict(counts), evidenceCounts=dict(grades),
                     sourceCommit=SOURCE_COMMIT, updated='2026-09-21',

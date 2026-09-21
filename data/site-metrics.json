@@ -35,10 +35,10 @@
   ],
   "closed": 34,
   "statusCounts": {
-    "concluded": 34,
-    "verified-open": 93,
+    "concluded": 32,
+    "verified-open": 94,
     "no-feasible": 4,
-    "pending": 1
+    "numeric-optimal": 2
   },
   "evidenceCounts": {
     "LT": 3,
@@ -53,18 +53,18 @@
   "updated": "2026-09-21",
   "statusItems": [
     [
-      "Global conclusion",
-      34,
+      "Certified optimality / infeasibility",
+      32,
       "#176b5b"
     ],
     [
-      "Accepted feasible; open",
-      93,
+      "Verified feasible; open",
+      94,
       "#006cb8"
     ],
     [
-      "Pending strict verification",
-      1,
+      "Numerically optimal up to 1e-10 tolerance",
+      2,
       "#8A4F00"
     ],
     [

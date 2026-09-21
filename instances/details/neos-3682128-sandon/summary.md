@@ -5,7 +5,7 @@ Snapshot: 21 September 2026. Repository research results; not a live MIPLIB lead
 ## Current result
 
 - Cohort: subsequent20
-- Status: Global conclusion
+- Status: Certified optimality / infeasibility
 - Primal: 34666770.0
 - Dual / certificate: 34666770
 - Global conclusion: OPT = 34666770.0
@@ -29,4 +29,4 @@ and independently certified bounds are distinct. Genus g31 closures accept resid
 
 The result bundle contains this summary, the per-instance ledger and license. Detailed experiment records and certificates are linked in the research repository; they are not embedded in this compact bundle.
 
-Archive SHA-256: `e00b120f772822ce8ef88e80ce966e515ef0770df37b4a5ef32f42883f123cec`
+Archive SHA-256: `9cdd65984a0bbb537e14d151a54e6e7fb5adc50d196d6ea83bd36711bcce76d7`

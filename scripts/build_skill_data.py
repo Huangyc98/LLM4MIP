@@ -57,16 +57,33 @@ def main():
             item[prefix+'_feasibility_win'] = feasible_win
             if feasible_win:
                 item[prefix+'_gap_outcome'] = 'win'
+        def finite(value):
+            try:
+                n=Decimal(value)
+                return n if n.is_finite() else None
+            except Exception:
+                return None
+        solver_p=[(finite(v),label) for v,label in [(d['direct_gurobi_primal'],'Gurobi 150 min'),(p['original_copt_primal'],'COPT historical 10h')] if finite(v) is not None]
+        solver_d=[(finite(v),label) for v,label in [(d['direct_gurobi_dual'],'Gurobi 150 min'),(p['original_copt_dual'],'COPT historical 10h')] if finite(v) is not None]
+        sp=min(solver_p) if solver_p else None
+        sd=max(solver_d) if solver_d else None
+        sg=(sp[0]-sd[0])/max(Decimal(1),abs(sp[0]),abs(sd[0])) if sp and sd else None
+        reduction=sg-Decimal(p['portfolio_gap_fraction']) if sg is not None else None
+        item.update(solver_primal=str(sp[0]) if sp else '',solver_dual=str(sd[0]) if sd else '',
+                    solver_primal_source=sp[1] if sp else '',solver_dual_source=sd[1] if sd else '',
+                    solver_gap=str(sg) if sg is not None else '',solver_feasibility_win=not sp,
+                    solver_gap_reduction_pp=str(reduction*100) if reduction is not None else '',
+                    solver_gap_outcome='win' if not sp or (reduction is not None and reduction>Decimal('1e-9')) else 'loss' if reduction is not None and reduction<Decimal('-1e-9') else 'tie' if reduction is not None else 'NA')
         result.append(item)
-    stats={key:dict(Counter(r[key] for r in result)) for key in ['primal_outcome','primal_raw_outcome','dual_outcome','gap_outcome','direct_gap_outcome','copt_gap_outcome']}
-    for prefix in ['direct','copt']:
+    stats={key:dict(Counter(r[key] for r in result)) for key in ['primal_outcome','primal_raw_outcome','dual_outcome','gap_outcome','direct_gap_outcome','copt_gap_outcome','solver_gap_outcome']}
+    for prefix in ['direct','copt','solver']:
         stats[prefix+'_feasibility_wins']=sum(r[prefix+'_feasibility_win'] for r in result)
     assert stats['primal_outcome']=={'win':9,'tie':9,'loss':1,'excluded':1}
     assert stats['dual_outcome']=={'win':17,'tie':1,'loss':2}
     assert stats['gap_outcome']=={'win':18,'loss':2}
     assert stats['direct_gap_outcome']=={'win':17,'tie':1,'loss':2}
     assert stats['copt_gap_outcome']=={'win':19,'loss':1}
-    for key in ['gap_reduction_pp','direct_gap_reduction_pp','copt_gap_reduction_pp']:
+    for key in ['gap_reduction_pp','direct_gap_reduction_pp','copt_gap_reduction_pp','solver_gap_reduction_pp']:
         values=[]
         for r in result:
             try:
