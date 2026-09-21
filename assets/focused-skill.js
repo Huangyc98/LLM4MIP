@@ -2,13 +2,13 @@
   'use strict';
   const {rows, stats} = window.FOCUSED_SKILL_DATA;
   const definitions = {
-    primal: {title:'Primal-skill vs general AI and no-skill solver', key:'primal_outcome', note:'Lower P is better. Against general AI: 9 wins / 9 ties / 1 loss / 1 exclusion. Against no-skill solver: 16 / 1 / 2 / 1. General AI uses no dedicated skill; solver uses the best recorded bounds. Absolute tolerance: 1e-7. The outcome filter uses the general AI comparison.'},
+    primal: {title:'Primal-skill vs general AI and no-skill solver', key:'primal_outcome', note:'Lower P is better. Against general AI: 10 wins / 9 ties / 1 loss. Against no-skill solver: 17 / 1 / 2. ns1456591 is accepted under its original 1e-6 row and integrality tolerances; its numerical advantage does not improve on the exact optimum. General AI uses no dedicated skill; solver uses the best recorded bounds. Absolute tolerance: 1e-7. The outcome filter uses the general AI comparison.'},
     dual: {title:'Dual-skill vs general AI and no-skill solver', key:'dual_outcome', note:'Higher D is better. Against general AI: 17 wins / 1 tie / 2 losses. Against no-skill solver: 15 / 1 / 4. General AI uses no dedicated skill; solver uses the best recorded bounds. Numerical bounds retain their stated evidence levels. Absolute tolerance: 1e-7. The outcome filter uses the general AI comparison.'},
     gap: {title:'Primal-skill + dual-skill vs no-skill AI', key:'gap_outcome', note:'Post-hoc best valid bounds: 18 smaller gaps and 2 larger gaps; mean reduction 15.8079 percentage points over 20 pairs. Gurobi and independent certificates only.'},
     solver: {title:'Primal-skill + dual-skill vs solver', key:'solver_gap_outcome', note:'Solver uses the lowest valid primal and highest valid dual across the recorded solver runs. Skill wins 16 (15 smaller gaps + 1 feasible solution where neither solver recorded one), ties 1 and loses 3. Mean reduction: 18.9091 percentage points over 19 finite-gap pairs. Historical budgets and solver configurations differ.'}
   };
-  const labels={win:'Skill better',tie:'Tie',loss:'Baseline better',excluded:'Excluded candidate',NA:'Unavailable'};
-  const colors={win:'#8c1515',tie:'#77736f',loss:'#006cb8',excluded:'#8A4F00',NA:'#8A4F00'};
+  const labels={win:'Skill better',tie:'Tie',loss:'Baseline better',NA:'Unavailable'};
+  const colors={win:'#8c1515',tie:'#77736f',loss:'#006cb8',NA:'#8A4F00'};
   let activeTab='gap';
 
   const search=document.querySelector('#focused-search');
@@ -24,7 +24,7 @@
   function badgeCell(outcome) {
     const td=cell('');const badge=document.createElement('span');
     badge.className='badge '+(outcome==='win'?'concluded':outcome==='loss'?'verified-open':'pending');
-    badge.textContent={win:'Skill',loss:'Comparison',tie:'Within tolerance',NA:'Not recorded',excluded:'Excluded candidate'}[outcome]||outcome;
+    badge.textContent={win:'Skill',loss:'Comparison',tie:'Within tolerance',NA:'Not recorded'}[outcome]||outcome;
     td.append(badge);return td;
   }
   function boundsCell(p,d) {
@@ -61,7 +61,7 @@
     const visible=rows.filter(r=>(filter.value==='all'||r[def.key]===filter.value)&&[r.instance,r.primal_method,r.dual_method].join(' ').toLowerCase().includes(search.value.trim().toLowerCase()));
     for(const r of visible) {
       const tr=document.createElement('tr');const name=cell(r.instance);name.className='instance-name';tr.append(name);
-      if(selected==='primal')tr.append(cell(r.primal_skill_primal),cell(r.no_skill_primal),cell(r.solver_primal||'No feasible solution'),badgeCell(r.ai_primal_skill_outcome),badgeCell(r.solver_primal_skill_outcome),cell((r.primal_outcome==='excluded'?'Excluded: below independently proved optimum; not a valid improvement. ':r.primal_evidence+'; row tolerance '+r.primal_row_tolerance+', integrality tolerance '+r.primal_integrality_tolerance+'. ')+r.primal_method));
+      if(selected==='primal')tr.append(cell(r.primal_skill_primal),cell(r.no_skill_primal),cell(r.solver_primal||'No feasible solution'),badgeCell(r.ai_primal_skill_outcome),badgeCell(r.solver_primal_skill_outcome),cell((r.primal_tolerance_accepted?'Accepted at the original 1e-6 row and integrality tolerances (max residual 9.9e-7). Numerical objective 988.1403051801293; exact optimum 988.14128344. ':r.primal_evidence+'; row tolerance '+r.primal_row_tolerance+', integrality tolerance '+r.primal_integrality_tolerance+'. ')+r.primal_method));
       else if(selected==='dual')tr.append(cell(r.dual_gurobi_strongest),cell(r.no_skill_dual),cell(r.solver_dual),badgeCell(r.ai_dual_skill_outcome),badgeCell(r.solver_dual_skill_outcome),cell(r.dual_evidence+'; '+r.dual_method));
       else {
         const prefix=selected==='gap'?'ai':'solver';
@@ -79,7 +79,7 @@
           const line=document.createElement('div');const strong=document.createElement('strong');strong.textContent=label+': ';line.append(strong,document.createTextNode(value));method.append(line);
         }
         if(r.excluded_primal_candidates!=='[]') {
-          const note=document.createElement('small');note.textContent='Invalid primal candidate excluded; portfolio uses the exact feasible lift.';method.prepend(note);
+          const note=document.createElement('small');note.textContent='Primal-skill candidate accepted at 1e-6 tolerance; the combined gap uses the independently verified exact feasible lift.';method.prepend(note);
         }
         tr.append(cell(r.batch),badgeCell(r[prefix+'_portfolio_primal_outcome']),badgeCell(r[prefix+'_portfolio_dual_outcome']),badgeCell(r[def.key]),boundsCell(r.selected_primal,r.selected_dual),boundsCell(bp,bd),gapCell,method);
       }

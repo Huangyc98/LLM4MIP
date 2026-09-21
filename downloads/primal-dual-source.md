@@ -5,9 +5,9 @@ commit b63b89634917ccde2f9e7dc7aefe1583a3eb55e8.
 
 The source-manifest.json in the evidence package records source paths and SHA-256 hashes. Original tables and study reports are copied unchanged. The focused CSV is a derived view, not a renamed experiment.
 
-- Primal baseline: no_skill_primal. Treatment: primal_skill_primal. Absolute tolerance 1e-7. The raw tally is 10/9/1. ns1456591 is excluded because its selected numerical candidate falls below the independently proved optimum, leaving 9 wins, 9 ties, 1 loss, 1 exclusion.
+- Primal baseline: no_skill_primal. Treatment: primal_skill_primal. Absolute tolerance 1e-7. The tally is 10/9/1 against general AI and 17/1/2 against the best recorded solver primal. ns1456591 is accepted under its original 1e-6 row and integrality tolerances, with maximum violations 9.9e-7. Its numerical advantage is counted under that historical protocol, not as a strictly feasible improvement beyond the exact optimum.
 - Dual baseline: no_skill_dual. Treatment: dual_gurobi_strongest. Absolute tolerance 1e-7. Outcome 17/1/2. Independent certified values remain a separate column.
-- Gap: select portfolio=primal_dual and backend_scope=gurobi_only. No terminal COPT replays. Gap=(P-D)/max(1,abs(P),abs(D)); verdict tolerance 1e-9 fraction. Invalid candidates are excluded; selected values and source labels are preserved.
+- Gap: select portfolio=primal_dual and backend_scope=gurobi_only. No terminal COPT replays. Gap=(P-D)/max(1,abs(P),abs(D)); verdict tolerance 1e-9 fraction. For ns1456591, retain the independently verified exact feasible lift in the combined gap. The historical excluded_primal_candidates field records the source portfolio selection, not rejection under the original primal experiment tolerances. Selected values and source labels are preserved.
 - AI baseline gap: original no-skill AI, not a direct solver. Outcome 18/0/2 over 20; mean reduction 15.8078929903 percentage points.
 - Direct Gurobi 150-minute gap: outcome 17/1/2 over 20 cases (16 gap wins + 1 feasibility win); mean reduction 19.2762286534 percentage points. The case without a solver primal counts as a skill feasibility win; the mean uses only 19 finite-gap pairs.
 

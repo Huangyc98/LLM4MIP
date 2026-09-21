@@ -17,10 +17,10 @@ SITE = Path(__file__).resolve().parents[1]
 SOURCE_COMMIT = 'b63b89634917ccde2f9e7dc7aefe1583a3eb55e8'
 SOURCE_URL = f'https://github.com/Huangyc98/MIPLIB_openproblem/blob/{SOURCE_COMMIT}/'
 STATUS = {
-    'concluded': ('Certified optimality / infeasibility', '#176b5b'),
+    'concluded': ('Certified optimality / infeasibility', '#8c1515'),
     'verified-open': ('Verified feasible; open', '#006cb8'),
-    'numeric-optimal': ('Numerically optimal up to 1e-10 tolerance', '#8A4F00'),
-    'no-feasible': ('No feasible point found', '#8c1515'),
+    'numeric-optimal': ('Numerically optimal up to 1e-10 tolerance', '#176b5b'),
+    'no-feasible': ('No feasible point found', '#77736f'),
 }
 # Retain the published 18 September evidence reconciliation for old cases.
 # Add the two subsequent exact optima and the two tolerance-accepted genus cases.

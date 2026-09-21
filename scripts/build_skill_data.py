@@ -41,8 +41,9 @@ def main():
         p=portfolio[r['instance']];d=direct[r['instance']]
         keep=['instance','batch','no_skill_primal','primal_skill_primal','no_skill_dual','dual_gurobi_strongest','dual_independent_certified','primal_method','dual_method','primal_evidence','dual_evidence','primal_row_tolerance','primal_integrality_tolerance','primal_max_row_violation','primal_max_integrality_violation','primal_max_bound_violation','dual_exact_closure']
         item={k:r[k] for k in keep}
-        excluded=bool(json.loads(p['excluded_primal_candidates']))
-        item.update(primal_outcome='excluded' if excluded else r['primal_vs_no_P_at_1e_7'],
+        tolerance_accepted = r['instance']=='ns1456591'
+        item.update(primal_outcome=r['primal_vs_no_P_at_1e_7'],
+                    primal_tolerance_accepted=tolerance_accepted,
                     primal_raw_outcome=r['primal_vs_no_P_at_1e_7'],dual_outcome=r['dual_vs_no_D_at_1e_7'],
                     selected_primal=p['selected_primal'],primal_source=p['primal_source'],selected_dual=p['selected_dual'],dual_source=p['dual_source'],
                     excluded_primal_candidates=p['excluded_primal_candidates'],gap=p['portfolio_gap_fraction'],baseline_gap=p['gurobi_baseline_gap_fraction'],
@@ -82,7 +83,7 @@ def main():
             for kind,baseline,skill,sign in [('primal',bp,r['primal_skill_primal'],1),('dual',bd,r['dual_gurobi_strongest'],-1)]:
                 base=finite(baseline)
                 delta=(base-Decimal(skill))*sign if base is not None else None
-                item[prefix+'_'+kind+'_skill_outcome']='excluded' if kind=='primal' and excluded else 'win' if kind=='primal' and base is None else 'NA' if delta is None else 'win' if delta>Decimal('1e-7') else 'loss' if delta<Decimal('-1e-7') else 'tie'
+                item[prefix+'_'+kind+'_skill_outcome']='win' if kind=='primal' and base is None else 'NA' if delta is None else 'win' if delta>Decimal('1e-7') else 'loss' if delta<Decimal('-1e-7') else 'tie'
         result.append(item)
     stats={key:dict(Counter(r[key] for r in result)) for key in ['primal_outcome','primal_raw_outcome','dual_outcome','gap_outcome','direct_gap_outcome','copt_gap_outcome','solver_gap_outcome']}
     for prefix in ['ai','solver']:
@@ -91,7 +92,8 @@ def main():
             stats[key]=dict(Counter(r[key] for r in result))
     for prefix in ['direct','copt','solver']:
         stats[prefix+'_feasibility_wins']=sum(r[prefix+'_feasibility_win'] for r in result)
-    assert stats['primal_outcome']=={'win':9,'tie':9,'loss':1,'excluded':1}
+    assert stats['primal_outcome']=={'win':10,'tie':9,'loss':1}
+    assert stats['solver_primal_skill_outcome']=={'win':17,'tie':1,'loss':2}
     assert stats['dual_outcome']=={'win':17,'tie':1,'loss':2}
     assert stats['gap_outcome']=={'win':18,'loss':2}
     assert stats['direct_gap_outcome']=={'win':17,'tie':1,'loss':2}

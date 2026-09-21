@@ -55,7 +55,7 @@
     [
       "Certified optimality / infeasibility",
       32,
-      "#176b5b"
+      "#8c1515"
     ],
     [
       "Verified feasible; open",
@@ -65,12 +65,12 @@
     [
       "Numerically optimal up to 1e-10 tolerance",
       2,
-      "#8A4F00"
+      "#176b5b"
     ],
     [
       "No feasible point found",
       4,
-      "#8c1515"
+      "#77736f"
     ]
   ],
   "evidenceItems": [
