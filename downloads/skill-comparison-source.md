@@ -17,7 +17,7 @@ The no-skill report was also supplied as `miplib20_vs_copt_report.pdf`:
 
 - bytes: `189424`
 - SHA-256: `c8dfe7590ce5723a81bbca1a5aa2ebf9912c033b86a1ad83f8cef5331522d0b9`
-- metadata title: `MIPLIB 20例上下界与COPT表比较报告`
+- metadata title: `MIPLIB 20-instance primal/dual comparison with the COPT table`
 - pages: `21`, A4 landscape
 - producer: ReportLab
 - creation timestamp in metadata: `2026-09-13 20:04:08`

@@ -1,126 +1,126 @@
-# `mip-primal-improve`：20 个 MIPLIB 实例实验交接
+# `mip-primal-improve`: handoff for the 20-instance MIPLIB experiment
 
-本目录保存 `mip-primal-improve` skill 的 20 实例受控 primal 搜索实验。它面向后续 AI：可以据此恢复实验流程、核查每个结论，并与 general skill、dual skill 的结果做同口径比较。
+This directory preserves the controlled primal-search experiment using `mip-primal-improve` on 20 MIPLIB instances. It enables subsequent agents to reconstruct the workflow, verify conclusions and compare results with the general-skill and dual-skill experiments.
 
-## 先确认版本边界
+## Identify the experimental skill version first
 
-本实验使用的是 2026-09-14 冻结的 skill。仓库当前发布的是实验结束后更新的 COPT-first 版本，两者不能混用。
+This experiment used the skill frozen on 2026-09-14. The currently distributed repository version was updated to COPT-first after the experiment; the two versions must not be conflated.
 
-| 对象 | `SKILL.md` SHA-256 | 含义 |
+|  Object |  `SKILL.md` SHA-256  |  Meaning |
 |---|---|---|
-| 实验冻结版本 | `1bab6d94a097dcb4f0506a4b03120aee57fa9c829ca7250ed066fd7782feb341` | 实际产生本次 20 实例结果的 skill |
-| 当前发布版本 | `ae0b7e8b8c3578ce06d7158f05e3535c1321e097c916295632281f707a470753` | 实验后改成 COPT-first 的版本 |
+| Experimental freeze version |  `1bab6d94a097dcb4f0506a4b03120aee57fa9c829ca7250ed066fd7782feb341`  | The skill to actually generate the result of this 20 instance |
+| Current release |  `ae0b7e8b8c3578ce06d7158f05e3535c1321e097c916295632281f707a470753`  | Experimentally converted to a COPT-first version |
 
-冻结版本位于 [`sources/skill-used/`](sources/skill-used/)，当前版本位于 [`skills/mip-primal-improve/`](../../../skills/mip-primal-improve/)。当前 skill 的默认顺序是：先探测 COPT；COPT 缺失、许可证不可用或无法保持模型语义时，再寻找 Gurobi、适用条件下的 cuOPT，以及其他兼容后端。这个修改发生在实验之后，不能追溯为本实验的一部分。
+The freeze version is in [`sources/skill-used/` ](sources/skill-used/), the current version is in [`skills/mip-primal-improve/` ](../../../skills/mip-primal-improve/)]. The default sequence of the current skill is: Pre-detect COPT; COPT missing; License unavailable or unable to maintain the model semantics, then search for Gurobi; CuOPT under applicable conditions, and other compatible backend.
 
-本实验实际主要在 Euler4 使用 Gurobi 13.0.2。Altman 的 COPT 8.0.4 通过了四并发小模型能力测试，并作为公开模型来源和可选替代后端；它没有成为最终 20 实例实验的主后端。因此本实验既不是 COPT-first 实验，也不是 COPT/Gurobi A/B 测试。
+The experiment was actually primarily conducted at Euler4 using Gurobi 13.0.2. Altman's COPT 8.0.4 passed the four parallel small model capability test and served as a public model source and an optional back-end; it did not become the main back-end of the final 20 instance experiment.
 
-## 固定协议
+##  Fixed protocol
 
-- 实验 ID：`mip_primal_skill20_20260914T2328CST`
-- 原始 prompt SHA-256：`849e3886025a907c05b6b29fd9cc58e7b2cb0947ab16365997163024098311ff`
-- 实例数：20
-- 每实例预算：150 分钟
-- 检查点：30、60、90、120、150 分钟
-- 调度：5 个固定 batch，每批 4 个实例；批次之间设证据完整性 barrier
-- 最大并发：4 个不同实例
-- 基础种子：20260911；各 phase 的实际种子和参数保存在完整运行清单中
-- Euler4 每实例资源：12 个 CPU slot，Gurobi `SoftMemLimit=80` decimal GB；声明的全局上限为 48 slots、320 GiB
-- 显著改善阈值：方向性改善严格大于 `max(1e-6, 1e-9 × max(1, |verified baseline|))`
-- 数据隔离：禁止读取其他 skill 实验的 prompt、脚本、日志、解、报告和目标实例内部研究；skill 的目标案例查询被关闭
+-  The experiment ID is `mip_primal_skill20_20260914T2328CST`
+- original prompt SHA- 256 :  `849e3886025a907c05b6b29fd9cc58e7b2cb0947ab16365997163024098311ff`
+-  Example number: 20
+-  Budget for each instance: 150 minutes
+-  Checkpoint: 30, 60, 90, 120, 150 minutes
+-  Schedule: 5 fixed batch, each batch 4 instance; evidence integrity barrier between batches
+-  Maximum concurrency: 4 for a different instance
+-  Base Seeds: 20260911; the actual seeds and parameters of each phase are maintained in a complete running list
+-  Euler4 Per instance Resources: 12 CPU slot, Gurobi `SoftMemLimit=80` decimal GB; declared global upper limit is 48 slots, 320 GiB
+-  Significantly improved threshold: directional improvement strict greater than `max(1e-6, 1e-9 × max(1, |verified baseline|))`
+-  Data isolation: prohibited from reading the prompt, script, log, solution, report and objective instance of other skill experiments, internal research; objective case queries of skill are closed
 
-`SoftMemLimit=80` 表示 80×10^9 bytes，约 74.51 GiB。部分 worker 另有 80 GiB `RLIMIT_AS`；这些限制都不是聚合 RSS 的硬保证。
+`SoftMemLimit=80` represents 80 × 10 ^ 9 bytes, about 74.51 GiB. Some workers have another 80 GiB `RLIMIT_AS`; these restrictions are not a hard guarantee of RSS aggregation.
 
-## 完整实验流程
+##  Complete process of experimentation
 
-每个实例都遵循同一外层流程：
+Each instance follows the same outward process:
 
-1. 冻结原始 MPS、SHA-256、目标方向、公开 headline、可独立验证的 baseline、预算和随机种子。
-2. 生成结构卡，识别真实离散决策、可补全变量、耦合约束和已有解。
-3. 独立验证公开或已有解；公开 headline 与实际可验证向量分开记录。
-4. 执行受限 primal baseline，再根据结构和停滞信号组合使用 incumbent transfer、Gurobi primal/NoRel/RINS、固定整数后的连续 recourse、结构化 LNS、local branching、联合 destroy-and-repair、compact reformulation、确定性 lifting、解池重组和有界 kick。
-5. 每个候选都必须序列化回原变量空间，并在 untouched original model 上独立检查。solver incumbent、rounded hint 或受限模型最优解在完成验证前不能更新 best。
-6. 每次改善后继续搜索；第一次改善只是里程碑。current、best、失败范围和恢复状态分别保存。
-7. 在 30/60/90/120/150 分钟写入当时已验证的 incumbent；到 150 分钟停止候选搜索并完成预算内验证。
-8. 一批四个实例全部形成终态证据后才进入下一批。
-9. 最后聚合轨迹、验证结果、方法、资源记录和协议偏差。失败、无改善和基础设施异常都保留在 20 个实例的分母中。
+1.  Freeze the original MPS, SHA-256, objective sense, public headline, independently verifiable baseline, budget and random seed.
+2.  Create structural cards, identify real discrete decisions, complete variables, combine constraints and already existing solutions.
+3.  Independent verification public or already a solution; public headline records separated from actual verifiable vectors.
+4.  Execute a restricted primal baseline, then use an incumbent transfer based on a combination of structure and stagnation signals, Gurubi primal/NoRel/RINS, continuous recourse after a fixed integer, structured LNS, local branching, joint destroy-and-repair, compact reformulation, determination lifting, solution, pool rearrangement and boundary kick.
+5.  Each candidate must be sequenced back into the original variable space and independently checked on the untouched original model. The solver incumbent, rounded hint, or the limited model optimal solution cannot be updated before verification is complete.
+6.  Each improvement continues to be searched; the first improvement is just a milestone, current, best, failure range and recovery status respectively.
+7.  Insert the incumbent who has verified at the time in the minutes 30 / 60 / 90 / 120 / 150; stop the candidate search and complete the budget verification at the minute 150.
+8.  A set of four instances will be added to the next set of instances only after they have formed the final proof.
+9.  Finally, aggregate trajectories, verification results, methods, resource records, and protocol biases. Failures, no improvements, and infrastructure anomalies are all retained in the denominator of an instance of 20.
 
-多数 `run_manifest.json` 中的 `checkpoint_schedule[].status` 仍保留旧的 `not_reached` 占位值，即使对应 trajectory 检查点已经存在。检查点完成状态应以 `primal_trajectory.csv` 和 `summary.csv` 为准，不能从该占位字段推导。`ger50-17-trans-dfn-3t` 有两条不同的 30 分钟观测，机器表按原行保留，不去重。
+Most `run_manifest.json` files retain the old `not_reached` placeholders in `checkpoint_schedule[].status`, even when the corresponding trajectory checkpoints exist. Use `primal_trajectory.csv` and `summary.csv` to determine checkpoint completion, not that placeholder field. `ger50-17-trans-dfn-3t` has two distinct 30-minute observations; the machine-readable table retains both original rows without deduplication.
 
-## 验证口径
+##  Verification throughput
 
-20 个最终结果的主等级均为 `numerical`。
+20 is the main classification for the final result `numerical`.
 
-主验证器对实际落盘的原变量解，以 `1e-6` 检查变量域、bounds、integrality、普通及 ranged rows、适用的扩展约束、目标方向与常数，并用 all-variable-fix 模型复核。GMP 只提供额外任意精度数值证据：线性行和目标容差 `1e-5`，整数容差 `1e-4`。
+The main verifier checks the original variable solution of the actual landing disk using `1e-6` to check the variable domain, bounds, integrality, ordinary and ranged rows, applicable extension constraint, objective sense and constant, and all-variable-fix model verification. GMP only provides additional arbitrary precision numerical evidence: linear line and objective tolerance `1e-5`, integer tolerance `1e-4`.
 
-这些检查不等于零容差精确可行性，也不构成全局最优性证明。`scpm1` 的原报告标签是 `numerical+GMP explicit tolerances`，仍然不能写成 exact。受限邻域的 `OPTIMAL`、`CUTOFF` 或 `INFEASIBLE` 只关闭其明确声明的局部范围。
+These checks are not equivalent to zero tolerance exact feasibility, nor do they constitute globally optimal proof. The original report label for `scpm1` is `numerical+GMP explicit tolerances`, and still cannot be written as exact. The `OPTIMAL`, `CUTOFF` or `INFEASIBLE` of the restricted neighborhood only close the local range of their explicit declarations.
 
-## 结果
+## result
 
-20/20 个实例形成终态记录，5 个 batch barrier 全部完成，最终没有遗留 owned process。
+The 20 / 20 instance forms a terminal record, and the 5 batch barrier is all complete, with no remaining owned process.
 
-- 逐实例墙钟和：`3000.00151331822077` 分钟
-- meaningful-active 时间和：`2627.11802992026012` 分钟
-- solver process 时间和：`2559.12273121935710` 分钟
-- 预留 worker-seconds：`2160000.0`
-- 产生 accepted improvement 的实例：6
-- accepted improvement 总数：13
-- 按预声明显著性与原报告归因口径的实质改善实例：4/20
+-  By instance wall clock and: `3000.00151331822077` minute
+-  meaningful-active Time and: `2627.11802992026012` Minutes
+-  Solver process time and: `2559.12273121935710` minutes
+- Reserved worker-seconds: `2160000.0`
+-  Example of an accepted improvement: 6
+-  13 is the most commonly used method of improvement.
+-  Substantial improvement in the pre-declared significance and attribution qualities of the original report instance: 4 / 20
 
-这些数值是逐实例求和，不是并行实验的实际经过时间。`allocated_worker_seconds` 是资源预留量，不是实测 CPU 消耗。
+The numerical is an instance-by-instance approximation, not a parallel experiment. `allocated_worker_seconds` is a resource reservation, not a test of CPU consumption.
 
-`accepted_improvement_count` 是基于预声明 comparator、显著性与归因规则的解释字段，不能通过 trajectory 中 accepted 行数或目标值变化次数重新推导。例如 `r4l4-02-tree-bounds-50` 有更多 accepted rows，但只有 5 次被计入该字段。
+`accepted_improvement_count` is an explanation field based on a pre-declared comparator, the rules of significance and attribution, which cannot be redirected through the trajectory of the accepted row count or the number of times the objective value changes. For example, `r4l4-02-tree-bounds-50` has more accepted rows, but only 5 is counted in that field.
 
-| 实例 | 比较起点 | 最终 verified primal | 方向性改善 | accepted updates | 首次 / 最后改善 |
+| Instance | Comparison | Finally verified primal | Improvements in direction |  accepted updates  | First and last improvement |
 |---|---:|---:|---:|---:|---:|
 | `graphdraw-grafo2` | 68613.49999999869 | 68590.5 | 22.999999998690328 | 3 | 25.535 / 61.180 min |
 | `cmflsp60-36-2-6` | 73891245.38458703 | 73891245.26398355 | 0.12060348 | 1 | 130.553 / 130.553 min |
 | `r4l4-02-tree-bounds-50` | official 499132179.0015595 | 499061405.0 | 70774.0015595 vs official | 5 | 26.209 / 147.751 min |
 | `ns1856153` | 34.163461799659395 | 34.01697312588409 | 0.146488673775305 | 2 | 24.314 / 30.151 min |
 
-`r4l4-02-tree-bounds-50` 没有可用的 independently verified initial baseline；它只能报告相对冻结官方值的改善，不能填入 verified-baseline 改善列。
+`r4l4-02-tree-bounds-50` has no independently verified initial baseline available; it can only report improvements to the relative freeze official value and cannot be filled in the verified-baseline improvement column.
 
-其余需要单独解释的结果：
+The remainder of the results require separate explanation:
 
-- `eva1aprime6x6opt`：1 次 accepted numerical-polish update，变化 `0.000001485198708`。
-- `shipsched`：1 次 accepted numerical-polish update，变化 `0.00045377348`。
-- `zeil`：约 `3.436e-10` 的数值变化，`accepted_improvement_count=0`。
-- `cdma`：得到 first feasible，不属于已有 verified baseline 上的改善。
-- `rocII-8-11`：external transfer，不属于本实验生成的改善。
-- `ns1456591`：最终值数值上下降 `0.0002388874898`，但没有超过预声明的相对显著性阈值，分类为 `no_improvement`。
+-  `eva1aprime6x6opt`: 1 accepted the numerical-polish update, changing the `0.000001485198708`.
+-  `shipsched`: 1 accepted the numerical-polish update, changing the `0.00045377348`.
+-  `zeil`: A numerical change of about `3.436e-10`, `accepted_improvement_count=0`.
+-  `cdma`: Get first feasible, not an improvement on a verified baseline.
+-  `rocII-8-11`:external transfer, not an improvement generated by this experiment.
+-  `ns1456591`: The final numerical value decreases to `0.0002388874898`, but does not exceed the pre-declared relative significant threshold, classified as `no_improvement`.
 
-`polygonpack4-10`、`cmflsp60-36-2-6`、`ns1456591` 和 `sct1` 的最终残差或 integrality deviation 接近 `1e-6`。比较时必须保留实际残差与容差，不能只保留 pass/fail。
+The final residuals or integrality deviations for `polygonpack4-10`, `cmflsp60-36-2-6`, `ns1456591`, and `sct1` are close to `1e-6`. Comparisons must retain the actual residuals and tolerances, not merely pass/fail labels.
 
-## 协议偏差和结论边界
+##  Protocol deviations and boundary conclusions
 
-对并发公平性最重要的偏差发生在 `scpm1`：采样证据显示 duplicate controller/native search 有约 35.2 秒重叠。不同实例的最大并发仍为 4，但有一个采样帧中的候选/搜索进程总数达到 5。该偏差必须随结果保留。
+The most important deviation from concurrent fairness occurs in `scpm1`: sample evidence shows that duplicate controller/native search overlaps about 35.2 per second. The largest parallel of different instances is still 4, but the total number of candidate/search processes in a sample string reaches 5. This deviation must be maintained with the result.
 
-其余偏差主要涉及认证中断、parser/setup 失败、controller 恢复、license 环境、日志别名、只读传输和 cap 后元数据。无有效 native child 的失败、被动等待和只读整理均未计入 meaningful-active 时间。机器可读摘要见 [`protocol-deviations.jsonl`](protocol-deviations.jsonl)，完整细节留在每个实例的 report、manifest 和原始 ledger。
+The remaining biases mainly involve authentication interruptions, parser/setup failures, controller recovery, license, environment, log renaming, read-only transmissions and cap back data. Failure of no valid native child, passive waiting and read-only sorting are not counted as meaningful-active time. Machine-readable summaries see [`protocol-deviations.jsonl` ](protocol-deviations.jsonl), complete details are left in each instance's report, manifesto and original ledger].
 
-本实验只研究 primal 可行解与 incumbent 改善。它没有安排独立 dual-bound campaign，也没有证明任何实例全局最优。不得从本结果推导 dual skill 无效、COPT/Gurobi 优劣或 skill 的普遍因果效果。
+This experiment examined only primal feasible solution and incumbent improvement. It did not organize an independent dual-bound campaign, nor did it prove any instance globally optimal.
 
-## 后续 AI 的读取顺序
+##  Read sequence of subsequent AI
 
-1. 先读本文件和 [`COMPARISON_CONTRACT.md`](COMPARISON_CONTRACT.md)。
-2. 读 [`experiment_manifest.json`](experiment_manifest.json) 确认实验、skill 和资源身份。
-3. 用 [`instance_results.csv`](instance_results.csv)、[`trajectories.csv`](trajectories.csv)、[`validation_summary.csv`](validation_summary.csv) 和 [`methods.csv`](methods.csv) 做机器比较。
-4. 需要保留原摘要词法值时读 [`results.jsonl`](results.jsonl)；需要核查原始结论时读 [`sources/summary.csv`](sources/summary.csv) 和 [`sources/report.md`](sources/report.md)。
-5. 对单个实例，依次读 `instances/<name>/final_report.md`、`validation.json`、`primal_trajectory.csv`、`run_manifest.json`、`model_provenance.json` 和 `skill_audit.json`。
-6. `instances/<name>/best.sol.gz` 是确定性压缩的最终原空间解。解压后的 SHA-256 必须等于 `validation.json` 和 [`artifact_manifest.jsonl`](artifact_manifest.jsonl) 中的 `source_sha256`。
-7. 需要原始日志、模型、phase ledger 或 restart state 时，根据 artifact manifest 转到完整归档。
+1.  Please read this document and [`COMPARISON_CONTRACT.md` ](COMPARISON_CONTRACT.md)].
+2.  Read [`experiment_manifest.json` ](experiment_manifest.json) Confirmation of the identity of experiments, skills and resources.
+3.  `instance_results.csv` ](instance_results.csv), `trajectories.csv` ](trajectories.csv), `validation_summary.csv` ](validation_summary.csv) and `methods.csv` ](methods.csv) are used to compare machines.
+4.  Read [`results.jsonl` ](results.jsonl)] when you need to preserve the original abstract value; read [`sources/summary.csv` ](sources/summary.csv) and [`sources/report.md` ](sources/report.md)] when you need to verify the original conclusion.
+5.  For individual instances, read `instances/<name>/final_report.md`, `validation.json`, `primal_trajectory.csv`, `run_manifest.json`, `model_provenance.json` and `skill_audit.json` in the following order.
+6.  `instances/<name>/best.sol.gz` is the final primespace solution for deterministic compression. SHA-256 after solution compression must be equal to `validation.json` and `source_sha256` in [`artifact_manifest.jsonl` ](artifact_manifest.jsonl)].
+7.  When the original log, model, phase ledger, or restart state is required, move to the complete archive according to the artifact manifest.
 
-完整工作归档位于 Euler4：
+The complete work is archived at Euler4:
 
 ```text
 /data1/wyc/mip_primal_skill20_20260914T2328CST
 ```
 
-当前 Windows transport mirror：
+The current Windows transport mirror:
 
 ```text
 D:\sufe\AI4MIP\reports\mip_primal_skill20_20260914T2328CST
 ```
 
-本地快照统计为 29,868 个文件、4,210,303,507 bytes。Git 交接包仅保留约 4.8 MiB 的核心证据、机器表和压缩最终解；原始日志、MPS、解池与中间文件通过路径、大小和 SHA-256 索引定位。
+Local snapshot statistics for 29,868 files, 4,210,303,507 bytes. Git packs only retain core evidence of about 4.8 MiB, machine tables and compressed final solution; original logs, MPS, solution pools and intermediate files are positioned by path, size and SHA-256 index.
 
-实验目录中的 `report_zh.md` 没有放入本包，因为它实际属于 general/structure 实验 `controlled_miplib20_20260911_1451`。本 primal 实验的权威总报告是 [`sources/report.md`](sources/report.md)。
+The `report_zh.md` in the experimental directory is not included in this package because it actually belongs to the general/structure experiment `controlled_miplib20_20260911_1451`. The general authority report for this primal experiment is [`sources/report.md` ](sources/report.md)].

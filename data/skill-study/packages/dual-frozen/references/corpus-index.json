@@ -18,7 +18,7 @@
     {
       "name": "a2864-99blp",
       "family": "packing-code",
-      "structure": "冲突图与编码构造",
+      "structure": "Conflict graphs and code constructions",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-257",
@@ -45,10 +45,10 @@
       "newer_audit": {
         "adopted_bound": "-257",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "严格文献定理迁移",
-        "method": "选列映射为子空间码；定理限制最多257列，目标为负选列数。",
-        "limits": "−257的文献迁移严格成立，匹配可行解还可闭合最优值。没有重新执行论文内部计算；四次派生COPT超时均不是这条证明的前提。较弱−282证书不替代−257。",
+        "decision": "Accepted",
+        "evidence": "Rigorous transfer of a published theorem",
+        "method": "Map selected columns to a subspace code; the theorem permits at most 257 columns, and the objective is the negative number of selected columns.",
+        "limits": "The published-theorem transfer establishes -257 rigorously; a matching feasible solution also closes optimality. The computations within the paper were not rerun. Four timed-out derived COPT runs are not premises of this proof. The weaker -282 certificate does not replace -257.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/a2864-99blp.zh.md"
       }
@@ -56,7 +56,7 @@
     {
       "name": "allcolor58",
       "family": "prepack",
-      "structure": "构型生成与残差覆盖",
+      "structure": "Configuration generation and residual covering",
       "repository_global_conclusion": true,
       "repository_summary": [
         "42",
@@ -78,7 +78,7 @@
     {
       "name": "assign1-10-4",
       "family": "categorical",
-      "structure": "分组/多选与耦合资源",
+      "structure": "Grouped or multiple-choice decisions with coupled resources",
       "repository_global_conclusion": true,
       "repository_summary": [
         "422",
@@ -107,7 +107,7 @@
     {
       "name": "bab3",
       "family": "categorical",
-      "structure": "分组/多选与耦合资源",
+      "structure": "Grouped or multiple-choice decisions with coupled resources",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-656,214.95420 (strict)",
@@ -122,7 +122,7 @@
     {
       "name": "bley_xs1",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "3,855,895.86",
@@ -137,7 +137,7 @@
     {
       "name": "bley_xs1noM",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "3,855,895.86 (strict incumbent)",
@@ -155,7 +155,7 @@
     {
       "name": "bppc6-06",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": true,
       "repository_summary": [
         "208",
@@ -183,7 +183,7 @@
     {
       "name": "cdc7-4-3-2",
       "family": "packing-code",
-      "structure": "冲突图与编码构造",
+      "structure": "Conflict graphs and code constructions",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-307",
@@ -198,7 +198,7 @@
     {
       "name": "circ10-3",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "242",
@@ -225,10 +225,10 @@
       "newer_audit": {
         "adopted_bound": "242",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "文献计算结果迁移",
-        "method": "原MPS对应标准CIRC10，再引用已发表最优值242。",
-        "limits": "通过文献迁移审核。未独立重放外部完整搜索，也未取得期刊14页完整正文；本地242可行性日志、较弱220界均不充当外部最优性证明。",
+        "decision": "Accepted",
+        "evidence": "Transfer of a published computational result",
+        "method": "Map the original MPS to standard CIRC10 and invoke the published optimum 242.",
+        "limits": "The literature-transfer audit passed. The complete external search was not independently replayed, and the full 14-page journal article was not obtained. Local feasibility logs for 242 and the weaker bound 220 do not constitute the external optimality proof.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/circ10-3.zh.md"
       }
@@ -236,7 +236,7 @@
     {
       "name": "cmflsp40-36-2-10",
       "family": "lot-sizing",
-      "structure": "跨期生产与库存 recourse",
+      "structure": "Multiperiod production and inventory recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "66,452,236.4536 (strict repair)",
@@ -259,10 +259,10 @@
       "newer_audit": {
         "adopted_bound": "65928415.306808524",
         "numerical_bound": true,
-        "decision": "通过（数值标准；runner缺失保留）",
-        "evidence": "原模型身份重建＋历史全局solver数值支持",
-        "method": "区分原模型加Start的全局运行与固定72个Z的子问题。",
-        "limits": "按用户认可的模型与合理日志标准通过；原global runner缺失仍限制完整复现。32位指纹不构成无碰撞数学身份证明，也不覆盖一切潜在历史callback。没有发现额外限制的实际证据，但不能宣称恢复了全部运行源码或精确认证所有小数位。",
+        "decision": "Accepted under the numerical-evidence standard; missing runner remains a limitation",
+        "evidence": "Reconstructed original-model identity plus historical global numerical solver evidence",
+        "method": "Distinguish a global run on the original model with a MIP start from a subproblem fixing 72 Z variables.",
+        "limits": "Accepted under the model and reasonable-log standards authorized by the user; the missing original global runner still limits complete reproduction. A 32-bit fingerprint is not collision-free mathematical proof of model identity and does not rule out every possible historical callback. No actual evidence of additional restrictions was found, but neither complete recovery of the runner source nor exact certification of every decimal digit is claimed.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/cmflsp40-36-2-10.zh.md"
       }
@@ -270,7 +270,7 @@
     {
       "name": "comp12-2idx",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "277",
@@ -288,7 +288,7 @@
     {
       "name": "core2586-950",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "944 (strict)",
@@ -303,7 +303,7 @@
     {
       "name": "core4284-1064",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1062",
@@ -321,7 +321,7 @@
     {
       "name": "core4872-1529",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1530",
@@ -338,7 +338,7 @@
     {
       "name": "cvrpa-n64k9vrpi",
       "family": "routing",
-      "structure": "路线与负载/时间势",
+      "structure": "Routing with load or time potentials",
       "repository_global_conclusion": true,
       "repository_summary": [
         "1,401 (new strict incumbent)",
@@ -363,10 +363,10 @@
       "newer_audit": {
         "adopted_bound": "1401",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "原MPS精确投影＋外部结果＋数值排除＋精确大车数证书",
-        "method": "完整覆盖K=9…63，按先9、再10、再11的顺序激活非合并排除。",
-        "limits": "混合证据支持1401。外部固定9车和商业排除未在本次完整重跑；plain K10/K11的超时既不能证明不可行，也不否定另一次成功nonmerge运行。固定路线回填子问题的bound不用于全局证明。",
+        "decision": "Accepted",
+        "evidence": "Exact original-MPS projection plus external results, numerical exclusions, and exact certificates for larger fleet sizes",
+        "method": "Cover all fleet sizes K=9...63, activating the nonmerge exclusions in order: 9, then 10, then 11.",
+        "limits": "Mixed evidence supports 1401. The external fixed-9-vehicle computation and commercial exclusions were not fully rerun in this audit. Timeouts of plain K10/K11 runs neither prove infeasibility nor refute a different successful nonmerge run. Bounds from fixed-route lifting subproblems are not used as global proofs.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/cvrpa-n64k9vrpi.zh.md"
       }
@@ -374,7 +374,7 @@
     {
       "name": "cvrpb-n45k5vrpi",
       "family": "routing",
-      "structure": "路线与负载/时间势",
+      "structure": "Routing with load or time potentials",
       "repository_global_conclusion": true,
       "repository_summary": [
         "751 (new strict incumbent)",
@@ -399,10 +399,10 @@
       "newer_audit": {
         "adopted_bound": "751",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "原MPS精确投影＋外部固定车数结果＋历史数值排除",
-        "method": "覆盖全部车数：K=5用外部751结果，K≥6用成功Gurobi排除。",
-        "limits": "按允许外部结果和合理solver日志的标准通过。固定5车外部计算及K≥6商业搜索未由本次重新求解；altman的原MPS COPT超时日志不是成功排除，cutoff可行性模型的目标0也不是路线下界。",
+        "decision": "Accepted",
+        "evidence": "Exact original-MPS projection plus an external fixed-fleet result and historical numerical exclusions",
+        "method": "Covers all vehicle counts: the external result 751 applies at K=5; successful Gurobi exclusions cover K>=6.",
+        "limits": "Accepted under a standard allowing external results and reasonable solver logs. The external fixed-5-vehicle computation and commercial searches for K>=6 were not rerun in this audit. The timed-out original-MPS COPT log on altman is not a successful exclusion; objective 0 in a cutoff feasibility model is not a routing lower bound.",
         "latest_commercial_rerun": {
           "status": "TIME_LIMIT",
           "seconds": 60,
@@ -416,7 +416,7 @@
     {
       "name": "cvrpp-n16k8vrpi",
       "family": "routing",
-      "structure": "路线与负载/时间势",
+      "structure": "Routing with load or time potentials",
       "repository_global_conclusion": true,
       "repository_summary": [
         "450",
@@ -442,7 +442,7 @@
     {
       "name": "d20200",
       "family": "categorical",
-      "structure": "分组/多选与耦合资源",
+      "structure": "Grouped or multiple-choice decisions with coupled resources",
       "repository_global_conclusion": false,
       "repository_summary": [
         "12,237",
@@ -457,7 +457,7 @@
     {
       "name": "dano3mip",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "664.020833333333",
@@ -472,7 +472,7 @@
     {
       "name": "datt256",
       "family": "puzzle-feasibility",
-      "structure": "有限域可行性/覆盖修复",
+      "structure": "Finite-domain feasibility and covering repair",
       "repository_global_conclusion": false,
       "repository_summary": [
         "no feasible point",
@@ -489,7 +489,7 @@
     {
       "name": "dfn-bwin-DBE",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": true,
       "repository_summary": [
         "73,623.79",
@@ -515,7 +515,7 @@
     {
       "name": "dws012-01",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "82,030.5522222395466198 (1e-9 feasible)",
@@ -530,7 +530,7 @@
     {
       "name": "dws012-02",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "119443.31072434435 (new strict incumbent)",
@@ -547,7 +547,7 @@
     {
       "name": "eva1aprime5x5opt",
       "family": "structural-design",
-      "structure": "构件选择与力学 recourse",
+      "structure": "Component selection and mechanical recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-17.94807560443689 (strict)",
@@ -564,7 +564,7 @@
     {
       "name": "ex1010-pi",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "233",
@@ -581,7 +581,7 @@
     {
       "name": "f2000",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1,810",
@@ -598,7 +598,7 @@
     {
       "name": "fastxgemm-n3r21s3t6",
       "family": "tensor",
-      "structure": "双线性张量与支持",
+      "structure": "Bilinear tensors and support patterns",
       "repository_global_conclusion": false,
       "repository_summary": [
         "2,147 (external-derived; strictly verified)",
@@ -619,7 +619,7 @@
     {
       "name": "fastxgemm-n3r22s4t6",
       "family": "tensor",
-      "structure": "双线性张量与支持",
+      "structure": "Bilinear tensors and support patterns",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1,150 (external-derived; strictly verified)",
@@ -634,7 +634,7 @@
     {
       "name": "fastxgemm-n3r23s5t6",
       "family": "tensor",
-      "structure": "双线性张量与支持",
+      "structure": "Bilinear tensors and support patterns",
       "repository_global_conclusion": false,
       "repository_summary": [
         "153 (BILR 2018; strictly verified)",
@@ -649,7 +649,7 @@
     {
       "name": "fhnw-binpack4-58",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": true,
       "repository_summary": [
         "—",
@@ -671,7 +671,7 @@
     {
       "name": "fhnw-binschedule0",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "15,958",
@@ -699,7 +699,7 @@
     {
       "name": "fhnw-binschedule1",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "55,158",
@@ -727,7 +727,7 @@
     {
       "name": "fhnw-binschedule2",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "2,428",
@@ -753,7 +753,7 @@
     {
       "name": "fhnw-schedule-paira100",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-15.113116512593402 (strict)",
@@ -782,10 +782,10 @@
       "newer_audit": {
         "adopted_bound": "-15.113116512593401992",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确分支对偶证书＋精确原MPS可行解",
-        "method": "安全release-suffix松弛，完整0/1分支，叶弱对偶证明，再用原解闭合。",
-        "limits": "采用本题原MPS字面系数对应的精确认证值。最终证明不依赖已撤回的旧energy cuts或浮点D_safe。精确树证书是后续补全，不冒充旧搜索轨迹重放。",
+        "decision": "Accepted",
+        "evidence": "Local exact branch-dual certificate plus an exact original-MPS feasible solution",
+        "method": "Use a safe release-suffix relaxation, complete 0/1 branching, and weak-duality proofs at every leaf, then close the bound with an original-model solution.",
+        "limits": "Adopt the exactly certified value for the literal coefficients of this original MPS. The final proof does not depend on the retracted old energy cuts or floating-point D_safe. The exact tree certificate was completed later and is not presented as a replay of the old search trajectory.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/fhnw-schedule-paira100.zh.md"
       }
@@ -793,7 +793,7 @@
     {
       "name": "fhnw-schedule-paira200",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-19.369961204645204 (new strict incumbent)",
@@ -820,10 +820,10 @@
       "newer_audit": {
         "adopted_bound": "-19.36996120464520581",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确分支对偶证书＋精确原MPS可行解",
-        "method": "安全release-suffix松弛，完整0/1分支，叶弱对偶证明，再用原解闭合。",
-        "limits": "采用认证值；旧headline末位偏高，不能把旧字面十进制恢复为严格下界。最终证明不依赖已撤回的旧energy cuts或浮点D_safe。精确树证书是后续补全，不冒充旧搜索轨迹重放。",
+        "decision": "Accepted",
+        "evidence": "Local exact branch-dual certificate plus an exact original-MPS feasible solution",
+        "method": "Use a safe release-suffix relaxation, complete 0/1 branching, and weak-duality proofs at every leaf, then close the bound with an original-model solution.",
+        "limits": "Adopt the certified value. The last digits of the old headline were too high, so that literal decimal cannot be reinstated as a rigorous lower bound. The final proof does not depend on the retracted old energy cuts or floating-point D_safe. The exact tree certificate was completed later and is not presented as a replay of the old search trajectory.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/fhnw-schedule-paira200.zh.md"
       }
@@ -831,7 +831,7 @@
     {
       "name": "fhnw-schedule-paira400",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-36.27696674236886 (new strict incumbent)",
@@ -858,10 +858,10 @@
       "newer_audit": {
         "adopted_bound": "-36.276966742368865136",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确分支对偶证书＋精确原MPS可行解",
-        "method": "安全release-suffix松弛，完整0/1分支，叶弱对偶证明，再用原解闭合。",
-        "limits": "采用认证值；旧headline末位偏高，不能把旧字面十进制恢复为严格下界。最终证明不依赖已撤回的旧energy cuts或浮点D_safe。精确树证书是后续补全，不冒充旧搜索轨迹重放。",
+        "decision": "Accepted",
+        "evidence": "Local exact branch-dual certificate plus an exact original-MPS feasible solution",
+        "method": "Use a safe release-suffix relaxation, complete 0/1 branching, and weak-duality proofs at every leaf, then close the bound with an original-model solution.",
+        "limits": "Adopt the certified value. The last digits of the old headline were too high, so that literal decimal cannot be reinstated as a rigorous lower bound. The final proof does not depend on the retracted old energy cuts or floating-point D_safe. The exact tree certificate was completed later and is not presented as a replay of the old search trajectory.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/fhnw-schedule-paira400.zh.md"
       }
@@ -869,7 +869,7 @@
     {
       "name": "fhnw-schedule-pairb200",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-19.3699612046452058100 (new strict incumbent)",
@@ -897,10 +897,10 @@
       "newer_audit": {
         "adopted_bound": "-19.36996120464520581",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确分支对偶证书＋精确原MPS可行解",
-        "method": "安全release-suffix松弛，完整0/1分支，叶弱对偶证明，再用原解闭合。",
-        "limits": "采用本题原MPS字面系数对应的精确认证值。最终证明不依赖已撤回的旧energy cuts或浮点D_safe。精确树证书是后续补全，不冒充旧搜索轨迹重放。",
+        "decision": "Accepted",
+        "evidence": "Local exact branch-dual certificate plus an exact original-MPS feasible solution",
+        "method": "Use a safe release-suffix relaxation, complete 0/1 branching, and weak-duality proofs at every leaf, then close the bound with an original-model solution.",
+        "limits": "Adopt the exactly certified value for the literal coefficients of this original MPS. The final proof does not depend on the retracted old energy cuts or floating-point D_safe. The exact tree certificate was completed later and is not presented as a replay of the old search trajectory.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/fhnw-schedule-pairb200.zh.md"
       }
@@ -908,7 +908,7 @@
     {
       "name": "fhnw-schedule-pairb400",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-36.27696674236886 (new strict incumbent)",
@@ -935,10 +935,10 @@
       "newer_audit": {
         "adopted_bound": "-36.276966742368865136",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确分支对偶证书＋精确原MPS可行解",
-        "method": "安全release-suffix松弛，完整0/1分支，叶弱对偶证明，再用原解闭合。",
-        "limits": "采用认证值；旧headline末位偏高，不能把旧字面十进制恢复为严格下界。最终证明不依赖已撤回的旧energy cuts或浮点D_safe。精确树证书是后续补全，不冒充旧搜索轨迹重放。",
+        "decision": "Accepted",
+        "evidence": "Local exact branch-dual certificate plus an exact original-MPS feasible solution",
+        "method": "Use a safe release-suffix relaxation, complete 0/1 branching, and weak-duality proofs at every leaf, then close the bound with an original-model solution.",
+        "limits": "Adopt the certified value. The last digits of the old headline were too high, so that literal decimal cannot be reinstated as a rigorous lower bound. The final proof does not depend on the retracted old energy cuts or floating-point D_safe. The exact tree certificate was completed later and is not presented as a replay of the old search trajectory.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/fhnw-schedule-pairb400.zh.md"
       }
@@ -946,7 +946,7 @@
     {
       "name": "genus-g31-8",
       "family": "genus",
-      "structure": "图嵌入与旋转系统",
+      "structure": "Graph embeddings and rotation systems",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-23 (genus 3)",
@@ -972,7 +972,7 @@
     {
       "name": "genus-g61-25",
       "family": "genus",
-      "structure": "图嵌入与旋转系统",
+      "structure": "Graph embeddings and rotation systems",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-40 (genus 10; MPS tolerance 1e-6)",
@@ -995,7 +995,7 @@
     {
       "name": "genus-sym-g31-8",
       "family": "genus",
-      "structure": "图嵌入与旋转系统",
+      "structure": "Graph embeddings and rotation systems",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-23 (genus 3)",
@@ -1021,7 +1021,7 @@
     {
       "name": "genus-sym-g62-2",
       "family": "genus",
-      "structure": "图嵌入与旋转系统",
+      "structure": "Graph embeddings and rotation systems",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-38 (MPS tolerance 1e-6)",
@@ -1042,7 +1042,7 @@
     {
       "name": "genus-sym-grafo5708-48",
       "family": "genus",
-      "structure": "图嵌入与旋转系统",
+      "structure": "Graph embeddings and rotation systems",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-21 (genus 4)",
@@ -1070,7 +1070,7 @@
     {
       "name": "ger50-17-ptp-pop-3t",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "5,224.5144 (strict)",
@@ -1085,7 +1085,7 @@
     {
       "name": "gmut-76-40",
       "family": "harvest",
-      "structure": "林地集合打包与跨期平滑",
+      "structure": "Forest set packing and interperiod smoothing",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-14,169,477.7859 (strict repaired)",
@@ -1100,7 +1100,7 @@
     {
       "name": "gmut-76-50",
       "family": "harvest",
-      "structure": "林地集合打包与跨期平滑",
+      "structure": "Forest set packing and interperiod smoothing",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-14171397.8275 (strict)",
@@ -1118,7 +1118,7 @@
     {
       "name": "graph40-20-1rand",
       "family": "graph-cut",
-      "structure": "不交图割打包",
+      "structure": "Disjoint graph-cut packing",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-15 (15 cuts)",
@@ -1133,7 +1133,7 @@
     {
       "name": "graph40-40-1rand",
       "family": "graph-cut",
-      "structure": "不交图割打包",
+      "structure": "Disjoint graph-cut packing",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-9 (9 cuts)",
@@ -1162,7 +1162,7 @@
     {
       "name": "graph40-80-1rand",
       "family": "graph-cut",
-      "structure": "不交图割打包",
+      "structure": "Disjoint graph-cut packing",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-7",
@@ -1188,7 +1188,7 @@
     {
       "name": "graphdraw-mainerd",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "38,842 (exact reconstruction)",
@@ -1210,10 +1210,10 @@
       "newer_audit": {
         "adopted_bound": "31882",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确几何投影＋四方向分支对偶证书",
-        "method": "对任意原布局成立的矩形小组距离界，不重复计费后相加。",
-        "limits": "采用新精确界31882。这是新增证明，不是对原31769搜索过程的重放；原局部“最多移动若干矩形”结果不进入全局链。不宣称最优。",
+        "decision": "Accepted",
+        "evidence": "Local exact geometric projection plus four-direction branch-dual certificates",
+        "method": "Derive distance bounds for small rectangle groups that apply to every original layout, then sum them without charging any cost twice.",
+        "limits": "Adopt the new exact bound 31882. This is a new proof, not a replay of the original search for 31769. Earlier local results allowing only a limited number of rectangles to move are excluded from the global proof chain. Optimality is not claimed.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/graphdraw-mainerd.zh.md"
       }
@@ -1221,7 +1221,7 @@
     {
       "name": "graphdraw-opmanager",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "99,445.5",
@@ -1241,10 +1241,10 @@
       "newer_audit": {
         "adopted_bound": "58950",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确几何投影＋四方向分支对偶证书",
-        "method": "对任意原布局成立的矩形小组距离界，不重复计费后相加。",
-        "limits": "采用新精确界58950。这是新增证明，不是对原58625.5搜索过程的重放；原局部“最多移动若干矩形”结果不进入全局链。不宣称最优。",
+        "decision": "Accepted",
+        "evidence": "Local exact geometric projection plus four-direction branch-dual certificates",
+        "method": "Derive distance bounds for small rectangle groups that apply to every original layout, then sum them without charging any cost twice.",
+        "limits": "Adopt the new exact bound 58950. This is a new proof, not a replay of the original search for 58625.5. Earlier local results allowing only a limited number of rectangles to move are excluded from the global proof chain. Optimality is not claimed.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/graphdraw-opmanager.zh.md"
       }
@@ -1252,7 +1252,7 @@
     {
       "name": "gsvm2rl11",
       "family": "classification",
-      "structure": "分类器与离群选择",
+      "structure": "Classifier construction and outlier selection",
       "repository_global_conclusion": false,
       "repository_summary": [
         "18,539.12716192643 (strict)",
@@ -1267,7 +1267,7 @@
     {
       "name": "gsvm2rl9",
       "family": "classification",
-      "structure": "分类器与离群选择",
+      "structure": "Classifier construction and outlier selection",
       "repository_global_conclusion": false,
       "repository_summary": [
         "7,438.181167767967 (strict)",
@@ -1284,7 +1284,7 @@
     {
       "name": "ivu06",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "142.864331576",
@@ -1303,7 +1303,7 @@
     {
       "name": "liu",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1,082 (new strict solution)",
@@ -1326,7 +1326,7 @@
     {
       "name": "lr1dr02vc05v8a-t360",
       "family": "inventory-routing",
-      "structure": "库存路线/货物与车辆耦合",
+      "structure": "Inventory routing and cargo-vehicle coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "123,046.81611861245 (strict normalized)",
@@ -1341,7 +1341,7 @@
     {
       "name": "milo-v12-6-r1-75-1",
       "family": "structural-design",
-      "structure": "构件选择与力学 recourse",
+      "structure": "Component selection and mechanical recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1,153,756.398205675",
@@ -1356,7 +1356,7 @@
     {
       "name": "milo-v13-4-3d-4-0",
       "family": "structural-design",
-      "structure": "构件选择与力学 recourse",
+      "structure": "Component selection and mechanical recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "358,152.26219370891",
@@ -1373,7 +1373,7 @@
     {
       "name": "mining",
       "family": "mining",
-      "structure": "开采先序与跨期容量",
+      "structure": "Mining precedence and interperiod capacity",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-833,589,149.2736538586882046",
@@ -1394,7 +1394,7 @@
     {
       "name": "minutedispatchstrategy",
       "family": "dispatch",
-      "structure": "电力调度",
+      "structure": "Power dispatch",
       "repository_global_conclusion": true,
       "repository_summary": [
         "3,109.9034777596576",
@@ -1421,10 +1421,10 @@
       "newer_audit": {
         "adopted_bound": "3109.9034777596576",
         "numerical_bound": true,
-        "decision": "采用新数值界；旧PDF差异待核",
-        "evidence": "原模型＋历史全局solver数值闭合；历史差异保留备注",
-        "method": "直接求解原MPS，采用全局ObjBound；精确复算现有解以审查容差。",
-        "limits": "按用户决定采用新下界，但冻结旧PDF primal=3109.90308低于新界约0.00039776，对应原解仍缺。另一份COPT残差不能解释该特定旧记录；历史差异尚未解决，未发现经验证反例。采用新值是使用决定，不把未决事项改写成证明已闭合。",
+        "decision": "New numerical bound adopted; discrepancy with the old PDF remains unresolved",
+        "evidence": "Original model plus historical global numerical solver closure; historical discrepancy retained",
+        "method": "Solve the original MPS directly and use its global ObjBound; recompute the existing solution exactly to examine tolerance effects.",
+        "limits": "The new lower bound is adopted following the user decision, while retaining the old PDF primal=3109.90308, which is approximately 0.00039776 below the new bound; its corresponding original solution is still missing. Residuals from another COPT solution do not explain that specific historical record. The discrepancy remains unresolved, and no verified counterexample was found. Adopting the new value is a usage decision, not a proof that the unresolved issue has been settled.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/minutedispatchstrategy.zh.md"
       }
@@ -1432,7 +1432,7 @@
     {
       "name": "n3700",
       "family": "network-design",
-      "structure": "网络设计与连续 recourse",
+      "structure": "Network design with continuous recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1,247,295 (strict)",
@@ -1447,7 +1447,7 @@
     {
       "name": "nag",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "930 (verified @ 1e-9)",
@@ -1467,10 +1467,10 @@
       "newer_audit": {
         "adopted_bound": "550.5405405405405",
         "numerical_bound": true,
-        "decision": "通过",
-        "evidence": "原MPS与runner可追溯＋历史全局solver数值支持",
-        "method": "直接求原MPS，审查全局ObjBound与终端日志，没有新人工数学归约。",
-        "limits": "按接受合理solver全局数值结果的标准通过。未独立核算全部内部cuts或分支树，也未进行商业数值复跑；API小数是数值记录，不是逐位精确认证。相对旧COPT PDF的提高不能归因为某个参数，也不是同预算性能优势的证明。",
+        "decision": "Accepted",
+        "evidence": "Traceable original MPS and runner plus historical global numerical solver evidence",
+        "method": "Solve the original MPS directly and inspect global ObjBound and terminal logs; no new manual mathematical reduction is involved.",
+        "limits": "Accepted under a standard permitting reasonable global numerical solver results. Not all internal cuts or the branch tree were independently checked, and no commercial numerical rerun was performed. API decimals are numerical records, not digit-by-digit exact certificates. Improvement over the old COPT PDF cannot be attributed to a specific parameter and is not proof of a same-budget performance advantage.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/nag.zh.md"
       }
@@ -1478,7 +1478,7 @@
     {
       "name": "neos-2629914-sudost",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": true,
       "repository_summary": [
         "48,180",
@@ -1506,7 +1506,7 @@
     {
       "name": "neos-2978205-isar",
       "family": "symmetry",
-      "structure": "重复列/类型计数",
+      "structure": "Repeated columns and type counts",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-11.925808687",
@@ -1529,7 +1529,7 @@
     {
       "name": "neos-3009394-lami",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": true,
       "repository_summary": [
         "5.5",
@@ -1557,7 +1557,7 @@
     {
       "name": "neos-3355120-tarago",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-11,110,906.689290019 (verified @ 1e-9)",
@@ -1577,10 +1577,10 @@
       "newer_audit": {
         "adopted_bound": "-11123832.676970437",
         "numerical_bound": true,
-        "decision": "通过",
-        "evidence": "原MPS与runner可追溯＋历史全局solver数值支持",
-        "method": "直接求原MPS，审查全局ObjBound与终端日志，没有新人工数学归约。",
-        "limits": "按接受合理solver全局数值结果的标准通过。未独立核算全部内部cuts或分支树，也未进行商业数值复跑；API小数是数值记录，不是逐位精确认证。相对旧COPT PDF的提高不能归因为某个参数，也不是同预算性能优势的证明。",
+        "decision": "Accepted",
+        "evidence": "Traceable original MPS and runner plus historical global numerical solver evidence",
+        "method": "Solve the original MPS directly and inspect global ObjBound and terminal logs; no new manual mathematical reduction is involved.",
+        "limits": "Accepted under a standard permitting reasonable global numerical solver results. Not all internal cuts or the branch tree were independently checked, and no commercial numerical rerun was performed. API decimals are numerical records, not digit-by-digit exact certificates. Improvement over the old COPT PDF cannot be attributed to a specific parameter and is not proof of a same-budget performance advantage.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/neos-3355120-tarago.zh.md"
       }
@@ -1588,7 +1588,7 @@
     {
       "name": "neos-3355323-arnon",
       "family": "puzzle-feasibility",
-      "structure": "有限域可行性/覆盖修复",
+      "structure": "Finite-domain feasibility and covering repair",
       "repository_global_conclusion": false,
       "repository_summary": [
         "no feasible witness",
@@ -1605,7 +1605,7 @@
     {
       "name": "neos-3594536-henty",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": true,
       "repository_summary": [
         "401,092",
@@ -1630,10 +1630,10 @@
       "newer_audit": {
         "adopted_bound": "401092",
         "numerical_bound": true,
-        "decision": "通过",
-        "evidence": "严格结构归约＋历史两种solver数值闭合",
-        "method": "自由整数对规范化，消去自由流，归约为分量平衡＋奇偶模型。",
-        "limits": "归约部分严格成立，401092这一数值由历史全局solver支持。两种solver一致和401092可行解不等于独立精确下界证书；本次没有重跑它们。没有采用improve-only cutoff分支或较弱400947替代原声明。",
+        "decision": "Accepted",
+        "evidence": "Rigorous structural reduction plus historical numerical closure by two solvers",
+        "method": "Normalize free integer pairs, eliminate free flows, and reduce to component balance and parity.",
+        "limits": "The reduction is rigorous; the value 401092 is supported by historical global solver evidence. Agreement between two solvers and a feasible solution of value 401092 do not constitute an independent exact lower-bound certificate; neither solver was rerun in this audit. Improve-only cutoff branches and the weaker 400947 were not substituted for the original claim.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/neos-3594536-henty.zh.md"
       }
@@ -1641,7 +1641,7 @@
     {
       "name": "neos-3603137-hoteo",
       "family": "puzzle-feasibility",
-      "structure": "有限域可行性/覆盖修复",
+      "structure": "Finite-domain feasibility and covering repair",
       "repository_global_conclusion": false,
       "repository_summary": [
         "no feasible point",
@@ -1656,7 +1656,7 @@
     {
       "name": "neos-3634244-kauru",
       "family": "minimax-cluster",
-      "structure": "等基数 minimax 聚类",
+      "structure": "Equal-cardinality minimax clustering",
       "repository_global_conclusion": false,
       "repository_summary": [
         "1398.0156859 (strict)",
@@ -1673,7 +1673,7 @@
     {
       "name": "neos-3691541-lonja",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "0.0918239856 (strict)",
@@ -1688,7 +1688,7 @@
     {
       "name": "neos-4355351-swalm",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": true,
       "repository_summary": [
         "33.45763",
@@ -1710,7 +1710,7 @@
     {
       "name": "neos-4360552-sangro",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": true,
       "repository_summary": [
         "-8",
@@ -1736,7 +1736,7 @@
     {
       "name": "neos-4533806-waima",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "4,870 (exact audit)",
@@ -1751,7 +1751,7 @@
     {
       "name": "neos-5045105-creuse",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "20.571410408673 (Gurobi-accepted)",
@@ -1766,7 +1766,7 @@
     {
       "name": "neos-5266653-tugela",
       "family": "routing",
-      "structure": "路线与负载/时间势",
+      "structure": "Routing with load or time potentials",
       "repository_global_conclusion": false,
       "repository_summary": [
         "65,257.573990387 (new strict incumbent)",
@@ -1781,7 +1781,7 @@
     {
       "name": "nj1",
       "family": "districting",
-      "structure": "人口均衡与连通分区",
+      "structure": "Population-balanced connected partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "382.0606208032 (improved first strict incumbent)",
@@ -1796,7 +1796,7 @@
     {
       "name": "nj2",
       "family": "districting",
-      "structure": "人口均衡与连通分区",
+      "structure": "Population-balanced connected partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "382.0606208032 (improved first strict incumbent)",
@@ -1811,7 +1811,7 @@
     {
       "name": "nj3",
       "family": "districting",
-      "structure": "人口均衡与连通分区",
+      "structure": "Population-balanced connected partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "382.0606208032 (first strict incumbent)",
@@ -1826,7 +1826,7 @@
     {
       "name": "ns1631475",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": true,
       "repository_summary": [
         "11,100",
@@ -1852,7 +1852,7 @@
     {
       "name": "ns1828997",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "8",
@@ -1869,7 +1869,7 @@
     {
       "name": "ns1905797",
       "family": "routing",
-      "structure": "路线与负载/时间势",
+      "structure": "Routing with load or time potentials",
       "repository_global_conclusion": false,
       "repository_summary": [
         "13.98258 (new strict incumbent)",
@@ -1884,7 +1884,7 @@
     {
       "name": "ns2122698",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "68,750 (strict repair)",
@@ -1899,7 +1899,7 @@
     {
       "name": "pb-gfrd-pnc",
       "family": "symmetry",
-      "structure": "重复列/类型计数",
+      "structure": "Repeated columns and type counts",
       "repository_global_conclusion": false,
       "repository_summary": [
         "8,844 (strict)",
@@ -1914,7 +1914,7 @@
     {
       "name": "pb-grow22",
       "family": "symmetry",
-      "structure": "重复列/类型计数",
+      "structure": "Repeated columns and type counts",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-449536",
@@ -1932,7 +1932,7 @@
     {
       "name": "polygonpack4-15",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-63,613,612.411253203798895776945039... (strict repair)",
@@ -1947,7 +1947,7 @@
     {
       "name": "polygonpack4-7",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-51,837,707.95034043267785954996 (strict repair)",
@@ -1962,7 +1962,7 @@
     {
       "name": "polygonpack5-15",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-55,494,687.647606651289167114364938... (strict repair)",
@@ -1977,7 +1977,7 @@
     {
       "name": "pythago7825",
       "family": "puzzle-feasibility",
-      "structure": "有限域可行性/覆盖修复",
+      "structure": "Finite-domain feasibility and covering repair",
       "repository_global_conclusion": true,
       "repository_summary": [
         "—",
@@ -1997,7 +1997,7 @@
     {
       "name": "ramos3",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "186",
@@ -2019,10 +2019,10 @@
       "newer_audit": {
         "adopted_bound": "156",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确组合证明＋全量有限核算",
-        "method": "排除155点的三元半径一覆盖，从而证明目标≥156。",
-        "limits": "精确全局下界156通过；不由局部排除直接推广，也不声称已证明最优值等于156。",
+        "decision": "Accepted",
+        "evidence": "Local exact combinatorial proof plus exhaustive finite checking",
+        "method": "Exclude a 155-point ternary radius-one covering, thereby proving objective >=156.",
+        "limits": "The exact global lower bound 156 passed the audit. It is not extrapolated directly from a local exclusion, and optimality at 156 is not claimed.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/ramos3.zh.md"
       }
@@ -2030,7 +2030,7 @@
     {
       "name": "rmine11",
       "family": "mining",
-      "structure": "开采先序与跨期容量",
+      "structure": "Mining precedence and interperiod capacity",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-2508.404143999999991662 (strict)",
@@ -2049,7 +2049,7 @@
     {
       "name": "rmine13",
       "family": "mining",
-      "structure": "开采先序与跨期容量",
+      "structure": "Mining precedence and interperiod capacity",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-3495.3706609999999806509 (strict repair)",
@@ -2066,7 +2066,7 @@
     {
       "name": "rmine15",
       "family": "mining",
-      "structure": "开采先序与跨期容量",
+      "structure": "Mining precedence and interperiod capacity",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-5018.823005000000004879 (new strict incumbent)",
@@ -2086,7 +2086,7 @@
     {
       "name": "rmine21",
       "family": "mining",
-      "structure": "开采先序与跨期容量",
+      "structure": "Mining precedence and interperiod capacity",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-10618.7507269999999491342 (strict repair)",
@@ -2101,7 +2101,7 @@
     {
       "name": "rmine25",
       "family": "mining",
-      "structure": "开采先序与跨期容量",
+      "structure": "Mining precedence and interperiod capacity",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-15541.66927699999998289011 (strict repair)",
@@ -2116,7 +2116,7 @@
     {
       "name": "s82",
       "family": "schedule",
-      "structure": "时间选择与排程",
+      "structure": "Time selection and scheduling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-33.7970576238223 (strict public point)",
@@ -2134,7 +2134,7 @@
     {
       "name": "scpj4scip",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "128",
@@ -2149,7 +2149,7 @@
     {
       "name": "scpk4",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "318",
@@ -2164,7 +2164,7 @@
     {
       "name": "scpl4",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "259",
@@ -2179,7 +2179,7 @@
     {
       "name": "set3-09",
       "family": "lot-sizing",
-      "structure": "跨期生产与库存 recourse",
+      "structure": "Multiperiod production and inventory recourse",
       "repository_global_conclusion": false,
       "repository_summary": [
         "176497.152425682499961401493852... (strict repair)",
@@ -2194,7 +2194,7 @@
     {
       "name": "shs1042",
       "family": "inventory-routing",
-      "structure": "库存路线/货物与车辆耦合",
+      "structure": "Inventory routing and cargo-vehicle coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "11,070.7016616034 (strict repair)",
@@ -2209,7 +2209,7 @@
     {
       "name": "siena1",
       "family": "selection-core",
-      "structure": "选择核心与局部耦合",
+      "structure": "Selection cores and local coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "10,449,008.9 (verified @ 1e-9)",
@@ -2229,10 +2229,10 @@
       "newer_audit": {
         "adopted_bound": "10219502.195349596",
         "numerical_bound": true,
-        "decision": "通过",
-        "evidence": "原MPS与runner可追溯＋历史全局solver数值支持",
-        "method": "直接求原MPS，审查全局ObjBound与终端日志，没有新人工数学归约。",
-        "limits": "按接受合理solver全局数值结果的标准通过。未独立核算全部内部cuts或分支树，也未进行商业数值复跑；API小数是数值记录，不是逐位精确认证。相对旧COPT PDF的提高不能归因为某个参数，也不是同预算性能优势的证明。",
+        "decision": "Accepted",
+        "evidence": "Traceable original MPS and runner plus historical global numerical solver evidence",
+        "method": "Solve the original MPS directly and inspect global ObjBound and terminal logs; no new manual mathematical reduction is involved.",
+        "limits": "Accepted under a standard permitting reasonable global numerical solver results. Not all internal cuts or the branch tree were independently checked, and no commercial numerical rerun was performed. API decimals are numerical records, not digit-by-digit exact certificates. Improvement over the old COPT PDF cannot be attributed to a specific parameter and is not proof of a same-budget performance advantage.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/siena1.zh.md"
       }
@@ -2240,7 +2240,7 @@
     {
       "name": "sing11",
       "family": "unit-commitment",
-      "structure": "机组启停与需求/备用耦合",
+      "structure": "Unit commitment with demand and reserve coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "19,108,639.4603941927675439822 (strict repair)",
@@ -2260,10 +2260,10 @@
       "newer_audit": {
         "adopted_bound": "18853382.0323116",
         "numerical_bound": true,
-        "decision": "通过",
-        "evidence": "原MPS＋历史根节点全局solver数值支持",
-        "method": "原问题根节点加内置cuts得到全局ObjBound；不用74块LNS的界。",
-        "limits": "按solver数值标准通过，不宣称最优。没有重放13.0.2的根LP求解，也没有用根cut数量或旧乘子文件冒充完整精确对偶证书。",
+        "decision": "Accepted",
+        "evidence": "Original MPS plus historical global numerical solver evidence at the root node",
+        "method": "Obtain global ObjBound from built-in cuts at the original problem root; do not use bounds from 74-block LNS.",
+        "limits": "Accepted under the numerical solver standard; optimality is not claimed. The Gurobi 13.0.2 root LP solve was not replayed. Neither the root-cut count nor an old multiplier file is presented as a complete exact dual certificate.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/sing11.zh.md"
       }
@@ -2271,7 +2271,7 @@
     {
       "name": "sing17",
       "family": "unit-commitment",
-      "structure": "机组启停与需求/备用耦合",
+      "structure": "Unit commitment with demand and reserve coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "36,161,699.3779386893546367410 (strict numerical polish)",
@@ -2288,7 +2288,7 @@
     {
       "name": "sing5",
       "family": "unit-commitment",
-      "structure": "机组启停与需求/备用耦合",
+      "structure": "Unit commitment with demand and reserve coupling",
       "repository_global_conclusion": false,
       "repository_summary": [
         "18,778,435.60767737 (strict)",
@@ -2305,7 +2305,7 @@
     {
       "name": "sorrell7",
       "family": "packing-code",
-      "structure": "冲突图与编码构造",
+      "structure": "Conflict graphs and code constructions",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-198 (code size 198)",
@@ -2327,10 +2327,10 @@
       "newer_audit": {
         "adopted_bound": "-210",
         "numerical_bound": false,
-        "decision": "通过",
-        "evidence": "本地精确组合证明＋全量模型核算",
-        "method": "把原解转成二元串集合，按重量层计数得最多210个。",
-        "limits": "精确全局下界−210通过；不宣称有210串可行解或原问题最优值已闭合。",
+        "decision": "Accepted",
+        "evidence": "Local exact combinatorial proof plus checking against the complete model",
+        "method": "Map an original solution to a set of binary strings and count by weight layers to establish cardinality at most 210.",
+        "limits": "The exact global lower bound -210 passed the audit. Neither a feasible set of 210 strings nor closure of the original optimum is claimed.",
         "latest_commercial_rerun": null,
         "source_url": "https://github.com/Huangyc98/MIPLIB_openproblem/blob/b329d3812c5acf51733e0e9f7baabdda7b1008d2/docs/dual-bound-audit-2026-09-14/cases/sorrell7.zh.md"
       }
@@ -2338,7 +2338,7 @@
     {
       "name": "supportcase30",
       "family": "puzzle-feasibility",
-      "structure": "有限域可行性/覆盖修复",
+      "structure": "Finite-domain feasibility and covering repair",
       "repository_global_conclusion": false,
       "repository_summary": [
         "no feasible point; best partial 987/1,024",
@@ -2355,7 +2355,7 @@
     {
       "name": "supportcase39",
       "family": "projector",
-      "structure": "高斯投影像素控制",
+      "structure": "Gaussian-projection pixel control",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-1,085,083.856820570460",
@@ -2372,7 +2372,7 @@
     {
       "name": "t1722",
       "family": "set-cover",
-      "structure": "覆盖/划分的支持交换",
+      "structure": "Support exchanges for covering and partitioning",
       "repository_global_conclusion": false,
       "repository_summary": [
         "108,953 (strict)",
@@ -2387,7 +2387,7 @@
     {
       "name": "tokyometro",
       "family": "geometry",
-      "structure": "布局/装箱/几何关系",
+      "structure": "Layout, packing, and geometric relations",
       "repository_global_conclusion": false,
       "repository_summary": [
         "8,263.1 (strict)",
@@ -2402,7 +2402,7 @@
     {
       "name": "xmas10-2",
       "family": "exact-core",
-      "structure": "网络/匹配/离散核心",
+      "structure": "Network, matching, and discrete cores",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-497 (497 cells)",
@@ -2417,7 +2417,7 @@
     {
       "name": "z26",
       "family": "packing-code",
-      "structure": "冲突图与编码构造",
+      "structure": "Conflict graphs and code constructions",
       "repository_global_conclusion": false,
       "repository_summary": [
         "-1,198",

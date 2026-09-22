@@ -1,74 +1,74 @@
-# `milp-structure-research` 在 MIPLIB 20 个开放实例研究中的作用
+# The role of `milp-structure-research` in studying 20 open MIPLIB instances
 
-**报告日期：** 2026-09-13
-**比较对象：** 用户指定的 `milp-structure-research` 运行（下称“skill 运行”）与用户指定的未使用该 skill 的报告（下称“无 skill 运行”）
-**实例数：** 20
-**问题类型：** 全部按最小化问题解释
+**Report date:** 2026-09-13
+**Comparison:** the user-selected `milp-structure-research` run (skill run) and the user-selected report from a run without that skill (no-skill run)
+**Instances:** 20
+**Problem type:** all interpreted as minimization problems
 
-## 摘要
+## Summary
 
-这份报告比较同一组 20 个 MIPLIB 开放实例的两套历史研究结果，并回答一个具体问题：`milp-structure-research` 的实际作用是什么？
+This report compares two historical studies of the same 20 open MIPLIB instances to examine the practical role of `milp-structure-research`.
 
-结论不是“skill 在所有数值指标上都更好”。更准确的结论是：
+The skill does not win on every numerical metric. The results support the following conclusions:
 
-1. **skill 运行更擅长发现可行解。** 以双方最终选定原始界为准，在绝对容差 `1e-7` 下，skill 运行有 11 例更优、9 例持平、0 例更差。
-2. **skill 运行产生了更强的数学闭合结果。** 它对 `ns1456591` 和 `neos-3682128-sandon` 给出了精确全局最优性证书；无 skill 运行没有闭合任何实例。
-3. **skill 运行产生了更多严格的新公开基线改进。** 按冻结公开基线和各实例严格验收口径，skill 运行有 4 例，无 skill 运行有 2 例。
-4. **无 skill 运行在通用求解器对偶推进上更强。** 20 例中，无 skill 运行有 12 例对偶界更高；按统一对称 gap 计算，它有 11 例 gap 更小。skill 运行分别为 8 例和 9 例。
-5. **skill 的核心优势不是一个通用参数配方，而是一套研究纪律。** 它要求先读原始矩阵、冻结声明和基线、提出可证伪的结构假设、区分构造与证明、把缩减模型结果映射回原模型、独立复验，并保存失败实验和证据等级。这使“为什么这个结果可信”与“下一步应做什么”都更清楚。
+1. **The skill run finds better feasible solutions.** At absolute tolerance `1e-7`, its final selected primal bounds have 11 wins, 9 ties and 0 losses.
+2. **The skill run produces stronger mathematical closure.** It provides exact global optimality certificates for `ns1456591` and `neos-3682128-sandon`; the no-skill run closes no instances.
+3. **The skill run makes more strict improvements over public baselines.** Using frozen public baselines and instance-specific strict acceptance rules, it improves 4 instances, versus 2 for the no-skill run.
+4. **The no-skill run advances general-purpose solver dual bounds more strongly.** It has higher dual bounds on 12 of 20 instances and smaller consistently defined symmetric gaps on 11; the skill-run counts are 8 and 9, respectively.
+5. **The skill provides research discipline rather than a generic parameter recipe.** It requires inspecting the original matrix, freezing claims and baselines, formulating falsifiable structural hypotheses, separating construction from proof, mapping reduced-model results back to the original model, independent replay, and recording unsuccessful experiments and evidence levels. This clarifies why a result is credible and what to try next.
 
-因此，最合理的工程结论是采用混合流程：**用 skill 做结构发现、路线选择、证书构造与审计，再用专门的原模型求解器运行强化对偶界。**
+The practical recommendation is a hybrid workflow: **use the skill for structural discovery, method selection, certificate construction and auditing, then strengthen dual bounds with dedicated solver runs on the original model.**
 
-## 1. 比较设计与边界
+## 1. Comparison design and limitations
 
-### 1.1 两个比较组
+### 1.1 The two groups
 
-- **skill 运行：** `controlled_miplib20_20260911_1451` 下的 20 例结构化研究结果。每个实例均留有 `skill_use.md`、`skill_gate.json` 或 `skill_read.audit.json` 三类门禁工件之一；审计显示 20/20 个实例在读取模型、网页或调用求解器前完成了 skill 及必需参考材料的读取门禁。
-- **无 skill 运行：** `comparisons/copt_pdf_20260912/report.md` 及其 PDF 版本。该报告附录记录使用了 PDF 与 spreadsheet 工具，但没有使用 `milp-structure-research`。这不意味着该运行完全没有结构化思考；它在若干实例上也使用了模式修复、局部邻域和问题特定约束。这里的标签只描述是否受该 skill 的完整工作流约束。
+- **Skill run:** structured research on 20 instances under `controlled_miplib20_20260911_1451`. Each retains one of `skill_use.md`, `skill_gate.json` or `skill_read.audit.json`. Audits show that 20/20 instances passed the skill/reference reading gate before reading models or web pages or calling a solver.
+- **No-skill run:** `comparisons/copt_pdf_20260912/report.md` and its PDF. The appendix records PDF and spreadsheet tools, but no `milp-structure-research`. This does not imply an absence of structural reasoning: several instances use pattern repair, local neighborhoods and problem-specific constraints. The label only indicates whether the complete skill workflow governed the run.
 
-### 1.2 这不是因果效应估计
+### 1.2 This is not a causal-effect estimate
 
-这是两个历史运行的配对复盘，不是随机、盲法、等资源的 A/B 实验。两组可能在求解时间、线程数、机器、求解器状态、起始解、外部基线、容差处理、停止决策和研究顺序上不同。因此：
+This is a paired retrospective review, not a randomized, blinded, equal-resource A/B experiment. The groups may differ in solving time, threads, machines, solver states, starts, external baselines, tolerance handling, stopping decisions and research order. Therefore:
 
-- 可以陈述“哪一组在已保存结果中得到更好的原始界、对偶界或证书”；
-- 可以审计 skill 是否在运行前被读取，以及输出是否符合它要求的工件结构；
-- **不能**把所有差异都解释为 skill 的净因果贡献，也不能据此估计未来实例上的平均提速比例。
+- We can report which group obtained better saved primal bounds, dual bounds or certificates.
+- We can audit whether the skill was read before execution and whether outputs follow its required artifact structure.
+- We **cannot** attribute every difference to the skill's net causal contribution or infer an average speedup on future instances.
 
-本报告将“直接观测结果”和“机制解释”分开。前者来自保存的 CSV、报告和证书；后者是结合决策轨迹作出的保守解释。
+Direct observations are distinguished from explanations of mechanisms. Observations come from saved CSVs, reports and certificates; explanations are conservative interpretations of recorded decisions.
 
-## 2. 统一指标与验收口径
+## 2. Consistent metrics and acceptance rules
 
-对每个最小化实例，记：
+For each minimization instance:
 
-- `P`：已验证可行解的目标值，即原始上界，越低越好；
-- `D`：有效全局对偶下界，越高越好；
-- 统一对称 gap：`|P-D| / max(1, |P|, |D|)`，越小越好。
+- `P` is the objective of a verified feasible solution, a primal upper bound; lower is better.
+- `D` is a valid global dual lower bound; higher is better.
+- The consistent symmetric gap is `|P-D| / max(1, |P|, |D|)`; smaller is better.
 
-双方原始界和对偶界的数值胜负使用绝对容差 `1e-7`。统一 gap 只用于跨报告比较，不替代各实例的严格可行性和最优性验收。特别需要注意：skill 运行最终选定的 6 个 `P` 是**容差索引结果**，即在某一明确容差下被接受，但不能自动提升为更严格容差下的新 incumbent。这 6 例是：
+Primal and dual numerical outcomes use absolute tolerance `1e-7`. The consistent gap serves cross-report comparison, not instance-level strict feasibility or optimality acceptance. In particular, 6 selected skill-run `P` values are **tolerance-indexed results**: accepted at a stated tolerance but not automatically new incumbents under stricter tolerances. These 6 instances are:
 
 `polygonpack4-10`、`eva1aprime6x6opt`、`cmflsp60-36-2-6`、`sct1`、`shipsched`、`rocII-8-11`。
 
-所以，“skill 原始界 11 胜 9 平”描述的是统一数值比较；“严格新公开基线 4 对 2”才是更严格、面向公开贡献的统计。
+Thus "11 primal-bound wins and 9 ties for skill" describes the consistent numerical comparison; "4 versus 2 strict new public-baseline improvements" is the stricter statistic for public contributions.
 
-## 3. 汇总结果
+## 3. Summary results
 
-| 指标 | skill 运行 | 无 skill 运行 | 解释 |
+|  Metric | Skill run | No-skill run |  Explanation |
 |---|---:|---:|---|
-| 原始界更优（`1e-7`） | 11 | 0 | 其余 9 例持平 |
-| 对偶界更优（`1e-7`） | 8 | 12 | 无平局 |
-| 统一 gap 更小 | 9 | 11 | 反映两端共同作用 |
-| 严格改善冻结公开基线 | 4 | 2 | 使用各实例严格验收口径 |
-| 精确全局最优实例 | 2 | 0 | `ns1456591`、`neos-3682128-sandon` |
-| 容差索引的选定原始界 | 6 | 不适用 | 不能等同于严格 incumbent |
-| 实例级 skill 前置门禁 | 20/20 | 0/20 | skill 运行留有逐实例审计工件 |
+|  Better primal bound (`1e-7`) |  11  |  0  | The remaining 9 instances tie |
+|  Better dual bound (`1e-7`) |  8  |  12  |  No ties |
+| Smaller consistent gap |  9  |  11  | Reflects both bounds |
+| Strict improvement over frozen public baseline |  4  |  2  | Instance-specific strict acceptance rules |
+| Exact global optima |  2  |  0  |  `ns1456591`, `neos-3682128-sandon`  |
+| Selected tolerance-indexed primal bounds |  6  | Not applicable | Not equivalent to strict incumbents |
+| Instance-level prerequisite skill gates |  20/20  |  0/20  | Per-instance audit artifacts retained |
 
-按比例看，skill 运行在 55% 的实例上获得更低的选定可行目标值，在另外 45% 上持平；无 skill 运行在 60% 的实例上获得更高的对偶界，并在 55% 的实例上得到更小的统一 gap。这个分布清楚地表明，两组的优势方向不同：skill 更偏向结构性可行解发现和可证明闭合，无 skill 运行更偏向通用求解器的全局下界推进。
+The skill run has lower selected feasible objectives on 55% of instances and ties on 45%. The no-skill run has higher dual bounds on 60% and smaller consistent gaps on 55%. The skill favors structural feasible-solution discovery and provable closure; the no-skill run favors general-purpose solver progress on global lower bounds.
 
-## 4. 20 个实例的逐项数值比较
+## 4. Numerical comparison of all 20 instances
 
-表中 `P` 越低越好，`D` 越高越好；gap 以百分比表示。`†` 表示 skill 选定 `P` 是容差索引结果。“S”表示 skill 运行更好，“N”表示无 skill 运行更好，“=”表示在 `1e-7` 下持平。
+Lower `P` and higher `D` are better; gaps are percentages. `†` marks a tolerance-indexed skill-selected `P`. S means the skill run is better, N means the no-skill run is better, and = means a tie at `1e-7`.
 
-| 批次 | 实例 | 无 skill `P` | skill `P` | P胜者 | 无 skill `D` | skill `D` | D胜者 | 无 skill gap | skill gap | gap胜者 |
+| Batch | Instance | No-skill `P` |  skill `P`  | P winner | No-skill `D` |  skill `D`  | D winner | No-skill gap |  skill gap  | Gap winner |
 |---:|---|---:|---:|:---:|---:|---:|:---:|---:|---:|:---:|
 | 1 | graphdraw-grafo2 | 68609.5 | 68595.5 | S | 36415.846575 | 36159.784211 | N | 46.9230% | 47.2855% | N |
 | 1 | polygonpack4-10 | -53594508.70758318 | -53594508.70758325† | = | -93676649.5393 | -93676450.235594 | S | 42.7878% | 42.7876% | S |
@@ -91,185 +91,185 @@
 | 5 | supportcase22 | 110 | 110 | = | 1.4 | 6 | S | 98.7273% | 94.5455% | S |
 | 5 | neos-3682128-sandon | 34666770 | 34666770 | = | 21672926.2429 | 34666770 | S | 37.4821% | 0.0000% | S |
 
-完整的未舍入数据、状态标签和比较结果见[机器可读比较表](comparison.csv)。
+Full unrounded data, status labels and outcomes are available in the [machine-readable comparison](comparison.csv).
 
-## 5. skill 具体改变了什么
+## 5. What the skill changes
 
-### 5.1 把“先跑求解器”改成“先建立结构卡片”
+### 5.1 Build a structural profile before running the solver
 
-skill 要求从未改写的 MPS 矩阵开始，记录变量域、行类型、目标结构、稀疏模式、对称性、图/网络/分解候选和数值尺度，再决定实验路线。这种顺序降低了被变量名、现成模型或一次求解器日志误导的风险。
+The skill begins with the untouched MPS matrix, recording variable domains, row types, objective structure, sparsity, symmetry, graph/network/decomposition candidates and numerical scale before selecting experiments. This reduces the risk of being misled by variable names, existing formulations or a single solver log.
 
-这在 20 例中形成了不同的路线，而不是一套参数扫描：图目标分量 LNS、规范切片投影、精确有理 LP 对偶回放、基本环不等式、固定模式精确 recourse、连通性投影、路线商模型、配置枚举、组合 Benders、DEC 主问题行生成等。
+The 20 instances led to varied methods rather than a parameter sweep: objective-graph component LNS, canonical-slice projection, exact rational LP-dual replay, fundamental-cycle inequalities, fixed-pattern exact recourse, connectivity projection, route quotients, configuration enumeration, combinatorial Benders and DEC master row generation.
 
-### 5.2 强制至少两个可证伪的结构假设
+### 5.2 Require at least two falsifiable structural hypotheses
 
-每个实例先提出结构解释，再设计小规模、有停止条件的试验。失败不被隐藏，而是进入实验账本。这样产生的负结果具有明确范围，例如“这一族基本环不等式在当前分离器和预算下无效”，而不是泛化成“割无效”或“该实例没有结构”。
+Each instance starts with structural explanations followed by small experiments with stopping rules. Failures enter the ledger rather than disappearing. Negative results retain a specific scope, such as a family of fundamental-cycle inequalities failing under the current separator and budget, rather than becoming claims that cuts never help or the instance has no structure.
 
-### 5.3 分离“构造”与“证明”
+### 5.3 Separate construction from proof
 
-原始解发现和全局下界证明是两条不同管线：
+Primal discovery and global lower-bound proof use different pipelines:
 
-- 构造管线寻找可行模式、修复、邻域和精确 recourse；
-- 证明管线寻找有效松弛、精确枚举、DP、主问题对偶或原模型求解器下界。
+- Construction seeks feasible patterns, repairs, neighborhoods and exact recourse.
+- Proof seeks valid relaxations, exact enumeration, DP, master duals or original-model solver bounds.
 
-这使 `ns1456591` 和 `neos-3682128-sandon` 不只停在“找到同样好的 incumbent”，而是继续完成了可迁移的全局证书。
+This allowed `ns1456591` and `neos-3682128-sandon` to progress beyond matching the incumbent to transferable global certificates.
 
-### 5.4 要求映射回原模型并独立复验
+### 5.4 Map results to the original model and verify independently
 
-结构缩减本身不是结论。skill 要求保存：
+Structural reduction alone is not a conclusion. The skill requires recording:
 
-1. 缩减或投影为何等价/有效；
-2. 缩减解如何回填原变量；
-3. 原始 MPS 上的可行性、目标值和界如何复验；
-4. 容差、取整、目标常数和符号约定；
-5. 证书的独立检查结果。
+1. Why the reduction or projection is equivalent or valid.
+2. How reduced solutions lift to original variables.
+3. How original-MPS feasibility, objective values and bounds are rechecked.
+4. Tolerances, rounding, objective constants and sign conventions.
+5. Independent certificate-checking results.
 
-这直接暴露了 6 个容差索引结果，防止把“在某容差下略优”错误写成严格新 incumbent。
+These requirements expose the 6 tolerance-indexed results and prevent slight improvements at one tolerance from being reported as strict new incumbents.
 
-### 5.5 留下可审计的决策轨迹
+### 5.5 Preserve an auditable decision trail
 
-skill 运行不仅给最终数字，还保留前置读取门禁、结构卡片、路线表、实验账本、映射审计、证书审计和下一步建议。对 skill 作用的强证据是“这些工件存在并与结果一致”；对某个具体技巧是否完全由 skill 导致，只能作较弱的机制归因。
+The skill run retains reading gates, structural profiles, method tables, experiment ledgers, mapping and certificate audits, and next-step recommendations alongside final values. The existence of consistent artifacts strongly supports its workflow role; attributing a particular technique entirely to the skill is a weaker mechanistic inference.
 
-## 6. 最能体现 skill 优势的实例
+## 6. Representative skill successes
 
-### 6.1 `ns1456591`：从开放 gap 到精确最优
+### 6.1 `ns1456591`: from an open gap to exact optimality
 
-两组的原始界都约为 `988.14128344`。无 skill 运行的对偶界为 `473.415027263`，统一 gap 为 52.09%；skill 运行把路线结构化为精确路线商模型，使用 Held–Karp/集合划分动态规划、完整主问题的有理对偶以及到原模型的提升验证，最终得到相同的原始和对偶目标 `988.14128344`，gap 为 0。
+Both groups have primal bounds near `988.14128344`. The no-skill dual is `473.415027263`, with gap 52.09%. The skill constructs an exact route quotient, applies Held-Karp/set-partitioning DP and a rational dual of the complete master, and verifies lifting to the original model. Primal and dual then both equal `988.14128344`, with gap 0.
 
-这里的价值不是找到更低的可行解，而是把“看起来最好”转化为“可证明全局最优”。
+The gain is a proof of global optimality for the apparent best solution, rather than a lower feasible objective.
 
-### 6.2 `neos-3682128-sandon`：完整配置枚举闭合实例
+### 6.2 `neos-3682128-sandon`: complete configuration enumeration
 
-两组都保留原始界 `34666770`。无 skill 运行的对偶界为 `21672926.2429`；skill 运行识别出机器配置结构，完成所有相关配置的枚举，构造精确有理主问题对偶并验证提升，得到对偶界 `34666770`，从而闭合全局最优性。
+Both groups retain primal bound `34666770`. The no-skill dual is `21672926.2429`. The skill identifies machine configurations, enumerates all relevant configurations, constructs an exact rational master dual and verifies lifting. The resulting dual `34666770` proves global optimality.
 
-这说明结构研究的收益可能完全落在证明端，而不会表现为更好的 incumbent。
+Structural research can therefore deliver its entire benefit on the proof side without improving the incumbent.
 
-### 6.3 `ns1856153`：两端同时改善
+### 6.3 `ns1856153`: improvement at both ends
 
-skill 运行通过精确连通性投影、转置/树等价与 cutoff big-M 收紧，将原始界从 `34.163474399` 降至 `34.016973126`，同时把对偶界从几乎为零的 `0.0033625` 提到 `28.9`，统一 gap 从 99.99% 降至 15.04%。这是 20 例中最明显的双端改进之一。
+The skill run used an exact connectivity projection, transpose/tree equivalence, and cutoff-based big-M tightening to reduce the primal bound from `34.163474399` to `34.016973126`, while increasing the dual bound from the near-zero `0.0033625` to `28.9`. The consistently defined gap fell from 99.99% to 15.04%, one of the clearest improvements at both ends among the 20 instances.
 
-### 6.4 `neos-5221106-oparau`：结构投影带来严格新解
+### 6.4 `neos-5221106-oparau`: a strict new solution through projection
 
-skill 运行使用精确 mode-4 投影、路线交换和 assignment-radius 邻域，把原始界从 `52.67` 改进到严格可接受的 `52.07`，对偶界从 `0` 提到 `42.54`，统一 gap 从 100% 降到 18.30%。
+Exact mode-4 projection, route exchange and assignment-radius neighborhoods improve the primal from `52.67` to the strictly accepted `52.07`, raise the dual from `0` to `42.54`, and reduce the consistent gap from 100% to 18.30%.
 
-### 6.5 其余严格公开基线改进
+### 6.5 Other strict improvements over public baselines
 
-按 skill 运行冻结的公开基线与严格验收口径，4 个严格改进实例为：
+Using the skill run's frozen public baselines and strict acceptance rules, the 4 improvements are:
 
 - `graphdraw-grafo2`：`68595.5`；
 - `r4l4-02-tree-bounds-50`：`499097063`；
 - `ns1856153`：`34.01697312588408`；
 - `neos-5221106-oparau`：`52.07`。
 
-无 skill 运行的同口径贡献标记为 2 个：`graphdraw-grafo2` 与 `r4l4-02-tree-bounds-50`。无 skill 报告还单独讨论了 `shipsched` 的参考值改善，但它没有进入该报告的冻结公开基线贡献计数；本报告不把两种口径混为一谈。
+The no-skill run records 2 contributions under the same definition: `graphdraw-grafo2` and `r4l4-02-tree-bounds-50`. Its separate discussion of the `shipsched` reference improvement does not enter its frozen-public-baseline contribution count. These definitions are kept distinct.
 
-## 7. 无 skill 运行更强的地方
+## 7. Where the no-skill run is stronger
 
-对比也揭示了 skill 运行的明显短板：它没有在有限时间内最大化通用求解器的对偶推进。无 skill 运行在 12/20 个实例上有更高的最终对偶界，在 11/20 个实例上有更小的统一 gap，尤其包括：
+The skill run does not maximize general-purpose solver dual progress within limited time. The no-skill run has higher final duals on 12/20 instances and smaller consistent gaps on 11/20, notably:
 
-- `eva1aprime6x6opt`、`cmflsp60-36-2-6`、`sct1`、`shipsched`：skill 找到略低或容差索引的可行解，但付出了更弱对偶界的代价；
-- `cdma`：skill 得到更低的可行目标，但保存的对偶界显著更低，统一 gap 反而从 27.70% 扩大到 61.18%；
-- `seqsolve1`：skill 将原始界从 4279 降到 4277，但无 skill 的对偶界 4272 高于 skill 的 4269，因此统一 gap 略小。
+- `eva1aprime6x6opt`, `cmflsp60-36-2-6`, `sct1` and `shipsched`: the skill finds slightly lower or tolerance-indexed feasible objectives but leaves weaker dual bounds.
+- `cdma`: the skill has a lower feasible objective but a much lower saved dual; the gap expands from 27.70% to 61.18%.
+- `seqsolve1`: the skill lowers the primal from 4279 to 4277, but the no-skill dual 4272 exceeds the skill dual 4269, leaving the no-skill run with a slightly smaller gap.
 
-这不是 skill 逻辑上的矛盾。结构研究会把时间分给语义恢复、投影证明、映射检查和精确证书；若实例未在这些路线中闭合，留给原模型长时间 branch-and-bound 的资源可能更少。另一方面，无 skill 运行在多个实例上直接采用 MIPFocus、RINS、bound focus、外部模式修复和较通用的求解器强化，更容易留下较好的计算性对偶界。
+This is consistent with the workflow: structural research spends time recovering semantics, proving projections, checking mappings and constructing exact certificates. If these methods do not close the instance, fewer resources may remain for original-model branch-and-bound. The no-skill run often uses MIPFocus, RINS, bound focus, external-pattern repair and general solver strengthening directly, producing stronger computational duals.
 
-因此，skill 不应被理解为求解器参数调优器的替代品。
+The skill should therefore not be viewed as a replacement for solver parameter tuning.
 
-## 8. 逐实例结构路线概览
+## 8. Structural methods by instance
 
-| 实例 | skill 运行的主要结构路线 | 结果侧重 |
+| Instance | The main structure of the skill route | Focus on results |
 |---|---|---|
-| graphdraw-grafo2 | 目标图度数与非连通分量限制 LNS，原 MPS 回放 | 新严格原始界 |
-| polygonpack4-10 | 投影等价的规范切片链接与核心 local branching | 对偶略强；原始界为容差索引 |
-| scpm1 | 精确有理 LP 对偶回放与确定性 cost-1 RWLS | 精确有效对偶证据 |
-| ger50-17-trans-dfn-3t | 经审计的取整逻辑 cutset 强化 | 对偶与 gap 更强 |
-| eva1aprime6x6opt | 材料选择拓扑恢复、固定模式 recourse、clique 与对称性 | 容差索引原始界；未闭合 |
-| cmflsp60-36-2-6 | 固定模式精确 LP recourse 与 Y/Z 邻域 | 容差索引原始界；严格值未改善 |
-| r4l4-02-tree-bounds-50 | 五条经审计 BFS 基本环不等式 | 新严格原始界 |
-| sct1 | 结构固定外部邻域、local branching、精确 LP 对偶与原模型控制 | 容差索引原始界 |
-| shipsched | precedence 模式 recourse、调度邻域、定向环不等式 | 容差索引原始界 |
-| rocII-8-11 | 公开模式修复、时间结构限制与原模型控制 | 数值持平；未闭合 |
-| ns1856153 | 精确连通性投影、转置/树等价与 cutoff big-M 收紧 | 新严格原始界、对偶大幅提高 |
-| dc1l | 精确结构商模型与有理证书链 | 证书路线未完成闭合 |
-| neos-5221106-oparau | 精确 mode-4 投影、路线交换与 assignment-radius | 新严格原始界、对偶大幅提高 |
-| zeil | 精确 `w` 投影与 support cuts | 对偶和 gap 更强 |
-| cdma | 公开模式修复与 OR-hull 有界盒 Lagrangian 证书 | 原始界更好，对偶更弱 |
-| ns1456591 | 精确路线商、Held–Karp/集合划分 DP、有理主问题对偶与提升 | 精确全局最优 |
-| seqsolve1 | activation、rounding 与 Hall 强化 | 原始界更好，对偶略弱 |
-| stockholm | 精确 recourse 的单调组合 Benders | 原始界与 gap 更好 |
-| supportcase22 | DEC 主问题原行生成、精确 `1/5` 格点与商模型 | 对偶和 gap 更强 |
-| neos-3682128-sandon | 完整机器配置枚举、精确有理对偶与精确提升 | 精确全局最优 |
+|  graphdraw-grafo2  | Objective graph number and non-connected fraction limit LNS, original MPS relay | New strict primal bound |
+|  polygonpack4-10  | Specifications of projection equivalent snippet links to core local branching | Double is slightly strong; primal bound is the index of tolerance |
+|  scpm1  | exact rational LP dual reversal with certainty cost- 1 RWLS | Exactly effective dual evidence |
+|  ger50-17-trans-dfn-3t  | Rounding logic cutset reinforced by audit | It's more of a dual gap. |
+|  eva1aprime6x6opt  | Material selection topology recovery, fixed mode recourse, clique and symmetry | tolerance index primal bound; not closure |
+|  cmflsp60-36-2-6  | Fixed mode exact LP recourse with Y/Z neighborhood | tolerance index primal bound; strict value not improved |
+|  r4l4-02-tree-bounds-50  | The five fundamental inequalities of the audit BFS | New strict primal bound |
+|  sct1  | Structure fixed external neighborhood, local branching, exact LP dual and original model control | Index of tolerance primal bound |
+|  shipsched  | Precedence pattern recourse, scheduling neighborhood, orientation inequality | Index of tolerance primal bound |
+|  rocII-8-11  | Public mode repair, time structure restrictions and original model control | numerical stability; not closure |
+|  ns1856153  | Exact connected density projection, shift/tree equivalent and cutoff big-M tightening | New strict primal bound, dual significantly improved |
+|  dc1l  | exact structure quotient model with a valid certificate chain | Certificate route unfinished closure |
+|  neos-5221106-oparau  | exact mode- 4 projection, route, exchange and assignment-radius | New strict primal bound, dual significantly improved |
+|  zeil  | Exact `w` projection with support cuts | And the dual gap is stronger. |
+|  cdma  | Public mode repair with OR-hull boundary box Lagrangian certificate | Primal bound better, dual weaker |
+|  ns1456591  |  Exact route quotient, Held–Karp/set-partitioning DP, rational master dual, and lifting |  exact globally optimal |
+|  seqsolve1  | Activation, rounding and Hall reinforcement | Primal bound better, dual slightly weaker |
+|  stockholm  | Benders for the exact recourse | Primal bound is better than gap |
+|  supportcase22  | DEC main problem generates the exact `1/5` lattice with the quotient model | And the dual gap is stronger. |
+|  neos-3682128-sandon  | Complete machine configuration enumeration, exact rational dual and exact enhancement |  exact globally optimal |
 
-这张表显示 skill 的主要价值是**路线选择和证据组织**。它没有强制所有实例走同一种算法，而是把观察到的矩阵结构映射到可验证的算法家族。
+The table shows the skill's main value in **method selection and evidence organization**. It maps observed matrix structure to verifiable algorithm families rather than forcing every instance through one algorithm.
 
-## 9. 对“skill 优势”的证据分级
+## 9. Evidence levels for skill benefits
 
-### A 级：可直接审计的事实
+### Level A: directly auditable facts
 
-- 20/20 个实例存在 skill 前置读取门禁和哈希审计；
-- 11 胜 9 平的原始界比较、8 对 12 的对偶界比较、9 对 11 的 gap 比较可由 CSV 重算；
-- 2 个精确最优性闭合及其证书链存在；
-- 6 个容差索引结果被明确分离，没有统一冒充严格 incumbent；
-- 每个实例保留结构路线、实验结果和最终状态。
+- All 20/20 instances have prerequisite skill-reading gates and hash audits.
+- CSVs reproduce the 11-win/9-tie primal comparison, 8-versus-12 dual comparison and 9-versus-11 gap comparison.
+- Two exact optimality closures and their certificate chains exist.
+- Six tolerance-indexed results are explicitly separated from strict incumbents.
+- Every instance retains its structural method, experimental results and final status.
 
-### B 级：强机制解释
+### Level B: strong mechanistic explanations
 
-- `ns1456591` 和 `neos-3682128-sandon` 的闭合与路线商/配置枚举、精确对偶和 lift 验证直接对应；
-- `ns1856153` 和 `oparau` 的大幅改善与保存的投影和收紧路线相吻合。
+- Closure of `ns1456591` and `neos-3682128-sandon` directly corresponds to route quotients/configuration enumeration, exact duals and lift verification.
+- Large improvements for `ns1856153` and `oparau` match the recorded projection and tightening methods.
 
-### C 级：不能单独归因的推断
+### Level C: effects that cannot be attributed to the skill alone
 
-- 不能证明 11 个原始界改善全部由 skill 单独造成；运行预算、机器、随机性、起始解和求解顺序也会影响结果；
-- 无 skill 组也包含问题特定思路，不能把“结构方法”和“无结构方法”简单二分；
-- 20 个实例是定向选择的开放问题，不代表全部 MIPLIB 或一般工业 MIP。
+- The skill alone is not proven to cause all 11 primal improvements; budgets, machines, randomness, starts and solve order also matter.
+- The no-skill group includes problem-specific ideas, so it cannot simply be labeled unstructured.
+- These 20 deliberately selected open instances do not represent all MIPLIB or industrial MIPs.
 
-## 10. 建议的下一轮混合实验
+## 10. Proposed next hybrid experiment
 
-若目标是更严格地测量 skill 的增量价值，建议下一轮采用成对、等资源协议：
+A stricter measurement of the skill's incremental value should use a paired, equal-resource protocol:
 
-1. 固定每个实例的 MPS 哈希、公开基线快照、求解器版本、机器、线程数、随机种子、绝对/相对容差和 wall-clock；
-2. 两组都获得相同的原始 MPS、相同 incumbent 和相同外部信息；唯一差别是是否执行 skill 的结构门禁与路线生成；
-3. 每组拆成相同预算的三段：结构/预处理、原始解构造、对偶/证明；
-4. skill 组完成结构阶段后，也运行与对照组完全相同的原模型对偶强化任务；
-5. 预注册主要指标：严格新 incumbent 数、有效对偶改善、精确闭合数、原模型复验通过率、证书检查耗时；
-6. 至少重复多个随机种子，并保存所有失败路线；
-7. 对精确闭合做独立复核，对新 incumbent 使用原 MPS 和严格容差重放。
+1. Fix MPS hashes, public-baseline snapshots, solver versions, machines, threads, seeds, absolute/relative tolerances and wall-clock budgets.
+2. Give both groups identical original MPS files, incumbents and external information; vary only the skill's structural gate and method generation.
+3. Divide each group's equal budget into structure/preprocessing, primal construction and dual/proof stages.
+4. After structural work, run the same original-model dual-strengthening task in the skill group as in the control.
+5. Preregister strict new-incumbent counts, valid dual improvements, exact closures, original-model replay pass rates and certificate-checking time.
+6. Repeat across multiple seeds and retain all unsuccessful approaches.
+7. Independently review exact closures and replay new incumbents on the original MPS at strict tolerances.
 
-在当前结果上，直接可执行的工程方案是：
+An immediately actionable workflow for the current results is:
 
-- 保留 skill 的前置结构发现、证据门禁、容差与映射审计；
-- 在每个结构试验结束后，预留独立且固定的求解器对偶预算；
-- 将结构得到的 cuts、变量固定、warm start 和投影信息送回原模型求解器；
-- 对未闭合实例同时报告“结构证书界”和“最佳计算性求解器界”，不取代、不混淆。
+- Retain structural discovery, evidence gates, and tolerance/mapping audits.
+- Reserve a separate fixed solver dual budget after each structural experiment.
+- Transfer structural cuts, variable fixings, warm starts and projection information to the original-model solver.
+- For open instances, report structural certificate bounds and best computational solver bounds separately.
 
-## 11. 可复现性与来源哈希
+## 11. Reproducibility and source hashes
 
-本报告的数值由 [`compare_skill_effect.py`](compare_skill_effect.py) 从两组保存结果解析并以 `Decimal` 计算。机器可读结果为：
+[`compare_skill_effect.py`](compare_skill_effect.py) parses the saved results and calculates values with `Decimal`. Machine-readable outputs are:
 
-- [`comparison.csv`](comparison.csv)：20 行逐实例比较；
-- [`audit.json`](audit.json)：输入、输出哈希、比较设计、汇总计数与通过状态；
-- [`skill-gate-inventory.csv`](skill-gate-inventory.csv)：20 个实例前置 skill 门禁工件的路径与哈希；
-- [`SOURCE.md`](SOURCE.md)：输入快照、PDF 视觉检查和重算说明。
+- [`comparison.csv`](comparison.csv): 20 per-instance comparison rows.
+- [`audit.json`](audit.json): input/output hashes, design, aggregate counts and pass status.
+- [`skill-gate-inventory.csv`](skill-gate-inventory.csv): prerequisite skill-gate artifact paths and hashes for 20 instances.
+- [`SOURCE.md`](SOURCE.md): input snapshots, PDF visual checks and recomputation notes.
 
-主要输入快照：
+Main input snapshots:
 
-| 输入 | 字节数 | SHA-256 |
+| Input | Bytes |  SHA-256  |
 |---|---:|---|
-| 无 skill `report.md` | 58,162 | `528d544ac95193213eeb3cfd6bdf98804f123c34e7fbe417ad7c8e374c185134` |
-| 无 skill PDF | 189,424 | `c8dfe7590ce5723a81bbca1a5aa2ebf9912c033b86a1ad83f8cef5331522d0b9` |
+| No-skill `report.md` |  58,162  |  `528d544ac95193213eeb3cfd6bdf98804f123c34e7fbe417ad7c8e374c185134`  |
+| No-skill PDF |  189,424  |  `c8dfe7590ce5723a81bbca1a5aa2ebf9912c033b86a1ad83f8cef5331522d0b9`  |
 | skill `summary.csv` | 14,799 | `7b1df6d2b6a9441cf16f2a82d2b7b77e782cb7ab73ea73b72c556718dd7934e7` |
 | skill `report_zh.md` | 28,284 | `a1d728d332dd963bcea1cbd24cfe1253f995a6c4d540fb58962d074197ee07dd` |
 | `milp-structure-research/SKILL.md` | 4,966 | `f8a09b104f0af3786b2e702f60dde3de7fd54a1aac581dff9bdd8a3325c84b4f` |
-| 比较 CSV | 11,838 | `18f14dc58129789881d26c44b01c5514cb6007d8c52a74c01a07d7fc58a746f2` |
+| Comparison CSV |  11,838  |  `18f14dc58129789881d26c44b01c5514cb6007d8c52a74c01a07d7fc58a746f2`  |
 
-无 skill PDF 共 21 页，已逐页渲染检查；标题、20 个实例表格、结论和附录与 Markdown 报告一致，未发现表格截断或明显版面缺失。
+The 21-page no-skill PDF was rendered and checked page by page. Its title, 20-instance tables, conclusions and appendices agree with the Markdown report, with no observed table truncation or obvious layout omissions.
 
-## 12. 最终结论
+## 12. Conclusion
 
-`milp-structure-research` 在这 20 个实例上的优势可以概括为三点：
+The benefits of `milp-structure-research` on these 20 instances are:
 
-1. **更多高质量可行解：** 统一比较下 11 胜 9 平，且没有实例的选定原始界更差；
-2. **从计算结果走向数学证书：** 额外闭合 2 个精确全局最优实例，并对投影、缩减、对偶与回填进行独立审计；
-3. **更可靠的研究记录：** 显式区分严格 incumbent、容差索引点、计算性对偶、精确对偶和负结果。
+1. **More high-quality feasible solutions:** 11 wins and 9 ties under the consistent comparison, with no worse selected primal bounds.
+2. **Mathematical certificates beyond computational results:** 2 additional exact global optimality closures, with independent audits of projections, reductions, duals and lifting.
+3. **More reliable research records:** explicit separation of strict incumbents, tolerance-indexed points, computational duals, exact duals and negative results.
 
-它的不足也同样明确：在当前历史运行中，通用对偶推进不如无 skill 运行，后者取得了 12/20 个更高对偶界和 11/20 个更小统一 gap。因此，skill 的合理定位不是“替代 MIP 求解器”，而是**为求解器选择更有根据的结构路线，并把结果提升为可审计、可复现、必要时可证明的研究结论**。
+The limitation is equally clear: general dual progress in these historical runs trails the no-skill run, which has higher duals on 12/20 instances and smaller gaps on 11/20. The skill's role is to **select better-supported structural methods for solvers and turn results into auditable, reproducible and, where possible, provable research conclusions**, rather than replace MIP solvers.

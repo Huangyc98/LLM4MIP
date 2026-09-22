@@ -1,92 +1,92 @@
-# Primal 搜索操作手册
+# Primal Search Playbook
 
-以下是从案例抽象的可执行决策规则；参数需通过当前实例 pilot 调整。MIP/CP/自写算法不是质量排名，而是不同结构的后端。
+The following rules turn lessons from the casebook into executable decisions. Tune all parameters through pilots on the current instance. MIP, CP, and custom algorithms are backends for different structures, not a quality ranking.
 
-默认只围绕更好的已验证 primal 分配研究预算，可以完全不做 dual 改进。LP/定价/cuts 仅在能直接帮助构造、选邻域或修复时使用；不单独追求更强下界，不以 gap 下降代替可行解改善。子问题附带的 bound 或局部关闭可记录，但无需为了获取它们延长运行。用户另行要求 dual 或最优性证明时再扩展任务。
+By default, allocate the research budget only to obtaining better verified primal solutions; dual-bound improvement may be omitted entirely. Use LP solutions, pricing, or cuts only when they directly support construction, neighborhood selection, or repair. Do not pursue a stronger lower bound as a separate objective or substitute gap reduction for feasible-solution improvement. Bounds or local closure that arise from subproblems may be recorded, but do not extend a run merely to obtain them. Expand the task to dual bounds or optimality proofs only when the user requests that work separately.
 
-搜索采用持续外层循环：`候选生成 → 原模型验证 → 更新best与解池 → 更新中心/cutoff/算子 → 下一轮`。首次可行或首次改善只触发保存和阶段汇报；总预算未耗尽时继续。单轮停滞时改邻域、构造、表示或重组种子，不把单轮结束当整个任务结束。总预算未指定时按有界批次推进并询问预算，不能把示例的30分钟擅自当总停止条件。
+Use a continuous outer search loop: `candidate generation → original-model validation → update best and solution pool → update center/cutoff/operators → next iteration`. A first feasible solution or first improvement triggers saving and an interim report; continue while the total budget remains. When one iteration stagnates, change the neighborhood, construction, representation, or recombination seed rather than treating the end of that iteration as completion of the task. If no total budget is specified, proceed in bounded batches and ask for a budget; do not silently adopt the illustrative 30-minute budget as the overall stopping condition.
 
-## 1. 最便宜的有效种子：迁移 + 目标模型补全
+## 1. Cheapest Effective Seed: Transfer Plus Target-Model Completion
 
-按已有仓库解、官方各 revision、兄弟 formulation、原应用 benchmark 的顺序检索。比较数据、成本、约束、变量域和标签对称；不要只比较名字或目标值。若只有启发性对应，也可以提出候选设计，但称为启发式迁移，并在目标模型验证，不能宣称等价。
+Search in this order: existing repository solutions, all official revisions, sibling formulations, and benchmarks from the original application. Compare data, costs, constraints, variable domains, and label symmetries; do not compare only names or objective values. When the correspondence is only suggestive, it may still define a candidate design, but label it as a heuristic transfer and validate it on the target model rather than claiming equivalence.
 
-- **完整映射**：能确定所有原变量时，直接 lift 后检查。bley 的额外上界也要检查。
-- **核心映射**：只迁移物理设计/类别，重新解目标模型中的剩余离散运作和连续 recourse。dws 的设计与 operation 不能误当成同一组变量。
-- **外部数据**：CVRP 先核对客户、距离取整、需求、容量、车数语义。给定路线只要 lift 后可行即可提供 UB；求 UB 不需要先证明所有原解都能投影回外部模型。
-- **对称标签**：nj 的相同分区先重标号满足目标 formulation，重新生成根和流；不要随意额外加所有根排序约束。
+- **Complete mapping:** When every original variable can be determined, lift the vector directly and check it. The additional upper bounds in `bley` must also be checked.
+- **Core mapping:** Transfer only the physical design or categories, then re-solve the target model's remaining discrete operations and continuous recourse. The design and operation variables in `dws` must not be mistaken for one variable group.
+- **External data:** For CVRP, first reconcile customers, distance rounding, demands, capacity, and fleet-size semantics. Given routes can provide an upper bound whenever they lift to a feasible original-model solution; obtaining that upper bound does not require first proving that every original solution projects into the external model.
+- **Symmetric labels:** For `nj`, relabel the same partition to satisfy the target formulation, then regenerate roots and flows. Do not arbitrarily add every possible root-ordering constraint.
 
-一个很强的外部解可以帮助用户更快获得更好 primal，但不能把来源标成 GPT 原创。
+A strong external solution may help the user obtain a better primal quickly, but its provenance must not be labeled as an original GPT construction.
 
-## 2. 无 incumbent：把可行性拆成可构造不变量
+## 2. No Incumbent: Decompose Feasibility into Constructible Invariants
 
-先保持最容易精确实现的硬条件：one-of-k、容量、连通性、先序或边界。将剩余不满足度作为辅助搜索分数；原目标不能抵消硬约束违约。
+First preserve the hard conditions that are easiest to enforce exactly: one-of-k choice, capacity, connectivity, precedence, or boundaries. Use the remaining violation as an auxiliary search score; the original objective must never offset a hard-constraint violation.
 
-1. 从 LP、贪心、历史近可行解或领域构造得到核心状态。
-2. 识别困难块，而非一律固定 LP argmax。ns1905797 的 24-task 块反复超时，重新均衡分配才打通。
-3. 固定 master 分配，解局部路线/排程/流；给每块保存同一个 master-assignment hash，防止跨分配拼接。
-4. 合并所有块并验证 coupling rows。得到第一份完整可行向量后，立刻做有界 warm-start improvement。
+1. Obtain a core state from an LP solution, greedy construction, historical near-feasible solution, or domain construction.
+2. Identify the difficult blocks instead of always fixing the LP argmax. The 24-task block in ns1905797 repeatedly timed out; rebalancing the assignment enabled progress.
+3. Fix the master assignment and solve local routing, scheduling, or flow problems. Store the same master-assignment hash with every block to prevent splicing results from different assignments.
+4. Merge all blocks and validate the coupling rows. As soon as the first complete feasible vector is available, run a bounded warm-start improvement phase.
 
-如果没有领域结构，可以试 feasibility pump、diving 或 RENS。RENS 不要求已有 incumbent：固定 LP 中已整数的变量，其他整数变量收紧到相邻整数；子问题失败不能证明原问题不可行。过多错误固定时减少固定或换 rounding，避免盲目延长时间。[SCIP RENS 官方说明](https://scipopt.org/doc-9.2.4/html/heur__rens_8h.php)
+When no domain structure is available, try feasibility pump, diving, or RENS. RENS does not require an incumbent: fix variables that are integral in the LP solution and tighten the remaining integer variables to adjacent integers. Failure of this subproblem does not prove that the original problem is infeasible. If too many incorrect fixings were made, reduce the fixing rate or change the rounding rule instead of blindly extending the time limit. [Official SCIP RENS documentation](https://scipopt.org/doc-9.2.4/html/heur__rens_8h.php)
 
-## 3. 消除辅助变量，但保留可行性桥梁
+## 3. Eliminate Auxiliary Variables While Preserving a Feasibility Bridge
 
-识别真实状态 `y`（选择、路线、构型、次序、开采时期），建立 `lift(y)` 或 completion oracle。辅助变量即使目标为零，也可能耦合多个决策；不能未经验证删除。
+Identify the real state `y`, such as selections, routes, configurations, orders, or mining periods, and build `lift(y)` or a completion oracle. Even zero-objective auxiliary variables may couple multiple decisions and must not be deleted without validation.
 
-针对 primal，足够的逻辑是：**找到的特定核心候选能被补全为原模型可行点**。如果要声称等价或从缩减模型不可行推导全局结论，才需要更强的覆盖证明。这样既保证 UB 正确，又避免为一次候选构造支付不必要的全局证明成本。
+For a primal result, the sufficient statement is: **the particular core candidate found can be completed into a feasible solution of the original model**. A stronger coverage proof is necessary only when claiming equivalence or deriving a global conclusion from infeasibility of the reduced model. This distinction preserves the validity of the upper bound without paying for an unnecessary global proof merely to construct one candidate.
 
-- 排程：选 job、开始时刻和次序，CP/匹配生成 schedule，再回填 pair variables。release-suffix master 可能仅是松弛；master 可行不等于 schedule 可行。
-- 布局：sequence-pair、离散坐标/NoOverlap、朝向代替独立 pair bits；检查旋转、边界、障碍和所有原 non-overlap 语义。
-- 网络：在 component balance/parity、路径或树上搜索；spanning-forest/flow 补全恢复原变量。
-- 构型：允许新构型和容量，避免只在已有有限列池里搜索。池不可行只说明当前池不够。
-- 类型计数：必须检查完整列系数、成本和所有 side rows；用确定性整数分配 lift multiplicity。名字相似不够。
+- **Scheduling:** Select jobs, start times, and orders; use CP or matching to generate a schedule, then fill the pair variables. A release-suffix master may be only a relaxation, so master feasibility does not imply schedule feasibility.
+- **Layout:** Use a sequence pair, discrete coordinates with `NoOverlap`, or orientations in place of independent pair bits. Check rotations, boundaries, obstacles, and every original non-overlap condition.
+- **Network:** Search over component balance/parity, paths, or trees; use a spanning forest or flow completion to recover the original variables.
+- **Configuration:** Allow new configurations and capacities instead of searching only an existing finite column pool. Infeasibility of the pool means only that the current pool is insufficient.
+- **Type counts:** Check complete column coefficients, costs, and every side row; use deterministic integer allocation to lift multiplicities. Similar names are insufficient evidence.
 
-若连续变量只组成差分约束，可寻找经过证明的整数缩放。这在 liu 和 ns1905797 成功；不能因为小数位有限就任意把一般连续模型离散化。
+When continuous variables form only a system of difference constraints, look for a provably valid integer scaling. This worked for `liu` and `ns1905797`; a finite number of decimal places does not justify arbitrarily discretizing a general continuous model.
 
-## 4. 以可行解为中心的结构 LNS
+## 4. Feasible-Solution-Centered Structured LNS
 
-设核心整数变量集合为 `I`、中心为 `xbar`。选语义相关的释放集 `F⊆I`，固定 `I\F`，其余变量保持原域和原约束。连续变量通常全部放开，或在可证明局部分离时只放开受影响 recourse。
+Let `I` be the set of core integer variables and let `xbar` be the center. Choose a semantically related release set `F` with `F⊆I`, fix `I\F`, and retain the original domains and constraints for all other variables. Usually release every continuous variable, or release only the affected recourse variables when local separability has been proved.
 
-选择 F 的可计算线索：
+Computable signals for choosing `F` include:
 
-- 接近紧约束的资源争用：紧行支持上的变量及其先序/连通邻接；
-- LP 与 incumbent 不一致的位置、两个好解之间的差异；
-- 高成本的实际业务决策，但必须包括其零成本可行性辅助决策；
-- 几何边界、临界路径、相邻时期、共享需求的车辆/机组；
-- 过去成功 move 涉及的结构，同时保留其他结构探索。
+- resource contention near tight constraints: variables in the support of tight rows and their precedence or connectivity neighbors;
+- positions where the LP and incumbent disagree, or where two strong solutions differ;
+- high-cost real operational decisions, together with the zero-cost feasibility auxiliaries they require;
+- geometric boundaries, critical paths, adjacent periods, or vehicles and machines that share demand;
+- structures involved in successful past moves, while retaining exploration of other structures.
 
-不要固定“90% 变量”作为通用真理。释放一个关联完整块通常比释放同样数量的随机变量更有意义；是否更快仍需比较。
+Do not treat "fix 90% of the variables" as a universal rule. Releasing one complete related block is usually more meaningful than releasing the same number of random variables; whether it is faster still requires measurement.
 
-**RINS**：固定 incumbent 与 LP 解相同（在记录容差内）的整数变量，释放不同处；需要 LP 和 incumbent。**Crossover**：固定多个好解一致的部分，重组差异。二者都应避免把高度相关辅助编码冻结成偶然阻碍。[SCIP primal heuristics](https://www.scipopt.org/download/slides/SCIP-primalHeuristics.pdf)
+**RINS:**Fix integer variables for which the incumbent and LP solution agree within the recorded tolerance, and release the differing variables. This requires both an LP solution and an incumbent.**Crossover:** Fix the parts on which several strong solutions agree and recombine their differences. Both methods should avoid freezing highly coupled auxiliary encodings into an accidental obstruction. [SCIP primal heuristics](https://www.scipopt.org/download/slides/SCIP-primalHeuristics.pdf)
 
-对二元核心的 local branching 可用
+For a binary core, local branching may use
 
 `sum_{i:xbar_i=0} x_i + sum_{i:xbar_i=1}(1-x_i) <= k`。
 
-一般整数不能直接套二元式。用精确编码的 `d_i = [x_i != xbar_i]` 计类别改变，或明确使用 L1 距离。one-hot 从一个选项换到另一选项等于两个 bit flips；报表要同时记录 semantic moves 和 bit changes。
+Do not apply this binary expression directly to general integer variables. Use an exact encoding of `d_i = [x_i != xbar_i]` to count category changes, or use an explicitly defined L1 distance. Moving from one option to another in a one-hot encoding changes two bits; reports must record both semantic moves and bit changes.
 
-每轮保存原域，在下轮正确恢复；不能累积上轮固定、cutoff 或 no-good 而仍称为同一邻域。候选的连续 recourse 和全部 coupling rows 要重新评价。对大型模型优先增量更新合法邻域、缓存受影响行和系数；独立验收仍覆盖整个原模型。
+Save original domains on every iteration and restore them correctly before the next iteration. Do not accumulate a previous iteration's fixings, cutoff, or no-good constraints and still call the result the same neighborhood. Re-evaluate a candidate's continuous recourse and all coupling rows. For large models, use incremental updates for valid neighborhoods and cache affected rows and coefficients; independent acceptance still covers the entire untouched original model.
 
-## 5. 停滞后怎样换路
+## 5. Change Routes After Stagnation
 
-维护两个对象：只单调改善的 `best_verified` 与允许探索的 `current`。
+Maintain two objects: a monotonically improving `best_verified` and an exploratory `current` that may worsen.
 
-| pilot 现象 | 下一步 |
+| Pilot Observation | Next Action |
 |---|---|
-| 小邻域很快完整返回无改进 | 增大语义半径、合并相关块；记住该中心已排除的范围 |
-| 大邻域频繁超时、没有可行候选 | 更强构造 hint、保持配额/连通、缩小释放；换紧凑表示 |
-| 很多可行候选但目标不变 | 支持去重、扩大离散差异；kick/tabu/recombination |
-| 不同整数模式的 recourse 全不可行 | 由冲突/紧行定位共同阻碍，联合释放相关变量 |
-| 只出现浮点小改进 | 先严格取整、recourse repair、原行审计；若消失，归档数值原因 |
-| 同一结构已经有精确局部关闭记录 | 仅跳过相同中心、固定条件和目标阈值下被覆盖的搜索 |
+| A small neighborhood quickly completes with no improvement | Increase the semantic radius and combine related blocks; remember the scope excluded around this center |
+| A large neighborhood repeatedly times out without a feasible candidate | Provide a stronger construction hint, preserve quotas or connectivity, reduce the release set, or switch to a compact representation |
+| Many candidates are feasible but their objectives do not change | Deduplicate supports, increase discrete diversity, and try a kick, tabu search, or recombination |
+| Recourse is infeasible for many different integer patterns | Use conflicts and tight rows to identify the shared obstruction and release the related variables jointly |
+| Only tiny floating-point improvements appear | First normalize integer variables, repair recourse, and audit the original rows; if the improvement disappears, archive the numerical cause |
+| The same structure already has an exact local-closure record | Skip only the search covered under the same center, fixed conditions, and objective threshold |
 
-nj 允许一次可行但更差的 compound kick，然后局部下降，best 始终不变直到找到更好解。如果实现允许 infeasible current，它必须存入独立 near-feasible 池，只有零硬违约的完整点才能成为 incumbent。
+For `nj`, allow a feasible but worse compound kick followed by local descent; keep `best` unchanged until a better solution is found. If the implementation permits an infeasible `current`, store it in a separate near-feasible pool. Only a complete point with zero hard-constraint violations may become the incumbent.
 
-自适应算子分配可先等额跑少量可比 pilot，再按验证后收益/时间更新权重，并保留探索份额。收益小并不一定无效（rmine15），变化大也不一定有效（容差假象）。不用 22/112 当某算子的命中概率。[SCIP ALNS 的算子组合实现](https://www.scipopt.org/doc/html/heur__alns_8c_source.php)
+For adaptive operator allocation, first give each operator a small number of comparable pilots, then update weights by verified gain per unit time while retaining an exploration share. A small gain is not necessarily ineffective, as `rmine15` shows, and a large apparent change is not necessarily valid because it may be a tolerance artifact. Do not use 22/112 as an operator hit probability. [SCIP ALNS operator-combination implementation](https://www.scipopt.org/doc/html/heur__alns_8c_source.php)
 
-## 6. 与通用求解器合作
+## 6. Work with General-Purpose Solvers
 
-保留一个有界强基线。Gurobi 的 `MIPFocus=1` 面向快速找可行解；MIP starts 是候选输入，可能被补全/修复。其它后端按实际版本查询原生参数，不照搬 Gurobi 名称。[Gurobi 参数指南](https://docs.gurobi.com/projects/optimizer/en/current/concepts/parameters/guidelines.html)、[MIP starts](https://support.gurobi.com/hc/en-us/articles/360043834831-How-do-I-use-MIP-starts)
+Retain a bounded strong baseline. Gurobi `MIPFocus=1` targets finding feasible solutions quickly; MIP starts are candidate inputs that may be completed or repaired. For other backends, consult native parameters for the actual version rather than copying Gurobi names. [Gurobi parameter guidelines](https://docs.gurobi.com/projects/optimizer/en/current/concepts/parameters/guidelines.html), [MIP starts](https://support.gurobi.com/hc/en-us/articles/360043834831-How-do-I-use-MIP-starts)
 
-先处理目标、约束和整数容差，再选择更偏 primal 的配置。没有必要为了找到更好解强迫每个 sub-MIP 都证明 `MIPGap=0`；设置有限节点/时间，可以在有效改进后结束该次子问题求解，但外层必须验证、更新 incumbent 并继续下一轮搜索。若需要“邻域已完整排除”的结论，则必须保存完整终止及相应容差/证据。
+Handle objective, constraint, and integrality tolerances before choosing a more primal-focused configuration. Finding better solutions does not require every sub-MIP to prove `MIPGap=0`. Set finite node/time limits and allow a subproblem to stop after useful improvement, but the outer loop must verify, update the incumbent, and continue searching. A claim that a neighborhood has been fully excluded requires complete termination and the applicable tolerances/evidence.
 
-一个可调的 30 分钟首轮预算例子：3 分钟读取/种子与结构，5 分钟验证 baseline 和短基线，17 分钟做 2–3 条结构 pilot 与有效路线延伸，5 分钟预留 lift/独立验收。大模型读取或 exact checker 很慢时先测成本再调整；这个比例未经该 112 题对照验证。
+One adjustable 30-minute initial budget: 3 minutes for reading, seeds and structure; 5 minutes for baseline validation and a short baseline; 17 minutes for 2–3 structural pilots and extending useful routes; 5 minutes for lifting and independent acceptance. Measure costs first when model loading or exact checking is slow. This allocation has not been validated in a controlled comparison over the 112 instances.

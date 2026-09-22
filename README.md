@@ -47,6 +47,14 @@ reviews) is required.
 
 ## Publish with GitHub Pages
 
+Published text and downloadable research archives are provided in English.
+See [English translation provenance](docs/english-localization.md) and
+[`data/english-localization-manifest.json`](data/english-localization-manifest.json)
+for original and translated file hashes. Translated frozen skills are not
+byte-identical to the original experimental versions. After rebuilding data or
+archives, run `python scripts/check_english_content.py` before publishing;
+upstream research snapshots may contain Chinese text.
+
 GitHub Pages is configured from the `main` branch root. The public site is available at [huangyc98.github.io/LLM4MIP](https://huangyc98.github.io/LLM4MIP/).
 
 Suggested repository topics: `llm`, `mixed-integer-programming`, `mip`, `miplib`, `optimization`, `operations-research`, `ai-for-optimization`.
