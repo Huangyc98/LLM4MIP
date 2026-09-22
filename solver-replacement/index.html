@@ -15,24 +15,28 @@
   <title>Can LLMs Fully Replace Solvers? | LLM4MIP</title>
   <link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
+<body class="detail-page solver-page">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <nav class="nav-wrap" aria-label="Primary navigation">
-      <a class="brand" href="../">LLM4MIP <small>Verified computational results</small></a>
+      <a class="brand" href="../">LLM4MIP<span class="brand-dot" aria-hidden="true">.</span></a>
       <div class="nav-links">
-        <a href="../instances/">132 instances</a>
+        <a href="../">Overview</a>
+        <a href="../instances/">Instances</a>
         <a href="../skill/">Skill comparison</a>
         <a href="./" aria-current="page">Replace solvers?</a>
         <!-- Temporarily hidden: <a href="../technical-report.pdf">Report</a> -->
-        <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">Deep dive 03 · division of labor</p>
+        <p class="eyebrow">Discussion</p>
         <h1>Can LLMs fully replace solvers?</h1>
         <p class="dek">In the reported benchmark, LLMs did not replace optimization solvers. The workflow used LLMs to propose structural hypotheses, computational backends to search and bound, and independent checkers to validate results.</p>
+        <div class="hero-actions">
+          <a class="button" href="../skill/">Explore the comparison</a>
+          <a class="button ghost" href="../downloads/skill-comparison.csv">Download results CSV</a>
+        </div>
       </div>
     </div>
   </header>
@@ -40,32 +44,31 @@
   <main id="main" class="page-shell" tabindex="-1">
     <div class="content">
       <section class="section verdict" aria-labelledby="verdict-heading">
-        <div class="verdict-word" aria-hidden="true">No.</div>
         <div class="verdict-copy">
-          <p class="eyebrow" style="color:#8c1515">Benchmark conclusion</p>
-          <h2 id="verdict-heading">No solver replacement in the reported benchmark</h2>
+          <p class="eyebrow">Benchmark conclusion</p>
+          <h2 id="verdict-heading">What the benchmark establishes</h2>
           <p>The LLM did not independently certify feasibility, compute valid global dual bounds, or validate its own reductions. MILP solvers, SAT engines, exact dynamic programs, exhaustive searches, rational arithmetic, and deterministic original-model audits performed the computational search and verification tasks.</p>
           <p>This is an empirical finding, not an impossibility theorem. The observed workflow did not replace solvers; the result does not establish that future systems cannot replace a particular computational component.</p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="roles-heading">
-        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">What “solve” meant</p><h2 id="roles-heading">Three computational roles and their validation outputs</h2></div></div>
+        <div class="section-head"><div><p class="eyebrow">What “solve” meant</p><h2 id="roles-heading">Roles in the computational workflow</h2></div></div>
         <div class="division">
-          <article><p class="eyebrow" style="color:#8c1515">LLM</p><h3>Interpret and propose</h3><p>Recover formulation semantics, connect matrix patterns to algorithms, propose reductions and invariants, design falsification tests, and coordinate certificate construction.</p></article>
-          <article><p class="eyebrow" style="color:#8c1515">Backend</p><h3>Search and bound</h3><p>Find feasible points, optimize reduced models, enumerate finite state spaces, refute cutoffs, and compute numerical lower bounds or exact lower-bound certificates.</p></article>
-          <article><p class="eyebrow" style="color:#8c1515">Checker</p><h3>Accept or reject</h3><p>Replay proof traces, verify rational certificates, audit every original row, test mapping directions, and prevent claims from exceeding their verified scope.</p></article>
+          <article><p class="eyebrow">LLM</p><h3>Interpret and propose</h3><p>Recover formulation semantics, connect matrix patterns to algorithms, propose reductions and invariants, design falsification tests, and coordinate certificate construction.</p></article>
+          <article><p class="eyebrow">Backend</p><h3>Search and bound</h3><p>Find feasible points, optimize reduced models, enumerate finite state spaces, refute cutoffs, and compute numerical lower bounds or exact lower-bound certificates.</p></article>
+          <article><p class="eyebrow">Checker</p><h3>Accept or reject</h3><p>Replay proof traces, verify rational certificates, audit every original row, test mapping directions, and prevent claims from exceeding their verified scope.</p></article>
         </div>
         <div class="callout"><p><strong>Acceptance rule:</strong> no benchmark result is accepted solely from an LLM output. A hypothesis is reported as a result only after computational testing and independent validation appropriate to the claim.</p></div>
       </section>
 
       <section class="section" aria-labelledby="mixed-heading">
         <div class="section-head">
-          <div><p class="eyebrow" style="color:#8c1515">20-instance comparison</p><h2 id="mixed-heading">Primal and dual bounds favor different workflows</h2></div>
+          <div><p class="eyebrow">20-instance comparison</p><h2 id="mixed-heading">Primal and dual bounds favor different workflows</h2></div>
           <p>Choose a metric. “Skill-guided” means use of one structure-research workflow; it does not mean LLM-only.</p>
         </div>
         <div class="panel">
-          <div class="tabs" aria-label="Comparison metric">
+          <div class="tabs" role="group" aria-label="Comparison metric">
             <button type="button" data-metric="primal" aria-pressed="true">Primal bound</button>
             <button type="button" data-metric="dual" aria-pressed="false">Dual bound</button>
             <button type="button" data-metric="gap" aria-pressed="false">Relative gap</button>
@@ -82,7 +85,7 @@
 
       <section class="section" aria-labelledby="verification-heading">
         <div class="section-head">
-          <div><p class="eyebrow" style="color:#8c1515">Benchmark-wide validation results</p><h2 id="verification-heading">Thirty certified optimality or infeasibility results across six verification methods</h2></div>
+          <div><p class="eyebrow">Benchmark-wide validation results</p><h2 id="verification-heading">Thirty certified optimality or infeasibility results across six verification methods</h2></div>
           <p>This chart classifies how each result was verified; it does not assign discovery credit.</p>
         </div>
         <div class="panel">
@@ -107,19 +110,19 @@
       </section>
 
       <section class="section" aria-labelledby="inspect-heading">
-        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Paired benchmark results</p><h2 id="inspect-heading">Which workflow produced the better bounds?</h2></div><a href="../downloads/skill-comparison.csv">Download CSV</a></div>
+        <div class="section-head"><div><p class="eyebrow">Paired benchmark results</p><h2 id="inspect-heading">Instance-level bound comparison</h2></div><a href="../downloads/skill-comparison.csv">Download CSV</a></div>
         <div class="controls">
           <div class="field"><label for="comparison-search">Search instance, method, or final status</label><input id="comparison-search" type="search" placeholder="Try “configuration” or “graphdraw”" autocomplete="off"></div>
           <div class="field"><label for="comparison-filter">Outcome filter</label><select id="comparison-filter"><option value="all">All 20</option><option value="skill-primal">Skill better primal bound</option><option value="skill-dual">Skill better dual bound</option><option value="comparison-dual">Comparison better dual bound</option><option value="strict">Skill strict baseline improvement</option><option value="exact">Skill certified global optimum</option><option value="tolerance">Tolerance-indexed skill primal bound</option></select></div>
         </div>
         <p id="comparison-count" class="result-count" aria-live="polite"></p>
         <p class="scroll-hint">Swipe sideways to see every column.</p>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable solver-replacement comparison table"><table class="results-table"><thead><tr><th>Instance</th><th>Batch</th><th>Better primal bound</th><th>Better dual bound</th><th>Smaller relative gap</th><th>Skill bounds</th><th>Comparison bounds</th><th>Skill method</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable solver-replacement comparison table"><table class="results-table"><thead><tr><th scope="col">Instance</th><th scope="col">Batch</th><th scope="col">Better primal bound</th><th scope="col">Better dual bound</th><th scope="col">Smaller relative gap</th><th scope="col">Skill bounds</th><th scope="col">Comparison bounds</th><th scope="col">Skill method</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
         <noscript><p class="noscript">The filterable table requires JavaScript. The complete values are available in the downloadable CSV.</p></noscript>
       </section>
 
       <section class="section" aria-labelledby="future-heading">
-        <div class="section-head"><div><p class="eyebrow" style="color:#8c1515">Requirements for a controlled benchmark</p><h2 id="future-heading">Design of a controlled solver-replacement study</h2></div></div>
+        <div class="section-head"><div><p class="eyebrow">Requirements for a controlled benchmark</p><h2 id="future-heading">Design of a controlled solver-replacement study</h2></div></div>
         <p>A causal test should freeze identical MPS hashes, machines, solver versions, threads, seeds, starts, external information, tolerances, and wall-clock budgets. It should also reserve separate budgets for structural analysis, primal construction, dual search, proof production, and independent verification—then score unsupported claims and verification failures, not only final objective values.</p>
         <div class="download-grid">
           <article class="download-card"><h3>Practical recommendation</h3><p>Use the LLM to enlarge the hypothesis space and compress human research overhead. Use the best available computational backend for search and proof. Keep acceptance outside both.</p></article>

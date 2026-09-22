@@ -15,24 +15,28 @@
   <title>Results for 132 Open MIPLIB Instances | LLM4MIP</title>
   <link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
+<body class="detail-page instances-page">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <nav class="nav-wrap" aria-label="Primary navigation">
-      <a class="brand" href="../">LLM4MIP <small>Verified computational results</small></a>
+      <a class="brand" href="../">LLM4MIP<span class="brand-dot" aria-hidden="true">.</span></a>
       <div class="nav-links">
-        <a href="./" aria-current="page">132 instances</a>
+        <a href="../">Overview</a>
+        <a href="./" aria-current="page">Instances</a>
         <a href="../skill/">Skill comparison</a>
         <!-- Temporarily hidden: <a href="../solver-replacement/">Replace solvers?</a> -->
         <!-- Temporarily hidden: <a href="../technical-report.pdf">Report</a> -->
-        <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">Deep dive 01 · complete benchmark catalogue</p>
+        <p class="eyebrow">Benchmark catalogue</p>
         <h1>Results for 132 open MIPLIB instances</h1>
-        <p class="dek">Every studied current-open instance has a concise result summary and a compressed bundle of the related computational materials.</p>
+        <p class="dek">Results, verification summaries, and computational materials for all 132 studied open MIPLIB instances.</p>
+        <div class="hero-actions">
+          <a class="button" href="#catalogue">Browse the catalogue</a>
+          <a class="button ghost" href="instances.json">Download catalogue JSON</a>
+        </div>
       </div>
     </div>
   </header>
@@ -42,8 +46,8 @@
       <section class="section" aria-labelledby="snapshot-heading">
         <div class="section-head">
           <div>
-            <p class="eyebrow" style="color:#8c1515">Snapshot</p>
-            <h2 id="snapshot-heading">Benchmark results by optimization status</h2>
+            <p class="eyebrow">Results overview</p>
+            <h2 id="snapshot-heading">Optimization status</h2>
           </div>
           <p>Click a segment to filter the catalogue</p>
         </div>
@@ -65,8 +69,8 @@
       <section id="catalogue" class="section" aria-labelledby="catalogue-heading">
         <div class="section-head">
           <div>
-            <p class="eyebrow" style="color:#8c1515">Instance results</p>
-            <h2 id="catalogue-heading">Search all instances</h2>
+            <p class="eyebrow">Instance results</p>
+            <h2 id="catalogue-heading">Instance catalogue</h2>
           </div>
           <a href="instances.json">Download catalogue JSON</a>
         </div>
@@ -104,7 +108,7 @@
     </div>
   </main>
 
-  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · 132-instance catalogue</span><span><a href="../">Overview</a><!-- Temporarily hidden: · <a href="../technical-report.pdf">Technical report</a> --> · <button class="footer-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button></span></div></footer>
+  <footer class="footer"><div class="footer-inner"><span>LLM4MIP · 132-instance catalogue</span><span><a href="../">Overview</a><!-- Temporarily hidden: · <a href="../technical-report.pdf">Technical report</a> --></span></div></footer>
   <script src="data.js"></script>
   <script src="instances.js"></script>
 </body>

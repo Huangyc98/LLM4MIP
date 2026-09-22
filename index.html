@@ -19,29 +19,34 @@
   <title>How Much Can LLMs Help Solve MIPs? | LLM4MIP</title>
   <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <nav class="nav-wrap" aria-label="Primary navigation">
-      <a class="brand" href="index.html" aria-current="page">LLM4MIP <small>Verified computational results</small></a>
+      <a class="brand" href="./">LLM4MIP<span class="brand-dot" aria-hidden="true">.</span></a>
       <div class="nav-links">
-        <a href="instances/">132 instances</a>
+        <a href="./" aria-current="page">Overview</a>
+        <a href="instances/">Instances</a>
         <a href="skill/">Skill comparison</a>
-        <!-- Temporarily hidden: <a href="solver-replacement/">Replace solvers?</a> -->
-        <!-- Temporarily hidden: <a href="technical-report.pdf">Report</a> -->
-        <button class="nav-placeholder" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
       </div>
     </nav>
     <div class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">LLM-assisted mixed-integer programming · 21 September 2026</p>
-        <p class="author-line">Yicheng Huang<sup aria-label="co-lead author">*</sup>, Wenzhi Gao<sup aria-label="co-lead author">*</sup>, Dongdong Ge, Madeleine Udell, Yinyu Ye <span class="author-note"><sup aria-hidden="true">*</sup> Co-lead authors.</span></p>
+        <div class="manuscript-meta">
+          <p class="eyebrow">LLM-assisted mixed-integer programming</p>
+          <time datetime="2026-09-21">21 September 2026</time>
+        </div>
         <h1>How much can LLMs help solve MIPs?</h1>
-        <p class="dek">LLM-assisted solver workflows resolved 34 of 132 <strong>open</strong> MIPLIB instances</p>
+        <p class="dek">LLM-assisted solver workflows resolved <strong>34 of 132</strong> open MIPLIB instances.</p>
+        <div class="byline">
+          <p class="author-line"><span>Yicheng Huang<sup aria-label="co-lead author">*</sup></span><span>Wenzhi Gao<sup aria-label="co-lead author">*</sup></span><span>Dongdong Ge</span><span>Madeleine Udell</span><span>Yinyu Ye</span></p>
+          <p class="author-note"><sup aria-hidden="true">*</sup> Co-lead authors</p>
+        </div>
         <div class="hero-actions">
-          <a class="button light" href="#overview">Explore the overview</a>
-          <!-- Temporarily hidden: <a class="button ghost" href="technical-report.pdf">Download the technical report</a> -->
-          <button class="button ghost" type="button" disabled aria-label="Technical report upcoming">Technical report upcoming</button>
+          <a class="button" href="#overview">View results <span aria-hidden="true">↗</span></a>
+          <a class="button light" href="#skills">Get the skills <span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="https://github.com/Huangyc98/LLM4MIP">GitHub <span aria-hidden="true">↗</span></a>
+          <span class="publication-note">Technical report forthcoming</span>
         </div>
       </div>
     </div>
@@ -49,125 +54,118 @@
 
   <main id="main" class="page-shell" tabindex="-1">
     <section class="metric-grid" aria-label="Benchmark summary">
-      <article class="metric"><strong>132</strong><span>open instances studied</span><small>Frozen 132-instance benchmark; the historical calibration instance is excluded.</small></article>
-      <article class="metric"><strong>34</strong><span>optimality / infeasibility</span><small>32 optima (including two numerical closures at 1e-10 tolerance) and two certified infeasible instances.</small></article>
-      <article class="metric"><strong>29</strong><span>primal-bound improvements</span><small>Improved primal bounds on 29 instances: 25 better incumbents and 4 first feasible solutions, relative to MIPLIB v36.</small></article>
-      <article class="metric"><strong>66</strong><span>dual-bound improvements</span><small>Relative to the displayed dual bounds in a frozen historical COPT table.</small></article>
+      <article class="metric"><strong>132</strong><span>Open instances studied</span><small>Frozen benchmark; the historical calibration instance is excluded.</small></article>
+      <article class="metric"><strong>34</strong><span>Optimality / infeasibility</span><small>32 optima, including two numerical closures at 1e-10 tolerance, and two certified infeasible instances.</small></article>
+      <article class="metric"><strong>29</strong><span>Primal-bound improvements</span><small>25 better incumbents and four first feasible solutions, relative to MIPLIB v36.</small></article>
+      <article class="metric"><strong>66</strong><span>Dual-bound improvements</span><small>Relative to displayed bounds in a frozen historical COPT table.</small></article>
     </section>
 
-    <div class="content">
-      <section class="motivation-summary" aria-label="Motivation">
-        <p>Mixed-integer programming (MIP) is a core modeling tool for planning, scheduling, logistics, energy systems, and many real-world applications. However, MIPs are notoriously hard to solve even with state-of-the-art optimization solvers.</p>
-        <p>Large language models (LLMs) have recently shown promise in advancing open problems in mathematics. An unresolved MIP instance can likewise be viewed as an "open problem": its variables, constraints, objective, and data define a concrete numerical open problem.</p>
-      </section>
+    <div class="home-layout">
+      <nav class="section-rail" aria-label="On this page">
+        <p>On this page</p>
+        <a href="#research-question"><span>01</span> The question</a>
+        <a href="#overview"><span>02</span> Benchmark results</a>
+        <a href="#skills"><span>03</span> Primal &amp; dual skills</a>
+        <a href="#explore"><span>04</span> Further results</a>
+        <a href="#citation"><span>05</span> Citation</a>
+      </nav>
 
-      <aside class="central-question" aria-labelledby="central-question-heading">
-        <span id="central-question-heading">Central question</span>
-        <strong>Can LLMs make real-world MIP solving more effective, especially by accelerating established solver-based workflows?</strong>
-      </aside>
-
-      <section class="motivation-summary" aria-label="Experiment summary">
-        <p>Starting from a benchmark of 217 open MIPLIB instances, we studied 132 using LLM-assisted solver workflows. Across these experiments, LLM reasoning complemented numerical optimization solvers by broadening the search for exploitable structure, primal heuristics, and dual certificates, while solvers and independent checks supplied numerical bounds and result verification.</p>
-      </section>
-
-      <aside class="main-conclusion" aria-labelledby="main-conclusion-heading">
-        <span id="main-conclusion-heading">Conclusion</span>
-        <strong>LLM + optimization solver is a powerful workflow for real MIP solving.</strong>
-      </aside>
-
-      <section class="skill-download-callout" aria-labelledby="skill-download-heading">
-        <div>
-          <p class="eyebrow">Reusable workflow</p>
-          <h2 id="skill-download-heading">Solver + primal/dual skill</h2>
-          <p>From the instance-level analyses, we developed skills from two complementary perspectives: primal-skill finds and improves feasible solutions, while dual-skill strengthens valid global bounds. We evaluate each skill against Vanilla prompting and a solver baseline on 20 instances.</p>
-        </div>
-        <div class="skill-download-actions" aria-label="Download primal-skill and dual-skill">
-          <a class="button small" href="downloads/primal-current-skill.tar.gz" download>Download primal-skill</a>
-          <a class="button small" href="downloads/dual-current-skill.tar.gz" download>Download dual-skill</a>
-        </div>
-      </section>
-
-      <section id="overview" class="section" aria-labelledby="overview-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Interactive summary</p>
-            <h2 id="overview-heading"> Results on 132 Open MIPLIB instances</h2>
+      <div class="content">
+        <section id="research-question" class="section research-intro" aria-labelledby="question-heading">
+          <div class="section-head">
+            <h2 id="question-heading"><span class="section-number" aria-hidden="true">01</span> Can LLMs help solve open MIPs?</h2>
           </div>
-          <!-- <p>Switch between benchmark outcomes, verification form, and the closest paired workflow comparison.</p> -->
-        </div>
-        <div class="panel">
-          <div class="tabs" role="group" aria-label="Overview chart view">
-            <button type="button" data-overview="status" aria-pressed="true">Benchmark outcomes</button>
-            <button type="button" data-overview="evidence" aria-pressed="false">Verification method</button>
-            <button type="button" data-overview="skill" aria-pressed="false">Skill comparison</button>
-          </div>
-          <h3 id="overview-title" class="chart-title"></h3>
-          <p id="overview-note" class="chart-note" aria-live="polite"></p>
-          <div id="overview-chart"></div>
-          <table id="overview-data" class="data-list" aria-labelledby="overview-title" aria-describedby="overview-note">
-            <thead><tr><th scope="col">Measure</th><th scope="col">Count</th><th id="overview-explanation-heading" scope="col" hidden>Explanation</th></tr></thead>
-            <tbody></tbody>
-          </table>
-          <noscript><p class="noscript">Enable JavaScript to switch chart views. The headline counts remain available above and on the linked detail pages.</p></noscript>
-        </div>
-      </section>
+          <p>Mixed-integer programming (MIP) is a core modeling tool for planning, scheduling, logistics, and energy systems. Yet many instances remain difficult even for state-of-the-art optimization solvers.</p>
+          <p>An unresolved MIP instance is a concrete open problem: its variables, constraints, objective, and data are all specified. We ask whether language models can help make progress by accelerating established solver-based workflows.</p>
+          <p>Starting from a benchmark of 217 open MIPLIB instances, we studied 132 with LLM-assisted workflows. LLM reasoning helped search for exploitable structure, primal heuristics, and dual certificates; optimization solvers and independent checks supplied numerical bounds and result verification.</p>
+          <p class="research-takeaway"><strong>The central finding:</strong> LLMs and optimization solvers form an effective research workflow, with results accepted through computational testing and verification.</p>
+        </section>
 
-      <section class="section" aria-labelledby="explore-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Deep dives</p>
-            <h2 id="explore-heading">Detailed statistics</h2>
+        <section id="overview" class="section" aria-labelledby="overview-heading">
+          <div class="section-head">
+            <h2 id="overview-heading"><span class="section-number" aria-hidden="true">02</span> Results on 132 open instances</h2>
           </div>
-          <!-- <p>The opening page stays intentionally short. Each linked page exposes its setup, caveats, data, and downloads.</p> -->
-        </div>
-        <div class="page-grid page-grid-two">
-          <article class="page-card">
-            <span class="number">01 · Instance-level results</span>
-            <h3>Results for each of the 132 instances</h3>
-            <p>Review the complete benchmark results with summary.</p>
-            <a href="instances/">Browse all instances →</a>
-          </article>
-          <article class="page-card">
-            <span class="number">02 · Skill comparison</span>
-            <h3>Does a structure-research skill matter?</h3>
-            <p>Review the 20-instance test set comparison for LLM w/o skills.</p>
-            <a href="skill/">View the skill comparison →</a>
-          </article>
-          <!-- Temporarily hidden solver-replacement deep dive.
-          <article class="page-card">
-            <span class="number">03 · Division of labor</span>
-            <h3>Can LLMs fully replace solvers?</h3>
-            <p>No—not in this benchmark study. See where LLM-guided work improved primal bounds, where the comparison workflow produced stronger dual bounds, and why independent verification remains decisive.</p>
-            <a href="solver-replacement/">Review the comparative results →</a>
-          </article>
-          -->
-        </div>
-      </section>
+          <p>Explore the benchmark outcomes, how the results were verified, and the paired skill comparison.</p>
+          <div class="panel">
+            <div class="tabs" role="group" aria-label="Overview chart view">
+              <button type="button" data-overview="status" aria-pressed="true">Benchmark outcomes</button>
+              <button type="button" data-overview="evidence" aria-pressed="false">Verification method</button>
+              <button type="button" data-overview="skill" aria-pressed="false">Skill comparison</button>
+            </div>
+            <h3 id="overview-title" class="chart-title"></h3>
+            <p id="overview-note" class="chart-note" aria-live="polite"></p>
+            <div id="overview-chart"></div>
+            <table id="overview-data" class="data-list" aria-labelledby="overview-title" aria-describedby="overview-note">
+              <thead><tr><th scope="col">Measure</th><th scope="col">Count</th><th id="overview-explanation-heading" scope="col" hidden>Explanation</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <noscript><p class="noscript">Enable JavaScript to switch chart views. The headline counts remain available above and on the linked detail pages.</p></noscript>
+          </div>
+          <p class="figure-caption"><span>Figure 1.</span> Benchmark outcomes and verification methods, with a separate 20-instance skill comparison. Primal- and dual-bound improvement counts can overlap.</p>
+        </section>
 
-      <section class="section cite-section" aria-labelledby="cite-heading">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow" style="color:#8c1515">Citation</p>
-            <h2 id="cite-heading">Cite as</h2>
+        <section id="skills" class="section" aria-labelledby="skill-download-heading">
+          <div class="section-head">
+            <h2 id="skill-download-heading"><span class="section-number" aria-hidden="true">03</span> Reusable primal and dual skills</h2>
           </div>
-          <p>BibTeX for this research website.</p>
-        </div>
-        <pre class="bibtex-block"><code>@misc{huang2026llm4mip,
-  author = {Huang, Yicheng and Gao, Wenzhi and Ge, Dongdong and Udell, Madeleine and Ye, Yinyu},
+          <p>We distilled the instance-level analyses into two complementary skills. Each is evaluated against Vanilla prompting and a solver baseline on the same 20 instances.</p>
+          <div class="skill-downloads">
+            <article>
+              <p class="resource-label">Primal skill</p>
+              <h3>Find better feasible solutions</h3>
+              <p>Identify useful structure and develop primal heuristics to find or improve incumbents.</p>
+              <a href="downloads/primal-current-skill.tar.gz" download>Download primal-skill <span aria-hidden="true">↓</span></a>
+            </article>
+            <article>
+              <p class="resource-label">Dual skill</p>
+              <h3>Strengthen global bounds</h3>
+              <p>Use structural analysis and solver experiments to develop stronger valid dual bounds.</p>
+              <a href="downloads/dual-current-skill.tar.gz" download>Download dual-skill <span aria-hidden="true">↓</span></a>
+            </article>
+          </div>
+          <p class="section-link"><a href="skill/">Read the comparison design and results <span aria-hidden="true">→</span></a></p>
+        </section>
+
+        <section id="explore" class="section" aria-labelledby="explore-heading">
+          <div class="section-head">
+            <h2 id="explore-heading"><span class="section-number" aria-hidden="true">04</span> Explore the detailed results</h2>
+          </div>
+          <div class="research-links">
+            <a href="instances/">
+              <span><strong>The 132-instance catalogue</strong><small>Search outcomes, inspect verification methods, and download the computational materials.</small></span>
+              <span class="link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="skill/">
+              <span><strong>The 20-instance skill comparison</strong><small>Compare primal and dual bounds with Vanilla prompting and solver baselines.</small></span>
+              <span class="link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="citation" class="section cite-section" aria-labelledby="cite-heading">
+          <div class="section-head">
+            <h2 id="cite-heading"><span class="section-number" aria-hidden="true">05</span> Citation</h2>
+            <span class="note">BibTeX · Research website</span>
+          </div>
+          <pre class="bibtex-block"><code>@misc{huang2026llm4mip,
+  author = {Huang, Yicheng and Gao, Wenzhi and Ge, Dongdong
+            and Udell, Madeleine and Ye, Yinyu},
   title = {How Much Can {LLMs} Help Solve {MIPs}?},
   year = {2026},
   month = sep,
   url = {https://huangyc98.github.io/LLM4MIP/},
-  note = {Research website. Yicheng Huang and Wenzhi Gao are co-lead authors}
+  note = {Research website. Yicheng Huang and Wenzhi Gao
+          are co-lead authors}
 }</code></pre>
-      </section>
+        </section>
+      </div>
     </div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      <span>LLM4MIP · Stanford cardinal <span class="mono">#8C1515</span></span>
-      <span><!-- Temporarily hidden: <a href="https://github.com/Huangyc98/MIPLIB_openproblem">Research archive</a> · --><a href="https://github.com/Huangyc98/LLM4MIP">Website source</a></span>
+      <span>LLM4MIP <span class="footer-description">Language models for mixed-integer programming</span></span>
+      <a href="https://github.com/Huangyc98/LLM4MIP">Website source <span aria-hidden="true">↗</span></a>
     </div>
   </footer>
   <script src="assets/focused-skill-data.js"></script>
