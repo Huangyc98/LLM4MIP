@@ -180,7 +180,7 @@ p { margin: 0 0 1rem; }
 .research-links strong { display: block; font-size: 1rem; font-weight: 600; }
 .research-links small { display: block; max-width: 600px; margin-top: 0.35rem; color: var(--muted); font-size: 0.85rem; }
 .research-links > a:hover strong, .link-arrow { color: var(--cardinal); }
-.link-arrow { font-size: 1.35rem; }
+.link-arrow { display: inline; margin-left: 0.25rem; font-size: 1.05em; }
 .bibtex-block { max-width: 100%; margin: 0; padding: 1.15rem 1.5rem; overflow-x: auto; border: 1px solid var(--line); background: var(--wash); color: #52524d; font: 0.74rem/1.8 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; tab-size: 2; }
 .bibtex-block code { font: inherit; }
 
