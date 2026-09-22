@@ -64,7 +64,7 @@
       <nav class="section-rail" aria-label="On this page">
         <p>On this page</p>
         <a href="#research-question"><span>01</span> The question</a>
-        <a href="#overview"><span>02</span> Benchmark results</a>
+        <a href="#overview"><span>02</span> Interactive summary</a>
         <a href="#skills"><span>03</span> Primal &amp; dual skills</a>
         <a href="#explore"><span>04</span> Further results</a>
         <a href="#citation"><span>05</span> Citation</a>
@@ -78,14 +78,16 @@
           <p>Mixed-integer programming (MIP) is a core modeling tool for planning, scheduling, logistics, and energy systems. Yet many instances remain difficult even for state-of-the-art optimization solvers.</p>
           <p>An unresolved MIP instance is a concrete open problem: its variables, constraints, objective, and data are all specified. We ask whether language models can help make progress by accelerating established solver-based workflows.</p>
           <p>Starting from a benchmark of 217 open MIPLIB instances, we studied 132 with LLM-assisted workflows. LLM reasoning helped search for exploitable structure, primal heuristics, and dual certificates; optimization solvers and independent checks supplied numerical bounds and result verification.</p>
-          <p class="research-takeaway"><strong>The central finding:</strong> LLMs and optimization solvers form an effective research workflow, with results accepted through computational testing and verification.</p>
+          <aside class="research-takeaway" aria-labelledby="finding-heading">
+            <p id="finding-heading" class="finding-label">Central finding</p>
+            <p class="finding-statement"><strong>LLMs and optimization solvers form an effective research workflow.</strong></p>
+          </aside>
         </section>
 
         <section id="overview" class="section" aria-labelledby="overview-heading">
           <div class="section-head">
-            <h2 id="overview-heading"><span class="section-number" aria-hidden="true">02</span> Results on 132 open instances</h2>
+            <h2 id="overview-heading"><span class="section-number" aria-hidden="true">02</span> Results on 132 Open MIPLIB instances</h2>
           </div>
-          <p>Explore the benchmark outcomes, how the results were verified, and the paired skill comparison.</p>
           <div class="panel">
             <div class="tabs" role="group" aria-label="Overview chart view">
               <button type="button" data-overview="status" aria-pressed="true">Benchmark outcomes</button>
@@ -101,7 +103,6 @@
             </table>
             <noscript><p class="noscript">Enable JavaScript to switch chart views. The headline counts remain available above and on the linked detail pages.</p></noscript>
           </div>
-          <p class="figure-caption"><span>Figure 1.</span> Benchmark outcomes and verification methods, with a separate 20-instance skill comparison. Primal- and dual-bound improvement counts can overlap.</p>
         </section>
 
         <section id="skills" class="section" aria-labelledby="skill-download-heading">
@@ -147,15 +148,13 @@
             <h2 id="cite-heading"><span class="section-number" aria-hidden="true">05</span> Citation</h2>
             <span class="note">BibTeX · Research website</span>
           </div>
-          <pre class="bibtex-block"><code>@misc{huang2026llm4mip,
-  author = {Huang, Yicheng and Gao, Wenzhi and Ge, Dongdong
-            and Udell, Madeleine and Ye, Yinyu},
+          <pre class="bibtex-block" tabindex="0" role="region" aria-label="BibTeX citation"><code>@misc{huang2026llm4mip,
+  author = {Huang, Yicheng and Gao, Wenzhi and Ge, Dongdong and Udell, Madeleine and Ye, Yinyu},
   title = {How Much Can {LLMs} Help Solve {MIPs}?},
   year = {2026},
   month = sep,
   url = {https://huangyc98.github.io/LLM4MIP/},
-  note = {Research website. Yicheng Huang and Wenzhi Gao
-          are co-lead authors}
+  note = {Research website. Yicheng Huang and Wenzhi Gao are co-lead authors}
 }</code></pre>
         </section>
       </div>
