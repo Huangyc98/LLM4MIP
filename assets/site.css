@@ -40,6 +40,12 @@ p { margin: 0 0 1rem; text-align: justify; }
 .nav-wrap { max-width: 1168px; margin: auto; min-height: 72px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; border-bottom: 1px solid var(--line); }
 .brand { color: var(--ink); text-decoration: none; font-size: 1.1rem; font-weight: 750; letter-spacing: -0.045em; }
 .brand-dot { color: var(--cardinal); }
+.brand { display: inline-flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
+.brand-icon { display: block; width: 44px; height: 44px; object-fit: contain; }
+.brand-four { color: #4144ef; }
+/* Frame the supplied wordmark's whitespace without altering the original image. */
+.hero-wordmark { position: relative; width: min(360px, 100%); aspect-ratio: 1494 / 362; overflow: hidden; margin-bottom: 1.5rem; mix-blend-mode: multiply; }
+.hero-wordmark img { position: absolute; width: 118.7416%; max-width: none; height: auto; left: -9.5047%; top: -74.5856%; }
 .nav-links { display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; }
 .nav-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 0.85rem; text-decoration: none; }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
