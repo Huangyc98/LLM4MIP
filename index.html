@@ -54,10 +54,10 @@
 
   <main id="main" class="page-shell" tabindex="-1">
     <section class="metric-grid" aria-label="Benchmark summary">
-      <article class="metric"><strong>132</strong><span>Open instances studied</span><small>Frozen benchmark; the historical calibration instance is excluded.</small></article>
-      <article class="metric"><strong>34</strong><span>Optimality / infeasibility</span><small>32 optima, including two numerical closures at 1e-10 tolerance, and two certified infeasible instances.</small></article>
-      <article class="metric"><strong>29</strong><span>Primal-bound improvements</span><small>25 better incumbents and four first feasible solutions, relative to MIPLIB v36.</small></article>
-      <article class="metric"><strong>66</strong><span>Dual-bound improvements</span><small>Relative to displayed bounds in a frozen historical COPT table.</small></article>
+      <article class="metric"><strong>132</strong><span>Open instances studied</span><small>Fixed benchmark set selected from 217 open instances.</small></article>
+      <article class="metric"><strong>34</strong><span>Optimality / infeasibility</span><small>32 optimal and two certified infeasible instances.</small></article>
+      <article class="metric"><strong>29</strong><span>Primal-bound improvements</span><small>25 better incumbents and 4 first feasible solutions.</small></article>
+      <article class="metric"><strong>66</strong><span>Dual-bound improvements</span><small>Relative to 10 hour COPT run.</small></article>
     </section>
 
     <div class="home-layout">
@@ -74,8 +74,22 @@
           <div class="section-head">
             <h2 id="question-heading"><span class="section-number" aria-hidden="true">01</span> Can LLMs help solve open MIPs?</h2>
           </div>
-          <p>Mixed-integer programming (MIP) is a core modeling tool for planning, scheduling, logistics, and energy systems. Yet many instances remain difficult even for state-of-the-art optimization solvers.</p>
-          <p>An unresolved MIP instance is a concrete open problem: its variables, constraints, objective, and data are all specified. We ask whether language models can help make progress by accelerating established solver-based workflows.</p>
+          <p>Mixed-integer programming (MIP) is a core modeling tool for planning, scheduling, logistics, energy systems, and many real-world applications. However, MIPs are notoriously hard to solve even with state-of-the-art optimization solvers. We ask whether language models can help make progress by accelerating established solver-based workflows. Large language models (LLMs) have recently shown promise in advancing open problems in mathematics. An unresolved MIP instance can likewise be viewed as an "open problem": its variables, constraints, objective, and data define a concrete numerical open problem.</p>
+          <p class="miplib-intro">MIPLIB is a public library of real-world mixed-integer programming instances used to evaluate and compare optimization solvers.</p>
+          <div class="miplib-gallery" role="region" aria-label="MIPLIB benchmark overview" tabindex="0">
+            <figure class="miplib-figure">
+              <a href="https://miplib.zib.de/" aria-label="Visit the MIPLIB 2017 website">
+                <img src="assets/miplib-homepage.png" width="1000" height="600" loading="lazy" alt="Screenshot of the MIPLIB 2017 homepage combining its benchmark explanation and word cloud.">
+              </a>
+              <figcaption><strong>About the benchmark.</strong> MIPLIB is a standard test set for comparing MIP optimizers. Its 240-instance Benchmark Set emphasizes solvability and numerical stability; the larger Collection Set emphasizes diversity.  <a href="https://miplib.zib.de/">Explore MIPLIB&nbsp;↗</a></figcaption>
+            </figure>
+            <figure class="miplib-figure miplib-figure--instances">
+              <a href="https://miplib.zib.de/tag_collection.html" aria-label="Browse the MIPLIB 2017 Collection Set">
+                <img src="assets/miplib-open-instances.png" width="180" height="212" loading="lazy" alt="Screenshot of the MIPLIB Collection Set filtered for open instances, showing open status badges and starred objective values.">
+              </a>
+              <figcaption><strong>Finding open instances.</strong> Filtering the Collection page for “open” reveals unresolved instances, with starred objective values. <a href="https://miplib.zib.de/tag_collection.html">Browse the Collection Set&nbsp;↗</a></figcaption>
+            </figure>
+          </div>
           <p>Starting from a benchmark of 217 open MIPLIB instances, we studied 132 with LLM-assisted workflows. LLM reasoning helped search for exploitable structure, primal heuristics, and dual certificates; optimization solvers and independent checks supplied numerical bounds and result verification.</p>
           <aside class="research-takeaway" aria-labelledby="finding-heading">
             <p id="finding-heading" class="finding-label">Central finding</p>

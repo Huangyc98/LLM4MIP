@@ -7,6 +7,8 @@
   --paper: #fff;
   --wash: #f7f7f5;
   --soft-red: #faf3f2;
+  --page-tint: #f5efee;
+  --cardinal-wash: #fbf3f2;
   --line: #e1e1dc;
   --green: #176b5b;
   --blue: #006cb8;
@@ -18,7 +20,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 2rem; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { min-width: 320px; margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body { min-width: 320px; margin: 0; color: var(--ink); background: var(--page-tint); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 img, svg, video, canvas { max-width: 100%; height: auto; }
 a { color: var(--cardinal); text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
 a:hover { color: var(--cardinal-dark); }
@@ -31,10 +33,10 @@ h1, h2, h3, h4, p { overflow-wrap: break-word; }
 h1, h2, h3, h4 { color: var(--ink); }
 h2, h3, h4 { font-weight: 600; }
 h3 { line-height: 1.4; }
-p { margin: 0 0 1rem; }
+p { margin: 0 0 1rem; text-align: justify; }
 
 /* A shared, quiet masthead across the research pages. */
-.site-header { background: var(--paper); }
+.site-header { border-top: 4px solid var(--cardinal); background: linear-gradient(180deg, #fff 0%, var(--cardinal-wash) 100%); }
 .nav-wrap { max-width: 1168px; margin: auto; min-height: 72px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; border-bottom: 1px solid var(--line); }
 .brand { color: var(--ink); text-decoration: none; font-size: 1.1rem; font-weight: 750; letter-spacing: -0.045em; }
 .brand-dot { color: var(--cardinal); }
@@ -73,7 +75,7 @@ p { margin: 0 0 1rem; }
 .publication-note { margin-left: 0.35rem; color: var(--muted); font-size: 0.76rem; }
 
 /* Text and figures share a consistent reading grid. */
-.page-shell { max-width: 1168px; margin: 0 auto; padding: 0 24px; }
+.page-shell { max-width: 1168px; margin: 0 auto; padding: 0 24px; background: var(--paper); }
 .content { padding: 0 0 4rem; }
 .content.narrow { max-width: 860px; margin: auto; }
 .home-layout { padding-top: 0.5rem; }
@@ -99,10 +101,19 @@ p { margin: 0 0 1rem; }
 .home-page .section-rail p { font-size: 0.75rem; }
 .home-page .section-rail a { font-size: 0.85rem; }
 .home-page .section-rail a span { font-size: 0.8rem; }
-.home-page .metric-grid { padding: 1.1rem 1.25rem; background: var(--wash); }
+.home-page .metric-grid { padding: 1.1rem 1.25rem; background: linear-gradient(110deg, #fcf7f6 0%, #f5e8e6 100%); }
 .home-page .research-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
 .home-page .research-links > a { align-items: flex-start; padding-block: 1rem; border-bottom: 0; }
-.research-intro > p { max-width: 1040px; }
+.research-intro > p { max-width: none; }
+.miplib-intro { margin-bottom: 0.75rem; }
+.miplib-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 1.1rem; overflow: hidden; border: 1px solid var(--line); border-radius: 3px; background: var(--wash); }
+.miplib-figure { display: flex; min-width: 0; margin: 0; flex-direction: column; border-left: 1px solid var(--line); }
+.miplib-figure:first-child { border-left: 0; }
+.miplib-figure > a { position: relative; display: block; height: 20rem; overflow: hidden; background: var(--paper); }
+.miplib-figure img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: none; max-height: none; object-fit: contain; }
+.miplib-figure figcaption { flex: 1; padding: 0.8rem 0.9rem; border-top: 1px solid var(--line); background: var(--wash); color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+.miplib-figure figcaption strong { color: var(--ink); font-weight: 600; }
+.miplib-figure figcaption a { white-space: nowrap; }
 .research-takeaway { margin: 1.2rem 0 0; padding: 1rem 1.4rem; border-left: 3px solid var(--cardinal); background: var(--soft-red); }
 .research-takeaway .finding-label { margin: 0 0 0.55rem; color: var(--cardinal); font-size: 0.85rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; }
 .research-takeaway .finding-statement { margin: 0 0 0.55rem; color: var(--cardinal-dark); font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.45; }
@@ -276,11 +287,11 @@ details > div { padding: 0.8rem 0 0; color: var(--muted); }
 .status-strip button:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
 .noscript { padding: 1rem; background: var(--wash); border: 1px solid var(--line); }
 
-.footer { padding: 0 24px; }
-.footer-inner { max-width: 1120px; margin: auto; padding: 1.25rem 0 1.75rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.75rem; }
-.footer a { color: var(--muted); text-decoration: none; }
-.footer a:hover { color: var(--cardinal); text-decoration: underline; }
-.footer-description { margin-left: 1rem; color: #777; }
+.footer { padding: 0 24px; background: var(--cardinal-dark); color: #f5e8e6; }
+.footer-inner { max-width: 1120px; margin: auto; padding: 1.25rem 0 1.75rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; border-top: 0; color: #ead5d2; font-size: 0.75rem; }
+.footer a { color: #fff; text-decoration: none; }
+.footer a:hover { color: #fff; text-decoration: underline; }
+.footer-description { margin-left: 1rem; color: #dbc0bd; }
 
 @media (max-width: 1000px) {
   .section-rail a { font-size: 0.72rem; }
@@ -310,6 +321,9 @@ details > div { padding: 0.8rem 0 0; color: var(--muted); }
   .home-page .section-rail { margin-bottom: 1.25rem; padding-bottom: 0.5rem; }
   .section-head { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
   .section-head h2, .section h2 { font-size: 1.5rem; }
+  .miplib-gallery { grid-template-columns: repeat(2, minmax(18rem, 1fr)); overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .miplib-gallery .miplib-figure { scroll-snap-align: start; }
+  .miplib-figure > a { height: 15rem; }
   .skill-focus-list, .division { grid-template-columns: 1fr; gap: 1.3rem; }
   .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .controls { grid-template-columns: 1fr; }
